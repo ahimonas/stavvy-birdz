@@ -25,7 +25,7 @@ Please wait while the `.gif` files are loading...
 
 
 ## Screens
-<img src="/resources/img-33.PNG" width="49%"> <img src="/resources/img-05.PNG" width="49%">
+<img src="/resources/img-33.PNG" width="49%">
 
 
 # ☢️ Caution 
