@@ -1,4 +1,4 @@
-# flappy-fly-bird [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
+# Stavvy-bird [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
 
 [![Language](https://img.shields.io/badge/Language-Swift_5.7-orange.svg)]()
 [![Framework](https://img.shields.io/badge/Framework-SpriteKit-red.svg)]()
@@ -10,12 +10,9 @@
 [![Repo Size](https://img.shields.io/github/repo-size/jvirus/flappy-fly-bird)]()
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)]()
 
-![](logo-flappy_fly_bird.png)
-
-### If you like the project, please give it a star ⭐ It will show the creator your appreciation and help others to discover the repo.
 
 # ✍️ About 
-🐦 `Flappy Fly-Bird` is an `iOS/SpriteKit` game written using the latest verion of `Swift` programming language and `GameplayKit`. 
+🐦 `Stavvy-Bird` is an `iOS/SpriteKit` game written using the latest verion of `Swift` programming language and `GameplayKit`. 
 
 # 📺 Demo 
 
@@ -24,12 +21,11 @@ Please wait while the `.gif` files are loading...
 
 |  |  |
 :-------------------------:|:-------------------------:
-![](/resources/intro.gif) | ![](/resources/gameplay.gif)
-![](/resources/characters.gif) | ![](/resources/cat-gameplay.gif) 
+![](/resources/init.gif)
 
 
 ## Screens
-<img src="/resources/img-01.PNG" width="49%"> <img src="/resources/img-05.PNG" width="49%">
+<img src="/resources/img-33.PNG" width="49%"> 
 
 
 # ☢️ Caution 
@@ -92,9 +88,6 @@ There were used graphical resources such as `audio`, `music` and `images`. Those
 - [x] New pipe types
 - [ ] Level opening animation
 - [x] Setting for game `Difficulty` 
-
-# 👨‍💻 Author 
-[Astemir Eleev](https://github.com/jVirus)
 
 # 🔖 Licence
 The project is availabe under the [BSD 3-Clause "New" or "Revised" License](https://github.com/jVirus/ios-spritekit-flappy-flying-bird/blob/master/LICENSE). Remember: you must not use any of the `assets` in commercial purposes.
