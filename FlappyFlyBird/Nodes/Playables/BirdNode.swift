@@ -121,12 +121,17 @@ class BirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
         }
         let velocityValue = velocityY * (velocityY < 0 ? 0.0045 : 0.0023)
         //let velocityValue = velocityY * (velocityY < 0 ? 0.005 : 0.0025)
-
+        
         //let velocityValue = velocityY * (velocityY < 0 ? 0.0055 : 0.0033)
         //zRotation = velocityValue.clamp(min: -1.2, max: 0.99) // the rotation in the air
         //let velocityValue = velocityY * (velocityY < 0 ? 0.002 : 0.01)
-        zRotation = velocityValue.clamp(min: -0.33, max: 0.99)
+        zRotation = velocityValue.clamp(min: -0.37, max: 0.99)
         // the rotation in the air //min is rotate down, max is rotate up
+        
+        //GOOD!
+    //        zRotation = velocityValue.clamp(min: -0.33, max: 0.99)
+
+        
     }
     
 }

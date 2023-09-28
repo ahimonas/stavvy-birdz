@@ -104,14 +104,14 @@ class NyancatNode: SKNode, Updatable, Playable, PhysicsContactable {
         
         let velocityX = physicsBody.velocity.dx
         let velocityY = physicsBody.velocity.dy
-        let threshold: CGFloat = 1000
+        let threshold: CGFloat = 300
         
         if velocityY > threshold {
             physicsBody.velocity = CGVector(dx: velocityX, dy: threshold)
         }
         
         let velocityValue = velocityY * (velocityY < 0 ? 0.0044 : 0.0022)
-        zRotation = velocityValue.clamp(min: -1, max: 1)
+        zRotation = velocityValue.clamp(min: -0.33, max: 0.99)
     }
     
 }
@@ -127,6 +127,6 @@ extension NyancatNode: Touchable {
         
         isAffectedByGravity = true
         // Apply an impulse to the DY value of the physics body of the bird
-        physicsBody?.applyImpulse(CGVector(dx: 0, dy: 100))
+        physicsBody?.applyImpulse(CGVector(dx: 0, dy: 150))
     }
 }

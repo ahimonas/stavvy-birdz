@@ -37,8 +37,9 @@ class PipeNode: SKSpriteNode {
         
         let cap = SKSpriteNode(imageNamed: textures.cap)
         cap.position = CGPoint(x: 0.0, y: side ? -pipe.size.height / 2 + cap.size.height / 2 : pipe.size.height / 2 - cap.size.height / 2)
-        // Make the cap's width a bit wider, so it looks more realistic
-        cap.size = CGSize(width: pipe.size.width + pipe.size.width / 6, height: cap.size.height)
+        
+        // Changes width and height of cap
+        cap.size = CGSize(width: pipe.size.width + pipe.size.width/3, height: cap.size.height*2)
         cap.zPosition = 5
         pipe.addChild(cap)
         

@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="airadventurelevel2" translatesAutoresizingMaskIntoConstraints="NO" id="eCY-Un-8Cj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="airadventurelevel1" translatesAutoresizingMaskIntoConstraints="NO" id="eCY-Un-8Cj">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="@ Your Mom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6m-7y-Fxl">
@@ -80,6 +80,6 @@
     </scenes>
     <resources>
         <image name="LaunchScreen" width="3548" height="3300"/>
-        <image name="airadventurelevel2" width="1920" height="1080"/>
+        <image name="airadventurelevel1" width="1500" height="750"/>
     </resources>
 </document>

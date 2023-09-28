@@ -10,6 +10,7 @@
 [![Repo Size](https://img.shields.io/github/repo-size/jvirus/flappy-fly-bird)]()
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)]()
 
+![](logo-flappy_fly_bird.png)
 
 # ✍️ About 
 🐦 `Stavvy-Bird` is an `iOS/SpriteKit` game written using the latest verion of `Swift` programming language and `GameplayKit`. 
@@ -25,7 +26,7 @@ Please wait while the `.gif` files are loading...
 
 
 ## Screens
-<img src="/resources/img-33.png" width="49%"> 
+<img src="/resources/img-33.PNG" width="49%"> <img src="/resources/img-05.PNG" width="49%">
 
 
 # ☢️ Caution 

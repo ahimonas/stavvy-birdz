@@ -30,7 +30,7 @@ class InfiniteSpriteScrollNode: SKNode {
     
     // MARK: - Initailziers
     
-    init(fileName: String, scaleFactor scale: CGPoint = CGPoint(x: 1.0, y: 1.0), speed: TimeInterval = 100) {
+    init(fileName: String, scaleFactor scale: CGPoint = CGPoint(x: 1.0, y: 1.0), speed: TimeInterval = 98) {
         self.backgroundSpeed = speed
         
         let yShift: CGFloat = 5.0
