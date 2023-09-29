@@ -189,8 +189,7 @@
 		A9EC756320A6D3E9007C42EC /* SettingsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
 		A9EC756520A6D829007C42EC /* ScoresScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresScene.swift; sourceTree = "<group>"; };
 		A9EC756720A6E479007C42EC /* RoutingUtilityScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingUtilityScene.swift; sourceTree = "<group>"; };
-		CA3525D72ABB6D0200347B72 /* Pixel Digivolve.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pixel Digivolve.otf"; sourceTree = "<group>"; };
-		CA3525D82ABB6D1100347B72 /* Digivolve.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Digivolve.otf; sourceTree = "<group>"; };
+		CA3525D72ABB6D0200347B72 /* Digivolve.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Digivolve.otf; sourceTree = "<group>"; };
 		CA3B1D902ABBAD900011F1F1 /* animated-nyan-hip-roken.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "animated-nyan-hip-roken.gif"; sourceTree = "<group>"; };
 		CAFB93792ABAC972008A2AD5 /* dhcj.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = dhcj.gif; sourceTree = "<group>"; };
 		CAFB937E2ABACA4E008A2AD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = en; path = "en.lproj/animated-nyan-hip-1.gif"; sourceTree = "<group>"; };
@@ -358,8 +357,7 @@
 		A9ACB9442099A47800966991 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				CA3525D82ABB6D1100347B72 /* Digivolve.otf */,
-				CA3525D72ABB6D0200347B72 /* Pixel Digivolve.otf */,
+				CA3525D72ABB6D0200347B72 /* Digivolve.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";

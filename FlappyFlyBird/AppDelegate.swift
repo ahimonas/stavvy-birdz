@@ -1,10 +1,6 @@
 //
 //  AppDelegate.swift
-//  FlappyFlyBird
-//
-//  Created by Astemir Eleev on 02/05/2018.
-//  Copyright © 2018 Astemir Eleev. All rights reserved.
-//
+// Stavvy Bird
 
 /*
  This track is free to use even commercially (like YouTube monetization), but you must include the following credits in your video's description (Copy & Paste):
