@@ -93,6 +93,7 @@
 		A9EC756620A6D829007C42EC /* ScoresScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC756520A6D829007C42EC /* ScoresScene.swift */; };
 		A9EC756820A6E479007C42EC /* RoutingUtilityScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC756720A6E479007C42EC /* RoutingUtilityScene.swift */; };
 		CA3B1D912ABBAD900011F1F1 /* animated-nyan-hip-roken.gif in Resources */ = {isa = PBXBuildFile; fileRef = CA3B1D902ABBAD900011F1F1 /* animated-nyan-hip-roken.gif */; };
+		CA47A3C12ACB5E3100E8ED52 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */; };
 		CAFB937A2ABAC972008A2AD5 /* dhcj.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAFB93792ABAC972008A2AD5 /* dhcj.gif */; };
 		CAFB937D2ABACA4E008A2AD5 /* animated-nyan-hip-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAFB937F2ABACA4E008A2AD5 /* animated-nyan-hip-1.gif */; };
 		CAFB93812ABB34A9008A2AD5 /* animated-nyan-hip-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAFB93802ABB34A9008A2AD5 /* animated-nyan-hip-2.gif */; };
@@ -194,6 +195,8 @@
 		CA3525D72ABB6D0200347B72 /* Pixel Digivolve.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pixel Digivolve.otf"; sourceTree = "<group>"; };
 		CA3525D82ABB6D1100347B72 /* Digivolve.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Digivolve.otf; sourceTree = "<group>"; };
 		CA3B1D902ABBAD900011F1F1 /* animated-nyan-hip-roken.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "animated-nyan-hip-roken.gif"; sourceTree = "<group>"; };
+		CA47A3BF2ACB5DE400E8ED52 /* StavvyBird.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StavvyBird.entitlements; sourceTree = "<group>"; };
+		CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CAFB93792ABAC972008A2AD5 /* dhcj.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = dhcj.gif; sourceTree = "<group>"; };
 		CAFB937E2ABACA4E008A2AD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = en; path = "en.lproj/animated-nyan-hip-1.gif"; sourceTree = "<group>"; };
 		CAFB93802ABB34A9008A2AD5 /* animated-nyan-hip-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "animated-nyan-hip-2.gif"; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E584577D0AD326EAF825AA7 /* Pods_StavvyBird.framework in Frameworks */,
+				CA47A3C12ACB5E3100E8ED52 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +221,7 @@
 		22A388442C95E63AA19544AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */,
 				547D8F6A64D1BD06473A18CD /* Pods_StavvyBird.framework */,
 			);
 			name = Frameworks;
@@ -341,6 +346,7 @@
 		A9ACB91B2099A1F200966991 /* StavvyBird */ = {
 			isa = PBXGroup;
 			children = (
+				CA47A3BF2ACB5DE400E8ED52 /* StavvyBird.entitlements */,
 				A9ACB91C2099A1F200966991 /* AppDelegate.swift */,
 				A9ACB92E2099A1F300966991 /* Info.plist */,
 				A9ACB9932099F16800966991 /* Storyboards */,
@@ -948,6 +954,8 @@
 			baseConfigurationReference = 8344C2F3ACC7992581C1D297 /* Pods-StavvyBird.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = StavvyBird/StavvyBird.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z47KAS58JH;
 				GCC_OPTIMIZATION_LEVEL = 2;
@@ -957,9 +965,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.9;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = sounio.io.stavvbird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -971,6 +980,8 @@
 			baseConfigurationReference = E96DC9F22650A686DDD7743B /* Pods-StavvyBird.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = StavvyBird/StavvyBird.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z47KAS58JH;
 				INFOPLIST_FILE = "$(SRCROOT)/StavvyBird/Info.plist";
@@ -979,9 +990,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.9;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = sounio.io.stavvbird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

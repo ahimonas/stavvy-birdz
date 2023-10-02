@@ -1,9 +1,9 @@
 //
 //  ToggleButtonNode.swift
-//  FlappyFlyBird
+//  StavvyBird
 //
 //  Created by Astemir Eleev on 17/05/2018.
-//  Copyright © 2018 Astemir Eleev. All rights reserved.
+
 //
 
 import SpriteKit
