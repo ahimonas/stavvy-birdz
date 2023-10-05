@@ -94,6 +94,8 @@
 		A9EC756820A6E479007C42EC /* RoutingUtilityScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC756720A6E479007C42EC /* RoutingUtilityScene.swift */; };
 		CA3B1D912ABBAD900011F1F1 /* animated-nyan-hip-roken.gif in Resources */ = {isa = PBXBuildFile; fileRef = CA3B1D902ABBAD900011F1F1 /* animated-nyan-hip-roken.gif */; };
 		CA47A3C12ACB5E3100E8ED52 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */; };
+		CA575CCA2ACE4BEE00D5CC2C /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = CA575CC92ACE4BEE00D5CC2C /* Fonts */; };
+		CA575CCC2ACE4BFF00D5CC2C /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = CA575CCB2ACE4BFF00D5CC2C /* Assets */; };
 		CAFB937A2ABAC972008A2AD5 /* dhcj.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAFB93792ABAC972008A2AD5 /* dhcj.gif */; };
 		CAFB937D2ABACA4E008A2AD5 /* animated-nyan-hip-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAFB937F2ABACA4E008A2AD5 /* animated-nyan-hip-1.gif */; };
 		CAFB93812ABB34A9008A2AD5 /* animated-nyan-hip-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAFB93802ABB34A9008A2AD5 /* animated-nyan-hip-2.gif */; };
@@ -192,11 +194,12 @@
 		A9EC756320A6D3E9007C42EC /* SettingsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScene.swift; sourceTree = "<group>"; };
 		A9EC756520A6D829007C42EC /* ScoresScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresScene.swift; sourceTree = "<group>"; };
 		A9EC756720A6E479007C42EC /* RoutingUtilityScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingUtilityScene.swift; sourceTree = "<group>"; };
-		CA3525D72ABB6D0200347B72 /* Pixel Digivolve.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pixel Digivolve.otf"; sourceTree = "<group>"; };
-		CA3525D82ABB6D1100347B72 /* Digivolve.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Digivolve.otf; sourceTree = "<group>"; };
 		CA3B1D902ABBAD900011F1F1 /* animated-nyan-hip-roken.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "animated-nyan-hip-roken.gif"; sourceTree = "<group>"; };
 		CA47A3BF2ACB5DE400E8ED52 /* StavvyBird.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StavvyBird.entitlements; sourceTree = "<group>"; };
 		CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		CA575CC92ACE4BEE00D5CC2C /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; sourceTree = "<group>"; };
+		CA575CCB2ACE4BFF00D5CC2C /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; sourceTree = "<group>"; };
+		CABC84112ACE335500488582 /* Pixel Digivolve.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pixel Digivolve.otf"; sourceTree = "<group>"; };
 		CAFB93792ABAC972008A2AD5 /* dhcj.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = dhcj.gif; sourceTree = "<group>"; };
 		CAFB937E2ABACA4E008A2AD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = en; path = "en.lproj/animated-nyan-hip-1.gif"; sourceTree = "<group>"; };
 		CAFB93802ABB34A9008A2AD5 /* animated-nyan-hip-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "animated-nyan-hip-2.gif"; sourceTree = "<group>"; };
@@ -368,8 +371,8 @@
 		A9ACB9442099A47800966991 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				CA3525D82ABB6D1100347B72 /* Digivolve.otf */,
-				CA3525D72ABB6D0200347B72 /* Pixel Digivolve.otf */,
+				CABC84112ACE335500488582 /* Pixel Digivolve.otf */,
+				CA575CC92ACE4BEE00D5CC2C /* Fonts */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				A9ACB96C2099B46E00966991 /* Actions */,
 				A9CC5C3E20A0361700040E61 /* Scenes */,
 				A9ACB9292099A1F300966991 /* Assets.xcassets */,
+				CA575CCB2ACE4BFF00D5CC2C /* Assets */,
 				A9ACB9442099A47800966991 /* Fonts */,
 				A9ACB95B2099B14A00966991 /* Sound */,
 			);
@@ -625,6 +629,9 @@
 		A9ACB9112099A1F200966991 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					mFont,
+				);
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Sounio Technologies LLC";
@@ -659,6 +666,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9CA8F6D209C9130004CB9D4 /* Coin.wav in Resources */,
+				CA575CCC2ACE4BFF00D5CC2C /* Assets in Resources */,
 				A9EBCCAB20B9785400BB08A3 /* CharactersScene.sks in Resources */,
 				CAFB937D2ABACA4E008A2AD5 /* animated-nyan-hip-1.gif in Resources */,
 				A9ACB96B2099B42300966991 /* Actions.sks in Resources */,
@@ -682,6 +690,7 @@
 				CAFB93852ABB3664008A2AD5 /* animated-nyan-hip-1.gif in Resources */,
 				A9A313A320B0263C00B36175 /* PauseScene iPad.sks in Resources */,
 				A9EBCCAA20B9785400BB08A3 /* CharactersScene iPad.sks in Resources */,
+				CA575CCA2ACE4BEE00D5CC2C /* Fonts in Resources */,
 				A9ACB9772099B7AF00966991 /* switch2.mp3 in Resources */,
 				A935954B20C27B81000FF0FA /* retro_transition_fade_from_centre.fsh in Resources */,
 				A9CC5C3A20A02D0A00040E61 /* PauseScene.sks in Resources */,
