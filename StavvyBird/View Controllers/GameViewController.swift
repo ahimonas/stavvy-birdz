@@ -11,6 +11,7 @@ import SpriteKit
 import GameplayKit
 import SwiftUI
 import GoogleMobileAds
+import GameKit
 
 
 
@@ -118,8 +119,7 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
         */
         
         
-
-
+  
         //view.addSubview(BannerAd)
         
         let sceneName = Scenes.title.getName()
@@ -190,6 +190,9 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
         return true
     }
 }
+
+
+
 
 // UIViewRepresentable wrapper for AdMob banner view
 @available(iOS 13.0, *)

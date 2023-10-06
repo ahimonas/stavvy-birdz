@@ -2,7 +2,6 @@
 //  SKSpriteNode+GIF.swift
 //  StavvyBird
 //
-//  Created by Astemir Eleev on 27/05/2018.
 
 //
 

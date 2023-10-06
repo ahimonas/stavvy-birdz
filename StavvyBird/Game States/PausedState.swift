@@ -2,7 +2,6 @@
 //  PausedState.swift
 //  StavvyBird
 //
-//  Created by Astemir Eleev on 05/05/2018.
 
 //
 

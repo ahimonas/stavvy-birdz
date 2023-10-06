@@ -2,7 +2,6 @@
 //  GameOverState.swift
 //  StavvyBird
 //
-//  Created by Astemir Eleev on 05/05/2018.
 
 //
 
@@ -12,6 +11,11 @@ import SpriteKit
 class GameOverState: GKState {
     
     // MARK: - Properites
+    // MARK: - Overrides
+    var gcEnabled = Bool()
+    var gcDefaultLeaderboard = String()
+    var leaderboardID = "stavvyboard22"
+    
     
     var overlaySceneFileName: String {
         return Scenes.failed.getName()

@@ -2,8 +2,6 @@
 //  ToggleButtonNode.swift
 //  StavvyBird
 //
-//  Created by Astemir Eleev on 17/05/2018.
-
 //
 
 import SpriteKit

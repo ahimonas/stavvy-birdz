@@ -1,4 +1,3 @@
-//
 //  GameScene.swift
 //  StavvyBird
 //
@@ -8,8 +7,26 @@
 
 import SpriteKit
 import GameplayKit
+import GameKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, GKGameCenterControllerDelegate {
+    
+    func showLeaderBoard(){
+
+        let viewController = self.view?.window?.rootViewController
+         let gcvc = GKGameCenterViewController()
+
+         gcvc.gameCenterDelegate = self
+
+        viewController?.present(gcvc, animated: true, completion: nil)
+
+
+     }
+
+
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
+     }
     
     // MARK: - Constants
     
@@ -103,7 +120,11 @@ class GameScene: SKScene {
             activeUpdatable.update(currentTime)
         })
     }
+    
+
+  
 }
+
 
 
 // MARK: - Conformance to ButtonNodeResponderType
@@ -116,8 +137,9 @@ extension GameScene: ButtonNodeResponderType {
         selection.selectionChanged()
         
         switch identifier {
+        
         case .pause:
-            sceneAdapeter?.stateMahcine?.enter(PausedState.self)
+            sceneAdapeter?.stateMahcine?.enter(PausedState.self) //showLeaderBoard();
         case .resume:
             sceneAdapeter?.stateMahcine?.enter(PlayingState.self)
         case .home:

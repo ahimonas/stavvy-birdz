@@ -2,8 +2,6 @@
 //  TriggleButtonNode.swift
 //  StavvyBird
 //
-//  Created by Astemir Eleev on 08/10/2018.
-
 //
 
 import SpriteKit

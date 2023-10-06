@@ -2,7 +2,6 @@
 //  SKEmitterNode+Utils.swift
 //  StavvyBird
 //
-//  Created by Astemir Eleev on 20/05/2018.
 
 //
 

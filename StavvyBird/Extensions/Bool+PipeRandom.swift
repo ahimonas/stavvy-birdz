@@ -2,7 +2,6 @@
 //  Bool+PipeRandom.swift
 //  StavvyBird
 //
-//  Created by Astemir Eleev on 03/06/2018.
 
 //
 

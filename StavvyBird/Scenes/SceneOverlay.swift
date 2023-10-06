@@ -1,10 +1,7 @@
 //
 //  SceneOverlay.swift
 //  StavvyBird
-//
-//  Created by Astemir Eleev on 07/05/2018.
 
-//
 
 import SpriteKit
 

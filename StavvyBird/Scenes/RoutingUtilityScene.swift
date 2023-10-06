@@ -1,23 +1,57 @@
 //
 //  RoutingUtilityScene.swift
 //  StavvyBird
-//
-//  Created by Astemir Eleev on 12/05/2018.
 
-//
+// THIS HAS SHOW SCOREBOARD, THIS ALSO HAS ALL BUTTON ACTIONS FOR SKSCENES, transition scenes based on buttons.
 
 import SpriteKit
+import GameKit
 
-class RoutingUtilityScene: SKScene, ButtonNodeResponderType {
+class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControllerDelegate {
+
+    func showLeaderBoard(){
+
+        let viewController = self.view?.window?.rootViewController
+         let gcvc = GKGameCenterViewController()
+
+         gcvc.gameCenterDelegate = self
+
+        viewController?.present(gcvc, animated: true, completion: nil)
+
+
+     }
+
+
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
+     }
     
-    // MARK: - Properties
     
+    
+    //Call this when ur highscore should be saved
+    func saveHighScore(number:Int){
+
+        if(GKLocalPlayer.local.isAuthenticated){
+
+            let scoreReporter = GKScore(leaderboardIdentifier: "stavvyboard22")
+            scoreReporter.value = Int64(number)
+
+            let scoreArray: [GKScore] = [scoreReporter]
+
+            GKScore.report(scoreArray, withCompletionHandler: nil)
+
+        }
+
+    }
+    
+    
+    
+
     let selection = UISelectionFeedbackGenerator()
     static let sceneScaleMode: SKSceneScaleMode = .aspectFill
     private static var lastPushTransitionDirection: SKTransitionDirection?
     
     
-    // MARK: - Conformance to ButtonNodeResponderType
     
     func buttonTriggered(button: ButtonNode) {
         guard let identifier = button.buttonIdentifier else {
@@ -55,6 +89,12 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType {
             
             RoutingUtilityScene.lastPushTransitionDirection = .right
             transition = SKTransition.push(with: .right, duration: 1.0)
+            
+        case .venu:
+            let tryCountCurrent :Int = 4
+            saveHighScore(number: tryCountCurrent)
+            debugPrint("venueee button")
+            showLeaderBoard()
         case .menu:
             let sceneId = Scenes.title.getName()
             sceneToPresent = TitleScene(fileNamed: sceneId)
@@ -96,3 +136,5 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType {
         debugPrint("presented CharactersScene instance")
     }
 }
+
+//https://cloud.tencent.com/developer/ask/sof/113518506
