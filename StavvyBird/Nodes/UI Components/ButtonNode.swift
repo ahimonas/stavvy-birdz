@@ -2,8 +2,6 @@
 //  ButtonNode.swift
 //  StavvyBird
 //
-//  Created by Astemir Eleev on 05/05/2018.
-
 //
 
 import SpriteKit
@@ -20,6 +18,8 @@ enum ButtonIdentifier: String {
     case pause = "Pause"
     case resume = "Resume"
     case menu = "Menu"
+    case venu = "Venu"
+
     case home = "Home"
     case settings = "Settings"
     case retry = "Retry"
@@ -31,7 +31,7 @@ enum ButtonIdentifier: String {
     
     /// Convenience array of all available button identifiers.
     static let allButtonIdentifiers: [ButtonIdentifier] = [
-        .play, .pause, .resume, .menu, .settings, .home, .retry, .cancel, .scores, sound, .characters, .difficulty
+        .play, .pause, .resume, .menu, .venu, .settings, .home, .retry, .cancel, .scores, sound, .characters, .difficulty
     ]
     
     /// The name of the texture to use for a button when the button is selected.

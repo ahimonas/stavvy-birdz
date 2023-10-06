@@ -2,7 +2,7 @@
 //  CharactersScene.swift
 //  StavvyBird
 //
-//  Created by Astemir Eleev on 26/05/2018.
+
 
 //
 

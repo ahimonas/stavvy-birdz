@@ -11,6 +11,7 @@ import SpriteKit
 import GameplayKit
 import SwiftUI
 import GoogleMobileAds
+import GameKit
 
 
 
@@ -71,6 +72,15 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
 
         super.viewDidLoad()
         
+        for family: String in UIFont.familyNames
+        {
+            print(family)
+            for names: String in UIFont.fontNames(forFamilyName: family)
+            {
+                print("== \(names)")
+            }
+        }
+        
         bannerView = GADBannerView(adSize: GADAdSizeBanner)
         addBannerViewToView(bannerView)
         bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
@@ -109,8 +119,7 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
         */
         
         
-
-
+  
         //view.addSubview(BannerAd)
         
         let sceneName = Scenes.title.getName()
@@ -181,6 +190,9 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
         return true
     }
 }
+
+
+
 
 // UIViewRepresentable wrapper for AdMob banner view
 @available(iOS 13.0, *)

@@ -2,7 +2,6 @@
 //  SKScene+ShaderTransition.swift
 //  StavvyBird
 //
-//  Created by Astemir Eleev on 02/06/2018.
 
 //
 

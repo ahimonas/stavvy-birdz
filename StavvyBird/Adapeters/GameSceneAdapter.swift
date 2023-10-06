@@ -205,7 +205,7 @@ extension GameSceneAdapter: SKPhysicsContactDelegate {
         if collision == (player | PhysicsCategories.gap.rawValue) {
             score += 1
             score += 1
-            scoreLabel?.text = "Scorez \(score)"
+            scoreLabel?.text = "\(score)"
             
             if isSoundOn { scene?.run(scoreSound) }
             

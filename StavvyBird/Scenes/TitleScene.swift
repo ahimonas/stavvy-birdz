@@ -2,7 +2,6 @@
 //  TitleScene.swift
 //  StavvyBird
 //
-//  Created by Astemir Eleev on 06/05/2018.
 
 //
 

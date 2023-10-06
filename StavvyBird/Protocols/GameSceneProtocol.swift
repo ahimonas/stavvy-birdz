@@ -2,7 +2,6 @@
 //  GameSceneProtocol.swift
 //  StavvyBird
 //
-//  Created by Astemir Eleev on 03/05/2018.
 
 //
 
