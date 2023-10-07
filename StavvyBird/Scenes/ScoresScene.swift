@@ -10,7 +10,7 @@ import GameplayKit
 import GameKit
 
 class ScoresScene: RoutingUtilityScene {
-    
+    /*
     // MARK: - Overrides
     var gcEnabled = Bool()
     var gcDefaultLeaderboard = String()
@@ -22,15 +22,15 @@ class ScoresScene: RoutingUtilityScene {
     var tryCountCurrentLabel :SKLabelNode!
     var tryCountBestLabel :SKLabelNode!
     var buttonReset : SKSpriteNode!
-
+*/
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-        authenticateLocalPlayer()
+        //authenticateLocalPlayer()
         fetchScores()
         //createScoreboard()
         //submitScore()
         //showScoreboard()
-        saveHighScore33(number: 33)
+        //saveHighScore33(number: 33)
         advanceRainParticleEmitter(for: 10)
     }
 /*
@@ -90,7 +90,7 @@ class ScoresScene: RoutingUtilityScene {
         let particleEmitter = childNode(withName: "Rain Particle Emitter") as? SKEmitterNode
         particleEmitter?.advanceSimulationTime(amount)
     }
-    
+    /*
     // MARK: leaderboard
     func authenticateLocalPlayer() {
         let localPlayer : GKLocalPlayer = GKLocalPlayer()
@@ -116,6 +116,7 @@ class ScoresScene: RoutingUtilityScene {
             }
         }
     }
+     */
 
     
     private func fetchScores() {
@@ -131,6 +132,7 @@ class ScoresScene: RoutingUtilityScene {
             lastScoreLabel.text = "Last: \(lastScore)"
         }
     }
+    /*
     
     func submitScore() {
         if self.scene?.childNode(withName: "Best Score Label") is SKLabelNode {
@@ -166,7 +168,8 @@ class ScoresScene: RoutingUtilityScene {
 
     }
         
-        
+        */
 
     
 }
+

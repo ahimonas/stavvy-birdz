@@ -93,6 +93,7 @@
 		A9EC756620A6D829007C42EC /* ScoresScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC756520A6D829007C42EC /* ScoresScene.swift */; };
 		A9EC756820A6E479007C42EC /* RoutingUtilityScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC756720A6E479007C42EC /* RoutingUtilityScene.swift */; };
 		CA29A1922ACF755B00470B9F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA29A1912ACF755B00470B9F /* GameKit.framework */; };
+		CA29A1932AD0724800470B9F /* Pixel Digivolve.otf in Resources */ = {isa = PBXBuildFile; fileRef = CABC84112ACE335500488582 /* Pixel Digivolve.otf */; };
 		CA3B1D912ABBAD900011F1F1 /* animated-nyan-hip-roken.gif in Resources */ = {isa = PBXBuildFile; fileRef = CA3B1D902ABBAD900011F1F1 /* animated-nyan-hip-roken.gif */; };
 		CA47A3C12ACB5E3100E8ED52 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */; };
 		CAFB937A2ABAC972008A2AD5 /* dhcj.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAFB93792ABAC972008A2AD5 /* dhcj.gif */; };
@@ -675,6 +676,7 @@
 				A950486520BAE29C0020ECD9 /* animated-lifealope-nyan.gif in Resources */,
 				A9ACB9752099B7AF00966991 /* switch3.mp3 in Resources */,
 				A9EC755E20A6CB03007C42EC /* SettingsScene.sks in Resources */,
+				CA29A1932AD0724800470B9F /* Pixel Digivolve.otf in Resources */,
 				A9ACB9782099B7AF00966991 /* rollover2.mp3 in Resources */,
 				A9ACB9742099B7AF00966991 /* click1.mp3 in Resources */,
 				CAFB93832ABB3534008A2AD5 /* animated-nyan-hip-4.gif in Resources */,

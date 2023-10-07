@@ -6,45 +6,9 @@
 
 import SpriteKit
 import GameKit
+import GameplayKit
 
-class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControllerDelegate {
-
-    func showLeaderBoard(){
-
-        let viewController = self.view?.window?.rootViewController
-         let gcvc = GKGameCenterViewController()
-
-         gcvc.gameCenterDelegate = self
-
-        viewController?.present(gcvc, animated: true, completion: nil)
-
-
-     }
-
-
-    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-        gameCenterViewController.dismiss(animated: true, completion: nil)
-     }
-    
-    
-    
-    //Call this when ur highscore should be saved
-    func saveHighScore(number:Int){
-
-        if(GKLocalPlayer.local.isAuthenticated){
-
-            let scoreReporter = GKScore(leaderboardIdentifier: "stavvyboard22")
-            scoreReporter.value = Int64(number)
-
-            let scoreArray: [GKScore] = [scoreReporter]
-
-            GKScore.report(scoreArray, withCompletionHandler: nil)
-
-        }
-
-    }
-    
-    
+class RoutingUtilityScene: SKScene, ButtonNodeResponderType{
     
 
     let selection = UISelectionFeedbackGenerator()
@@ -89,12 +53,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             
             RoutingUtilityScene.lastPushTransitionDirection = .right
             transition = SKTransition.push(with: .right, duration: 1.0)
-            
-        case .venu:
-            let tryCountCurrent :Int = 4
-            saveHighScore(number: tryCountCurrent)
-            debugPrint("venueee button")
-            showLeaderBoard()
+
         case .menu:
             let sceneId = Scenes.title.getName()
             sceneToPresent = TitleScene(fileNamed: sceneId)

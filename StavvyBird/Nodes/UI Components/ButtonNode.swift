@@ -23,6 +23,7 @@ enum ButtonIdentifier: String {
     case home = "Home"
     case settings = "Settings"
     case retry = "Retry"
+    case betry = "Betry"
     case cancel = "Cancel"
     case scores = "Scores"
     case sound = "Sound"
