@@ -11,7 +11,6 @@ import GameKit
 
 class GameScene: SKScene, GKGameCenterControllerDelegate {
     
-    // MARK: - Overrides
     var gcEnabled = Bool()
     var gcDefaultLeaderboard = String()
     var leaderboardID = "stavvyboard22"
@@ -22,73 +21,8 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
     var tryCountBestLabel :SKLabelNode!
     var buttonReset : SKSpriteNode!
     
-    func authenticateLocalPlayer() {
-        let localPlayer : GKLocalPlayer = GKLocalPlayer()
-        localPlayer.authenticateHandler = { (viewController, error) -> Void in
-            if viewController != nil {
-                let vc = self.view?.window?.rootViewController
-                vc?.present(viewController!, animated: true, completion: nil)
-            } else if localPlayer.isAuthenticated {
-                print("player is already authenticated")
-                self.gcEnabled = true
-                
-                // Get the default leaerboard ID
-                localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: ({(leaderboardIdentifer, error) -> Void in
-                    if error != nil {
-                        // Expression implicitly coerced from 'String?' to 'Any'
-                        print(error!.localizedDescription)
-                    } else {
-                        self.gcDefaultLeaderboard = leaderboardIdentifer!
-                    }
-                })
-                                                             
-                )
-            }
-        }
-    }
-        
-    func showLeaderBoard(){
-
-        let viewController = self.view?.window?.rootViewController
-         let gcvc = GKGameCenterViewController()
-
-         gcvc.gameCenterDelegate = self
-
-        viewController?.present(gcvc, animated: true, completion: nil)
-
-
-     }
-
-
-    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-        gameCenterViewController.dismiss(animated: true, completion: nil)
-     }
-    
-    
-    
-    //Call this when ur highscore should be saved
-    func saveHighScore(number:Int){
-
-        if(GKLocalPlayer.local.isAuthenticated){
-
-            let scoreReporter = GKScore(leaderboardIdentifier: "stavvyboard22")
-            scoreReporter.value = Int64(number)
-
-            let scoreArray: [GKScore] = [scoreReporter]
-
-            GKScore.report(scoreArray, withCompletionHandler: nil)
-
-        }
-
-    }
-    
-    
-    // MARK: - Constants
-    
     static var viewportSize: CGSize = .zero
-    
-    // MARK: - Properties
-    
+        
     lazy var stateMachine: GKStateMachine = GKStateMachine(states: [
         PlayingState(adapter: sceneAdapeter!),
         GameOverState(scene: sceneAdapeter!),
@@ -104,7 +38,6 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
     var sceneAdapeter: GameSceneAdapter?
     let selection = UISelectionFeedbackGenerator()
 
-    // MARK: - Lifecycle
     
     override func sceneDidLoad() {
         super.sceneDidLoad()
@@ -176,6 +109,53 @@ class GameScene: SKScene, GKGameCenterControllerDelegate {
         })
     }
     
+    func authenticateLocalPlayer() {
+        let localPlayer : GKLocalPlayer = GKLocalPlayer()
+        localPlayer.authenticateHandler = { (viewController, error) -> Void in
+            if viewController != nil {
+                let vc = self.view?.window?.rootViewController
+                vc?.present(viewController!, animated: true, completion: nil)
+            } else if localPlayer.isAuthenticated {
+                print("player is already authenticated")
+                self.gcEnabled = true
+                
+                // Get the default leaerboard ID
+                localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: ({(leaderboardIdentifer, error) -> Void in
+                    if error != nil {
+                        // Expression implicitly coerced from 'String?' to 'Any'
+                        print(error!.localizedDescription)
+                    } else {
+                        self.gcDefaultLeaderboard = leaderboardIdentifer!
+                    }
+                })
+                                                             
+                )
+            }
+        }
+    }
+        
+    func showLeaderBoard(){
+        let viewController = self.view?.window?.rootViewController
+         let gcvc = GKGameCenterViewController()
+         gcvc.gameCenterDelegate = self
+        viewController?.present(gcvc, animated: true, completion: nil)
+     }
+
+
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
+     }
+    
+    //Call this when ur highscore should be saved
+    func saveHighScore(number:Int){
+        if(GKLocalPlayer.local.isAuthenticated){
+            let scoreReporter = GKScore(leaderboardIdentifier: "stavvyboard22")
+            scoreReporter.value = Int64(number)
+            let scoreArray: [GKScore] = [scoreReporter]
+            GKScore.report(scoreArray, withCompletionHandler: nil)
+        }
+
+    }
 
   
 }
@@ -197,12 +177,6 @@ extension GameScene: ButtonNodeResponderType {
             
         case .betry:
             myAuthCall()
-            //authenticateLocalPlayer()
-            //let tryCountCurrent :Int = 4
-            //debugPrint("authed player")
-            //saveHighScore(number: tryCountCurrent)
-            //debugPrint("venueee button")
-            //showLeaderBoard()
             
         case .home:
             let sceneId = Scenes.title.getName()
@@ -235,28 +209,20 @@ extension GameScene: ButtonNodeResponderType {
          debugPrint("authed player")
          saveHighScore(number: tryCountCurrent)
          submitScoreAndShowLeader()
-
      }
     
-    
-    func saveHighScore33(number:Int){
-
+    func saveHighestScore(number:Int){
         if(GKLocalPlayer.local.isAuthenticated){
-
             let scoreReporter = GKScore(leaderboardIdentifier: "stavvyboard22")
             scoreReporter.value = Int64(number)
-
             let scoreArray: [GKScore] = [scoreReporter]
             GKScore.report(scoreArray, withCompletionHandler: nil)
-
         }
-
     }
     
    func submitScoreAndShowLeader(){
-        saveHighScore33(number: tryCountCurrent)
+        saveHighestScore(number: tryCountCurrent)
         showLeaderBoard()
     }
-    
     
 }
