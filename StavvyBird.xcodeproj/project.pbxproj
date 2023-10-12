@@ -95,6 +95,7 @@
 		CA29A1922ACF755B00470B9F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA29A1912ACF755B00470B9F /* GameKit.framework */; };
 		CA3B1D912ABBAD900011F1F1 /* animated-nyan-hip-roken.gif in Resources */ = {isa = PBXBuildFile; fileRef = CA3B1D902ABBAD900011F1F1 /* animated-nyan-hip-roken.gif */; };
 		CA47A3C12ACB5E3100E8ED52 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */; };
+		CA931AEC2AD8A020000251F1 /* Stavvy Bird.storekit in Resources */ = {isa = PBXBuildFile; fileRef = CA931AEB2AD8A020000251F1 /* Stavvy Bird.storekit */; };
 		CAFB937A2ABAC972008A2AD5 /* dhcj.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAFB93792ABAC972008A2AD5 /* dhcj.gif */; };
 		CAFB937D2ABACA4E008A2AD5 /* animated-nyan-hip-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAFB937F2ABACA4E008A2AD5 /* animated-nyan-hip-1.gif */; };
 		CAFB93812ABB34A9008A2AD5 /* animated-nyan-hip-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAFB93802ABB34A9008A2AD5 /* animated-nyan-hip-2.gif */; };
@@ -197,6 +198,7 @@
 		CA3B1D902ABBAD900011F1F1 /* animated-nyan-hip-roken.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "animated-nyan-hip-roken.gif"; sourceTree = "<group>"; };
 		CA47A3BF2ACB5DE400E8ED52 /* StavvyBird.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StavvyBird.entitlements; sourceTree = "<group>"; };
 		CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		CA931AEB2AD8A020000251F1 /* Stavvy Bird.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Stavvy Bird.storekit"; sourceTree = "<group>"; };
 		CABC84112ACE335500488582 /* Pixel Digivolve.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pixel Digivolve.otf"; sourceTree = "<group>"; };
 		CAFB93792ABAC972008A2AD5 /* dhcj.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = dhcj.gif; sourceTree = "<group>"; };
 		CAFB937E2ABACA4E008A2AD5 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = en; path = "en.lproj/animated-nyan-hip-1.gif"; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 		A9ACB91B2099A1F200966991 /* StavvyBird */ = {
 			isa = PBXGroup;
 			children = (
+				CA931AEB2AD8A020000251F1 /* Stavvy Bird.storekit */,
 				CA47A3BF2ACB5DE400E8ED52 /* StavvyBird.entitlements */,
 				A9ACB91C2099A1F200966991 /* AppDelegate.swift */,
 				A9ACB92E2099A1F300966991 /* Info.plist */,
@@ -627,11 +630,12 @@
 		A9ACB9112099A1F200966991 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				KnownAssetTags = (
 					mFont,
 				);
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = "Sounio Technologies LLC";
 				TargetAttributes = {
 					A9ACB9182099A1F200966991 = {
@@ -713,6 +717,7 @@
 				A9CA8F6F209C9233004CB9D4 /* POL-flight-master-short.wav in Resources */,
 				A903943B20AD9E7900376CC3 /* Particles.xcassets in Resources */,
 				A9B14F1F20A588BB005221BA /* TouchToFlyScene.sks in Resources */,
+				CA931AEC2AD8A020000251F1 /* Stavvy Bird.storekit in Resources */,
 				CA3B1D912ABBAD900011F1F1 /* animated-nyan-hip-roken.gif in Resources */,
 				A9CC5C3D20A030A900040E61 /* FailedScene.sks in Resources */,
 			);
@@ -876,6 +881,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -890,7 +896,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -937,6 +943,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -945,7 +952,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -966,6 +973,7 @@
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INFOPLIST_FILE = "$(SRCROOT)/StavvyBird/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -991,6 +999,7 @@
 				DEVELOPMENT_TEAM = Z47KAS58JH;
 				INFOPLIST_FILE = "$(SRCROOT)/StavvyBird/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

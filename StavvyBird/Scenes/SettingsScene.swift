@@ -6,35 +6,62 @@
 //
 
 import SpriteKit
+import SwiftUI
 
 class SettingsScene: RoutingUtilityScene, ToggleButtonNodeResponderType, TriggleButtonNodeResponderType {
+    func toggleButtonTriggered(toggle: ToggleButtonNode) {
+        debugPrint("remove old overlay")
+
+    }
+    
+    func triggleButtonTriggered(triggle: TriggleButtonNode) {
+        debugPrint("remove old overlay")
+    }
+    
 
     // MARK: - Overrides
     
-    override func didMove(to view: SKView) {
-        super.didMove(to: view)
-        
-        let soundButton = scene?.childNode(withName: "Sound") as? ToggleButtonNode
-        soundButton?.isOn = UserDefaults.standard.bool(for: .isSoundOn)
-        
-        let difficultyButton = scene?.childNode(withName: "Difficulty") as? TriggleButtonNode
-        let difficultyLevel = UserDefaults.standard.getDifficultyLevel()
-        let difficultyState = TriggleButtonNode.TriggleState.convert(from: difficultyLevel)
-        difficultyButton?.triggle = .init(state: difficultyState)
+    
+        override func didMove(to view: SKView) {
+            physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        }
+
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            guard let touch = touches.first else { return }
+            let location = touch.location(in: self)
+            let box = SKSpriteNode(color: .red, size: CGSize(width: 50, height: 50))
+            box.position = location
+            box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 50))
+            addChild(box)
+        }
     }
-    
-    // MARK: - Confrormance to ToggleButtonResponderType
-    
-    func toggleButtonTriggered(toggle: ToggleButtonNode) {
-        UserDefaults.standard.set(toggle.isOn, for: .isSoundOn)
+/*
+struct ContentView: View {
+    var scene: SKScene {
+        let scene = GameScene()
+        scene.size = CGSize(width: 300, height: 400)
+        scene.scaleMode = .fill
+        return scene
     }
-    
-    // MARK: - Conformance to TriggleButtonResponderType
-    
-    func triggleButtonTriggered(triggle: TriggleButtonNode) {
-        debugPrint("triggleButtonTriggered")
-        let diffuculty = triggle.triggle.toDifficultyLevel()
-        UserDefaults.standard.set(difficultyLevel: diffuculty)
+
+    var body: some View {
+        SpriteView(scene: scene)
+            .frame(width: 300, height: 400)
+            .ignoresSafeArea()
     }
-    
+}*/
+
+struct ContentView: View {
+    var scene: SKScene {
+        let scene = GameScene()
+        scene.size = CGSize(width: 300, height: 400)
+        scene.scaleMode = .fill
+        return scene
+    }
+
+    var body: some View {
+        SpriteView(scene: scene)
+            .frame(width: 300, height: 400)
+            .ignoresSafeArea()
+    }
 }
