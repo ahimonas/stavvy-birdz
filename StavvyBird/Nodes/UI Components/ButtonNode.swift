@@ -19,6 +19,8 @@ enum ButtonIdentifier: String {
     case resume = "Resume"
     case menu = "Menu"
     case venu = "Venu"
+    case penu = "Penu"
+    case zenu = "Zenu"
 
     case home = "Home"
     case settings = "Settings"
@@ -31,7 +33,7 @@ enum ButtonIdentifier: String {
     
     /// Convenience array of all available button identifiers.
     static let allButtonIdentifiers: [ButtonIdentifier] = [
-        .play, .pause, .resume, .menu, .venu, .settings, .home, .retry, .cancel, .scores, sound, .characters, .difficulty
+        .play, .pause, .resume, .menu, .venu, .penu, .zenu, .settings, .home, .retry, .cancel, .scores, sound, .characters, .difficulty
     ]
     
     /// The name of the texture to use for a button when the button is selected.

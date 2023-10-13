@@ -45,11 +45,12 @@ class CharactersScene: RoutingUtilityScene {
             jazzCat?.xScale = scale.x
             jazzCat?.yScale = scale.y
             playableCharacters[.jazzCat] = jazzCat
-            
+            // ravens position 5
             let lifelopeCat = childNode(withName: PlayableCharacter.lifelopeCat.rawValue) as? NyancatNode
             lifelopeCat?.xScale = scale.x
             lifelopeCat?.yScale = scale.y
             playableCharacters[.lifelopeCat] = lifelopeCat
+             
         }
         
         selectNode = childNode(withName: "Select Node") as? SKShapeNode
@@ -57,6 +58,7 @@ class CharactersScene: RoutingUtilityScene {
       
         func loadSelectedChacter() {
             let playableCharacter = UserDefaults.standard.playableCharacter(for: .character) ?? .bird
+            print(playableCharacter)
             select(playableCharacter: playableCharacter, animated: false)
         }
         loadSelectedChacter()
@@ -80,6 +82,7 @@ class CharactersScene: RoutingUtilityScene {
             return
         }
         
+    //print(event ?? <#default value#>)
         UserDefaults.standard.set(selectedPlayableCharacter, for: .character)
         select(playableCharacter: selectedPlayableCharacter, animated: true)
     }
