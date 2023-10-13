@@ -20,6 +20,21 @@
       "type" : "NonConsumable"
     },
     {
+      "displayPrice" : "5.99",
+      "familyShareable" : false,
+      "internalID" : "6469269922",
+      "localizations" : [
+        {
+          "description" : "A Stavvy Ravens Skin",
+          "displayName" : "Stavvy Ravens",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "stavvt.bird.raven.prod",
+      "referenceName" : "stavvy.birds.ravens.ref",
+      "type" : "NonConsumable"
+    },
+    {
       "displayPrice" : "0.99",
       "familyShareable" : false,
       "internalID" : "6468896543",
@@ -39,7 +54,7 @@
     "_applicationInternalID" : "6468519508",
     "_developerTeamID" : "Z47KAS58JH",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 718854065.27330005,
+    "_lastSynchronizedDate" : 718859301.57277095,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [
