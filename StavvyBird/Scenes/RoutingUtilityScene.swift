@@ -21,6 +21,39 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
     var noAdsBtn:SKSpriteNode!
     
     
+    var gcEnabled = Bool()
+    var gcDefaultLeaderboard = String()
+    var leaderboardID = "stavvyboard22"
+    
+    var scoreboard :SKSpriteNode!
+
+    // MARK: leaderboard
+    func authenticateLocalPlayer() {
+        let localPlayer : GKLocalPlayer = GKLocalPlayer()
+        localPlayer.authenticateHandler = { (viewController, error) -> Void in
+            if viewController != nil {
+                let vc = self.view?.window?.rootViewController
+                vc?.present(viewController!, animated: true, completion: nil)
+                // self.initInAppPurchases()
+            } else if localPlayer.isAuthenticated {
+                print("player is already authenticated")
+                self.gcEnabled = true
+                // self.initInAppPurchases()    <--- needs to be authed in game center before we make in app purchase?
+                // Get the default leaerboard ID
+                localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: ({(leaderboardIdentifer, error) -> Void in
+                    if error != nil {
+                        // Expression implicitly coerced from 'String?' to 'Any'
+                        print(error!.localizedDescription)
+                    } else {
+                        self.gcDefaultLeaderboard = leaderboardIdentifer!
+                    }
+                })
+                
+                )
+            }
+        }
+    }
+
     
     //++++++++++++++++++++++++++++++
     //++++++ inApp purhchase ++++++
@@ -54,6 +87,23 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                     
                 })
             }
+            
+            if(currentProduct.productIdentifier == "stavvt.bird.raven.prod" && noAdsPurchased == false){
+                
+                print("removead found")
+                print(currentProduct.productIdentifier);
+                let numberFormatter = NumberFormatter()
+                numberFormatter.numberStyle = .currency
+                numberFormatter.locale = currentProduct.priceLocale
+                
+                alert.addAction(UIAlertAction(title:currentProduct.localizedTitle + " : " + numberFormatter.string(from:           currentProduct.price)!,style:UIAlertAction.Style.default){_ in
+                    
+                    self.buyProduct(product: currentProduct)
+                    
+                })
+            }
+            
+            
         }
         
         if(noAdsPurchased == false){
@@ -95,20 +145,36 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                 
             case .purchasing:
                 print("Transaction State: Purchasing")
+                
             case .purchased:
                 if transaction.payment.productIdentifier == "stavvy.bird1.product" {
                     print("Transaction State: Purchased")
+                    UserDefaults.standard.set(true, forKey: "stavvyBirdLock")
                     handleNoAdsPurchased()
                 }
+                if transaction.payment.productIdentifier == "stavvt.bird.raven.prod" {
+                    print("Transaction State: Purchased")
+                    UserDefaults.standard.set(true, forKey: "removeRavensLock")
+                    handleNoAdsPurchased()
+                }
+                if transaction.payment.productIdentifier == "stavvy.birds.eldy.product" {
+                    print("Transaction State: Purchased")
+                    UserDefaults.standard.set(true, forKey: "removeEldyLock")
+                    handleNoAdsPurchased()
+                }
+                
                 queue.finishTransaction(transaction)
+            
             case .failed:
                 print("Payment Error: %@", transaction.error!)
                 queue.finishTransaction(transaction)
+                
             case .restored:
                 if transaction.payment.productIdentifier == "stavvy.bird1.product" {
                     print("Transaction State: Restored")
                     handleNoAdsPurchased()
                 }
+                
                 queue.finishTransaction(transaction)
             case .deferred:
                 print("Transaction State: %@", transaction.transactionState)
@@ -116,34 +182,26 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         }//for loop
     }//payment queue
     
+
+    
     func handleNoAdsPurchased(){
         noAdsPurchased = true
     
-        noAdsBtn.isHidden = true
+        //noAdsBtn.isHidden = true
         
         UserDefaults.standard.set(true, forKey: "removeAdsKey")
-        
+        /*
         var currentScore = 100 //change that to the players current score.
         let highScore  = UserDefaults.standard.integer(forKey: "highScore") //Get the users high score from last time.
 
         if(currentScore > highScore){// check and see if currentScore is greater than highScore.
-
             UserDefaults.standard.set(currentScore, forKey: "highScore")//if currentScore is greater than highScore, set it in UserDefualts.
-
         }
-        
+         */
+
        
 
-        
-        
-        
-        
-        //let controller = _gameScene.scnView?.window?.rootViewController as! GameViewController
-        //controller.removeAd()
-
     }
-
-
     
     
     
@@ -176,14 +234,18 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
     
     
     // Initialize the App Purchases
+    //stavvt.bird.raven.prod
     func initInAppPurchases() {
         print("In App Purchases Initialized")
-        
         SKPaymentQueue.default().add(self)
-        
         // Get the list of possible purchases
         if self.request == nil {
-            self.request = SKProductsRequest(productIdentifiers: Set(["stavvy.bird1.product"]))
+           /*
+            self.request = SKProductsRequest(productIdentifiers: Set(["stavvy.bird1.product", "stavvt.bird.raven.prod", "stavvy.birds.eldy.product"]))
+            */
+            self.request = SKProductsRequest(productIdentifiers: Set(["stavvy.bird1.product", "stavvt.bird.raven.prod"]))
+            
+            
             self.request.delegate = self
             self.request.start()
         }
@@ -200,6 +262,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         print(UserDefaults.standard.dictionaryRepresentation().values)
     
     }
+    
     func showLeaderBoard(){
 
         let viewController = self.view?.window?.rootViewController
@@ -274,12 +337,15 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             transition = SKTransition.push(with: .up, duration: 1.0)
             
         case .characters:
+            authenticateLocalPlayer()
+            initInAppPurchases()
+            
             let sceneId = Scenes.characters.getName()
             sceneToPresent = CharactersScene(fileNamed: sceneId)
             debugPrint("created CharactersScene instance")
             RoutingUtilityScene.lastPushTransitionDirection = .right
             transition = SKTransition.push(with: .right, duration: 1.0)
-        
+
 
             
         case .venu:
@@ -290,7 +356,11 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         case .penu:
             inAppPurchase()
             debugPrint("penue - purchase non-consumable")
-            
+        
+        case .eldy:
+            inAppPurchase()
+            initInAppPurchases()
+            debugPrint("penue - purchase non-consumable")
             
         case .zenu:
             let tryCountCurrent :Int = 4
@@ -324,6 +394,12 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             } else {
                 transition = SKTransition.fade(withDuration: 1.0)
             }
+            
+            if let controller = self.view?.window?.rootViewController as? GameViewController {
+                controller.removeAd()
+            }
+            //let controller = sceneToPresent?.rootViewController as! GameViewController
+            //controller.removeAd()
              
             
         default:
@@ -338,8 +414,15 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         unwrappedTransition.pausesIncomingScene = false
         unwrappedTransition.pausesOutgoingScene = false
         self.view?.presentScene(presentationScene, transition: unwrappedTransition)
+        //self.view?.inputViewController.remove
+        
+
+        
         debugPrint("presented CharactersScene instance")
     }
+    
+
+
 }
 
 //https://cloud.tencent.com/developer/ask/sof/113518506
