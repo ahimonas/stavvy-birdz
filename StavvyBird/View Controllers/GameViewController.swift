@@ -64,14 +64,44 @@ extension CGPoint {
 
 class GameViewController: UIViewController, GADBannerViewDelegate {
 
+    func authenticateLocalPlayer() {
+        // Create a new Game Center localPlayer instance:
+        let localPlayer = GKLocalPlayer.local
+        // Create a function to check if they authenticated
+        // or show them the log in screen:
+        localPlayer.authenticateHandler =
+            {(viewController, error) -> Void in
+                if viewController != nil {
+                    // They are not logged in, show the log in:
+                    self.present(viewController!, animated: true,
+                                 completion: nil)
+                }
+                else if localPlayer.isAuthenticated {
+                    // They authenticated successfully!
+                    // We will be back later to create a
+                    // leaderboard button in the MenuScene
+                }
+                else {
+                    // Not able to authenticate, skip Game Center
+                }
+        }
+    }
+
+    
     var bannerView: GADBannerView!
     var admobBanner = UIView()
     // MARK: - Overrides
     
+    func removeAd(){
+        print("removed ad")
+
+        bannerView.removeFromSuperview()
+    }
+    
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        
+        authenticateLocalPlayer()
         for family: String in UIFont.familyNames
         {
             print(family)
@@ -80,16 +110,18 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
                 print("== \(names)")
             }
         }
-        
-        bannerView = GADBannerView(adSize: GADAdSizeBanner)
-        addBannerViewToView(bannerView)
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerView.rootViewController = self
-        bannerView.delegate = self
-        bannerView.load(GADRequest())
-        bannerView.frame = CGRect(x: 0, y: 0, width: 320, height: 50)
-
-        admobBanner = bannerView
+        if(!UserDefaults.standard.bool(forKey: "removeAdsKey")){
+            
+            bannerView = GADBannerView(adSize: GADAdSizeBanner)
+            addBannerViewToView(bannerView)
+            bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+            bannerView.rootViewController = self
+            bannerView.delegate = self
+            bannerView.load(GADRequest())
+            bannerView.frame = CGRect(x: 0, y: 0, width: 320, height: 50)
+            
+            admobBanner = bannerView
+        }
         
 /*
         var bannerView: GADBannerView!

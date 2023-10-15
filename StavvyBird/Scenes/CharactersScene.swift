@@ -10,6 +10,8 @@ import SpriteKit
 
 class CharactersScene: RoutingUtilityScene {
     
+    
+    private var boughtEldy = false
     // MARK: - Properties
     
     private var selectNode: SKShapeNode?
@@ -19,6 +21,9 @@ class CharactersScene: RoutingUtilityScene {
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
+        
+        let defaults = UserDefaults.standard
+        defaults.dictionaryRepresentation().map{print("\($0.key): \($0.value)")}
         
         func preparePlayableCharacters() {
             let birdNode = childNode(withName: PlayableCharacter.bird.rawValue) as? SKSpriteNode
@@ -82,9 +87,19 @@ class CharactersScene: RoutingUtilityScene {
             return
         }
         
-    //print(event ?? <#default value#>)
-        UserDefaults.standard.set(selectedPlayableCharacter, for: .character)
-        select(playableCharacter: selectedPlayableCharacter, animated: true)
+        //print(event ?? <#default value#>)
+        
+        
+        debugPrint(selectedPlayableCharacter)
+        debugPrint(selectedPlayableCharacter.rawValue)
+
+        if(selectedPlayableCharacter.rawValue.replacingOccurrences(of: "\"", with: "") == "jazzCat"){
+            debugPrint("jazzcat str-eldy do not select if not payed for ")
+        }
+        else{
+            select(playableCharacter: selectedPlayableCharacter, animated: true)
+            UserDefaults.standard.set(selectedPlayableCharacter, for: .character)
+        }
     }
     
     // MARK: - Selection Utils

@@ -12,11 +12,13 @@ import GameKit
 class ScoresScene: RoutingUtilityScene {
     
     // MARK: - Overrides
-    var gcEnabled = Bool()
+    //var gcEnabled = Bool()
+    /*
     var gcDefaultLeaderboard = String()
     var leaderboardID = "stavvyboard22"
     
     var scoreboard :SKSpriteNode!
+     */
     var tryCountCurrent :Int = 0
     var tryCountBest :Int!
     var tryCountCurrentLabel :SKLabelNode!
@@ -92,6 +94,7 @@ class ScoresScene: RoutingUtilityScene {
     }
     
     // MARK: leaderboard
+    /*
     func authenticateLocalPlayer() {
         let localPlayer : GKLocalPlayer = GKLocalPlayer()
         localPlayer.authenticateHandler = { (viewController, error) -> Void in
@@ -115,9 +118,10 @@ class ScoresScene: RoutingUtilityScene {
                 )
             }
         }
+     
     }
 
-    
+    */
     private func fetchScores() {
         // Read the scores from UserDefaults
         
