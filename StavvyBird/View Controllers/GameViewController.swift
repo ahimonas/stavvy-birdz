@@ -95,13 +95,13 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
     func removeAd(){
         print("removed ad")
 
-        bannerView.removeFromSuperview()
+        bannerView?.removeFromSuperview()
     }
     
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        authenticateLocalPlayer()
+        //authenticateLocalPlayer()
         for family: String in UIFont.familyNames
         {
             print(family)

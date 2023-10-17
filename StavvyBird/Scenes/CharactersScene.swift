@@ -9,7 +9,8 @@
 import SpriteKit
 
 class CharactersScene: RoutingUtilityScene {
-    
+    //@IBOutlet weak var EldyBird: UIButton!
+
     
     private var boughtEldy = false
     // MARK: - Properties
@@ -21,9 +22,9 @@ class CharactersScene: RoutingUtilityScene {
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-        
-        let defaults = UserDefaults.standard
-        defaults.dictionaryRepresentation().map{print("\($0.key): \($0.value)")}
+       // EldyBird.isHidden = true
+       // let defaults = UserDefaults.standard
+       // defaults.dictionaryRepresentation().map{print("\($0.key): \($0.value)")}
         
         func preparePlayableCharacters() {
             let birdNode = childNode(withName: PlayableCharacter.bird.rawValue) as? SKSpriteNode
@@ -88,13 +89,50 @@ class CharactersScene: RoutingUtilityScene {
         }
         
         //print(event ?? <#default value#>)
-        
+        lazy var beam = self.childNode(withName: "EldyBird") as! SKSpriteNode
+        beam.isHidden = true;
+        debugPrint(beam)
         
         debugPrint(selectedPlayableCharacter)
         debugPrint(selectedPlayableCharacter.rawValue)
 
         if(selectedPlayableCharacter.rawValue.replacingOccurrences(of: "\"", with: "") == "jazzCat"){
-            debugPrint("jazzcat str-eldy do not select if not payed for ")
+            print("UserDefaults.standard.bool(forKey: removeEldyLock");
+            print(UserDefaults.standard.bool(forKey: "removeEldyLock"));
+            if(UserDefaults.standard.bool(forKey: "removeEldyLock")){
+                select(playableCharacter: selectedPlayableCharacter, animated: true)
+                UserDefaults.standard.set(selectedPlayableCharacter, for: .character)
+                debugPrint("jazzcat str-eldy was paid for ")
+
+                lazy var beam = { return self.childNode(withName: "EldyBird") as! SKSpriteNode}()
+                beam.isHidden = true;
+                debugPrint(beam)
+
+
+                /*
+                if let controller = self.view?.window?.rootViewController as? GameViewController {
+                    controller.removeAd()
+                }
+                 */
+
+            }
+            debugPrint("jazzcat str-eldy not available ")
+        }
+        if(selectedPlayableCharacter.rawValue.replacingOccurrences(of: "\"", with: "") == "lifelopeCat"){
+            print("UserDefaults.standard.bool(forKey: removeRavensLock");
+            print(UserDefaults.standard.bool(forKey: "removeRavensLock"));
+            if(UserDefaults.standard.bool(forKey: "removeRavensLock")){
+                select(playableCharacter: selectedPlayableCharacter, animated: true)
+                UserDefaults.standard.set(selectedPlayableCharacter, for: .character)
+                debugPrint("lifelopeCat ravens birg was paid for ")
+                /*
+                if let controller = self.view?.window?.rootViewController as? GameViewController {
+                    controller.removeAd()
+                }
+                 */
+
+            }
+            debugPrint("jazzcat str-eldy not available ")
         }
         else{
             select(playableCharacter: selectedPlayableCharacter, animated: true)

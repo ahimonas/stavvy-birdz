@@ -27,7 +27,7 @@ class ScoresScene: RoutingUtilityScene {
 
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-        authenticateLocalPlayer()
+        //authenticateLocalPlayer()
         fetchScores()
         //createScoreboard()
         //submitScore()
