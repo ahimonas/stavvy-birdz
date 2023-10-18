@@ -22,9 +22,10 @@
   ],
   "settings" : {
     "_applicationInternalID" : "6468519508",
+    "_askToBuyEnabled" : false,
     "_developerTeamID" : "Z47KAS58JH",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 719283785.23491597,
+    "_lastSynchronizedDate" : 719292532.23521805,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [
