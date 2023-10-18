@@ -91,7 +91,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                 })
             }
             
-            if(currentProduct.productIdentifier == "stavvt.bird.raven.prod" && !UserDefaults.standard.bool(forKey: "removeRavensLock")){
+            if(currentProduct.productIdentifier == "stavvy.bird.raven.prod" && !UserDefaults.standard.bool(forKey: "removeRavensLock")){
                 
                 print("ravens bird found")
                 print(currentProduct.productIdentifier);
@@ -174,7 +174,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                     UserDefaults.standard.set(true, forKey: "stavvyBirdLock")
                     handleNoAdsPurchased()
                 }
-                if transaction.payment.productIdentifier == "stavvt.bird.raven.prod"  && !UserDefaults.standard.bool(forKey: "removeRavensLock") {
+                if transaction.payment.productIdentifier == "stavvy.bird.raven.prod"  && !UserDefaults.standard.bool(forKey: "removeRavensLock") {
                     print("Transaction State: Purchased - racent bird" )
                     //set remove lock to true and hide purchase button after purchase
                     UserDefaults.standard.set(true, forKey: "removeRavensLock")
@@ -208,7 +208,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                     //print("Transaction State: Purchased")
                     //UserDefaults.standard.set(true, forKey: "removeEldyLock")
                 }
-                if transaction.payment.productIdentifier == "stavvt.bird.raven.prod" {
+                if transaction.payment.productIdentifier == "stavvy.bird.raven.prod" {
                     print("Transaction State: Restored - ravens")
                     UserDefaults.standard.set(true, forKey: "removeRavensLock")
                     if let controller = self.view?.window?.rootViewController as? GameViewController {
@@ -268,7 +268,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         print("products count: ", products.count)
         print("SKProduct ", products)
         print("SKProduct1 ", products.first?.localizedTitle)
-        print("SKProduct2 ", products.last?.localizedTitle)
+        //print("SKProduct2 ", products.last?.localizedTitle)
 
         if(response.invalidProductIdentifiers.count != 0){
             print(" *** products request not received ***")
@@ -305,8 +305,8 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         SKPaymentQueue.default().add(self)
         // Get the list of possible purchases
         if self.request == nil {
-            self.request = SKProductsRequest(productIdentifiers: Set(["stavvt.bird.raven.prod", "stavvy.birds.eldy.product"]))
-            // self.request = SKProductsRequest(productIdentifiers: Set(["stavvy.bird1.product", "stavvt.bird.raven.prod", //"stavvy.birds.eldy.product"]))
+            self.request = SKProductsRequest(productIdentifiers: Set(["stavvy.bird.raven.prod"]))
+            // self.request = SKProductsRequest(productIdentifiers: Set(["stavvy.bird1.product", "stavvy.bird.raven.prod", //"stavvy.birds.eldy.product"]))
             self.request.delegate = self
             self.request.start()
         }
@@ -318,9 +318,9 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         // Get the list of possible purchases
         if self.request == nil {
            
-           // self.request = SKProductsRequest(productIdentifiers: Set(["stavvy.bird1.product", "stavvt.bird.raven.prod", //"stavvy.birds.eldy.product"]))
+           // self.request = SKProductsRequest(productIdentifiers: Set(["stavvy.bird1.product", "stavvy.bird.raven.prod", //"stavvy.birds.eldy.product"]))
             
-            self.request = SKProductsRequest(productIdentifiers: Set(["stavvt.bird.raven.prod"]))
+            self.request = SKProductsRequest(productIdentifiers: Set(["stavvy.bird.raven.prod"]))
             self.request.delegate = self
             self.request.start()
         }
