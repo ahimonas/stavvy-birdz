@@ -5,56 +5,26 @@
   ],
   "products" : [
     {
-      "displayPrice" : "1.99",
+      "displayPrice" : "4.99",
       "familyShareable" : false,
-      "internalID" : "6469257039",
+      "internalID" : "6469668492",
       "localizations" : [
         {
-          "description" : "Stavvy Bird1",
-          "displayName" : "Stavvy Bird",
+          "description" : "A Stavvy Ravens Bird",
+          "displayName" : "Stavvy Raven",
           "locale" : "en_US"
         }
       ],
-      "productID" : "stavvy.bird1.product",
-      "referenceName" : "stavvy.bird1.ref",
+      "productID" : "stavvy.bird.raven.prod",
+      "referenceName" : "stavvy.bird.raven.ref",
       "type" : "NonConsumable"
-    },
-    {
-      "displayPrice" : "5.99",
-      "familyShareable" : false,
-      "internalID" : "6469269922",
-      "localizations" : [
-        {
-          "description" : "A Stavvy Ravens Skin",
-          "displayName" : "Stavvy Ravens",
-          "locale" : "en_US"
-        }
-      ],
-      "productID" : "stavvt.bird.raven.prod",
-      "referenceName" : "stavvy.birds.ravens.ref",
-      "type" : "NonConsumable"
-    },
-    {
-      "displayPrice" : "0.99",
-      "familyShareable" : false,
-      "internalID" : "6468896543",
-      "localizations" : [
-        {
-          "description" : "A Stavvy Coin",
-          "displayName" : "StavvyCoin",
-          "locale" : "en_US"
-        }
-      ],
-      "productID" : "stavvy.consume.product",
-      "referenceName" : "stavvy.consume.ref",
-      "type" : "Consumable"
     }
   ],
   "settings" : {
     "_applicationInternalID" : "6468519508",
     "_developerTeamID" : "Z47KAS58JH",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 718859301.57277095,
+    "_lastSynchronizedDate" : 719283785.23491597,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [
