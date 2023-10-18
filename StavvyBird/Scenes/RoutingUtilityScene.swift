@@ -57,9 +57,10 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
     //++++++++++++++++++++++++++++++
     //++++++ inApp purhchase ++++++
     //++++++++++++++++++++++++++++++
-    
+    var productInstances = 0;
+
     func inAppPurchase(){
-        
+        if(products.count > 0){
         let alert = UIAlertController(title: "In App Purchases", message: "", preferredStyle: UIAlertController.Style.alert)
         /*
         let image = UIImage(named: "airadventurelevel1")
@@ -67,61 +68,62 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         action.setValue(image, forKey: "image")
         alert.addAction(action)
         */
-        
-        for i in 0 ..< products.count{
-            
-            
-            let currentProduct = products[i]
-            print("productIdentifier", currentProduct.productIdentifier)
-            print("currentProduct", currentProduct)
-            print("currentProduct - localizedTitle", currentProduct.localizedTitle)
-            print("currentProduct -  localized price", currentProduct.priceLocale)
-
-            if(currentProduct.productIdentifier == "stavvy.bird1.product" && !UserDefaults.standard.bool(forKey: "stavvyBirdLock")){
+        productInstances = products.count;
+        print("NUMBER OF PRODUCTS", products.count)
+            for i in 0 ..< products.count{
                 
-                print("stavvy bird found")
-                print(currentProduct.productIdentifier);
-                let numberFormatter = NumberFormatter()
-                numberFormatter.numberStyle = .currency
-                numberFormatter.locale = currentProduct.priceLocale
                 
-                alert.addAction(UIAlertAction(title:currentProduct.localizedTitle + " : " + numberFormatter.string(from:           currentProduct.price)!,style:UIAlertAction.Style.default){_ in
-                    self.buyProduct(product: currentProduct)
-                    
-                })
-            }
-            
-            if(currentProduct.productIdentifier == "stavvy.bird.raven.prod" && !UserDefaults.standard.bool(forKey: "removeRavensLock")){
+                let currentProduct = products[i]
+                print("productIdentifier", currentProduct.productIdentifier)
+                print("currentProduct", currentProduct)
+                print("currentProduct - localizedTitle", currentProduct.localizedTitle)
+                print("currentProduct -  localized price", currentProduct.priceLocale)
                 
-                print("ravens bird found")
-                print(currentProduct.productIdentifier);
-                let numberFormatter = NumberFormatter()
-                numberFormatter.numberStyle = .currency
-                numberFormatter.locale = currentProduct.priceLocale
+                if(currentProduct.productIdentifier == "stavvy.bird1.product" && !UserDefaults.standard.bool(forKey: "stavvyBirdLock")){
+                    
+                    print("stavvy bird found")
+                    print(currentProduct.productIdentifier);
+                    let numberFormatter = NumberFormatter()
+                    numberFormatter.numberStyle = .currency
+                    numberFormatter.locale = currentProduct.priceLocale
+                    
+                    alert.addAction(UIAlertAction(title:currentProduct.localizedTitle + " : " + numberFormatter.string(from:           currentProduct.price)!,style:UIAlertAction.Style.default){_ in
+                        self.buyProduct(product: currentProduct)
+                        
+                    })
+                }
                 
-                alert.addAction(UIAlertAction(title:currentProduct.localizedTitle + " : " + numberFormatter.string(from:           currentProduct.price)!,style:UIAlertAction.Style.default){_ in
+                if(currentProduct.productIdentifier == "stavvy.bird.raven.prod" && !UserDefaults.standard.bool(forKey: "removeRavensLock")){
                     
-                    self.buyProduct(product: currentProduct)
+                    print("ravens bird found")
+                    print(currentProduct.productIdentifier);
+                    let numberFormatter = NumberFormatter()
+                    numberFormatter.numberStyle = .currency
+                    numberFormatter.locale = currentProduct.priceLocale
                     
-                })
-            }
-            
-            if(currentProduct.productIdentifier == "stavvy.birds.eldy.product" && !UserDefaults.standard.bool(forKey: "removeEldyLock")){
-
-                print("eldy bird found")
-                print(currentProduct.productIdentifier);
-                let numberFormatter = NumberFormatter()
-                numberFormatter.numberStyle = .currency
-                numberFormatter.locale = currentProduct.priceLocale
+                    alert.addAction(UIAlertAction(title:currentProduct.localizedTitle + " : " + numberFormatter.string(from:           currentProduct.price)!,style:UIAlertAction.Style.default){_ in
+                        
+                        self.buyProduct(product: currentProduct)
+                        
+                    })
+                }
                 
-                alert.addAction(UIAlertAction(title:currentProduct.localizedTitle + " : " + numberFormatter.string(from:           currentProduct.price)!,style:UIAlertAction.Style.default){_ in
+                if(currentProduct.productIdentifier == "stavvy.birds.eldy.product" && !UserDefaults.standard.bool(forKey: "removeEldyLock")){
                     
-                    self.buyProduct(product: currentProduct)
+                    print("eldy bird found")
+                    print(currentProduct.productIdentifier);
+                    let numberFormatter = NumberFormatter()
+                    numberFormatter.numberStyle = .currency
+                    numberFormatter.locale = currentProduct.priceLocale
                     
-                })
-            }
-            
-            
+                    alert.addAction(UIAlertAction(title:currentProduct.localizedTitle + " : " + numberFormatter.string(from:           currentProduct.price)!,style:UIAlertAction.Style.default){_ in
+                        
+                        self.buyProduct(product: currentProduct)
+                        
+                    })
+                }
+                
+         
             
             
         }
@@ -148,6 +150,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             vc!.present(alert, animated: true, completion: nil)
          }
         
+        }
     }
     
     
@@ -201,15 +204,6 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             case .restored:
                 
                 print("restored product identifiers", transaction.payment.productIdentifier)
-                /*
-                if transaction.payment.productIdentifier == "stavvy.birds.eldy.product" {
-                    print("Transaction State: Restored - eldy")
-                    UserDefaults.standard.set(true, forKey: "removeEldyLock")
-
-                    //print("Transaction State: Purchased")
-                    //UserDefaults.standard.set(true, forKey: "removeEldyLock")
-                }
-                 */
                 //restore state for ravens if product ID is passed in Restored state
                 if transaction.payment.productIdentifier == "stavvy.bird.raven.prod" {
                     print("Transaction State: Restored - ravens")
@@ -424,13 +418,14 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             
         case .characters:
             //authenticateLocalPlayer()
-           initInAppPurchases()
-  
+            initInAppPurchases()
             let sceneId = Scenes.characters.getName()
             sceneToPresent = CharactersScene(fileNamed: sceneId)
             debugPrint("created CharactersScene instance")
             RoutingUtilityScene.lastPushTransitionDirection = .right
             transition = SKTransition.push(with: .right, duration: 1.0)
+            //initInAppPurchases()
+
             /*
             if(!UserDefaults.standard.bool(forKey: "removeAdsKey")){
                 
@@ -454,17 +449,25 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             debugPrint("penue - purchase non-consumable")
 
         case .raven:
-            if(!UserDefaults.standard.bool(forKey: "removeRavensLock")){
-                debugPrint("initAppPurchase")
-                initInAppPurchases()
-            }
-            
+            initInAppPurchases()
+            initInAppPurchases()
             inAppPurchase()
+            if !UserDefaults.standard.bool(forKey: "removeRavensLock") {
+                var tempCount = 0;
+                while(productInstances == 0 && tempCount < 10000){
+                    print("I RAN")
+                    inAppPurchase()
+                    tempCount = tempCount + 1;
+                    print(tempCount)
+                }
+            }
+
             debugPrint("raven button pressed - purchase non-consumable")
+
         
         case .eldy:
             initInAppPurchases()
-            inAppPurchase()
+            //inAppPurchase()
             debugPrint("eldy button pressed - purchase non-consumable")
             
         case .zenu:
