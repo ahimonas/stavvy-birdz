@@ -110,7 +110,7 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
                 print("== \(names)")
             }
         }
-        if(!UserDefaults.standard.bool(forKey: "removeAdsKey")){
+        if(!UserDefaults.standard.bool(forKey: "removeRavensLock")){ //if raven is locked and not paid for
             
             bannerView = GADBannerView(adSize: GADAdSizeBanner)
             addBannerViewToView(bannerView)

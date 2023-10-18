@@ -11,7 +11,6 @@ import SpriteKit
 class CharactersScene: RoutingUtilityScene {
     //@IBOutlet weak var EldyBird: UIButton!
 
-    
     private var boughtEldy = false
     // MARK: - Properties
     
@@ -22,6 +21,25 @@ class CharactersScene: RoutingUtilityScene {
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
+        
+
+        //hides the purchase button for raven if it is set to purchased when transitioning to scene
+        if(UserDefaults.standard.bool(forKey: "removeRavensLock")){
+            lazy var beam = { return self.childNode(withName: "RavensBird") as! SKSpriteNode}()
+            beam.isHidden = true;
+        }
+        /*
+         debugPrint("huh")
+         var hi = UserDefaults.standard.bool(forKey: "removeEldyLock");
+         debugPrint(hi)
+        if(UserDefaults.standard.bool(forKey: "removeEldyLock")){
+            debugPrint("huh")
+
+            lazy var beam = { return self.childNode(withName: "EldyBird") as! SKSpriteNode}()
+            beam.isHidden = true;
+            debugPrint(beam)
+        }
+         */
        // EldyBird.isHidden = true
        // let defaults = UserDefaults.standard
        // defaults.dictionaryRepresentation().map{print("\($0.key): \($0.value)")}
@@ -96,9 +114,12 @@ class CharactersScene: RoutingUtilityScene {
         debugPrint(selectedPlayableCharacter)
         debugPrint(selectedPlayableCharacter.rawValue)
 
-        if(selectedPlayableCharacter.rawValue.replacingOccurrences(of: "\"", with: "") == "jazzCat"){
-            print("UserDefaults.standard.bool(forKey: removeEldyLock");
+        
+        if(selectedPlayableCharacter.rawValue.replacingOccurrences(of: "\"", with: "") == "jazzCat"){ //thsi is eldy
+            //print("UserDefaults.standard.bool(forKey: removeEldyLock");
             print(UserDefaults.standard.bool(forKey: "removeEldyLock"));
+            var hi2 = UserDefaults.standard.bool(forKey: "removeEldyLock");
+            debugPrint(hi2)
             if(UserDefaults.standard.bool(forKey: "removeEldyLock")){
                 select(playableCharacter: selectedPlayableCharacter, animated: true)
                 UserDefaults.standard.set(selectedPlayableCharacter, for: .character)
@@ -118,18 +139,25 @@ class CharactersScene: RoutingUtilityScene {
             }
             debugPrint("jazzcat str-eldy not available ")
         }
-        if(selectedPlayableCharacter.rawValue.replacingOccurrences(of: "\"", with: "") == "lifelopeCat"){
-            print("UserDefaults.standard.bool(forKey: removeRavensLock");
-            print(UserDefaults.standard.bool(forKey: "removeRavensLock"));
+        
+        //remove lock after selecting character from payment for ravens bird, should transition back to scene ?
+        if(selectedPlayableCharacter.rawValue.replacingOccurrences(of: "\"", with: "") == "lifelopeCat"){ //raven
+            print("UserDefaults.standard.bool(forKey: removeRavensLock", UserDefaults.standard.bool(forKey: "removeRavensLock"));
+
             if(UserDefaults.standard.bool(forKey: "removeRavensLock")){
+                
+                //I think this is an extra hide I dont need,
+                lazy var beam = { return self.childNode(withName: "RavensBird") as! SKSpriteNode}()
+                beam.isHidden = true;
+                
                 select(playableCharacter: selectedPlayableCharacter, animated: true)
                 UserDefaults.standard.set(selectedPlayableCharacter, for: .character)
                 debugPrint("lifelopeCat ravens birg was paid for ")
-                /*
+                
                 if let controller = self.view?.window?.rootViewController as? GameViewController {
                     controller.removeAd()
                 }
-                 */
+                 
 
             }
             debugPrint("jazzcat str-eldy not available ")
