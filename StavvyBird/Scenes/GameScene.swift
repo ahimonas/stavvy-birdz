@@ -9,25 +9,9 @@ import SpriteKit
 import GameplayKit
 import GameKit
 
-class GameScene: SKScene, GKGameCenterControllerDelegate {
+class GameScene: SKScene {
     
-    func showLeaderBoard(){
 
-        let viewController = self.view?.window?.rootViewController
-         let gcvc = GKGameCenterViewController()
-
-         gcvc.gameCenterDelegate = self
-
-        viewController?.present(gcvc, animated: true, completion: nil)
-
-
-     }
-
-
-    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-        gameCenterViewController.dismiss(animated: true, completion: nil)
-     }
-    
     // MARK: - Constants
     
     static var viewportSize: CGSize = .zero
@@ -140,8 +124,16 @@ extension GameScene: ButtonNodeResponderType {
         
         case .pause:
             sceneAdapeter?.stateMahcine?.enter(PausedState.self) //showLeaderBoard();
+            updateLeaderboard()
+            saveHighscore22(gameScore: 1)
+            updateLeaderboard22()
+            
         case .resume:
             sceneAdapeter?.stateMahcine?.enter(PlayingState.self)
+            updateLeaderboard()
+            saveHighscore22(gameScore: 1)
+            updateLeaderboard22()
+            
         case .home:
             let sceneId = Scenes.title.getName()
             guard let gameScene = GameScene(fileNamed: sceneId) else {
@@ -161,4 +153,78 @@ extension GameScene: ButtonNodeResponderType {
             
         }
     }
+    
+    
 }
+func updateLeaderboard() {
+    if GKLocalPlayer.local.isAuthenticated {
+        // Create a new score object, with our leaderboard:
+        /*
+        let highScore = GKScore(leaderboardIdentifier:"stavvyboard22")
+        // Set the score value to our coin score:
+        highScore.value = Int64(77)
+        
+        // Report the score (wrap the score in an array)
+        GKScore.report([highScore], withCompletionHandler:
+            {(error : Error?) -> Void in
+                // The error handler was used more in old
+                // versions of iOS, it would be unusual to
+                // receive an error now:
+                if error != nil {
+                    print(error!)
+                }
+        })
+         */
+        GKLeaderboard.submitScore(
+            Int(12),
+            context: 0,
+            player: GKLocalPlayer.local,
+            leaderboardIDs: ["stavvyboard22"]
+        ) { error in
+            print(error)
+        }
+        
+    }
+}
+//sends the highest score to leaderboard
+func saveHighscore22(gameScore: Int) {
+
+    print("Player has been authenticated.")
+
+    if(GKLocalPlayer.local.isAuthenticated){
+        
+        let scoreReporter = GKScore(leaderboardIdentifier: "stavvyboard22")
+        scoreReporter.value = Int64(gameScore)
+        let scoreArray: [GKScore] = [scoreReporter]
+
+        GKScore.report(scoreArray, withCompletionHandler: {error -> Void in
+            if error != nil {
+                print("An error has occured: \(error)")
+            }
+        })
+    }
+}
+
+func updateLeaderboard22() {
+    if GKLocalPlayer.local.isAuthenticated {
+        // Create a new score object, with our leaderboard:
+        
+        let highScore = GKScore(leaderboardIdentifier:"stavvyboard22")
+        // Set the score value to our coin score:
+        highScore.value = Int64(77)
+        
+        // Report the score (wrap the score in an array)
+        GKScore.report([highScore], withCompletionHandler:
+                        {(error : Error?) -> Void in
+            // The error handler was used more in old
+            // versions of iOS, it would be unusual to
+            // receive an error now:
+            if error != nil {
+                print(error!)
+            }
+        })
+    }
+}
+
+
+

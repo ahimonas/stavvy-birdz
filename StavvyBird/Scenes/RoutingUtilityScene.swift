@@ -9,7 +9,7 @@ import GameKit
 import UIKit
 import StoreKit
 
-class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControllerDelegate,  SKPaymentTransactionObserver, SKProductsRequestDelegate  {
+class RoutingUtilityScene: SKScene, ButtonNodeResponderType,SKPaymentTransactionObserver, SKProductsRequestDelegate, GKGameCenterControllerDelegate  {
     var request : SKProductsRequest!
     var products : [SKProduct] = []
     var noAdsPurchased = false
@@ -18,14 +18,13 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
     var gcDefaultLeaderboard = String()
     var leaderboardID = "stavvyboard22"
     
-    
     var myLabel: SKLabelNode!
     var gameOverLabel: SKLabelNode!
     var jumpBtn: SKSpriteNode!
     var playBtn: SKSpriteNode!
     var noAdsBtn:SKSpriteNode!
     var scoreboard :SKSpriteNode!
-
+    
     // MARK: leaderboard
     func authenticateLocalPlayer() {
         let localPlayer : GKLocalPlayer = GKLocalPlayer()
@@ -47,109 +46,127 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                         self.gcDefaultLeaderboard = leaderboardIdentifer!
                     }
                 })
-                
+                                                             
                 )
             }
         }
     }
+    
+    // ++++++++++++++++++++++++++++++
+    // ++++++++ Gamecenter ++++++++++
+    // ++++++++++++++++++++++++++++++
+    
+    //shows leaderboard screen
+    func showLeader() {
+        let viewControllerVar = self.view?.window?.rootViewController
+        let gKGCViewController = GKGameCenterViewController()
+        gKGCViewController.gameCenterDelegate = self
+        viewControllerVar?.present(gKGCViewController, animated: true, completion: nil)
+    }
+    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    
 
+    func showLeaderboard() {
+        // A new instance of a game center view controller:
+        let gameCenter = GKGameCenterViewController()
+        // Set this scene as the delegate (helps enable the
+        // done button in the game center)
+        gameCenter.gameCenterDelegate = self
+        // Show the leaderboards when the game center opens:
+        gameCenter.viewState =
+            GKGameCenterViewControllerState.leaderboards
+        // Find the current view controller:
+        if let gameViewController =
+            self.view?.window?.rootViewController {
+            // Display the new Game Center view controller:
+            gameViewController.show(gameCenter, sender: self)
+            gameViewController.navigationController?
+                .pushViewController(gameCenter, animated: true)
+        }
+    }
+
+    
+  
+    func showLeaderBoard(){
+
+        let viewController = self.view?.window?.rootViewController
+         let gcvc = GKGameCenterViewController()
+
+         gcvc.gameCenterDelegate = self
+
+        viewController?.present(gcvc, animated: true, completion: nil)
+
+
+     }
+    
+    
+    
+
+
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
+     }
+
+    
+    
+    
     
     //++++++++++++++++++++++++++++++
     //++++++ inApp purhchase ++++++
     //++++++++++++++++++++++++++++++
     
     func inAppPurchase(){
-        
+        //buttonTriggered
         let alert = UIAlertController(title: "In App Purchases", message: "", preferredStyle: UIAlertController.Style.alert)
         /*
-        let image = UIImage(named: "airadventurelevel1")
-        let action = UIAlertAction(title: "title", style: .default, handler: nil)
-        action.setValue(image, forKey: "image")
-        alert.addAction(action)
-        */
-        
-        for i in 0 ..< products.count{
-            
-            
-            let currentProduct = products[i]
-            print("productIdentifier", currentProduct.productIdentifier)
-            print("currentProduct", currentProduct)
-            print("currentProduct - localizedTitle", currentProduct.localizedTitle)
-            print("currentProduct -  localized price", currentProduct.priceLocale)
-
-            if(currentProduct.productIdentifier == "stavvy.bird1.product" && !UserDefaults.standard.bool(forKey: "stavvyBirdLock")){
+         let image = UIImage(named: "airadventurelevel1")
+         let action = UIAlertAction(title: "title", style: .default, handler: nil)
+         action.setValue(image, forKey: "image")
+         alert.addAction(action)
+         */
+        if(products.count > 0){
+            debugPrint("inAppPurchaseFUNCTION PURCHASE products", products, products.count)
+            for i in 0 ..< products.count{
                 
-                print("stavvy bird found")
-                print(currentProduct.productIdentifier);
-                let numberFormatter = NumberFormatter()
-                numberFormatter.numberStyle = .currency
-                numberFormatter.locale = currentProduct.priceLocale
+                let currentProduct = products[i]
+                print("currentProduct", currentProduct, currentProduct.productIdentifier, currentProduct.localizedTitle, currentProduct.priceLocale)
                 
-                alert.addAction(UIAlertAction(title:currentProduct.localizedTitle + " : " + numberFormatter.string(from:           currentProduct.price)!,style:UIAlertAction.Style.default){_ in
-                    self.buyProduct(product: currentProduct)
+                if(currentProduct.productIdentifier == "stavvy.bird.raven.prod" && !UserDefaults.standard.bool(forKey: "removeRavensLock")){
                     
-                })
+                    print("ravens bird found")
+                    print(currentProduct.productIdentifier);
+                    let numberFormatter = NumberFormatter()
+                    numberFormatter.numberStyle = .currency
+                    numberFormatter.locale = currentProduct.priceLocale
+                    
+                    alert.addAction(UIAlertAction(title:currentProduct.localizedTitle + " : " + numberFormatter.string(from:           currentProduct.price)!,style:UIAlertAction.Style.default){_ in
+                        self.buyProduct(product: currentProduct)
+                        
+                    })
+                }
+                
             }
             
-            if(currentProduct.productIdentifier == "stavvy.bird.raven.prod" && !UserDefaults.standard.bool(forKey: "removeRavensLock")){
-                
-                print("ravens bird found")
-                print(currentProduct.productIdentifier);
-                let numberFormatter = NumberFormatter()
-                numberFormatter.numberStyle = .currency
-                numberFormatter.locale = currentProduct.priceLocale
-                
-                alert.addAction(UIAlertAction(title:currentProduct.localizedTitle + " : " + numberFormatter.string(from:           currentProduct.price)!,style:UIAlertAction.Style.default){_ in
-                    
-                    self.buyProduct(product: currentProduct)
-                    
-                })
-            }
-            
-            if(currentProduct.productIdentifier == "stavvy.birds.eldy.product" && !UserDefaults.standard.bool(forKey: "removeEldyLock")){
-
-                print("eldy bird found")
-                print(currentProduct.productIdentifier);
-                let numberFormatter = NumberFormatter()
-                numberFormatter.numberStyle = .currency
-                numberFormatter.locale = currentProduct.priceLocale
-                
-                alert.addAction(UIAlertAction(title:currentProduct.localizedTitle + " : " + numberFormatter.string(from:           currentProduct.price)!,style:UIAlertAction.Style.default){_ in
-                    
-                    self.buyProduct(product: currentProduct)
-                    
-                })
-            }
-            
-            
-            
-            
-        }
-        
-        if(!UserDefaults.standard.bool(forKey: "removeEldyLock")){
             alert.addAction(UIAlertAction(title:"Restore", style:UIAlertAction.Style.default){_ in
                 self.restorePurchaseProducts()
             })
+            
+            alert.addAction(UIAlertAction(title:"Cancel",style:UIAlertAction.Style.default){_ in
+                print("cancelled purchase")
+            })
+            
+            //_gameScene.scnView?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+            
+            let vc = self.view?.window?.rootViewController
+            if vc?.presentedViewController == nil {
+                vc!.present(alert, animated: true, completion: nil)
+            }
         }
         
-        
-        alert.addAction(UIAlertAction(title:"Cancel",style:UIAlertAction.Style.default){_ in
-            print("cancelled purchase")
-        })
-        
-        
-        
-        //_gameScene.scnView?.window?.rootViewController?.present(alert, animated: true, completion: nil)
-        
- 
-        
-        let vc = self.view?.window?.rootViewController
-        if vc?.presentedViewController == nil {
-            vc!.present(alert, animated: true, completion: nil)
-         }
-        
     }
-    
     
     // Buy the product
     func buyProduct(product: SKProduct) {
@@ -157,7 +174,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         SKPaymentQueue.default().add(payment)
     }
     
-
+    
     //Called when processing the purchase
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         
@@ -184,7 +201,23 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                     if let controller = self.view?.window?.rootViewController as? GameViewController {
                         controller.removeAd()
                     }
-                                        
+                    
+                }
+                if transaction.payment.productIdentifier == "stavvy.birds.eldy.product" && !UserDefaults.standard.bool(forKey: "removeEldyLock") {
+                    print("Transaction State: Purchased")
+                    UserDefaults.standard.set(true, forKey: "removeEldyLock")
+                    handleNoAdsPurchased()
+                }
+                
+                if transaction.payment.productIdentifier == "stavvy.birds.eldy.product" && !UserDefaults.standard.bool(forKey: "removeEldyLock") {
+                    print("Transaction State: Purchased")
+                    UserDefaults.standard.set(true, forKey: "removeEldyLock")
+                    handleNoAdsPurchased()
+                }
+                if transaction.payment.productIdentifier == "stavvy.birds.eldy.product" && !UserDefaults.standard.bool(forKey: "removeEldyLock") {
+                    print("Transaction State: Purchased")
+                    UserDefaults.standard.set(true, forKey: "removeEldyLock")
+                    handleNoAdsPurchased()
                 }
                 if transaction.payment.productIdentifier == "stavvy.birds.eldy.product" && !UserDefaults.standard.bool(forKey: "removeEldyLock") {
                     print("Transaction State: Purchased")
@@ -193,23 +226,13 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                 }
                 
                 queue.finishTransaction(transaction)
-            
+                
             case .failed:
                 print("Payment Error: %@", transaction.error!)
                 queue.finishTransaction(transaction)
                 
             case .restored:
-                
                 print("restored product identifiers", transaction.payment.productIdentifier)
-                /*
-                if transaction.payment.productIdentifier == "stavvy.birds.eldy.product" {
-                    print("Transaction State: Restored - eldy")
-                    UserDefaults.standard.set(true, forKey: "removeEldyLock")
-
-                    //print("Transaction State: Purchased")
-                    //UserDefaults.standard.set(true, forKey: "removeEldyLock")
-                }
-                 */
                 //restore state for ravens if product ID is passed in Restored state
                 if transaction.payment.productIdentifier == "stavvy.bird.raven.prod" {
                     print("Transaction State: Restored - ravens")
@@ -221,58 +244,31 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                     //handleNoAdsPurchased()
                 }
                 queue.finishTransaction(transaction)
-
-            case .deferred:
-                /*
-                if transaction.payment.productIdentifier == "stavvy.birds.eldy.product" {
-                    print("Transaction State: Purchased")
-                    UserDefaults.standard.set(true, forKey: "removeEldyLock")
-                    handleNoAdsPurchased()
-                }
-                 */
                 
+            case .deferred:
                 print("Transaction State: %@", transaction.transactionState)
-
-
+                
             }//switch
         }//for loop
     }//payment queue
     
-
     
     func handleNoAdsPurchased(){
         noAdsPurchased = true
-    
         //noAdsBtn.isHidden = true
-        
         UserDefaults.standard.set(true, forKey: "removeAdsKey")
-        /*
-        var currentScore = 100 //change that to the players current score.
-        let highScore  = UserDefaults.standard.integer(forKey: "highScore") //Get the users high score from last time.
-
-        if(currentScore > highScore){// check and see if currentScore is greater than highScore.
-            UserDefaults.standard.set(currentScore, forKey: "highScore")//if currentScore is greater than highScore, set it in UserDefualts.
-        }
-         */
-
-       
-
     }
-    
-    
     
     //Called when appstore responds and populates the products array
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-
+        
         print("products request received")
         self.products = response.products
         self.request = nil
-        
         print("products count: ", products.count)
         print("SKProduct ", products)
         print("SKProduct1 ", products.first?.localizedTitle)
-        //print("SKProduct2 ", products.last?.localizedTitle)
-
+        
         if(response.invalidProductIdentifiers.count != 0){
             print(" *** products request not received ***")
             print(response.invalidProductIdentifiers.description)
@@ -284,10 +280,6 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         debugPrint("restoring")
         //SKPaymentQueue.default().add(self)
         SKPaymentQueue.default().restoreCompletedTransactions()
-
-        //SKPaymentQueue.default().restoreCompletedTransactions()
-        
-        //SKPaymentQueue.default().restoreCompletedTransactions()
     }
     
     //Called when an error happens in communication
@@ -298,90 +290,90 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
     
     
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
-        // ...
+        //Not sure if this is needed or IAP needs completed state
         debugPrint("paymentQueueRestoreCompletedTransactionsFinished")
-        
     }
     
     // Initialize the App Purchases
     
     func initInAppPurchases() {
-
         print("In App Purchases Initialized")
         SKPaymentQueue.default().add(self)
         // Get the list of possible purchases
         if self.request == nil {
             self.request = SKProductsRequest(productIdentifiers: Set(["stavvy.bird.raven.prod"]))
-            // self.request = SKProductsRequest(productIdentifiers: Set(["stavvy.bird1.product", "stavvy.bird.raven.prod", //"stavvy.birds.eldy.product"]))
+            // self.request = SKProductsRequest(productIdentifiers: Set(["stavvy.bird1.product", "stavvy.bird.raven.prod", //"stavvy.birds.eldy.product"])) set the products to query from app connect IAP here
             self.request.delegate = self
             self.request.start()
         }
     }
-    /*
-    func initInAppPurchases() {
-        print("In App Purchases Initialized")
-        SKPaymentQueue.default().add(self)
-        // Get the list of possible purchases
-        if self.request == nil {
-           
-           // self.request = SKProductsRequest(productIdentifiers: Set(["stavvy.bird1.product", "stavvy.bird.raven.prod", //"stavvy.birds.eldy.product"]))
-            
-            self.request = SKProductsRequest(productIdentifiers: Set(["stavvy.bird.raven.prod"]))
-            self.request.delegate = self
-            self.request.start()
-        }
-    }
-    */
-
+    
     func  printDefaults(){
-        
-        print(UserDefaults.standard.dictionaryRepresentation())
-        
-        print(UserDefaults.standard.dictionaryRepresentation().keys)
-        
-        
-        print(UserDefaults.standard.dictionaryRepresentation().values)
-    
+        print(UserDefaults.standard.dictionaryRepresentation(), UserDefaults.standard.dictionaryRepresentation().keys, UserDefaults.standard.dictionaryRepresentation().values)
     }
     
-    func showLeaderBoard(){
 
-        let viewController = self.view?.window?.rootViewController
-         let gcvc = GKGameCenterViewController()
+    func updateLeaderboard() {
+        if GKLocalPlayer.local.isAuthenticated {
+            // Create a new score object, with our leaderboard:
+            /*
+            let highScore = GKScore(leaderboardIdentifier:"stavvyboard22")
+            // Set the score value to our coin score:
+            highScore.value = Int64(77)
+            
+            // Report the score (wrap the score in an array)
+            GKScore.report([highScore], withCompletionHandler:
+                {(error : Error?) -> Void in
+                    // The error handler was used more in old
+                    // versions of iOS, it would be unusual to
+                    // receive an error now:
+                    if error != nil {
+                        print(error!)
+                    }
+            })
+             */
+            GKLeaderboard.submitScore(
+                Int(12),
+                context: 0,
+                player: GKLocalPlayer.local,
+                leaderboardIDs: ["stavvyboard22"]
+            ) { error in
+                print(error)
+            }
+            
+        }
+    }
+    //sends the highest score to leaderboard
+    func saveHighscore22(gameScore: Int) {
 
-         gcvc.gameCenterDelegate = self
-
-        viewController?.present(gcvc, animated: true, completion: nil)
-
-
-     }
-
-
-    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-        gameCenterViewController.dismiss(animated: true, completion: nil)
-     }
-    
-    
-    
-    //Call this when ur highscore should be saved
-    func saveHighScore(number:Int){
+        print("Player has been authenticated.")
 
         if(GKLocalPlayer.local.isAuthenticated){
 
             let scoreReporter = GKScore(leaderboardIdentifier: "stavvyboard22")
-            scoreReporter.value = Int64(number)
-
+            scoreReporter.value = Int64(gameScore)
             let scoreArray: [GKScore] = [scoreReporter]
 
-            GKScore.report(scoreArray, withCompletionHandler: nil)
-
+            GKScore.report(scoreArray, withCompletionHandler: {error -> Void in
+                if error != nil {
+                    print("An error has occured: \(error)")
+                }
+            })
         }
-
     }
     
+    //Call this when ur highscore should be saved
+    func saveHighScore(number:Int){
+        if(GKLocalPlayer.local.isAuthenticated){
+            let scoreReporter = GKScore(leaderboardIdentifier: "stavvyboard22")
+            scoreReporter.value = Int64(number)
+            let scoreArray: [GKScore] = [scoreReporter]
+            GKScore.report(scoreArray, withCompletionHandler: nil)
+            
+        }
+        
+    }
     
-    
-
     let selection = UISelectionFeedbackGenerator()
     static let sceneScaleMode: SKSceneScaleMode = .aspectFill
     private static var lastPushTransitionDirection: SKTransitionDirection?
@@ -389,15 +381,17 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
     
     
     func buttonTriggered(button: ButtonNode) {
+        print("NNNNNNNNNN", button)
         guard let identifier = button.buttonIdentifier else {
             return
         }
         selection.selectionChanged()
-    
+        
         var sceneToPresent: SKScene?
         var transition: SKTransition?
         let sceneScaleMode: SKSceneScaleMode = RoutingUtilityScene.sceneScaleMode
-        
+        print("NNNNNNNNNN", button)
+
         switch identifier {
         case .play:
             let sceneId = Scenes.game.getName()
@@ -419,68 +413,57 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             
         case .characters:
             //authenticateLocalPlayer()
-           initInAppPurchases()
-  
+            initInAppPurchases()
             let sceneId = Scenes.characters.getName()
             sceneToPresent = CharactersScene(fileNamed: sceneId)
             debugPrint("created CharactersScene instance")
             RoutingUtilityScene.lastPushTransitionDirection = .right
             transition = SKTransition.push(with: .right, duration: 1.0)
-            /*
-            if(!UserDefaults.standard.bool(forKey: "removeAdsKey")){
-                
-                initInAppPurchases()
-                
-                //noAdsBtn = SKSpriteNode(imageNamed: "noAdsBtn")
-               // noAdsBtn.position = CGPoint(x: size.width * 0.9, y: size.height * 0.8)
-               // noAdsBtn.setScale(0.75)
-             //   self.addChild(noAdsBtn)
-              //  noAdsBtn.name = "noAdsBtn"
-            }
-             */
-            
-            if(UserDefaults.standard.bool(forKey: "removeEldyLock")){
-                lazy var beam = { return self.childNode(withName: "EldyBird") as! SKSpriteNode}()
-                beam.isHidden = true;
-                debugPrint(beam)
-            }
-            
-
-            //initInAppPurchases()
-
+            initInAppPurchases()
+            noAdsBtn = SKSpriteNode(imageNamed: "pipe-green")
+            noAdsBtn.position = CGPoint(x: size.width * 0.9, y: size.height * 0.8)
+            noAdsBtn.setScale(0.75)
+            self.addChild(noAdsBtn)
+            noAdsBtn.name = "noAdsBtn"
             
         case .venu:
-            
+            /*
             initInAppPurchases()
             debugPrint("venue - Init app purchase flow button")
+            */
+            updateLeaderboard()
+            saveHighscore22(gameScore: 1)
+            //showLeaderboard()
             
         case .penu:
-            inAppPurchase()
+            //inAppPurchase()
+            showLeader()
             debugPrint("penue - purchase non-consumable")
-
-        case .raven:
+       
+        case .zenu:
+            let tryCountCurrent :Int = 4
             //initInAppPurchases()
-            if(!UserDefaults.standard.bool(forKey: "removeRavensLock")){
-                initInAppPurchases()
-                debugPrint("initAppPurchase")
-                initInAppPurchases()
-            }
+            //saveHighScore(number: tryCountCurrent)
+            debugPrint("zenue - leaderboard button")
+            showLeaderBoard()
             
+            
+        case .raven:
+            initInAppPurchases()
+            initInAppPurchases()
+            initInAppPurchases()
+            inAppPurchase()
+            inAppPurchase()
+            inAppPurchase()
             inAppPurchase()
             debugPrint("raven button pressed - purchase non-consumable")
-        
+            
         case .eldy:
             initInAppPurchases()
             inAppPurchase()
             debugPrint("eldy button pressed - purchase non-consumable")
             
-        case .zenu:
-            let tryCountCurrent :Int = 4
-            //initInAppPurchases()
-            saveHighScore(number: tryCountCurrent)
-            debugPrint("zenue - leaderboard button")
-            showLeaderBoard()
-            
+
         case .menu:
             let sceneId = Scenes.title.getName()
             sceneToPresent = TitleScene(fileNamed: sceneId)
@@ -507,10 +490,10 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                 transition = SKTransition.fade(withDuration: 1.0)
             }
             
-
+            
             //let controller = sceneToPresent?.rootViewController as! GameViewController
             //controller.removeAd()
-             
+            
             
         default:
             debugPrint(#function + "triggered button node action that is not supported by the TitleScene class")
@@ -526,13 +509,10 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         self.view?.presentScene(presentationScene, transition: unwrappedTransition)
         //self.view?.inputViewController.remove
         
-
-        
         debugPrint("presented CharactersScene instance")
     }
     
-
-
+  
+    
 }
 
-//https://cloud.tencent.com/developer/ask/sof/113518506
