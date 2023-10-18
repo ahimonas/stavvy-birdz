@@ -169,11 +169,11 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                 print("Transaction State: Purchasing")
                 
             case .purchased:
-                if transaction.payment.productIdentifier == "stavvy.bird1.product" && !UserDefaults.standard.bool(forKey: "stavvyBirdLock") {
-                    print("Transaction State: Purchased")
-                    UserDefaults.standard.set(true, forKey: "stavvyBirdLock")
-                    handleNoAdsPurchased()
-                }
+//                if transaction.payment.productIdentifier == "stavvy.bird1.product" && !UserDefaults.standard.bool(forKey: "stavvyBirdLock") {
+//                    print("Transaction State: Purchased")
+//                    UserDefaults.standard.set(true, forKey: "stavvyBirdLock")
+//                    handleNoAdsPurchased()
+//                }
                 if transaction.payment.productIdentifier == "stavvy.bird.raven.prod"  && !UserDefaults.standard.bool(forKey: "removeRavensLock") {
                     print("Transaction State: Purchased - racent bird" )
                     //set remove lock to true and hide purchase button after purchase
@@ -186,11 +186,11 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                     }
                                         
                 }
-                if transaction.payment.productIdentifier == "stavvy.birds.eldy.product" && !UserDefaults.standard.bool(forKey: "removeEldyLock") {
-                    print("Transaction State: Purchased")
-                    UserDefaults.standard.set(true, forKey: "removeEldyLock")
-                    handleNoAdsPurchased()
-                }
+//                if transaction.payment.productIdentifier == "stavvy.birds.eldy.product" && !UserDefaults.standard.bool(forKey: "removeEldyLock") {
+//                    print("Transaction State: Purchased")
+//                    UserDefaults.standard.set(true, forKey: "removeEldyLock")
+//                    handleNoAdsPurchased()
+//                }
                 
                 queue.finishTransaction(transaction)
             
@@ -303,8 +303,13 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         
     }
     
-    // Initialize the App Purchases
     
+    /**
+     Initializes in-app purchases and retrieves the list of possible purchases.
+     
+     - Parameters: None
+     - Returns: None
+     */
     func initInAppPurchases() {
 
         print("In App Purchases Initialized")
@@ -439,16 +444,6 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             }
              */
             
-            if(UserDefaults.standard.bool(forKey: "removeEldyLock")){
-                lazy var beam = { return self.childNode(withName: "EldyBird") as! SKSpriteNode}()
-                beam.isHidden = true;
-                debugPrint(beam)
-            }
-            
-
-            //initInAppPurchases()
-
-            
         case .venu:
             
             initInAppPurchases()
@@ -459,9 +454,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             debugPrint("penue - purchase non-consumable")
 
         case .raven:
-            //initInAppPurchases()
             if(!UserDefaults.standard.bool(forKey: "removeRavensLock")){
-                initInAppPurchases()
                 debugPrint("initAppPurchase")
                 initInAppPurchases()
             }
