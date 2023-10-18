@@ -201,6 +201,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             case .restored:
                 
                 print("restored product identifiers", transaction.payment.productIdentifier)
+                /*
                 if transaction.payment.productIdentifier == "stavvy.birds.eldy.product" {
                     print("Transaction State: Restored - eldy")
                     UserDefaults.standard.set(true, forKey: "removeEldyLock")
@@ -208,6 +209,8 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                     //print("Transaction State: Purchased")
                     //UserDefaults.standard.set(true, forKey: "removeEldyLock")
                 }
+                 */
+                //restore state for ravens if product ID is passed in Restored state
                 if transaction.payment.productIdentifier == "stavvy.bird.raven.prod" {
                     print("Transaction State: Restored - ravens")
                     UserDefaults.standard.set(true, forKey: "removeRavensLock")
@@ -215,7 +218,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                         controller.removeAd()
                     }
                     print("Transaction State: Restored")
-                    handleNoAdsPurchased()
+                    //handleNoAdsPurchased()
                 }
                 queue.finishTransaction(transaction)
 
@@ -279,7 +282,9 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
     //Restore purchases
     func restorePurchaseProducts() {
         debugPrint("restoring")
-        SKPaymentQueue.default().add(self)
+        //SKPaymentQueue.default().add(self)
+        SKPaymentQueue.default().restoreCompletedTransactions()
+
         //SKPaymentQueue.default().restoreCompletedTransactions()
         
         //SKPaymentQueue.default().restoreCompletedTransactions()
@@ -295,6 +300,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
         // ...
         debugPrint("paymentQueueRestoreCompletedTransactionsFinished")
+        
     }
     
     // Initialize the App Purchases
@@ -444,6 +450,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
 
             
         case .venu:
+            
             initInAppPurchases()
             debugPrint("venue - Init app purchase flow button")
             
