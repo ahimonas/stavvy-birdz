@@ -70,11 +70,13 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType,SKPaymentTransaction
     
 
     func showLeaderboard() {
+        print("show leaderboard")
         // A new instance of a game center view controller:
         let gameCenter = GKGameCenterViewController()
         // Set this scene as the delegate (helps enable the
         // done button in the game center)
         gameCenter.gameCenterDelegate = self
+        gameCenter.leaderboardIdentifier = "stavvyboard22"
         // Show the leaderboards when the game center opens:
         gameCenter.viewState =
             GKGameCenterViewControllerState.leaderboards
@@ -90,17 +92,26 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType,SKPaymentTransaction
 
     
   
-    func showLeaderBoard(){
+    // func showLeaderBoard(){
 
-        let viewController = self.view?.window?.rootViewController
-         let gcvc = GKGameCenterViewController()
+        // let viewController = self.view?.window?.rootViewController
+//          let gameCenterVC = GKGameCenterViewController()
+// gameCenterVC.viewState = .leaderboards
+// self.present(gameCenterVC, animated: true, completion: nil)
+// if #available(iOS 14.0, *) {
+//     GKAccessPoint.shared.location = .topLeading
+//     GKAccessPoint.shared.isActive = true
+// }
 
-         gcvc.gameCenterDelegate = self
+        //  gcvc.gameCenterDelegate = self
+        //  gcvc.leaderboardIdentifier = "stavvyboard22"
 
-        viewController?.present(gcvc, animated: true, completion: nil)
+        // viewController?.present(gcvc, animated: true, completion: nil)
+  
+// }
 
 
-     }
+     
     
     
     
@@ -346,9 +357,9 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType,SKPaymentTransaction
     //sends the highest score to leaderboard
     func saveHighscore22(gameScore: Int) {
 
-        print("Player has been authenticated.")
 
         if(GKLocalPlayer.local.isAuthenticated){
+            print("Player has been authenticated...saving high score")
 
             let scoreReporter = GKScore(leaderboardIdentifier: "stavvyboard22")
             scoreReporter.value = Int64(gameScore)
@@ -362,9 +373,27 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType,SKPaymentTransaction
         }
     }
     
+    func saveScore(score: Int64) {
+        if GKLocalPlayer.local.isAuthenticated {
+            let scoreReporter = GKScore(leaderboardIdentifier: "stavvyboard22")
+            scoreReporter.value = score // Replace with your score value
+
+            GKScore.report([scoreReporter]) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    print("Score submitted")
+                    // Here you could call your showLeaderboard function to show updated scores 
+                }
+            }
+        }
+    }
+
+
     //Call this when ur highscore should be saved
     func saveHighScore(number:Int){
         if(GKLocalPlayer.local.isAuthenticated){
+
             let scoreReporter = GKScore(leaderboardIdentifier: "stavvyboard22")
             scoreReporter.value = Int64(number)
             let scoreArray: [GKScore] = [scoreReporter]
@@ -437,15 +466,16 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType,SKPaymentTransaction
             
         case .penu:
             //inAppPurchase()
-            showLeader()
+            // showLeader()
             debugPrint("penue - purchase non-consumable")
+            saveScore(score: Int64(12))
        
         case .zenu:
             let tryCountCurrent :Int = 4
             //initInAppPurchases()
             //saveHighScore(number: tryCountCurrent)
             debugPrint("zenue - leaderboard button")
-            showLeaderBoard()
+            showLeaderboard()
             
             
         case .raven:
