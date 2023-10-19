@@ -118,7 +118,7 @@ class CharactersScene: RoutingUtilityScene {
         if(selectedPlayableCharacter.rawValue.replacingOccurrences(of: "\"", with: "") == "jazzCat"){ //thsi is eldy
             //print("UserDefaults.standard.bool(forKey: removeEldyLock");
             print(UserDefaults.standard.bool(forKey: "removeEldyLock"));
-            var hi2 = UserDefaults.standard.bool(forKey: "removeEldyLock");
+            let hi2 = UserDefaults.standard.bool(forKey: "removeEldyLock");
             debugPrint(hi2)
             if(UserDefaults.standard.bool(forKey: "removeEldyLock")){
                 select(playableCharacter: selectedPlayableCharacter, animated: true)
