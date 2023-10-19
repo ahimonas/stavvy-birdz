@@ -28,11 +28,12 @@ class ScoresScene: RoutingUtilityScene {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         //authenticateLocalPlayer()
-        fetchScores()
+        //fetchScores()
         //createScoreboard()
         //submitScore()
         //showScoreboard()
-        saveHighScore33(number: 33)
+        //saveHighScore33(number: 33)
+        //submitScore()
         advanceRainParticleEmitter(for: 10)
     }
 /*
@@ -136,6 +137,9 @@ class ScoresScene: RoutingUtilityScene {
         }
     }
     
+    // ++++++++++++++++++++++++++++++
+    // ++++++++ Gamecenter Submit  ++++++++++
+    // ++++++++++++++++++++++++++++++
     func submitScore() {
         if self.scene?.childNode(withName: "Best Score Label") is SKLabelNode {
             let bestScore = UserDefaults.standard.integer(for: .bestScore)
