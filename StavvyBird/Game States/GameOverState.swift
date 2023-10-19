@@ -16,7 +16,6 @@ class GameOverState: GKState {
     var gcDefaultLeaderboard = String()
     var leaderboardID = "stavvyboard22"
     
-    
     var overlaySceneFileName: String {
         return Scenes.failed.getName()
     }
@@ -117,6 +116,8 @@ extension GameOverState {
         if currentScore > bestScore {
             // Update the best score
             UserDefaults.standard.set(currentScore, for: .bestScore)
+            let utilityScene = RoutingUtilityScene()
+            utilityScene.saveScore(score: currentScore)
         }
         UserDefaults.standard.set(currentScore, for: .lastScore)
     }

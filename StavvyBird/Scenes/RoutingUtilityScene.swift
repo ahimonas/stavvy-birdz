@@ -332,29 +332,26 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
     // ++++++++ Gamecenter ++++++++++
     // ++++++++++++++++++++++++++++++
     
-    //shows leaderboard screen
-    func showLeader() {
-        let viewControllerVar = self.view?.window?.rootViewController
-        let gKGCViewController = GKGameCenterViewController()
-        gKGCViewController.gameCenterDelegate = self
-        viewControllerVar?.present(gKGCViewController, animated: true, completion: nil)
-    }
-    
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismiss(animated: true, completion: nil)
     }
 
+    //shows leaderboard screen
     func showLeaderboard() {
         print("show leaderboard")
         // A new instance of a game center view controller:
-        let gameCenter = GKGameCenterViewController()
+        let gameCenter = GKGameCenterViewController(
+                leaderboardID: self.leaderboardID,
+                playerScope: .global,
+                timeScope: .allTime)
         // Set this scene as the delegate (helps enable the
         // done button in the game center)
         gameCenter.gameCenterDelegate = self
-        gameCenter.leaderboardIdentifier = "stavvyboard22"
+
+        // gameCenter.leaderboardIdentifier = self.leaderboardID
         // Show the leaderboards when the game center opens:
-        gameCenter.viewState =
-        GKGameCenterViewControllerState.leaderboards
+        // gameCenter.viewState =
+        //     GKGameCenterViewControllerState.leaderboards
         // Find the current view controller:
         if let gameViewController =
             self.view?.window?.rootViewController {
@@ -363,68 +360,25 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             gameViewController.navigationController?
                 .pushViewController(gameCenter, animated: true)
         }
+        // present(gameCenter, animated: true, completion: nil)
     }
 
-        func updateLeaderboard() {
-            if GKLocalPlayer.local.isAuthenticated {
-                // Create a new score object, with our leaderboard:
-                let highScore = GKScore(leaderboardIdentifier:"stavvyboard22")
-                // Set the score value to our coin score:
-                highScore.value = Int64(10)
-                
-                // Report the score (wrap the score in an array)
-                GKScore.report([highScore], withCompletionHandler:
-                    {(error : Error?) -> Void in
-                        // The error handler was used more in old
-                        // versions of iOS, it would be unusual to
-                        // receive an error now:
-                        if error != nil {
-                            print(error!)
-                        }
-                })
-            }
-        }
-        
-    let leaderBoard = GKLeaderboard()
-    var scores: [GKScore] = []
-    func updateLeader() {
-        let leaderBoard: GKLeaderboard = GKLeaderboard()
-        leaderBoard.identifier = "stavvyboard22"
-        leaderBoard.timeScope = .allTime
-        leaderBoard.loadScores { (scores, error) in
-            if let error = error {
-                debugPrint("leaderboard loadScores error \(error)")
-            } else {
-                guard let scores = scores else { return }
-                self.scores = scores
-            }
-        }
-    }
  
-    func saveScore(score: Int64) {
-        if GKLocalPlayer.local.isAuthenticated {
-            let scoreReporter = GKScore(leaderboardIdentifier: "stavvyboard22")
-            scoreReporter.value = score // Replace with your score value
-            GKScore.report([scoreReporter]) { error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    print("Score submitted")
-                    // Here you could call your showLeaderboard function to show updated scores
-                }
-            }
-        }
-    }
     
-    //Call this when ur highscore should be saved
-    func saveHighScore(number:Int){
-        if(GKLocalPlayer.local.isAuthenticated){
-            let scoreReporter = GKScore(leaderboardIdentifier: "stavvyboard22")
-            scoreReporter.value = Int64(number)
-            let scoreArray: [GKScore] = [scoreReporter]
-            GKScore.report(scoreArray, withCompletionHandler: nil)
-        }
+   func saveScore(score: Int) {
+    if GKLocalPlayer.local.isAuthenticated {
 
+        // Submit a score to one or more leaderboards.
+        GKLeaderboard.submitScore(score, context: 0, player: GKLocalPlayer.local,
+        leaderboardIDs: [self.leaderboardID]) { error in
+            if error != nil {
+                print("Error: \(error!.localizedDescription).")
+            }
+            else {
+                print("Score submitted to your Leaderboard: \(score).")
+            }
+        }   
+        }
     }
     
     let selection = UISelectionFeedbackGenerator()
@@ -505,9 +459,6 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             
         case .venu:
             saveScore(score: 10)
-            saveHighScore(number: 10)
-            updateLeaderboard()
-            updateLeader()
             //initInAppPurchases()
             debugPrint("venue - Init app purchase flow button")
             
@@ -517,7 +468,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             debugPrint("penue - purchase non-consumable")
             
         case .zenu:
-            showLeader()
+            showLeaderboard()
             
         case .menu:
             let sceneId = Scenes.title.getName()
