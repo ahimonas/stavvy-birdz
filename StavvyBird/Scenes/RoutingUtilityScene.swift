@@ -408,12 +408,14 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             RoutingUtilityScene.lastPushTransitionDirection = .down
             transition = SKTransition.push(with: .down, duration: 1.0)
         case .scores:
+            showLeaderboard()
+            /*
             let sceneId = Scenes.score.getName()
             sceneToPresent = ScoresScene(fileNamed: sceneId)
             
             RoutingUtilityScene.lastPushTransitionDirection = .up
             transition = SKTransition.push(with: .up, duration: 1.0)
-            
+            */
         case .characters:
             //authenticateLocalPlayer()
            initInAppPurchases()

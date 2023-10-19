@@ -147,7 +147,7 @@ class GameSceneAdapter: NSObject, GameSceneProtocol {
     // MARK: - Helpers
     
     func resetScores() {
-        scoreLabel?.text = "PP Size 0"
+        scoreLabel?.text = "0"
     }
     
     func removePipes() {
@@ -203,7 +203,6 @@ extension GameSceneAdapter: SKPhysicsContactDelegate {
         let player = PhysicsCategories.player.rawValue
         
         if collision == (player | PhysicsCategories.gap.rawValue) {
-            score += 1
             score += 1
             scoreLabel?.text = "\(score)"
             
