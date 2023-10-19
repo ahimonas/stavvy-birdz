@@ -437,12 +437,6 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             debugPrint("penue - purchase non-consumable")
 
         case .raven:
-<<<<<<< HEAD
-            if(!UserDefaults.standard.bool(forKey: "removeRavensLock")){
-                debugPrint("initAppPurchase")
-                initInAppPurchases()
-            }
-=======
             initInAppPurchases()
              inAppPurchase()
              if !UserDefaults.standard.bool(forKey: "removeRavensLock") {
@@ -454,8 +448,6 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                      print(tempCount)
                  }
              }
->>>>>>> ebecbf7 (add manual async)
-            
             debugPrint("raven button pressed - purchase non-consumable")
         
         case .eldy:
