@@ -9,25 +9,8 @@ import SpriteKit
 import GameplayKit
 import GameKit
 
-class GameScene: SKScene, GKGameCenterControllerDelegate {
-    
-    func showLeaderBoard(){
+class GameScene: SKScene {
 
-        let viewController = self.view?.window?.rootViewController
-         let gcvc = GKGameCenterViewController()
-
-         gcvc.gameCenterDelegate = self
-
-        viewController?.present(gcvc, animated: true, completion: nil)
-
-
-     }
-
-
-    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-        gameCenterViewController.dismiss(animated: true, completion: nil)
-     }
-    
     // MARK: - Constants
     
     static var viewportSize: CGSize = .zero
