@@ -76,10 +76,12 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                 
                 productInstances = products.count
                 let currentProduct = products[i]
+                /*
                 print("productIdentifier", currentProduct.productIdentifier)
                 print("currentProduct", currentProduct)
                 print("currentProduct - localizedTitle", currentProduct.localizedTitle)
                 print("currentProduct -  localized price", currentProduct.priceLocale)
+                */
                 
                 if(currentProduct.productIdentifier == "stavvy.bird1.product" && !UserDefaults.standard.bool(forKey: "stavvyBirdLock")){
                     
@@ -446,7 +448,6 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
              if !UserDefaults.standard.bool(forKey: "removeRavensLock") {
                  var tempCount = 0;
                  while(productInstances == 0 && tempCount < 30000){
-                     print("I RAN")
                      inAppPurchase()
                      tempCount = tempCount + 1;
                      print(tempCount)
