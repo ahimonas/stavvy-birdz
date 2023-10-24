@@ -81,11 +81,14 @@ class BirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
     // MARK: - Methods
 
     fileprivate func preparePhysicsBody() {
-        physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2.5)
-        
+        //this is the imaginary boundary around the player that if the player touches the pipe he dies
+        physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2.7)
+       // physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2.7)
+
         physicsBody?.categoryBitMask = PhysicsCategories.player.rawValue
         physicsBody?.contactTestBitMask = PhysicsCategories.pipe.rawValue | PhysicsCategories.gap.rawValue | PhysicsCategories.boundary.rawValue
-        physicsBody?.collisionBitMask = PhysicsCategories.pipe.rawValue | PhysicsCategories.boundary.rawValue
+        
+        //physicsBody?.collisionBitMask = PhysicsCategories.pipe.rawValue | PhysicsCategories.boundary.rawValue
         
         physicsBody?.allowsRotation = false
         physicsBody?.restitution = 0.0
@@ -113,24 +116,30 @@ class BirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
         
         let velocityX = physicsBody.velocity.dx
         let velocityY = physicsBody.velocity.dy
-        let threshold: CGFloat = 400 //amount of overall gravtiy
+        let threshold: CGFloat = 370 //amount of overall gravtiy 0 is heavy 500 is light
         
         
         if velocityY > threshold {
             self.physicsBody?.velocity = CGVector(dx: velocityX, dy: threshold)
         }
-        let velocityValue = velocityY * (velocityY < 0 ? 0.0045 : 0.0023)
         //let velocityValue = velocityY * (velocityY < 0 ? 0.005 : 0.0025)
-        
         //let velocityValue = velocityY * (velocityY < 0 ? 0.0055 : 0.0033)
         //zRotation = velocityValue.clamp(min: -1.2, max: 0.99) // the rotation in the air
         //let velocityValue = velocityY * (velocityY < 0 ? 0.002 : 0.01)
-        zRotation = velocityValue.clamp(min: -0.37, max: 0.99)
         // the rotation in the air //min is rotate down, max is rotate up
         
         //GOOD!
-    //        zRotation = velocityValue.clamp(min: -0.33, max: 0.99)
-
+        //zRotation = velocityValue.clamp(min: -0.33, max: 0.99)
+        /*
+         let velocityValue = velocityY * (velocityY < 0 ? 0.0045 : 0.0023)
+         zRotation = velocityValue.clamp(min: -0.37, max: 0.99)
+         */
+        
+        //this is how high the boundary the player can bounce 
+        let velocityValue = velocityY * (velocityY < 0 ? 0.006 : 0.0037)
+        
+        //this is the tilt rotation
+        zRotation = velocityValue.clamp(min: -0.33, max: 0.99)
         
     }
     
@@ -146,7 +155,7 @@ extension BirdNode: Touchable {
         
         isAffectedByGravity = true
         // Apply an impulse to the DY value of the physics body of the bird
-        physicsBody?.applyImpulse(CGVector(dx: 0, dy: 116)) //the bounce force
+        physicsBody?.applyImpulse(CGVector(dx: 0, dy: 133)) //the bounce force
     }
 }
 

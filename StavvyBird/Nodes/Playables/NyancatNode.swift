@@ -39,6 +39,7 @@ class NyancatNode: SKNode, Updatable, Playable, PhysicsContactable {
     }
     
     var collisionBitMask: UInt32 = PhysicsCategories.pipe.rawValue | PhysicsCategories.boundary.rawValue
+    var collisionBitMask2: UInt32 = PhysicsCategories.pipey.rawValue | PhysicsCategories.boundary.rawValue
 
     // MARK: - Private properties
     
@@ -82,7 +83,8 @@ class NyancatNode: SKNode, Updatable, Playable, PhysicsContactable {
         physicsBody?.categoryBitMask = PhysicsCategories.player.rawValue
         physicsBody?.contactTestBitMask = PhysicsCategories.pipe.rawValue | PhysicsCategories.gap.rawValue | PhysicsCategories.boundary.rawValue
         physicsBody?.collisionBitMask = collisionBitMask
-        
+        physicsBody?.collisionBitMask = collisionBitMask2
+
         physicsBody?.mass /= 7
         physicsBody?.allowsRotation = false
         physicsBody?.restitution = 0.0

@@ -14,6 +14,7 @@ struct PhysicsCategories : OptionSet {
     
     static let boundary     = PhysicsCategories(rawValue: 1 << 0)
     static let player       = PhysicsCategories(rawValue: 1 << 1)
-    static let pipe         = PhysicsCategories(rawValue: 1 << 2)
-    static let gap          = PhysicsCategories(rawValue: 1 << 3)
+    static let pipey         = PhysicsCategories(rawValue: 1 << 1)
+    static let pipe         = PhysicsCategories(rawValue: 1 << 1)
+    static let gap          = PhysicsCategories(rawValue: 1 << 1)
 }

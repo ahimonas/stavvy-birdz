@@ -23,6 +23,8 @@ class InfiniteSpriteScrollNode: SKNode {
     var background: SKNode
     var backgroundSpeed: TimeInterval
     
+    //
+    //Tf does this do? max # in frame?
     let maxNumOfTiles = 2
     
     internal var delta = TimeInterval(0)
@@ -33,7 +35,8 @@ class InfiniteSpriteScrollNode: SKNode {
     init(fileName: String, scaleFactor scale: CGPoint = CGPoint(x: 1.0, y: 1.0), speed: TimeInterval = 98) {
         self.backgroundSpeed = speed
         
-        let yShift: CGFloat = 5.0
+        //changes scene speed?
+        let yShift: CGFloat = 4.2
         
         tiles = [SKSpriteNode]()
         background = SKNode()

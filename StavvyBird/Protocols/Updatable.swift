@@ -2,22 +2,15 @@
 //  Updatable.swift
 //  StavvyBird
 //
-
-
 //
 
 import Foundation
 
 protocol Updatable: AnyObject {
     
-    // MARK: - Properties
-    
     var delta: TimeInterval { get }
     var lastUpdateTime: TimeInterval { get }
     var shouldUpdate: Bool { get set }
-    
-    // MARK: - Methods
-    
     func update(_ currentTime: TimeInterval)
 }
 

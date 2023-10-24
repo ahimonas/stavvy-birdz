@@ -67,14 +67,14 @@ enum Setting: String {
             Setting.lastScore.rawValue: 0,
             Setting.isSoundOn.rawValue: true,
             Setting.character.rawValue: PlayableCharacter.bird.rawValue,
-            Setting.difficulty.rawValue: Difficulty.medium.rawValue
+            Setting.difficulty.rawValue: Difficulty.hard.rawValue
             ])
     }
 }
 
 enum Difficulty: Double {
     case easy = 4.0
-    case medium = 3.5
+    case medium = 2.7
     case hard = 3.0
 }
 

@@ -11,7 +11,6 @@ import GameplayKit
 
 extension SKScene {
     
-    /// Searches the scene for all `ButtonNode`s.
     func findAllButtonsInScene() -> [ButtonNode] {
         return ButtonIdentifier.allButtonIdentifiers.compactMap { buttonIdentifier in
             childNode(withName: "//\(buttonIdentifier.rawValue)") as? ButtonNode
@@ -20,14 +19,12 @@ extension SKScene {
 }
 
 class GameSceneAdapter: NSObject, GameSceneProtocol {
-    
-    // MARK: - Properties
-    
-    private let overlayDuration: TimeInterval = 0.25
+        
+    private let overlayDuration: TimeInterval = 0.22
 
-    let gravity: CGFloat = -5.0
-    let playerSize = CGSize(width: 100, height: 100)
-    let backgroundResourceName = "airadventurelevel4"//"Background-Winter"
+    let gravity: CGFloat = -4.9
+    let playerSize = CGSize(width: 99, height: 99)
+    let backgroundResourceName = "airadventurelevel4"
     let floorDistance: CGFloat = 0
     
     let isSoundOn: Bool = {
@@ -177,6 +174,7 @@ class GameSceneAdapter: NSObject, GameSceneProtocol {
         scene.physicsBody?.collisionBitMask = player.rawValue
         
         scene.physicsWorld.contactDelegate = self
+        debugPrint("running")
     }
     
     private func prepareInfiniteBackgroundScroller(for scene: SKScene) {
@@ -202,6 +200,7 @@ extension GameSceneAdapter: SKPhysicsContactDelegate {
         let collision:UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
         let player = PhysicsCategories.player.rawValue
         
+        
         if collision == (player | PhysicsCategories.gap.rawValue) {
             score += 1
             scoreLabel?.text = "\(score)"
@@ -221,6 +220,14 @@ extension GameSceneAdapter: SKPhysicsContactDelegate {
             // player's position needs to be set to the default one
             handleDeadState()
         }
+        /*
+        
+        if collision == (player | PhysicsCategories.pipey.rawValue) {
+            
+            // game over state, the player has touched a pipe
+            debugPrint("eeeeeeee", collision)
+        }
+         */
     }
     
     // MARK: - Collision Helpers

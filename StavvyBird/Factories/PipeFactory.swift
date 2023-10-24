@@ -40,16 +40,10 @@ struct PipeFactory {
 
         let producePipeAction = SKAction.run {
             
-            guard var pipe = PipeFactory.producseDoublePipe(sceneSize: scene.size) else {
+            guard var pipe = PipeFactory.produceStandardPipe(sceneSize: scene.size) else {
                 return
             }
-            if Bool.pseudoRandomPipe {
-                guard let standardPipe = PipeFactory.produceStandardPipe(sceneSize: scene.size) else {
-                    return
-                }
-                pipe = standardPipe
-            }
-            
+
             pipe.name = pipeName
             targetNode.addChild(pipe)
             
@@ -97,10 +91,11 @@ struct PipeFactory {
     
     private static func standardPipeParts(for sceneSize: CGSize) -> PipeParts? {
         let pipeX: CGFloat = sceneSize.width
-        
-        let pipeBottomSize = CGSize(width: pipeWidth, height: rangedHeight) // rangeHeight
+        let randomDouble = Double.random(in: 200.71828...320.14159)
+
+        let pipeBottomSize = CGSize(width: pipeWidth+randomDouble, height: rangedHeight-200) // rangeHeight
         let pipeBottom = PipeNode(textures: (pipe: "pipe-green", cap: "cap-green"), of: pipeBottomSize, side: false)
-        pipeBottom?.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! / 2)
+        pipeBottom?.position = CGPoint(x: 0, y: (pipeBottom?.size.height)! / 2)
         
         guard let unwrappedPipeBottom = pipeBottom else {
             debugPrint(#function + " could not construct PipeNode instnace")
@@ -165,8 +160,10 @@ struct PipeFactory {
             return nil
         }
         
-        let midUpPipe = PipeNode(textures: (pipe: "pipe-green", cap: "cap-green"), of: CGSize(width: pipeWidth, height: CGFloat.range(min: 50, max: 150)), side: true)
-        midUpPipe?.position = CGPoint(x: pipeX, y: unwerappedPipeBottom.size.height + CGFloat.range(min: 250, max: 300))
+        let midUpPipe = PipeNode(textures: (pipe: "pipe-greeny", cap: "cap-greeny"), of: CGSize(width: pipeWidth, height: CGFloat.range(min: 200, max: 250)), side: true)
+        
+        
+        midUpPipe?.position = CGPoint(x: pipeX - 200, y: unwerappedPipeBottom.size.height + CGFloat.range(min: 250, max: 300))
         
         guard let unwrappedPipeMidUp = midUpPipe else {
             return nil

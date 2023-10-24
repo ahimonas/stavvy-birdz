@@ -5,9 +5,9 @@
 
 import SpriteKit
 
-typealias IsTopPipe = Bool
+typealias IsTopPipey = Bool
 
-class PipeNode: SKSpriteNode {
+class PipeNodey: SKSpriteNode {
     
     // MARK: - Initializers
     

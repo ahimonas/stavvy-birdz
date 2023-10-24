@@ -8,9 +8,7 @@
 import SpriteKit
 
 class TitleScene: RoutingUtilityScene {
-    
-    // MARK: - Overrides
-    
+        
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         

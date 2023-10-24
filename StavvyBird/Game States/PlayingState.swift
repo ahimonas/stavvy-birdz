@@ -36,6 +36,14 @@ class PlayingState: GKState {
             infinitePipeProducer = PipeFactory.launch(for: scene, targetNode: target)
         }
         
+        /*
+         if let scene = adapter.scene, let target = adapter.infiniteBackgroundNode {
+             infinitePipeProducer = PipeFactory.launch(for: scene, targetNode: target)
+             infinitePipeyProducer = PipeyFactory.launch(for: scene, targetNode: target)
+
+         }
+         */
+        
         adapter.advanceSnowEmitter(for: snowEmitterAdvancementInSeconds)
     }
     
