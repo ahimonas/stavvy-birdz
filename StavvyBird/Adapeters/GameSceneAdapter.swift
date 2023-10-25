@@ -213,7 +213,7 @@ extension GameSceneAdapter: SKPhysicsContactDelegate {
         
         if collision == (player | PhysicsCategories.pipe.rawValue) {
             // game over state, the player has touched a pipe
-            handleDeadState()
+            //handleDeadState()
         }
         
         if collision == (player | PhysicsCategories.boundary.rawValue) {
