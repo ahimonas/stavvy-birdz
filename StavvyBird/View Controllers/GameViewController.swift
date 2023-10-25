@@ -1,8 +1,9 @@
-//
-//  GameViewController.swift
+//  SounioTechnologies LLC
 //  StavvyBird
-//
+// revisit
 
+
+//extansions, swap buttons, rename playables, transitions, remoove digi, rename the r1_ sheet, check the audios, check the particles, UI components
 import UIKit
 import SpriteKit
 import GameplayKit
@@ -14,7 +15,7 @@ enum Scenes: String {
     case title = "TitleScene"
     case game = "GameScene"
     case setting = "SettingsScene"
-    case score = "ScoreScene"
+    //case score = "ScoreScene"
     case pause = "PauseScene"
     case failed = "FailedScene"
     case characters = "CharactersScene"

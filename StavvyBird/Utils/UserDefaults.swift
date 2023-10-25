@@ -1,31 +1,11 @@
-//
-//  UserDefaults.swift
+//  SounioTechnologies LLC
 //  StavvyBird
-//
 
-//
 
 import UIKit
 
 extension UserDefaults {
-    
-    // MARK: - Methods
-    
-    func integer(for setting: Setting) -> Int {
-        return self.integer(forKey: setting.rawValue)
-    }
-    
-    func set(_ int: Int, for setting: Setting) {
-        set(int, forKey: setting.rawValue)
-    }
-    
-    func bool(for setting: Setting) -> Bool {
-        return bool(forKey: setting.rawValue)
-    }
-    
-    func set(_ bool: Bool, for setting: Setting) {
-        set(bool, forKey: setting.rawValue)
-    }
+
     
     func playableCharacter(for setting: Setting) -> PlayableCharacter? {
         guard let rawPlayableCharacter = self.string(forKey: setting.rawValue) else {
@@ -43,24 +23,39 @@ extension UserDefaults {
     }
     
     func getDifficultyLevel() -> Difficulty {
-        let value = double(forKey: Setting.difficulty.rawValue)
-        return Difficulty(rawValue: value) ?? .medium
+        let diffVal = double(forKey: Setting.difficulty.rawValue)
+        return Difficulty(rawValue: diffVal) ?? .medium
     }
+    
+    
+    
+    func integer(for setting: Setting) -> Int {
+        return self.integer(forKey: setting.rawValue)
+    }
+    
+    func set(_ int: Int, for setting: Setting) {
+        set(int, forKey: setting.rawValue)
+    }
+    
+    func bool(for setting: Setting) -> Bool {
+        return bool(forKey: setting.rawValue)
+    }
+    
+    func set(_ bool: Bool, for setting: Setting) {
+        set(bool, forKey: setting.rawValue)
+    }
+    
 }
 
 
 enum Setting: String {
-
-    // MARK: - Cases
 
     case bestScore
     case lastScore
     case isSoundOn
     case character
     case difficulty
-    
-    // MARK: - Methods
-    
+        
     static func regusterDefaults() {
         UserDefaults.standard.register(defaults: [
             Setting.bestScore.rawValue: 0,
@@ -73,9 +68,9 @@ enum Setting: String {
 }
 
 enum Difficulty: Double {
-    case easy = 4.0
-    case medium = 3.5
-    case hard = 3.0
+    case easy = 4.1
+    case medium = 3.4
+    case hard = 3.1
 }
 
 enum PlayableCharacter: String {
@@ -93,15 +88,15 @@ extension PlayableCharacter {
         case .bird:
             return "Bird Right"
         case .coinCat:
-            return "animated-nyancoin"
+            return "stavvy-gold"
         case .gamecat:
-            return "animated-gamecat-nyan"
+            return "stavvy-rat"
         case .hipCat:
-            return "animated-nyan-hip"
+            return "stavvy-pig"
         case .jazzCat:
-            return "animated-jazz-nyan"
+            return "eldy-bird"
         case .lifelopeCat:
-            return "animated-lifealope-nyan"
+            return "stavvy-raven"
         }
     }
 }

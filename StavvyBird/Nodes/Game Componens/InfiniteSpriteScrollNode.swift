@@ -1,35 +1,22 @@
-//
-//  LoopedBgrndNode.swift
+//  SounioTechnologies LLC
 //  StavvyBird
-//
-
-
-//
 
 import UIKit
 import SpriteKit
 
 class InfiniteSpriteScrollNode: SKNode {
     
-    var shouldUpdate: Bool = true
-    
-    // MARK: - Constants
-    
+    var willRenew: Bool = true
     let key = "background"
-    
-    // MARK: - Properties
-    
     var tiles: [SKNode]
     var background: SKNode
     var backgroundSpeed: TimeInterval
     
-    let maxNumOfTiles = 2
+    let maxNumOfTiles = 3 //hmm
     
     internal var delta = TimeInterval(0)
-    internal var lastUpdateTime = TimeInterval(0)
-    
-    // MARK: - Initailziers
-    
+    internal var previousTiming = TimeInterval(0)
+        
     init(fileName: String, scaleFactor scale: CGPoint = CGPoint(x: 1.0, y: 1.0), speed: TimeInterval = 98) {
         self.backgroundSpeed = speed
         
@@ -63,7 +50,7 @@ class InfiniteSpriteScrollNode: SKNode {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("decoder failed")
     }
     
     // MARK: - Method
@@ -82,7 +69,7 @@ class InfiniteSpriteScrollNode: SKNode {
                     node.position = CGPoint(x: node.position.x + (node.frame.size.width * maxTiles), y: node.position.y)
                 }
             } else {
-                debugPrint(#function + " could not unwrap self, current enumeration iteration will be skipped")
+                debugPrint(#function + "failed to wrap")
                 
             }
         }
@@ -91,15 +78,12 @@ class InfiniteSpriteScrollNode: SKNode {
     
 }
 
-// MARK: - Extension that adds support for Updatable protocol
 extension InfiniteSpriteScrollNode: Updatable {
     
-    // MARK: - Conformance to the Updtable protocol
-
     func update(_ currentTime: TimeInterval) {
         let computedUpdatable = computeUpdatable(currentTime: currentTime)
         delta = computedUpdatable.delta
-        lastUpdateTime = computedUpdatable.lastUpdateTime
+        previousTiming = computedUpdatable.previousTiming
         
         moveBackground()
     }

@@ -24,7 +24,7 @@ extension SKScene {
         for index in indices.lowerBound...indices.upperBound {
             let childName = pattern(key, index)
             guard let node = self.childNode(withName: childName) as? Node else {
-                debugPrint(#function + " could not find child with the following name: ", childName)
+                debugPrint(#function + " Unavailable:  child with the following name: ", childName)
                 continue
             }
             foundNodes.append(node)

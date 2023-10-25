@@ -1,9 +1,6 @@
-//  GameScene.swift
+//  SounioTechnologies LLC
 //  StavvyBird
-//
-
-
-//
+//revisit
 
 import SpriteKit
 import GameplayKit
@@ -11,12 +8,9 @@ import GameKit
 
 class GameScene: SKScene {
 
-    // MARK: - Constants
     
     static var viewportSize: CGSize = .zero
-    
-    // MARK: - Properties
-    
+        
     lazy var stateMachine: GKStateMachine = GKStateMachine(states: [
         PlayingState(adapter: sceneAdapeter!),
         GameOverState(scene: sceneAdapeter!),
@@ -26,7 +20,7 @@ class GameScene: SKScene {
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     
-    private var lastUpdateTime : TimeInterval = 0
+    private var previousTiming : TimeInterval = 0
     let maximumUpdateDeltaTime: TimeInterval = 1.0 / 60.0
 
     var sceneAdapeter: GameSceneAdapter?
@@ -37,7 +31,7 @@ class GameScene: SKScene {
     override func sceneDidLoad() {
         super.sceneDidLoad()
         
-        self.lastUpdateTime = 0
+        self.previousTiming = 0
         sceneAdapeter = GameSceneAdapter(with: self)
         sceneAdapeter?.stateMahcine = stateMachine
         sceneAdapeter?.stateMahcine?.enter(PlayingState.self)
@@ -84,13 +78,13 @@ class GameScene: SKScene {
         guard view != nil else { return }
         
         // Calculate the amount of time since `update` was last called.
-        var deltaTime = currentTime - lastUpdateTime
+        var deltaTime = currentTime - previousTiming
         
         // If more than `maximumUpdateDeltaTime` has passed, clamp to the maximum; otherwise use `deltaTime`.
         deltaTime = deltaTime > maximumUpdateDeltaTime ? maximumUpdateDeltaTime : deltaTime
         
         // The current time will be used as the last update time in the next execution of the method.
-        lastUpdateTime = currentTime
+        previousTiming = currentTime
         
         // Don't evaluate any updates if the `worldNode` is paused. Pausing a subsection of the node tree allows the `camera` and `overlay` nodes to remain interactive.
         if self.isPaused { return }
@@ -99,7 +93,7 @@ class GameScene: SKScene {
         stateMachine.update(deltaTime: deltaTime)
 
         // Update all the updatables
-        sceneAdapeter?.updatables.filter({ return $0.shouldUpdate }).forEach({ (activeUpdatable) in
+        sceneAdapeter?.updatables.filter({ return $0.willRenew }).forEach({ (activeUpdatable) in
             activeUpdatable.update(currentTime)
         })
     }
