@@ -258,7 +258,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         self.request = nil
         print("products count: ", products.count)
         print("SKProduct ", products)
-        print("SKProduct1 ", products.first?.localizedTitle)
+        //print("SKProduct1 ", products.first?.localizedTitle)
         //print("SKProduct2 ", products.last?.localizedTitle)
         if(response.invalidProductIdentifiers.count != 0){
             print(" *** products request not received ***")

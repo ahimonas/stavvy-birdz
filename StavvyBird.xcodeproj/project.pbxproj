@@ -57,10 +57,6 @@
 		A9B9C729209EE31C0045548D /* TitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B9C728209EE31C0045548D /* TitleScene.swift */; };
 		A9B9C72B209EE3290045548D /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9B9C72A209EE3290045548D /* TitleScene.sks */; };
 		A9B9F83620B449EC00FC0BDA /* Playable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B9F83520B449EC00FC0BDA /* Playable.swift */; };
-		A9CA8F6D209C9130004CB9D4 /* Coin.wav in Resources */ = {isa = PBXBuildFile; fileRef = A9CA8F6C209C9130004CB9D4 /* Coin.wav */; };
-		A9CA8F6F209C9233004CB9D4 /* POL-flight-master-short.wav in Resources */ = {isa = PBXBuildFile; fileRef = A9CA8F6E209C9233004CB9D4 /* POL-flight-master-short.wav */; };
-		A9CA8F72209C9549004CB9D4 /* POL-catch-them-all-short.wav in Resources */ = {isa = PBXBuildFile; fileRef = A9CA8F71209C9549004CB9D4 /* POL-catch-them-all-short.wav */; };
-		A9CA8F74209C954E004CB9D4 /* Hit_Hurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = A9CA8F73209C954E004CB9D4 /* Hit_Hurt.wav */; };
 		A9CC5C31209EFA0600040E61 /* SKTexture+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CC5C30209EFA0600040E61 /* SKTexture+Gradient.swift */; };
 		A9CC5C3720A0216500040E61 /* ControlInputDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CC5C3620A0216500040E61 /* ControlInputDirection.swift */; };
 		A9CC5C3A20A02D0A00040E61 /* PauseScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9CC5C3920A02D0A00040E61 /* PauseScene.sks */; };
@@ -80,6 +76,10 @@
 		A9EC756820A6E479007C42EC /* RoutingUtilityScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC756720A6E479007C42EC /* RoutingUtilityScene.swift */; };
 		CA29A1922ACF755B00470B9F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA29A1912ACF755B00470B9F /* GameKit.framework */; };
 		CA47A3C12ACB5E3100E8ED52 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */; };
+		CA7047542AE9C33B0020A04A /* home-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA7047532AE9C33B0020A04A /* home-audio.wav */; };
+		CAC5FBA12AE9B52D006913FE /* game-over-noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */; };
+		CAC5FBA32AE9B586006913FE /* points-noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA22AE9B586006913FE /* points-noise.wav */; };
+		CAC5FBA52AE9B65B006913FE /* in-game-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,10 +138,6 @@
 		A9B9C728209EE31C0045548D /* TitleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScene.swift; sourceTree = "<group>"; };
 		A9B9C72A209EE3290045548D /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TitleScene.sks; sourceTree = "<group>"; };
 		A9B9F83520B449EC00FC0BDA /* Playable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playable.swift; sourceTree = "<group>"; };
-		A9CA8F6C209C9130004CB9D4 /* Coin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Coin.wav; sourceTree = "<group>"; };
-		A9CA8F6E209C9233004CB9D4 /* POL-flight-master-short.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "POL-flight-master-short.wav"; sourceTree = "<group>"; };
-		A9CA8F71209C9549004CB9D4 /* POL-catch-them-all-short.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "POL-catch-them-all-short.wav"; sourceTree = "<group>"; };
-		A9CA8F73209C954E004CB9D4 /* Hit_Hurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Hit_Hurt.wav; sourceTree = "<group>"; };
 		A9CC5C30209EFA0600040E61 /* SKTexture+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKTexture+Gradient.swift"; sourceTree = "<group>"; };
 		A9CC5C3620A0216500040E61 /* ControlInputDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlInputDirection.swift; sourceTree = "<group>"; };
 		A9CC5C3920A02D0A00040E61 /* PauseScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PauseScene.sks; sourceTree = "<group>"; };
@@ -162,8 +158,12 @@
 		CA29A1912ACF755B00470B9F /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		CA47A3BF2ACB5DE400E8ED52 /* StavvyBird.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StavvyBird.entitlements; sourceTree = "<group>"; };
 		CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		CA7047532AE9C33B0020A04A /* home-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "home-audio.wav"; sourceTree = "<group>"; };
 		CA94BB7D2AD8D7AE005AAF83 /* Stavvy Birds.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Stavvy Birds.storekit"; sourceTree = "<group>"; };
 		CABC84112ACE335500488582 /* Pixel Digivolve.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pixel Digivolve.otf"; sourceTree = "<group>"; };
+		CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "game-over-noise.wav"; path = "StavvyBird/Assets/Sound/Game/Sound/game-over-noise.wav"; sourceTree = SOURCE_ROOT; };
+		CAC5FBA22AE9B586006913FE /* points-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "points-noise.wav"; sourceTree = "<group>"; };
+		CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "in-game-audio.wav"; sourceTree = "<group>"; };
 		E96DC9F22650A686DDD7743B /* Pods-StavvyBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StavvyBird.release.xcconfig"; path = "Target Support Files/Pods-StavvyBird/Pods-StavvyBird.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -275,8 +275,8 @@
 		A992D8B720A0A54F003A9998 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
-				A9CA8F6C209C9130004CB9D4 /* Coin.wav */,
-				A9CA8F73209C954E004CB9D4 /* Hit_Hurt.wav */,
+				CAC5FBA22AE9B586006913FE /* points-noise.wav */,
+				CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */,
 			);
 			path = Sound;
 			sourceTree = "<group>";
@@ -468,8 +468,8 @@
 		A9CA8F70209C953A004CB9D4 /* Music */ = {
 			isa = PBXGroup;
 			children = (
-				A9CA8F6E209C9233004CB9D4 /* POL-flight-master-short.wav */,
-				A9CA8F71209C9549004CB9D4 /* POL-catch-them-all-short.wav */,
+				CA7047532AE9C33B0020A04A /* home-audio.wav */,
+				CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */,
 			);
 			path = Music;
 			sourceTree = "<group>";
@@ -589,7 +589,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9CA8F6D209C9130004CB9D4 /* Coin.wav in Resources */,
 				A9EBCCAB20B9785400BB08A3 /* CharactersScene.sks in Resources */,
 				A9ACB96B2099B42300966991 /* Actions.sks in Resources */,
 				A903943620AD9D1200376CC3 /* SnowParticleEffect.sks in Resources */,
@@ -601,25 +600,26 @@
 				A935954D20C27B81000FF0FA /* retro_transition_fade_from_top.fsh in Resources */,
 				A950486420BAE29C0020ECD9 /* eldy-bird.gif in Resources */,
 				A9ACB91F2099A1F200966991 /* GameScene.sks in Resources */,
-				A9CA8F74209C954E004CB9D4 /* Hit_Hurt.wav in Resources */,
 				A9ACB92A2099A1F300966991 /* Assets.xcassets in Resources */,
+				CAC5FBA32AE9B586006913FE /* points-noise.wav in Resources */,
 				A9A313A320B0263C00B36175 /* PauseScene iPad.sks in Resources */,
 				A9EBCCAA20B9785400BB08A3 /* CharactersScene iPad.sks in Resources */,
 				A935954B20C27B81000FF0FA /* retro_transition_fade_from_centre.fsh in Resources */,
 				A9CC5C3A20A02D0A00040E61 /* PauseScene.sks in Resources */,
 				A9B9C72B209EE3290045548D /* TitleScene.sks in Resources */,
+				CAC5FBA52AE9B65B006913FE /* in-game-audio.wav in Resources */,
 				A903943A20AD9E7900376CC3 /* RainParticleEffect.sks in Resources */,
 				A935954C20C27B81000FF0FA /* retro_transition_fade_from_top_left.fsh in Resources */,
+				CA7047542AE9C33B0020A04A /* home-audio.wav in Resources */,
 				A9ACB92D2099A1F300966991 /* LaunchScreen.storyboard in Resources */,
 				A950486120BAE29C0020ECD9 /* stavvy-rat.gif in Resources */,
-				A9CA8F72209C9549004CB9D4 /* POL-catch-them-all-short.wav in Resources */,
 				A9A313A120B0239100B36175 /* GameScene iPad.sks in Resources */,
+				CAC5FBA12AE9B52D006913FE /* game-over-noise.wav in Resources */,
 				A9A3139D20B0226D00B36175 /* SettingsScene iPad.sks in Resources */,
 				A950486320BAE29C0020ECD9 /* stavvy-gold.gif in Resources */,
 				A9A313A520B026E000B36175 /* FailedScene iPad.sks in Resources */,
 				A935954E20C27B81000FF0FA /* retro_transition_fade_to_centre.fsh in Resources */,
 				A950485A20BAE2170020ECD9 /* stavvy-pig.gif in Resources */,
-				A9CA8F6F209C9233004CB9D4 /* POL-flight-master-short.wav in Resources */,
 				A903943B20AD9E7900376CC3 /* Particles.xcassets in Resources */,
 				A9CC5C3D20A030A900040E61 /* FailedScene.sks in Resources */,
 			);

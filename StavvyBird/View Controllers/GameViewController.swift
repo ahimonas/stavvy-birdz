@@ -181,6 +181,8 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
 
 
 // UIViewRepresentable wrapper for AdMob banner view
+//we shouldn't need this bc we bumped to v15
+/*
 @available(iOS 13.0, *)
 struct AdBannerView: UIViewRepresentable {
     let adUnitID: String
@@ -195,5 +197,4 @@ struct AdBannerView: UIViewRepresentable {
     
     func updateUIView(_ uiView: GADBannerView, context: Context) {}
 }
-
-
+*/

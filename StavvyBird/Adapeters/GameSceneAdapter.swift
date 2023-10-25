@@ -34,60 +34,54 @@ class GameSceneAdapter: NSObject, GameSceneProtocol {
     var score: Int = 0
     private(set) var scoreLabel: SKLabelNode?
     
-    private(set) var scoreSound = SKAction.playSoundFileNamed("Coin.wav", waitForCompletion: false)
-    private(set) var hitSound = SKAction.playSoundFileNamed("Hit_Hurt.wav", waitForCompletion: false)
+    private(set) var scoreSound = SKAction.playSoundFileNamed("points-noise.wav", waitForCompletion: false)
+    private(set) var hitSound = SKAction.playSoundFileNamed("game-over-noise.wav", waitForCompletion: false)
     
 //    var bird: BirdNode?
     typealias PlayableCharacter = (PhysicsContactable & Updatable & Touchable & Playable & SKNode)
     var playerCharacter: PlayableCharacter?
     
     private(set) lazy var menuAudio: SKAudioNode = {
-        let audioNode = SKAudioNode(fileNamed: "POL-catch-them-all-short.wav")
-        audioNode.autoplayLooped = true
-        audioNode.name = "manu audio"
-        return audioNode
+        let gameAudio = SKAudioNode(fileNamed: "home-audio.wav")
+        gameAudio.autoplayLooped = true
+        gameAudio.name = "manu audio"
+        return gameAudio
     }()
     
     private(set) lazy var playingAudio: SKAudioNode = {
-        let audioNode = SKAudioNode(fileNamed: "POL-flight-master-short.wav")
-        audioNode.autoplayLooped = true
-        audioNode.name = "playing audio"
-        return audioNode
+        let gameAudio = SKAudioNode(fileNamed: "in-game-audio.wav")
+        gameAudio.autoplayLooped = true
+        gameAudio.name = "playing audio"
+        return gameAudio
     }()
     
-    // MARK: - Conformance to GameSceneProtocol
     
-    weak var scene: SKScene?
-    var stateMahcine: GKStateMachine?
+    var myGkStateMach: GKStateMachine?
     
     var updatables = [Updatable]()
     var touchables = [Touchable]()
     
-    /// All buttons currently in the scene. Updated by assigning the result of `findAllButtonsInScene()`.
-    var buttons = [ButtonNode]()
-    
-    /// The current scene overlay (if any) that is displayed over this scene.
+    var gameButtons = [ButtonNode]()
+    weak var scene: SKScene?
+
     var overlay: SceneOverlay? {
         didSet {
-            // Clear the `buttons` in preparation for new buttons in the overlay.
-            buttons = []
+            gameButtons = []
             
-            // Animate the old overlay out.
             oldValue?.backgroundNode.run(SKAction.fadeOut(withDuration: overlayDuration)) {
-                debugPrint(#function + " remove old overlay")
+                debugPrint(#function + " change background")
                 oldValue?.backgroundNode.removeFromParent()
             }
             
             if let overlay = overlay, let scene = scene {
-                debugPrint(#function + " added overaly")
+                debugPrint(#function + "scene add the overly")
                 overlay.backgroundNode.removeFromParent()
                 scene.addChild(overlay.backgroundNode)
                 
-                // Animate the overlay in.
                 overlay.backgroundNode.alpha = 1.0
                 overlay.backgroundNode.run(SKAction.fadeIn(withDuration: overlayDuration))
                 
-                buttons = scene.findAllButtonsInScene()
+                gameButtons = scene.findAllButtonsInScene()
             }
         }
     }
@@ -138,7 +132,7 @@ class GameSceneAdapter: NSObject, GameSceneProtocol {
     
     convenience init?(with scene: SKScene, stateMachine: GKStateMachine) {
         self.init(with: scene)
-        self.stateMahcine = stateMachine
+        self.myGkStateMach = stateMachine
     }
     
     // MARK: - Helpers
@@ -230,8 +224,8 @@ extension GameSceneAdapter: SKPhysicsContactDelegate {
     
     private func deadState() {
         // Do not enter the same state twice
-        if stateMahcine?.currentState is GameOverState { return }
-        stateMahcine?.enter(GameOverState.self)
+        if myGkStateMach?.currentState is GameOverState { return }
+        myGkStateMach?.enter(GameOverState.self)
     }
     
     private func hit() {
