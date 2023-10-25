@@ -9,7 +9,6 @@ typealias IsTopPipe = Bool
 
 class PipeNode: SKSpriteNode {
     
-    // MARK: - Initializers
     
     init?(textures: (pipe: String, cap: String), of size: CGSize, side: IsTopPipe) {
         
@@ -53,13 +52,13 @@ class PipeNode: SKSpriteNode {
         physicsBody?.contactTestBitMask =  PhysicsCategories.player.rawValue
         physicsBody?.collisionBitMask = PhysicsCategories.player.rawValue
         physicsBody?.isDynamic = false
-        zPosition = 20
+        zPosition = 21
         
         self.addChild(pipe)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("NSCoder has failed")
     }
     
 }

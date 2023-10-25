@@ -12,7 +12,6 @@
 		A90292E020B1909A0043C9B2 /* NyancatRainbowNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90292DF20B1909A0043C9B2 /* NyancatRainbowNode.swift */; };
 		A903943420AD94F000376CC3 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A903943320AD94F000376CC3 /* UserDefaults.swift */; };
 		A903943620AD9D1200376CC3 /* SnowParticleEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = A903943520AD9D1200376CC3 /* SnowParticleEffect.sks */; };
-		A903943A20AD9E7900376CC3 /* RainParticleEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = A903943820AD9E7900376CC3 /* RainParticleEffect.sks */; };
 		A903943B20AD9E7900376CC3 /* Particles.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A903943920AD9E7900376CC3 /* Particles.xcassets */; };
 		A903943F20ADB24000376CC3 /* ToggleButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A903943E20ADB24000376CC3 /* ToggleButtonNode.swift */; };
 		A9092FA5216B35C800D773BC /* TriggleButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9092FA4216B35C800D773BC /* TriggleButtonNode.swift */; };
@@ -91,7 +90,6 @@
 		A90292DF20B1909A0043C9B2 /* NyancatRainbowNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NyancatRainbowNode.swift; sourceTree = "<group>"; };
 		A903943320AD94F000376CC3 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		A903943520AD9D1200376CC3 /* SnowParticleEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SnowParticleEffect.sks; sourceTree = "<group>"; };
-		A903943820AD9E7900376CC3 /* RainParticleEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RainParticleEffect.sks; sourceTree = "<group>"; };
 		A903943920AD9E7900376CC3 /* Particles.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Particles.xcassets; sourceTree = "<group>"; };
 		A903943E20ADB24000376CC3 /* ToggleButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButtonNode.swift; sourceTree = "<group>"; };
 		A9092FA4216B35C800D773BC /* TriggleButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggleButtonNode.swift; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 		CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CA7047532AE9C33B0020A04A /* home-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "home-audio.wav"; sourceTree = "<group>"; };
 		CA94BB7D2AD8D7AE005AAF83 /* Stavvy Birds.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Stavvy Birds.storekit"; sourceTree = "<group>"; };
-		CABC84112ACE335500488582 /* Pixel Digivolve.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pixel Digivolve.otf"; sourceTree = "<group>"; };
 		CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "game-over-noise.wav"; path = "StavvyBird/Assets/Sound/Game/Sound/game-over-noise.wav"; sourceTree = SOURCE_ROOT; };
 		CAC5FBA22AE9B586006913FE /* points-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "points-noise.wav"; sourceTree = "<group>"; };
 		CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "in-game-audio.wav"; sourceTree = "<group>"; };
@@ -206,7 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				A903943520AD9D1200376CC3 /* SnowParticleEffect.sks */,
-				A903943820AD9E7900376CC3 /* RainParticleEffect.sks */,
 				A903943920AD9E7900376CC3 /* Particles.xcassets */,
 			);
 			path = Particles;
@@ -323,14 +319,6 @@
 			path = StavvyBird;
 			sourceTree = "<group>";
 		};
-		A9ACB9442099A47800966991 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				CABC84112ACE335500488582 /* Pixel Digivolve.otf */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
 		A9ACB95B2099B14A00966991 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,7 +375,6 @@
 				A9ACB96C2099B46E00966991 /* Actions */,
 				A9CC5C3E20A0361700040E61 /* Scenes */,
 				A9ACB9292099A1F300966991 /* Assets.xcassets */,
-				A9ACB9442099A47800966991 /* Fonts */,
 				A9ACB95B2099B14A00966991 /* Sound */,
 			);
 			path = Assets;
@@ -608,7 +595,6 @@
 				A9CC5C3A20A02D0A00040E61 /* PauseScene.sks in Resources */,
 				A9B9C72B209EE3290045548D /* TitleScene.sks in Resources */,
 				CAC5FBA52AE9B65B006913FE /* in-game-audio.wav in Resources */,
-				A903943A20AD9E7900376CC3 /* RainParticleEffect.sks in Resources */,
 				A935954C20C27B81000FF0FA /* retro_transition_fade_from_top_left.fsh in Resources */,
 				CA7047542AE9C33B0020A04A /* home-audio.wav in Resources */,
 				A9ACB92D2099A1F300966991 /* LaunchScreen.storyboard in Resources */,

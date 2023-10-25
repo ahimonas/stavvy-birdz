@@ -6,16 +6,12 @@
 
 import SpriteKit
 
-/// A type that can respond to `ToggleButtonNode` button press events.
 protocol ToggleButtonNodeResponderType: AnyObject {
-    /// Responds to a button press.
     func toggleButtonTriggered(toggle: ToggleButtonNode)
 }
 
 class ToggleButtonNode: ButtonNode {
-    
-    // MARK: - Properties
-    
+        
     var isOn: Bool {
         didSet {
             guard let on = state.on, let off = state.off else {
@@ -33,18 +29,14 @@ class ToggleButtonNode: ButtonNode {
     
     private var state: (on: SKLabelNode?, off: SKLabelNode?) = (on: nil, off: nil)
     
-    /**
-     The scene that contains a `ToggleButtonNode` must be a `ToggleButtonNodeResponderType`
-     so that touch events can be forwarded along through `toggled`.
-     */
+
     var toggleResponder: ToggleButtonNodeResponderType {
         guard let responder = scene as? ToggleButtonNodeResponderType else {
-            fatalError("ButtonNode may only be used within a `ButtonNodeResponderType` scene.")
+            fatalError("The button didn't change state")
         }
         return responder
     }
     
-    // MARK: - Initializers
     
     required init?(coder aDecoder: NSCoder) {
         let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
@@ -62,12 +54,9 @@ class ToggleButtonNode: ButtonNode {
         }
         state.off = offState
     }
-    
-    // MARK: - Methods
-    
+        
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        // Toggle the state and visuals
         isOn = !isOn
     }
 }

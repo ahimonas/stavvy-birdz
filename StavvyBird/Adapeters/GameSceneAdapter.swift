@@ -8,8 +8,7 @@ import GameplayKit
 
 extension SKScene {
     
-    /// Searches the scene for all `ButtonNode`s.
-    func findAllButtonsInScene() -> [ButtonNode] {
+    func getAllButtons() -> [ButtonNode] {
         return ButtonIdentifier.allButtonIdentifiers.compactMap { buttonIdentifier in
             childNode(withName: "//\(buttonIdentifier.rawValue)") as? ButtonNode
         }
@@ -20,9 +19,9 @@ class GameSceneAdapter: NSObject, GameSceneProtocol {
     
     // MARK: - Properties
     
-    private let overlayDuration: TimeInterval = 0.25
+    private let overlayDuration: TimeInterval = 0.24
 
-    let gravity: CGFloat = -5.0
+    let gravity: CGFloat = -5.1
     let playerSize = CGSize(width: 100, height: 100)
     let backgroundResourceName = "game-play-screen"//"Background-Winter"
     let floorDistance: CGFloat = 0
@@ -81,7 +80,7 @@ class GameSceneAdapter: NSObject, GameSceneProtocol {
                 overlay.backgroundNode.alpha = 1.0
                 overlay.backgroundNode.run(SKAction.fadeIn(withDuration: overlayDuration))
                 
-                gameButtons = scene.findAllButtonsInScene()
+                gameButtons = scene.getAllButtons()
             }
         }
     }
@@ -102,24 +101,21 @@ class GameSceneAdapter: NSObject, GameSceneProtocol {
     }
 
     
-    // MARK: - Private properties
     
     private(set) var infiniteBackgroundNode: InfiniteSpriteScrollNode?
     private let notification = UINotificationFeedbackGenerator()
     private let impact = UIImpactFeedbackGenerator(style: .heavy)
     
-    // MARK: - Initializers
     
     required init?(with scene: SKScene) {
         
         self.scene = scene
         
         guard let scene = self.scene else {
-            debugPrint(#function + " could not unwrap the host SKScene instance")
+            debugPrint(#function + "The scene failed")
             return nil
         }
         
-        // Get acces to the score node and then get the score label since it is a child node
         if let scoreNode = scene.childNode(withName: "world")?.childNode(withName: "Score Node") {
             scoreLabel = scoreNode.childNode(withName: "Score Label") as? SKLabelNode
         }
@@ -135,7 +131,6 @@ class GameSceneAdapter: NSObject, GameSceneProtocol {
         self.myGkStateMach = stateMachine
     }
     
-    // MARK: - Helpers
     
     func resetScores() {
         scoreLabel?.text = "0"
@@ -202,28 +197,23 @@ extension GameSceneAdapter: SKPhysicsContactDelegate {
             notification.notificationOccurred(.success)
         }
         
+        //bird hit pipe
         if collision == (player | PhysicsCategories.pipe.rawValue) {
-            // game over state, the player has touched a pipe
             handleDeadState()
         }
-        
+        //bird hit boundary
         if collision == (player | PhysicsCategories.boundary.rawValue) {
-            // game over state, the player has touched the boundary of the world (floor or ceiling)
-            // player's position needs to be set to the default one
             handleDeadState()
         }
     }
-    
-    // MARK: - Collision Helpers
-    
+        
     private func handleDeadState() {
-        debugPrint("handleDeadState")
+        debugPrint("Bird Has Fallen")
         deadState()
         hit()
     }
     
     private func deadState() {
-        // Do not enter the same state twice
         if myGkStateMach?.currentState is GameOverState { return }
         myGkStateMach?.enter(GameOverState.self)
     }

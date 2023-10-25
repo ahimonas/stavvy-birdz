@@ -8,7 +8,6 @@ import GameKit
 
 class GameScene: SKScene {
 
-    
     static var viewportSize: CGSize = .zero
         
     lazy var stateMachine: GKStateMachine = GKStateMachine(states: [
@@ -40,9 +39,7 @@ class GameScene: SKScene {
         
         GameScene.viewportSize = view.bounds.size
     }
-    
-    // MARK: - Interaction handling
-    
+        
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         sceneAdapeter?.touchables.forEach({ touchable in
             touchable.touchesBegan(touches, with: event)
@@ -81,8 +78,6 @@ class GameScene: SKScene {
         })
     }
     
-
-  
 }
 
 extension GameScene: ButtonNodeResponderType {
