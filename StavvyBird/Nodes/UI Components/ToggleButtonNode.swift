@@ -53,12 +53,12 @@ class ToggleButtonNode: ButtonNode {
         super.init(coder: aDecoder)
         
         guard let onState = self.childNode(withName: "On") as? SKLabelNode else  {
-            fatalError("Could not find SKLabel node")
+            fatalError("Unavailable:  SKLabel node")
         }
         state.on = onState
         
         guard let offState = self.childNode(withName: "Off") as? SKLabelNode else {
-            fatalError("Could not find SKLabel node")
+            fatalError("Unavailable:  SKLabel node")
         }
         state.off = offState
     }

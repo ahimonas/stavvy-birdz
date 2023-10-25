@@ -1,16 +1,10 @@
-//
-//  TitleScene.swift
+//  SounioTechnologies LLC
 //  StavvyBird
-//
-
-//
 
 import SpriteKit
 
 class TitleScene: RoutingUtilityScene {
-    
-    // MARK: - Overrides
-    
+        
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
@@ -19,17 +13,16 @@ class TitleScene: RoutingUtilityScene {
         let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
         
         if !isSoundOn {
-            let audioNode = childNode(withName: "Audio Node") as? SKAudioNode
-            audioNode?.isPaused = true
-            audioNode?.removeAllActions()
-            audioNode?.removeFromParent()
+            let currAudio = childNode(withName: "Audio Node") as? SKAudioNode
+            currAudio?.isPaused = true
+            currAudio?.removeAllActions()
+            currAudio?.removeFromParent()
         }
     }
     
-    // MARK: - Private methods
     
     private func loadSelectedPlayer() {
-        guard let targetNode = childNode(withName: "Animated Bird") else {
+        guard let pendingNode = childNode(withName: "Animated Bird") else {
             return
         }
         
@@ -39,23 +32,24 @@ class TitleScene: RoutingUtilityScene {
         let playerSize = CGSize(width: 200, height: 200)
         
         switch playableCharacter {
-        case .bird:
-            let birdNode = BirdNode(animationTimeInterval: 0.1, withTextureAtlas: assetName, size: playerSize)
-            birdNode.isAffectedByGravity = false
-            birdNode.position = targetNode.position
-            birdNode.zPosition = targetNode.zPosition
-            scene?.addChild(birdNode)
-        case .coinCat, .gamecat, .hipCat, .jazzCat, .lifelopeCat:
-            let player = NyancatNode(animatedGif: assetName, correctAspectRatioFor: playerSize.width)
-            player.xScale = 1.0
-            player.yScale = 1.0
             
-            player.isAffectedByGravity = false
-            player.position = targetNode.position
-            player.zPosition = targetNode.zPosition
-            scene?.addChild(player)
+        case .bird:
+            let stavvyBirdNode = BirdNode(animationTimeInterval: 0.1, withTextureAtlas: assetName, size: playerSize)
+            stavvyBirdNode.isAffectedByGravity = false
+            stavvyBirdNode.position = pendingNode.position
+            stavvyBirdNode.zPosition = pendingNode.zPosition
+            scene?.addChild(stavvyBirdNode)
+        case .coinCat, .gamecat, .hipCat, .jazzCat, .lifelopeCat:
+            let myCurrPlayerNode = NyancatNode(animatedGif: assetName, correctAspectRatioFor: playerSize.width)
+            myCurrPlayerNode.xScale = 1.0
+            myCurrPlayerNode.yScale = 1.0
+            
+            myCurrPlayerNode.isAffectedByGravity = false
+            myCurrPlayerNode.position = pendingNode.position
+            myCurrPlayerNode.zPosition = pendingNode.zPosition
+            scene?.addChild(myCurrPlayerNode)
         }
         
-        targetNode.removeFromParent()
+        pendingNode.removeFromParent()
     }
 }

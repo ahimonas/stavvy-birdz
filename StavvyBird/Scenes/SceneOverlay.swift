@@ -1,7 +1,5 @@
-//
-//  SceneOverlay.swift
+//  SounioTechnologies LLC
 //  StavvyBird
-
 
 import SpriteKit
 
@@ -10,25 +8,20 @@ func *(lhs: CGSize, value: CGFloat) -> CGSize {
 }
 
 class SceneOverlay {
-    
-    // MARK: Properties
-    
-    let backgroundNode: SKSpriteNode
+        
+    let backgroundNode: SKSpriteNode  //change these nodes
     let contentNode: SKSpriteNode
     
-    // MARK: Intialization
     
-    init(overlaySceneFileName fileName: String, zPosition: CGFloat) {
-        // Load the scene and get the overlay node from it.
-        let overlayScene = SKScene(fileNamed: fileName)!
-        let contentTemplateNode = overlayScene.childNode(withName: "Overlay") as! SKSpriteNode
+    init(overlaySceneFileName currFileName: String, zPosition: CGFloat) {
+        let overlayScene = SKScene(fileNamed: currFileName)!
+        let outterTemplateNode = overlayScene.childNode(withName: "Overlay") as! SKSpriteNode
         
-        // Create a background node with the same color as the template.
-        backgroundNode = SKSpriteNode(color: contentTemplateNode.color, size: contentTemplateNode.size * UIScreen.main.scale)
+        backgroundNode = SKSpriteNode(color: outterTemplateNode.color, size: outterTemplateNode.size * UIScreen.main.scale)
         backgroundNode.zPosition = zPosition
 
         // Copy the template node into the background node.
-        contentNode = contentTemplateNode.copy() as! SKSpriteNode
+        contentNode = outterTemplateNode.copy() as! SKSpriteNode
         contentNode.position = .zero
         backgroundNode.addChild(contentNode)
         

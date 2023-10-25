@@ -1,10 +1,5 @@
-//
-//  CharactersScene.swift
+//  SounioTechnologies LLC
 //  StavvyBird
-//
-
-
-//
 
 import SpriteKit
 
@@ -45,8 +40,8 @@ class CharactersScene: RoutingUtilityScene {
        // defaults.dictionaryRepresentation().map{print("\($0.key): \($0.value)")}
         
         func preparePlayableCharacters() {
-            let birdNode = childNode(withName: PlayableCharacter.bird.rawValue) as? SKSpriteNode
-            playableCharacters[.bird] = birdNode
+            let stavvyBird = childNode(withName: PlayableCharacter.bird.rawValue) as? SKSpriteNode
+            playableCharacters[.bird] = stavvyBird
             
             let scale = CGPoint(x: 0.6, y: 0.6)
             
@@ -152,7 +147,7 @@ class CharactersScene: RoutingUtilityScene {
                 
                 select(playableCharacter: selectedPlayableCharacter, animated: true)
                 UserDefaults.standard.set(selectedPlayableCharacter, for: .character)
-                debugPrint("lifelopeCat ravens birg was paid for ")
+                debugPrint(" ravens bird was paid for ")
                 
                 if let controller = self.view?.window?.rootViewController as? GameViewController {
                     controller.removeAd()
@@ -160,7 +155,7 @@ class CharactersScene: RoutingUtilityScene {
                  
 
             }
-            debugPrint("jazzcat str-eldy not available ")
+            debugPrint("eldy birf not available ")
         }
         else{
             select(playableCharacter: selectedPlayableCharacter, animated: true)
@@ -176,8 +171,8 @@ class CharactersScene: RoutingUtilityScene {
         }
         
         if animated {
-            let hide = SKAction.fadeOut(withDuration: 0.15)
-            let unhide = SKAction.fadeIn(withDuration: 0.15)
+            let hide = SKAction.fadeOut(withDuration: 0.14)
+            let unhide = SKAction.fadeIn(withDuration: 0.14)
             let move = SKAction.move(to: playableCharacterNode.position, duration: 0.0)
             let sequece = SKAction.sequence([hide, move, unhide])
             selectNode?.run(sequece)

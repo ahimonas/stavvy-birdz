@@ -1,17 +1,12 @@
-//
-//  PausedState.swift
+//  SounioTechnologies LLC
 //  StavvyBird
-//
-
-//
+//revisit
 
 import GameplayKit
 import SpriteKit
 
 class PausedState: GKState {
-    
-    // MARK: - Properites
-    
+        
     var overlaySceneFileName: String {
         return Scenes.pause.getName()
     }
@@ -19,18 +14,14 @@ class PausedState: GKState {
     unowned var levelScene: SKScene
     unowned var adapter: GameSceneAdapter
     var overlay: SceneOverlay!
-    
-    // MARK: - Intializers
-    
+        
     init(scene: SKScene, adapter: GameSceneAdapter) {
         self.levelScene = scene
         self.adapter = adapter
         super.init()
         overlay = SceneOverlay(overlaySceneFileName: overlaySceneFileName, zPosition: 1000)
     }
-    
-    // MARK: GKState Life Cycle
-    
+        
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
         

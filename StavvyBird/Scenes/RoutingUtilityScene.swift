@@ -1,6 +1,7 @@
-//
-//  RoutingUtilityScene.swift
+//  SounioTechnologies LLC
 //  StavvyBird
+
+
 import Foundation
 
 // THIS HAS SHOW SCOREBOARD, THIS ALSO HAS ALL BUTTON ACTIONS FOR SKSCENES, transition scenes based on buttons.
@@ -526,6 +527,3 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
 
 
 }
-
-
-//https://cloud.tencent.com/developer/ask/sof/113518506

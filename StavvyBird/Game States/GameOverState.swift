@@ -1,17 +1,12 @@
-//
-//  GameOverState.swift
+//  SounioTechnologies LLC
 //  StavvyBird
-//
-
-//
+// revisit
 
 import GameplayKit
 import SpriteKit
 
 class GameOverState: GKState {
-    
-    // MARK: - Properites
-    // MARK: - Overrides
+
     var gcEnabled = Bool()
     var gcDefaultLeaderboard = String()
     var leaderboardID = "stavvyboard22"
@@ -23,12 +18,9 @@ class GameOverState: GKState {
     unowned var levelScene: GameSceneAdapter
     var overlay: SceneOverlay!
     
-    // MARK: - Utility Properties
     
     private(set) var currentScoreLabel: SKLabelNode?
-    
-    // MARK: - Intializers
-    
+        
     init(scene: GameSceneAdapter) {
         self.levelScene = scene
         super.init()
@@ -36,45 +28,33 @@ class GameOverState: GKState {
         overlay = SceneOverlay(overlaySceneFileName: overlaySceneFileName, zPosition: 100)
         currentScoreLabel = overlay.contentNode.childNode(withName: "Current Score") as? SKLabelNode
     }
-   
-    // MARK: GKState Life Cycle
-    
+       
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
         
         if previousState is PlayingState {
-            // Clean up the pipes from the previous run
             levelScene.removePipes()
         }
         
-        // Disable interaction with the bird
         levelScene.playerCharacter?.shouldAcceptTouches = false
         
-        // Update the scores
         updateScores()
         
-        // Update the score label
         updasteOverlayPresentation()
         
-        // Hide the overlay and the game scene HUD
         levelScene.overlay = overlay
         levelScene.isHUDHidden = true
         
-        // Stop any updates
-        levelScene.playerCharacter?.shouldUpdate = false
+        levelScene.playerCharacter?.willRenew = false
         
-        // Remove all actions related to the scene, including the generation of new pipes
         levelScene.scene?.removeAllActions()
         
-        // Reset the number of scores
         levelScene.score = 0
         
         if levelScene.isSoundOn {
-            // Find a playing audio node and remove it
             if let playingAudioNodeName = levelScene.playingAudio.name {
                 levelScene.scene?.childNode(withName: playingAudioNodeName)?.removeFromParent()
             }
-            // Add a manu audio node and start playing it
             if levelScene.scene?.childNode(withName: levelScene.menuAudio.name!) == nil {
                 levelScene.scene?.addChild(levelScene.menuAudio)
                 SKAction.play()
@@ -85,23 +65,13 @@ class GameOverState: GKState {
     override func willExit(to nextState: GKState) {
         super.willExit(to: nextState)
         
-        // Only remove the overlay scene when the next state is Playing state
         if nextState is PlayingState {
-            // Remove the overlay node
             levelScene.overlay = nil
-            // Reveal the game scene HUD
             levelScene.isHUDHidden = false
-            // Enable the interactions with the bird
             levelScene.playerCharacter?.shouldAcceptTouches = true
-            
-            // Removes the player form the scene, just right before launching the PlayingState. This is experimental, and should be removed once the current version will be validated on stability
-//            levelScene.playerCharacter?.shouldEnablePhysics = true
-//            levelScene.playerCharacter?.removeFromParent()
         }
     }
-    
-    // MARK: Convenience
-    
+        
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         return true
     }
@@ -114,7 +84,6 @@ extension GameOverState {
         let currentScore = levelScene.score
         
         if currentScore > bestScore {
-            // Update the best score
             UserDefaults.standard.set(currentScore, for: .bestScore)
             let utilityScene = RoutingUtilityScene()
             utilityScene.saveScore(score: currentScore)

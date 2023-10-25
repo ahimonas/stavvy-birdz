@@ -135,17 +135,17 @@ class TriggleButtonNode: ButtonNode {
         super.init(coder: aDecoder)
         
         guard let offState = childNode(withName: "Easy") as? SKLabelNode else {
-            fatalError("Could not find SKLabel node")
+            fatalError("Unavailable:  SKLabel node")
         }
         state.off = offState
         
         guard let switchedState = childNode(withName: "Medium") as? SKLabelNode else {
-            fatalError("Could not find SKLabel node")
+            fatalError("Unavailable:  SKLabel node")
         }
         state.switched = switchedState
         
         guard let onState = childNode(withName: "Hard") as? SKLabelNode else {
-            fatalError("Could not find SKLabel node")
+            fatalError("Unavailable:  SKLabel node")
         }
         state.on = onState
         

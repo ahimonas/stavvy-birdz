@@ -1,8 +1,5 @@
-//
-//  NyancatNode.swift
+//  SounioTechnologies LLC
 //  StavvyBird
-//
-//
 
 import SpriteKit
 import Foundation
@@ -16,8 +13,8 @@ class NyancatNode: SKNode, Updatable, Playable, PhysicsContactable {
     // MARK: - Conformance to Updatable protocol
     
     var delta: TimeInterval = 0
-    var lastUpdateTime: TimeInterval = 0
-    var shouldUpdate: Bool = true
+    var previousTiming: TimeInterval = 0
+    var willRenew: Bool = true
     
     var isAffectedByGravity: Bool = true {
         didSet {
@@ -93,22 +90,22 @@ class NyancatNode: SKNode, Updatable, Playable, PhysicsContactable {
     // MARK: - Conformance to Updatable protocol
     
     func update(_ timeInterval: CFTimeInterval) {
-        delta = lastUpdateTime == 0.0 ? 0.0 : timeInterval - lastUpdateTime
-        lastUpdateTime = timeInterval
+        delta = previousTiming == 0.0 ? 0.0 : timeInterval - previousTiming
+        previousTiming = timeInterval
         
         guard let physicsBody = physicsBody else {
             return
         }
         
-        let velocityX = physicsBody.velocity.dx
-        let velocityY = physicsBody.velocity.dy
+        let dxVeloc = physicsBody.velocity.dx
+        let dyVeloc = physicsBody.velocity.dy
         let threshold: CGFloat = 300
         
-        if velocityY > threshold {
-            physicsBody.velocity = CGVector(dx: velocityX, dy: threshold)
+        if dyVeloc > threshold {
+            physicsBody.velocity = CGVector(dx: dxVeloc, dy: threshold)
         }
         
-        let velocityValue = velocityY * (velocityY < 0 ? 0.0044 : 0.0022)
+        let velocityValue = dyVeloc * (dyVeloc < 0 ? 0.0044 : 0.0022)
         zRotation = velocityValue.clamp(min: -0.33, max: 0.99)
     }
     
