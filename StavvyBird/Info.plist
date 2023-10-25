@@ -231,10 +231,6 @@
 			<string>3qcr597p9d.skadnetwork</string>
 		</dict>
 	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Pixel Digivolve.otf</string>
-	</array>
 	<key>UIBackgroundModes</key>
 	<array/>
 	<key>UILaunchStoryboardName</key>

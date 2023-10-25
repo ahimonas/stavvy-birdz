@@ -8,7 +8,6 @@ import GameKit
 
 class GameScene: SKScene {
 
-    
     static var viewportSize: CGSize = .zero
         
     lazy var stateMachine: GKStateMachine = GKStateMachine(states: [
@@ -25,16 +24,14 @@ class GameScene: SKScene {
 
     var sceneAdapeter: GameSceneAdapter?
     let selection = UISelectionFeedbackGenerator()
-
-    // MARK: - Lifecycle
     
     override func sceneDidLoad() {
         super.sceneDidLoad()
         
         self.previousTiming = 0
         sceneAdapeter = GameSceneAdapter(with: self)
-        sceneAdapeter?.stateMahcine = stateMachine
-        sceneAdapeter?.stateMahcine?.enter(PlayingState.self)
+        sceneAdapeter?.myGkStateMach = stateMachine
+        sceneAdapeter?.myGkStateMach?.enter(PlayingState.self)
     }
     
     override func didMove(to view: SKView) {
@@ -42,9 +39,7 @@ class GameScene: SKScene {
         
         GameScene.viewportSize = view.bounds.size
     }
-    
-    // MARK: - Interaction handling
-    
+        
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         sceneAdapeter?.touchables.forEach({ touchable in
             touchable.touchesBegan(touches, with: event)
@@ -68,43 +63,23 @@ class GameScene: SKScene {
             touchable.touchesCancelled(touches, with: event)
         }
     }
-    
-    // MARK: - Updates
-    
+        
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
         
-        // Don't perform any updates if the scene isn't in a view.
         guard view != nil else { return }
-        
-        // Calculate the amount of time since `update` was last called.
         var deltaTime = currentTime - previousTiming
-        
-        // If more than `maximumUpdateDeltaTime` has passed, clamp to the maximum; otherwise use `deltaTime`.
         deltaTime = deltaTime > maximumUpdateDeltaTime ? maximumUpdateDeltaTime : deltaTime
-        
-        // The current time will be used as the last update time in the next execution of the method.
         previousTiming = currentTime
-        
-        // Don't evaluate any updates if the `worldNode` is paused. Pausing a subsection of the node tree allows the `camera` and `overlay` nodes to remain interactive.
         if self.isPaused { return }
-        
-        // Updateh state machine
         stateMachine.update(deltaTime: deltaTime)
-
-        // Update all the updatables
         sceneAdapeter?.updatables.filter({ return $0.willRenew }).forEach({ (activeUpdatable) in
             activeUpdatable.update(currentTime)
         })
     }
     
-
-  
 }
 
-
-
-// MARK: - Conformance to ButtonNodeResponderType
 extension GameScene: ButtonNodeResponderType {
     
     func buttonTriggered(button: ButtonNode) {
@@ -116,9 +91,9 @@ extension GameScene: ButtonNodeResponderType {
         switch identifier {
         
         case .pause:
-            sceneAdapeter?.stateMahcine?.enter(PausedState.self) //showLeaderBoard();
+            sceneAdapeter?.myGkStateMach?.enter(PausedState.self) //showLeaderBoard();
         case .resume:
-            sceneAdapeter?.stateMahcine?.enter(PlayingState.self)
+            sceneAdapeter?.myGkStateMach?.enter(PlayingState.self)
         case .home:
             let sceneId = Scenes.title.getName()
             guard let gameScene = GameScene(fileNamed: sceneId) else {
@@ -130,11 +105,9 @@ extension GameScene: ButtonNodeResponderType {
             transition.pausesOutgoingScene = false
             self.view?.presentScene(gameScene, transition: transition)
         case .retry:
-            // Reset and enter PlayingState
-            sceneAdapeter?.stateMahcine?.enter(PlayingState.self)
+            sceneAdapeter?.myGkStateMach?.enter(PlayingState.self)
         default:
-            // Cannot be executed from here
-            debugPrint("Cannot be executed from here")
+            debugPrint("Unable to invoke")
             
         }
     }

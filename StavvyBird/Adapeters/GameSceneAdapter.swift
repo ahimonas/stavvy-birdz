@@ -8,8 +8,7 @@ import GameplayKit
 
 extension SKScene {
     
-    /// Searches the scene for all `ButtonNode`s.
-    func findAllButtonsInScene() -> [ButtonNode] {
+    func getAllButtons() -> [ButtonNode] {
         return ButtonIdentifier.allButtonIdentifiers.compactMap { buttonIdentifier in
             childNode(withName: "//\(buttonIdentifier.rawValue)") as? ButtonNode
         }
@@ -20,9 +19,9 @@ class GameSceneAdapter: NSObject, GameSceneProtocol {
     
     // MARK: - Properties
     
-    private let overlayDuration: TimeInterval = 0.25
+    private let overlayDuration: TimeInterval = 0.24
 
-    let gravity: CGFloat = -5.0
+    let gravity: CGFloat = -5.1
     let playerSize = CGSize(width: 100, height: 100)
     let backgroundResourceName = "game-play-screen"//"Background-Winter"
     let floorDistance: CGFloat = 0
@@ -34,60 +33,54 @@ class GameSceneAdapter: NSObject, GameSceneProtocol {
     var score: Int = 0
     private(set) var scoreLabel: SKLabelNode?
     
-    private(set) var scoreSound = SKAction.playSoundFileNamed("Coin.wav", waitForCompletion: false)
-    private(set) var hitSound = SKAction.playSoundFileNamed("Hit_Hurt.wav", waitForCompletion: false)
+    private(set) var scoreSound = SKAction.playSoundFileNamed("points-noise.wav", waitForCompletion: false)
+    private(set) var hitSound = SKAction.playSoundFileNamed("game-over-noise.wav", waitForCompletion: false)
     
 //    var bird: BirdNode?
     typealias PlayableCharacter = (PhysicsContactable & Updatable & Touchable & Playable & SKNode)
     var playerCharacter: PlayableCharacter?
     
     private(set) lazy var menuAudio: SKAudioNode = {
-        let audioNode = SKAudioNode(fileNamed: "POL-catch-them-all-short.wav")
-        audioNode.autoplayLooped = true
-        audioNode.name = "manu audio"
-        return audioNode
+        let gameAudio = SKAudioNode(fileNamed: "home-audio.wav")
+        gameAudio.autoplayLooped = true
+        gameAudio.name = "manu audio"
+        return gameAudio
     }()
     
     private(set) lazy var playingAudio: SKAudioNode = {
-        let audioNode = SKAudioNode(fileNamed: "POL-flight-master-short.wav")
-        audioNode.autoplayLooped = true
-        audioNode.name = "playing audio"
-        return audioNode
+        let gameAudio = SKAudioNode(fileNamed: "in-game-audio.wav")
+        gameAudio.autoplayLooped = true
+        gameAudio.name = "playing audio"
+        return gameAudio
     }()
     
-    // MARK: - Conformance to GameSceneProtocol
     
-    weak var scene: SKScene?
-    var stateMahcine: GKStateMachine?
+    var myGkStateMach: GKStateMachine?
     
     var updatables = [Updatable]()
     var touchables = [Touchable]()
     
-    /// All buttons currently in the scene. Updated by assigning the result of `findAllButtonsInScene()`.
-    var buttons = [ButtonNode]()
-    
-    /// The current scene overlay (if any) that is displayed over this scene.
+    var gameButtons = [ButtonNode]()
+    weak var scene: SKScene?
+
     var overlay: SceneOverlay? {
         didSet {
-            // Clear the `buttons` in preparation for new buttons in the overlay.
-            buttons = []
+            gameButtons = []
             
-            // Animate the old overlay out.
             oldValue?.backgroundNode.run(SKAction.fadeOut(withDuration: overlayDuration)) {
-                debugPrint(#function + " remove old overlay")
+                debugPrint(#function + " change background")
                 oldValue?.backgroundNode.removeFromParent()
             }
             
             if let overlay = overlay, let scene = scene {
-                debugPrint(#function + " added overaly")
+                debugPrint(#function + "scene add the overly")
                 overlay.backgroundNode.removeFromParent()
                 scene.addChild(overlay.backgroundNode)
                 
-                // Animate the overlay in.
                 overlay.backgroundNode.alpha = 1.0
                 overlay.backgroundNode.run(SKAction.fadeIn(withDuration: overlayDuration))
                 
-                buttons = scene.findAllButtonsInScene()
+                gameButtons = scene.getAllButtons()
             }
         }
     }
@@ -108,24 +101,21 @@ class GameSceneAdapter: NSObject, GameSceneProtocol {
     }
 
     
-    // MARK: - Private properties
     
     private(set) var infiniteBackgroundNode: InfiniteSpriteScrollNode?
     private let notification = UINotificationFeedbackGenerator()
     private let impact = UIImpactFeedbackGenerator(style: .heavy)
     
-    // MARK: - Initializers
     
     required init?(with scene: SKScene) {
         
         self.scene = scene
         
         guard let scene = self.scene else {
-            debugPrint(#function + " could not unwrap the host SKScene instance")
+            debugPrint(#function + "The scene failed")
             return nil
         }
         
-        // Get acces to the score node and then get the score label since it is a child node
         if let scoreNode = scene.childNode(withName: "world")?.childNode(withName: "Score Node") {
             scoreLabel = scoreNode.childNode(withName: "Score Label") as? SKLabelNode
         }
@@ -138,10 +128,9 @@ class GameSceneAdapter: NSObject, GameSceneProtocol {
     
     convenience init?(with scene: SKScene, stateMachine: GKStateMachine) {
         self.init(with: scene)
-        self.stateMahcine = stateMachine
+        self.myGkStateMach = stateMachine
     }
     
-    // MARK: - Helpers
     
     func resetScores() {
         scoreLabel?.text = "0"
@@ -208,30 +197,25 @@ extension GameSceneAdapter: SKPhysicsContactDelegate {
             notification.notificationOccurred(.success)
         }
         
+        //bird hit pipe
         if collision == (player | PhysicsCategories.pipe.rawValue) {
-            // game over state, the player has touched a pipe
             handleDeadState()
         }
-        
+        //bird hit boundary
         if collision == (player | PhysicsCategories.boundary.rawValue) {
-            // game over state, the player has touched the boundary of the world (floor or ceiling)
-            // player's position needs to be set to the default one
             handleDeadState()
         }
     }
-    
-    // MARK: - Collision Helpers
-    
+        
     private func handleDeadState() {
-        debugPrint("handleDeadState")
+        debugPrint("Bird Has Fallen")
         deadState()
         hit()
     }
     
     private func deadState() {
-        // Do not enter the same state twice
-        if stateMahcine?.currentState is GameOverState { return }
-        stateMahcine?.enter(GameOverState.self)
+        if myGkStateMach?.currentState is GameOverState { return }
+        myGkStateMach?.enter(GameOverState.self)
     }
     
     private func hit() {

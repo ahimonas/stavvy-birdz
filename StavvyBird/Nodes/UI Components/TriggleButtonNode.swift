@@ -6,16 +6,12 @@
 
 import SpriteKit
 
-/// A type that can respond to `TriggleButtonNode` button press events.
 protocol TriggleButtonNodeResponderType: AnyObject {
-    /// Responds to a button press.
     func triggleButtonTriggered(triggle: TriggleButtonNode)
 }
 
 class TriggleButtonNode: ButtonNode {
-    
-    // MARK: - Custom types
-    
+        
     enum TriggleState {
         case off
         case switched
@@ -34,9 +30,7 @@ class TriggleButtonNode: ButtonNode {
     }
     
     struct Triggle {
-        
-        // MARK: - Properties
-        
+                
         private(set) var off: Bool
         private(set) var switched: Bool
         private(set) var on: Bool
@@ -63,9 +57,7 @@ class TriggleButtonNode: ButtonNode {
                 lastTriggleState = .on
             }
         }
-        
-        // MARK: - Methods
-        
+                
         mutating func switchState() {
             if off {
                 off = !off
@@ -120,14 +112,12 @@ class TriggleButtonNode: ButtonNode {
     
     var triggleResponder: TriggleButtonNodeResponderType {
         guard let responder = scene as? TriggleButtonNodeResponderType else {
-            fatalError("ButtonNode may only be used within a `ButtonNodeResponderType` scene.")
+            fatalError("Button needs a responder.")
         }
         return responder
     }
     
-    
-    // MARK: - Initialisers
-    
+        
     required init?(coder aDecoder: NSCoder) {
         let difficultyLevel = UserDefaults.standard.getDifficultyLevel()
         triggle = .init(state: TriggleState.convert(from: difficultyLevel))
@@ -150,9 +140,7 @@ class TriggleButtonNode: ButtonNode {
         state.on = onState
         
     }
-    
-    // MARK: - Methods
-    
+        
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         triggle.switchState()

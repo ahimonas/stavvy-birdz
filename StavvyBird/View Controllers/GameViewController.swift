@@ -14,11 +14,10 @@ import GameKit
 enum Scenes: String {
     case title = "TitleScene"
     case game = "GameScene"
+    case characters = "CharactersScene"
     case setting = "SettingsScene"
-    //case score = "ScoreScene"
     case pause = "PauseScene"
     case failed = "FailedScene"
-    case characters = "CharactersScene"
 }
 
 extension Scenes {
@@ -153,24 +152,18 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
     }
     
     func authenticateLocalPlayer() {
-        // Create a new Game Center localPlayer instance:
         let localPlayer = GKLocalPlayer.local
-        // Create a function to check if they authenticated
-        // or show them the log in screen:
         localPlayer.authenticateHandler =
             {(viewController, error) -> Void in
                 if viewController != nil {
-                    // They are not logged in, show the log in:
                     self.present(viewController!, animated: true,
                                  completion: nil)
                 }
                 else if localPlayer.isAuthenticated {
-                    // They authenticated successfully!
-                    // We will be back later to create a
-                    // leaderboard button in the MenuScene
+                    //Auth seccuess
                 }
                 else {
-                    // Not able to authenticate, skip Game Center
+                    // Auth fail
                 }
         }
     }
@@ -181,6 +174,8 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
 
 
 // UIViewRepresentable wrapper for AdMob banner view
+//we shouldn't need this bc we bumped to v15
+/*
 @available(iOS 13.0, *)
 struct AdBannerView: UIViewRepresentable {
     let adUnitID: String
@@ -195,5 +190,4 @@ struct AdBannerView: UIViewRepresentable {
     
     func updateUIView(_ uiView: GADBannerView, context: Context) {}
 }
-
-
+*/

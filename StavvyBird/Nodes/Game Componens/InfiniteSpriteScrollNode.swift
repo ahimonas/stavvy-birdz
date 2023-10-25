@@ -12,7 +12,7 @@ class InfiniteSpriteScrollNode: SKNode {
     var background: SKNode
     var backgroundSpeed: TimeInterval
     
-    let maxNumOfTiles = 3 //hmm
+    let maxNumOfTiles = 2 //hmm
     
     internal var delta = TimeInterval(0)
     internal var previousTiming = TimeInterval(0)
@@ -20,7 +20,7 @@ class InfiniteSpriteScrollNode: SKNode {
     init(fileName: String, scaleFactor scale: CGPoint = CGPoint(x: 1.0, y: 1.0), speed: TimeInterval = 98) {
         self.backgroundSpeed = speed
         
-        let yShift: CGFloat = 5.0
+        let yShift: CGFloat = 4.99
         
         tiles = [SKSpriteNode]()
         background = SKNode()
@@ -29,15 +29,15 @@ class InfiniteSpriteScrollNode: SKNode {
         
         
         for x in 0...maxNumOfTiles {
-            let tile = SKSpriteNode(texture: texture)
-            tile.xScale = scale.x
-            tile.yScale = scale.y
-            tile.anchorPoint = .zero
+            let myCurrTil = SKSpriteNode(texture: texture)
+            myCurrTil.xScale = scale.x
+            myCurrTil.yScale = scale.y
+            myCurrTil.anchorPoint = .zero
 
-            tile.position = CGPoint(x: CGFloat(x) * width * scale.x, y: yShift)
-            tile.name = key
-            tile.zPosition = 0
-            background.addChild(tile)
+            myCurrTil.position = CGPoint(x: CGFloat(x) * width * scale.x, y: yShift)
+            myCurrTil.name = key
+            myCurrTil.zPosition = 0
+            background.addChild(myCurrTil)
         }
         
         super.init()
@@ -50,11 +50,9 @@ class InfiniteSpriteScrollNode: SKNode {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("decoder failed")
+        fatalError("The NSCoder didn't respond")
     }
-    
-    // MARK: - Method
-    
+        
     fileprivate func moveBackground() {
         let posX = -backgroundSpeed * delta
         background.position = CGPoint(x: background.position.x + CGFloat(posX), y: 0.0)
@@ -79,12 +77,10 @@ class InfiniteSpriteScrollNode: SKNode {
 }
 
 extension InfiniteSpriteScrollNode: Updatable {
-    
     func update(_ currentTime: TimeInterval) {
         let computedUpdatable = computeUpdatable(currentTime: currentTime)
         delta = computedUpdatable.delta
         previousTiming = computedUpdatable.previousTiming
-        
         moveBackground()
     }
 }

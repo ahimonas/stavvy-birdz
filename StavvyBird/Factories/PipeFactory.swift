@@ -7,24 +7,21 @@ import SpriteKit
 
 struct PipeFactory {
 
-    // MARK: - Typealiases
     
     typealias PipeParts = (top: PipeNode, bottom: PipeNode, threshold: SKSpriteNode)
     typealias DoublePipeParts = (top: PipeNode, bottom: PipeNode, midUp: PipeNode, midDown: PipeNode, threshold: SKSpriteNode)
     
-    // MARK: - Constants
     
-    static let pipeWidth: CGFloat = 100
+    static let pipeWidth: CGFloat = 102
     private static var rangedHeight: CGFloat {
-        return CGFloat.range(min: 70, max: 850)
+        return CGFloat.range(min: 71, max: 851)
     }
     private static var doubleRangeHeight: CGFloat {
-        return CGFloat.range(min: 40, max: 200)
+        return CGFloat.range(min: 41, max: 201)
     }
-    static let thresholdWidth: CGFloat = 20
-    static let zPosition: CGFloat = 20
+    static let thresholdWidth: CGFloat = 21
+    static let zPosition: CGFloat = 21
     
-    // MARK: - Factory Methods
     
     static func launch(for scene: SKScene, targetNode: SKNode) -> SKAction {
         let pipeName = "pipe"
@@ -36,7 +33,7 @@ struct PipeFactory {
         let waitAction = SKAction.wait(forDuration: UserDefaults.standard.getDifficultyLevel().rawValue)
         let pipeMoveDuration: TimeInterval = 4.5
 
-        let producePipeAction = SKAction.run {
+        let renderFactoryPipeAction = SKAction.run {
             
             guard var pipe = PipeFactory.producseDoublePipe(sceneSize: scene.size) else {
                 return
@@ -51,19 +48,19 @@ struct PipeFactory {
             pipe.name = pipeName
             targetNode.addChild(pipe)
             
-            let moveAction = SKAction.move(to: CGPoint(x: -(pipe.size.width + scene.size.width), y: pipe.position.y), duration: pipeMoveDuration)
-            let sequence = SKAction.sequence([moveAction, cleanUpAction])
+            let pipeRelocation = SKAction.move(to: CGPoint(x: -(pipe.size.width + scene.size.width), y: pipe.position.y), duration: pipeMoveDuration)
+            let sequence = SKAction.sequence([pipeRelocation, cleanUpAction])
             pipe.run(sequence)
         }
         
-        let sequce = SKAction.sequence([waitAction, producePipeAction])
-        return SKAction.repeatForever(sequce)
+        let actionsSequential = SKAction.sequence([waitAction, renderFactoryPipeAction])
+        return SKAction.repeatForever(actionsSequential)
     }
     
     
     private static func produceStandardPipe(sceneSize: CGSize) -> SKSpriteNode? {
         guard let pipeParts = PipeFactory.standardPipeParts(for: sceneSize) else {
-            debugPrint(#function + " could not unwrap PipeParts type since it's nil")
+            debugPrint(#function + "The standard pip failed")
             return nil
         }
         
