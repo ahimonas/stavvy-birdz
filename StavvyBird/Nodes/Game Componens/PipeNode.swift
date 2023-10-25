@@ -18,10 +18,24 @@ class PipeNode: SKSpriteNode {
         }
         let textureRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         
+        let renderer = UIGraphicsImageRenderer(size: size)
+        let image = renderer.image { context in
+            // draw your image into your view
+            context.cgContext.draw(UIImage(named: "pipe-green4")!.cgImage!, in: textureRect)
+            // draw even more...
+            context.cgContext.setFillColor(UIColor.red.cgColor)
+            context.cgContext.setStrokeColor(UIColor.black.cgColor)
+            context.cgContext.setLineWidth(10)
+            context.cgContext.addRect(textureRect)
+            context.cgContext.drawPath(using: .fillStroke)
+        }
+        
         // Render tiled pipe form the previously loaded cgImage
         UIGraphicsBeginImageContext(size)
         let context = UIGraphicsGetCurrentContext()
-        context?.draw(texture, in: textureRect, byTiling: true)
+        
+        //context?.draw(texture, in: textureRect, byTiling: true)
+       
         let tiledBackground = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         

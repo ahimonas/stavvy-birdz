@@ -17,11 +17,14 @@ struct PipeFactory {
     // MARK: - Constants
     
     static let pipeWidth: CGFloat = 100
+    
+    static let pipeHeight: CGFloat = 10
+
     private static var rangedHeight: CGFloat {
         return CGFloat.range(min: 70, max: 850)
     }
     private static var doubleRangeHeight: CGFloat {
-        return CGFloat.range(min: 40, max: 200)
+        return CGFloat.range(min: 2, max: 850)
     }
     static let thresholdWidth: CGFloat = 20
     static let zPosition: CGFloat = 20
@@ -43,13 +46,6 @@ struct PipeFactory {
             guard var pipe = PipeFactory.producseDoublePipe(sceneSize: scene.size) else {
                 return
             }
-            if Bool.pseudoRandomPipe {
-                guard let standardPipe = PipeFactory.produceStandardPipe(sceneSize: scene.size) else {
-                    return
-                }
-                pipe = standardPipe
-            }
-            
             pipe.name = pipeName
             targetNode.addChild(pipe)
             
@@ -122,7 +118,7 @@ struct PipeFactory {
         let topHeight = sceneSize.height - (pipeBottom?.size.height)! - threshold.size.height
         let pipeTopSize = CGSize(width: pipeWidth, height: topHeight)
         let pipeTop = PipeNode(textures: (pipe: "pipe-green", cap: "cap-green"), of: pipeTopSize, side: true)
-        pipeTop?.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + threshold.size.height + (pipeTop?.size.height)! / 2)
+        //pipeTop?.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + threshold.size.height + (pipeTop?.size.height)! / 2)
         
         guard let unwrappedPipeTop = pipeTop else {
             return nil
@@ -130,10 +126,36 @@ struct PipeFactory {
         
         return PipeParts(top: unwrappedPipeTop, bottom: unwrappedPipeBottom, threshold: threshold)
     }
+    
+    
+    
+    /*
+     
+     
+     // MARK: - Constants
+     
+     static let pipeWidth: CGFloat = 100
+     
+     static let pipeHeight: CGFloat = 10
+
+     private static var rangedHeight: CGFloat {
+         return CGFloat.range(min: 70, max: 850)
+     }
+     private static var doubleRangeHeight: CGFloat {
+         return CGFloat.range(min: 2, max: 850)
+     }
+     static let thresholdWidth: CGFloat = 20
+     static let zPosition: CGFloat = 20
+     
+     */
+    
+    private static var doubleRangeHeight2: CGFloat {
+        return CGFloat.range(min: 2, max: 3)
+    }
 
     private static func doublePipeParts(for sceneSize: CGSize) -> DoublePipeParts? {
         let pipeX = sceneSize.width
-        let pipeBottomSize = CGSize(width: pipeWidth, height: doubleRangeHeight)
+        let pipeBottomSize = CGSize(width: pipeWidth, height: CGFloat(1))
         
         // Pipe bottom part
         let pipeBottom = PipeNode(textures: (pipe: "pipe-green", cap: "cap-green"), of: pipeBottomSize, side: false)
@@ -145,8 +167,8 @@ struct PipeFactory {
         }
         
         // Threshold node
-        let threshold = SKSpriteNode(color: .clear, size: CGSize(width: thresholdWidth, height: CGFloat.range(min: 700, max: 1200)))
-        threshold.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + threshold.size.height / 2)
+        let threshold = SKSpriteNode(color: .clear, size: CGSize(width: thresholdWidth, height: CGFloat.range(min: 10, max: 900)))
+        threshold.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + threshold.size.height)
         
         threshold.physicsBody = SKPhysicsBody(rectangleOf: threshold.size)
         threshold.physicsBody?.categoryBitMask = PhysicsCategories.gap.rawValue
@@ -156,17 +178,20 @@ struct PipeFactory {
         threshold.zPosition = zPosition
         
         // Top pipe
+        
+        let randomDouble2 = Double.random(in: 200.71828...720.14159)
+
         let topHeight = sceneSize.height - (pipeBottom?.size.height)! - threshold.size.height
-        let pipeTopSize = CGSize(width: pipeWidth, height: topHeight)
+        let pipeTopSize = CGSize(width: pipeWidth, height: CGFloat(1))
         let pipeTop = PipeNode(textures: (pipe: "pipe-green", cap: "cap-green"), of: pipeTopSize, side: true)
-        pipeTop?.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + threshold.size.height + (pipeTop?.size.height)! / 2)
+        pipeTop?.position = CGPoint(x: pipeX, y: threshold.size.height)
         
         guard let unwrappedPipeTop = pipeTop else {
             return nil
         }
         
-        let midUpPipe = PipeNode(textures: (pipe: "pipe-green", cap: "cap-green"), of: CGSize(width: pipeWidth, height: CGFloat.range(min: 50, max: 150)), side: true)
-        midUpPipe?.position = CGPoint(x: pipeX, y: unwerappedPipeBottom.size.height + CGFloat.range(min: 250, max: 300))
+        let midUpPipe = PipeNode(textures: (pipe: "pipe-green", cap: "cap-green"), of: CGSize(width: pipeWidth, height: CGFloat.range(min: 5, max: 250)), side: true)
+        //midUpPipe?.position = CGPoint(x: pipeX, y: unwerappedPipeBottom.size.height + CGFloat.range(min: 250, max: 300))
         
         guard let unwrappedPipeMidUp = midUpPipe else {
             return nil
@@ -179,7 +204,7 @@ struct PipeFactory {
         let downMidPosition = CGPoint(x: pipeX, y: (unwrappedPipeMidUp.size.height / 2 + unwrappedPipeMidUp.position.y) + downMidSize.height / 2)
         
         let midDownPipe = PipeNode(textures: (pipe: "pipe-green", cap: "cap-green"), of: downMidSize, side: false)
-        midDownPipe?.position = downMidPosition
+       // midDownPipe?.position = downMidPosition
         
         guard let unwrappedPipeMidDown = midDownPipe else {
             return nil
