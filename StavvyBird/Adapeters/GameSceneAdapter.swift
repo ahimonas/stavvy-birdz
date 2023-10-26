@@ -107,7 +107,7 @@ class GameSceneAdapter: NSObject, PlaySceneProtocol {
 
     
     
-    private(set) var infiniteBackgroundNode: InfiniteSpriteScrollNode?
+    private(set) var infiniteBackgroundNode: ContinuousBackground?
     private let notification = UINotificationFeedbackGenerator()
     private let impact = UIImpactFeedbackGenerator(style: .heavy)
     
@@ -173,7 +173,7 @@ class GameSceneAdapter: NSObject, PlaySceneProtocol {
     private func prepareInfiniteBackgroundScroller(for scene: SKScene) {
         let scaleFactor = NodeScale.gameBackgroundScale.getValue()
         
-        infiniteBackgroundNode = InfiniteSpriteScrollNode(fileName: backgroundResourceName, scaleFactor: CGPoint(x: scaleFactor, y: scaleFactor))
+        infiniteBackgroundNode = ContinuousBackground(fileName: backgroundResourceName, scaleFactor: CGPoint(x: scaleFactor, y: scaleFactor))
         infiniteBackgroundNode!.zPosition = 0
         
         scene.addChild(infiniteBackgroundNode!)

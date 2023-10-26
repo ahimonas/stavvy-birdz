@@ -68,7 +68,6 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
 
         super.viewDidLoad()
         authenticateLocalPlayer()
-        //printFonts()
 
         
         let sceneName = Scenes.title.getName()

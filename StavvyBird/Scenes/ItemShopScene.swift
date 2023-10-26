@@ -46,27 +46,27 @@ class ItemShopScene: RoutingUtilityScene {
             
             let scale = CGPoint(x: 0.6, y: 0.6)
             
-            let stavvyRat = childNode(withName: PlayableCharacter.stavvyRat.rawValue) as? NyancatNode
-            stavvyRat?.xScale = scale.x
+            let stavvyRat = childNode(withName: PlayableCharacter.stavvyRat.rawValue) as? DefaultGifNodes
+            stavvyRat?.xScale = scale.x //DefaultGifNodes
             stavvyRat?.yScale = scale.y
             playableCharacters[.stavvyRat] = stavvyRat
             
-            let stavvyGold = childNode(withName: PlayableCharacter.stavvyGold.rawValue) as? NyancatNode
+            let stavvyGold = childNode(withName: PlayableCharacter.stavvyGold.rawValue) as? DefaultGifNodes
             stavvyGold?.xScale = scale.x
             stavvyGold?.yScale = scale.y
             playableCharacters[.stavvyGold] = stavvyGold
             
-            let stavvyPig = childNode(withName: PlayableCharacter.stavvyPig.rawValue) as? NyancatNode
+            let stavvyPig = childNode(withName: PlayableCharacter.stavvyPig.rawValue) as? DefaultGifNodes
             stavvyPig?.xScale = scale.x
             stavvyPig?.yScale = scale.y
             playableCharacters[.stavvyPig] = stavvyPig
             
-            let eldyBird = childNode(withName: PlayableCharacter.eldyBird.rawValue) as? NyancatNode
+            let eldyBird = childNode(withName: PlayableCharacter.eldyBird.rawValue) as? DefaultGifNodes
             eldyBird?.xScale = scale.x
             eldyBird?.yScale = scale.y
             playableCharacters[.eldyBird] = eldyBird
             // ravens position 5
-            let stavvyRaven = childNode(withName: PlayableCharacter.stavvyRaven.rawValue) as? NyancatNode
+            let stavvyRaven = childNode(withName: PlayableCharacter.stavvyRaven.rawValue) as? DefaultGifNodes
             stavvyRaven?.xScale = scale.x
             stavvyRaven?.yScale = scale.y
             playableCharacters[.stavvyRaven] = stavvyRaven

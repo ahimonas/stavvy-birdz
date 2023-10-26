@@ -40,7 +40,7 @@ class TitleScene: RoutingUtilityScene {
             stavvyBirdNode.zPosition = pendingNode.zPosition
             scene?.addChild(stavvyBirdNode)
         case .stavvyGold, .stavvyRat, .stavvyPig, .eldyBird, .stavvyRaven:
-            let myCurrPlayerNode = NyancatNode(animatedGif: assetName, correctAspectRatioFor: playerSize.width)
+            let myCurrPlayerNode = DefaultGifNodes(animatedGif: assetName, correctAspectRatioFor: playerSize.width)
             myCurrPlayerNode.xScale = 1.0
             myCurrPlayerNode.yScale = 1.0
             
