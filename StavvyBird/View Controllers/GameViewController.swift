@@ -67,8 +67,7 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        /*---------------I DONT THINK WE NEED TO AUTH HERE --------------------*/
-        //authenticateLocalPlayer()
+        authenticateLocalPlayer()
 
         
         let sceneName = Scenes.title.getName()
