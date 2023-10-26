@@ -45,30 +45,30 @@ class CharactersScene: RoutingUtilityScene {
             
             let scale = CGPoint(x: 0.6, y: 0.6)
             
-            let gameCat = childNode(withName: PlayableCharacter.gamecat.rawValue) as? NyancatNode
-            gameCat?.xScale = scale.x
-            gameCat?.yScale = scale.y
-            playableCharacters[.gamecat] = gameCat
+            let stavvyRat = childNode(withName: PlayableCharacter.stavvyRat.rawValue) as? NyancatNode
+            stavvyRat?.xScale = scale.x
+            stavvyRat?.yScale = scale.y
+            playableCharacters[.stavvyRat] = stavvyRat
             
-            let coinCat = childNode(withName: PlayableCharacter.coinCat.rawValue) as? NyancatNode
-            coinCat?.xScale = scale.x
-            coinCat?.yScale = scale.y
-            playableCharacters[.coinCat] = coinCat
+            let stavvyGold = childNode(withName: PlayableCharacter.stavvyGold.rawValue) as? NyancatNode
+            stavvyGold?.xScale = scale.x
+            stavvyGold?.yScale = scale.y
+            playableCharacters[.stavvyGold] = stavvyGold
             
-            let hipCat = childNode(withName: PlayableCharacter.hipCat.rawValue) as? NyancatNode
-            hipCat?.xScale = scale.x
-            hipCat?.yScale = scale.y
-            playableCharacters[.hipCat] = hipCat
+            let stavvyPig = childNode(withName: PlayableCharacter.stavvyPig.rawValue) as? NyancatNode
+            stavvyPig?.xScale = scale.x
+            stavvyPig?.yScale = scale.y
+            playableCharacters[.stavvyPig] = stavvyPig
             
-            let jazzCat = childNode(withName: PlayableCharacter.jazzCat.rawValue) as? NyancatNode
-            jazzCat?.xScale = scale.x
-            jazzCat?.yScale = scale.y
-            playableCharacters[.jazzCat] = jazzCat
+            let eldyBird = childNode(withName: PlayableCharacter.eldyBird.rawValue) as? NyancatNode
+            eldyBird?.xScale = scale.x
+            eldyBird?.yScale = scale.y
+            playableCharacters[.eldyBird] = eldyBird
             // ravens position 5
-            let lifelopeCat = childNode(withName: PlayableCharacter.lifelopeCat.rawValue) as? NyancatNode
-            lifelopeCat?.xScale = scale.x
-            lifelopeCat?.yScale = scale.y
-            playableCharacters[.lifelopeCat] = lifelopeCat
+            let stavvyRaven = childNode(withName: PlayableCharacter.stavvyRaven.rawValue) as? NyancatNode
+            stavvyRaven?.xScale = scale.x
+            stavvyRaven?.yScale = scale.y
+            playableCharacters[.stavvyRaven] = stavvyRaven
              
         }
         
@@ -110,7 +110,7 @@ class CharactersScene: RoutingUtilityScene {
         debugPrint(selectedPlayableCharacter.rawValue)
 
         
-        if(selectedPlayableCharacter.rawValue.replacingOccurrences(of: "\"", with: "") == "jazzCat"){ //thsi is eldy
+        if(selectedPlayableCharacter.rawValue.replacingOccurrences(of: "\"", with: "") == "eldyBird"){ //thsi is eldy
             //print("UserDefaults.standard.bool(forKey: removeEldyLock");
             print(UserDefaults.standard.bool(forKey: "removeEldyLock"));
             let hi2 = UserDefaults.standard.bool(forKey: "removeEldyLock");
@@ -118,7 +118,7 @@ class CharactersScene: RoutingUtilityScene {
             if(UserDefaults.standard.bool(forKey: "removeEldyLock")){
                 select(playableCharacter: selectedPlayableCharacter, animated: true)
                 UserDefaults.standard.set(selectedPlayableCharacter, for: .character)
-                debugPrint("jazzcat str-eldy was paid for ")
+                debugPrint("eldyBird str-eldy was paid for ")
 
                 lazy var beam = { return self.childNode(withName: "EldyBird") as! SKSpriteNode}()
                 beam.isHidden = true;
@@ -132,11 +132,11 @@ class CharactersScene: RoutingUtilityScene {
                  */
 
             }
-            debugPrint("jazzcat str-eldy not available ")
+            debugPrint("eldyBird str-eldy not available ")
         }
         
         //remove lock after selecting character from payment for ravens bird, should transition back to scene ?
-        if(selectedPlayableCharacter.rawValue.replacingOccurrences(of: "\"", with: "") == "lifelopeCat"){ //raven
+        if(selectedPlayableCharacter.rawValue.replacingOccurrences(of: "\"", with: "") == "stavvyRaven"){ //raven
             print("UserDefaults.standard.bool(forKey: removeRavensLock", UserDefaults.standard.bool(forKey: "removeRavensLock"));
 
             if(UserDefaults.standard.bool(forKey: "removeRavensLock")){
