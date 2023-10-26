@@ -20,10 +20,6 @@
 		A92E72E6209D818B0015F647 /* PausedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E72E5209D818B0015F647 /* PausedState.swift */; };
 		A92E72EE209D87570015F647 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E72ED209D87570015F647 /* ButtonNode.swift */; };
 		A935954420C2773F000FF0FA /* SKScene+ShaderTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A935954320C2773F000FF0FA /* SKScene+ShaderTransition.swift */; };
-		A935954B20C27B81000FF0FA /* retro_transition_fade_from_centre.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A935954720C27B80000FF0FA /* retro_transition_fade_from_centre.fsh */; };
-		A935954C20C27B81000FF0FA /* retro_transition_fade_from_top_left.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A935954820C27B81000FF0FA /* retro_transition_fade_from_top_left.fsh */; };
-		A935954D20C27B81000FF0FA /* retro_transition_fade_from_top.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A935954920C27B81000FF0FA /* retro_transition_fade_from_top.fsh */; };
-		A935954E20C27B81000FF0FA /* retro_transition_fade_to_centre.fsh in Resources */ = {isa = PBXBuildFile; fileRef = A935954A20C27B81000FF0FA /* retro_transition_fade_to_centre.fsh */; };
 		A941362320C4067C007FD610 /* Bool+PipeRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = A941362220C4067C007FD610 /* Bool+PipeRandom.swift */; };
 		A94A97F721A287890087C018 /* InfiniteSpriteScrollNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A97F621A287890087C018 /* InfiniteSpriteScrollNode.swift */; };
 		A950485820BADB7A0020ECD9 /* SKSpriteNode+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = A950485720BADB7A0020ECD9 /* SKSpriteNode+GIF.swift */; };
@@ -98,10 +94,6 @@
 		A92E72E5209D818B0015F647 /* PausedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PausedState.swift; sourceTree = "<group>"; };
 		A92E72ED209D87570015F647 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		A935954320C2773F000FF0FA /* SKScene+ShaderTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKScene+ShaderTransition.swift"; sourceTree = "<group>"; };
-		A935954720C27B80000FF0FA /* retro_transition_fade_from_centre.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = retro_transition_fade_from_centre.fsh; sourceTree = "<group>"; };
-		A935954820C27B81000FF0FA /* retro_transition_fade_from_top_left.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = retro_transition_fade_from_top_left.fsh; sourceTree = "<group>"; };
-		A935954920C27B81000FF0FA /* retro_transition_fade_from_top.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = retro_transition_fade_from_top.fsh; sourceTree = "<group>"; };
-		A935954A20C27B81000FF0FA /* retro_transition_fade_to_centre.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = retro_transition_fade_to_centre.fsh; sourceTree = "<group>"; };
 		A941362220C4067C007FD610 /* Bool+PipeRandom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+PipeRandom.swift"; sourceTree = "<group>"; };
 		A94A97F621A287890087C018 /* InfiniteSpriteScrollNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteSpriteScrollNode.swift; sourceTree = "<group>"; };
 		A950485720BADB7A0020ECD9 /* SKSpriteNode+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKSpriteNode+GIF.swift"; sourceTree = "<group>"; };
@@ -237,25 +229,6 @@
 			path = "Game States";
 			sourceTree = "<group>";
 		};
-		A935954520C27B6B000FF0FA /* Shaders */ = {
-			isa = PBXGroup;
-			children = (
-				A935954620C27B76000FF0FA /* Transitions */,
-			);
-			path = Shaders;
-			sourceTree = "<group>";
-		};
-		A935954620C27B76000FF0FA /* Transitions */ = {
-			isa = PBXGroup;
-			children = (
-				A935954720C27B80000FF0FA /* retro_transition_fade_from_centre.fsh */,
-				A935954820C27B81000FF0FA /* retro_transition_fade_from_top_left.fsh */,
-				A935954920C27B81000FF0FA /* retro_transition_fade_from_top.fsh */,
-				A935954A20C27B81000FF0FA /* retro_transition_fade_to_centre.fsh */,
-			);
-			path = Transitions;
-			sourceTree = "<group>";
-		};
 		A950485B20BAE2500020ECD9 /* Animated Players */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,7 +342,6 @@
 		A9ACB98F2099F12000966991 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				A935954520C27B6B000FF0FA /* Shaders */,
 				A950485B20BAE2500020ECD9 /* Animated Players */,
 				A903943720AD9D1A00376CC3 /* Particles */,
 				A9ACB96C2099B46E00966991 /* Actions */,
@@ -584,18 +556,15 @@
 				A950486520BAE29C0020ECD9 /* stavvy-raven.gif in Resources */,
 				A9EC755E20A6CB03007C42EC /* SettingsScene.sks in Resources */,
 				A9A3139920B0006400B36175 /* TitleScene iPad.sks in Resources */,
-				A935954D20C27B81000FF0FA /* retro_transition_fade_from_top.fsh in Resources */,
 				A950486420BAE29C0020ECD9 /* eldy-bird.gif in Resources */,
 				A9ACB91F2099A1F200966991 /* GameScene.sks in Resources */,
 				A9ACB92A2099A1F300966991 /* Assets.xcassets in Resources */,
 				CAC5FBA32AE9B586006913FE /* points-noise.wav in Resources */,
 				A9A313A320B0263C00B36175 /* PauseScene iPad.sks in Resources */,
 				A9EBCCAA20B9785400BB08A3 /* CharactersScene iPad.sks in Resources */,
-				A935954B20C27B81000FF0FA /* retro_transition_fade_from_centre.fsh in Resources */,
 				A9CC5C3A20A02D0A00040E61 /* PauseScene.sks in Resources */,
 				A9B9C72B209EE3290045548D /* TitleScene.sks in Resources */,
 				CAC5FBA52AE9B65B006913FE /* in-game-audio.wav in Resources */,
-				A935954C20C27B81000FF0FA /* retro_transition_fade_from_top_left.fsh in Resources */,
 				CA7047542AE9C33B0020A04A /* home-audio.wav in Resources */,
 				A9ACB92D2099A1F300966991 /* LaunchScreen.storyboard in Resources */,
 				A950486120BAE29C0020ECD9 /* stavvy-rat.gif in Resources */,
@@ -604,7 +573,6 @@
 				A9A3139D20B0226D00B36175 /* SettingsScene iPad.sks in Resources */,
 				A950486320BAE29C0020ECD9 /* stavvy-gold.gif in Resources */,
 				A9A313A520B026E000B36175 /* FailedScene iPad.sks in Resources */,
-				A935954E20C27B81000FF0FA /* retro_transition_fade_to_centre.fsh in Resources */,
 				A950485A20BAE2170020ECD9 /* stavvy-pig.gif in Resources */,
 				A903943B20AD9E7900376CC3 /* Particles.xcassets in Resources */,
 				A9CC5C3D20A030A900040E61 /* FailedScene.sks in Resources */,

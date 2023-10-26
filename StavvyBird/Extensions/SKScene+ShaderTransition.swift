@@ -3,8 +3,6 @@
 //  StavvyBird
 //
 
-//
-
 import SpriteKit
 
 private let kNodeNameTransitionShaderNode = "kNodeNameTransitionShaderNode"
@@ -14,7 +12,6 @@ private var shaderChoice = -1
 
 extension SKScene {
     
-    // MARK: - Properties
     
     private var transitionShader: SKShader? {
         get {
@@ -26,9 +23,10 @@ extension SKScene {
         }
     }
     
-    // MARK: - Methods
-    
+
+    //What in the worold?
     func present(scene: SKScene?, shaderName: String, transitionDuration: TimeInterval) {
+        /*
         // Create shader and add it to the scene
         let shaderContainer = SKSpriteNode(imageNamed: "dummy")
         shaderContainer.name = kNodeNameTransitionShaderNode
@@ -54,6 +52,7 @@ extension SKScene {
         // Reset the time presentScene was called so that the elapsed time from now can
         // be calculated in updateShaderTransitions(currentTime:)
         presentationStartTime = -1
+         */
     }
     
     func updateShaderTransition(currentTime: CFTimeInterval) {
@@ -66,14 +65,12 @@ extension SKScene {
         }
     }
     
-    /// The function is called by the scene being transitioned to when it's ready to have the view faded in to the scene i.e. loading is complete, etc.
     func completeShaderTransition() {
         if let fadeOverlay = self.childNode(withName: kNodeNameFadeColourOverlay) {
             fadeOverlay.run(SKAction.sequence([SKAction.fadeAlpha(to: 0, duration: 0.3), SKAction.removeFromParent()]))
         }
     }
     
-    // MARK: - Private methods
     
     private func createShader(shaderName: String, transitionDuration: TimeInterval) -> SKShader {
         let shader = SKShader(fileNamed:shaderName)

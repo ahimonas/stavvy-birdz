@@ -171,10 +171,10 @@ class NyancatRainbowNode: SKSpriteNode, Updatable, Playable {
         
         let dxVeloc = physicsBody.velocity.dx
         let dyVeloc = physicsBody.velocity.dy
-        let threshold: CGFloat = 350
+        let myCurrThresh: CGFloat = 350
         
-        if dyVeloc > threshold {
-            physicsBody.velocity = CGVector(dx: dxVeloc, dy: threshold)
+        if dyVeloc > myCurrThresh {
+            physicsBody.velocity = CGVector(dx: dxVeloc, dy: myCurrThresh)
         }
         
         let velocityValue = dyVeloc * (dyVeloc < 0 ? 0.004 : 0.002)

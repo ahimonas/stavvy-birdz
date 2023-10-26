@@ -98,11 +98,11 @@ class BirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
         
         let dxVeloc = physicsBody.velocity.dx
         let dyVeloc = physicsBody.velocity.dy
-        let threshold: CGFloat = 370 //amount of overall gravtiy 0 is heavy 500 is light
+        let myCurrThresh: CGFloat = 370 //amount of overall gravtiy 0 is heavy 500 is light
         
         
-        if dyVeloc > threshold {
-            self.physicsBody?.velocity = CGVector(dx: dxVeloc, dy: threshold)
+        if dyVeloc > myCurrThresh {
+            self.physicsBody?.velocity = CGVector(dx: dxVeloc, dy: myCurrThresh)
         }
 
         let velocityValue = dyVeloc * (dyVeloc < 0 ? 0.006 : 0.0037)

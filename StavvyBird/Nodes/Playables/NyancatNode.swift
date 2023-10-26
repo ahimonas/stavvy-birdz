@@ -99,10 +99,10 @@ class NyancatNode: SKNode, Updatable, Playable, PhysicsContactable {
         
         let dxVeloc = physicsBody.velocity.dx
         let dyVeloc = physicsBody.velocity.dy
-        let threshold: CGFloat = 300
+        let myCurrThresh: CGFloat = 300
         
-        if dyVeloc > threshold {
-            physicsBody.velocity = CGVector(dx: dxVeloc, dy: threshold)
+        if dyVeloc > myCurrThresh {
+            physicsBody.velocity = CGVector(dx: dxVeloc, dy: myCurrThresh)
         }
         
         let velocityValue = dyVeloc * (dyVeloc < 0 ? 0.0044 : 0.0022)
