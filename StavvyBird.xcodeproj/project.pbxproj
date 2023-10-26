@@ -55,7 +55,6 @@
 		A9CC5C3720A0216500040E61 /* ControlInputDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CC5C3620A0216500040E61 /* ControlInputDirection.swift */; };
 		A9CC5C3A20A02D0A00040E61 /* ResumeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9CC5C3920A02D0A00040E61 /* ResumeScene.sks */; };
 		A9CC5C3D20A030A900040E61 /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9CC5C3C20A030A900040E61 /* GameOverScene.sks */; };
-		A9CCA26E20BBD5B5005795BD /* NyancatNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CCA26D20BBD5B5005795BD /* NyancatNode.swift */; };
 		A9D0897920B97CA800BE2896 /* ItemShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D0897820B97CA800BE2896 /* ItemShopScene.swift */; };
 		A9D4CFD7209AF515006461AF /* SKScene+SpriteUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4CFD6209AF515006461AF /* SKScene+SpriteUploader.swift */; };
 		A9D4CFD9209AF53E006461AF /* SKTextureAtlas+FrameUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4CFD8209AF53E006461AF /* SKTextureAtlas+FrameUploader.swift */; };
@@ -71,6 +70,7 @@
 		CA29A1922ACF755B00470B9F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA29A1912ACF755B00470B9F /* GameKit.framework */; };
 		CA47A3C12ACB5E3100E8ED52 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */; };
 		CA7047542AE9C33B0020A04A /* home-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA7047532AE9C33B0020A04A /* home-audio.wav */; };
+		CAABA6322AEB1E8C00B9810E /* DefaultGifNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAABA6312AEB1E8C00B9810E /* DefaultGifNodes.swift */; };
 		CAC5FBA12AE9B52D006913FE /* game-over-noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */; };
 		CAC5FBA32AE9B586006913FE /* points-noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA22AE9B586006913FE /* points-noise.wav */; };
 		CAC5FBA52AE9B65B006913FE /* in-game-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */; };
@@ -130,7 +130,6 @@
 		A9CC5C3620A0216500040E61 /* ControlInputDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlInputDirection.swift; sourceTree = "<group>"; };
 		A9CC5C3920A02D0A00040E61 /* ResumeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ResumeScene.sks; sourceTree = "<group>"; };
 		A9CC5C3C20A030A900040E61 /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
-		A9CCA26D20BBD5B5005795BD /* NyancatNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NyancatNode.swift; sourceTree = "<group>"; };
 		A9D0897820B97CA800BE2896 /* ItemShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemShopScene.swift; sourceTree = "<group>"; };
 		A9D4CFD6209AF515006461AF /* SKScene+SpriteUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKScene+SpriteUploader.swift"; sourceTree = "<group>"; };
 		A9D4CFD8209AF53E006461AF /* SKTextureAtlas+FrameUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKTextureAtlas+FrameUploader.swift"; sourceTree = "<group>"; };
@@ -148,6 +147,7 @@
 		CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CA7047532AE9C33B0020A04A /* home-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "home-audio.wav"; sourceTree = "<group>"; };
 		CA94BB7D2AD8D7AE005AAF83 /* Stavvy Birds.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Stavvy Birds.storekit"; sourceTree = "<group>"; };
+		CAABA6312AEB1E8C00B9810E /* DefaultGifNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultGifNodes.swift; sourceTree = "<group>"; };
 		CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "game-over-noise.wav"; path = "StavvyBird/Assets/Sound/Game/Sound/game-over-noise.wav"; sourceTree = SOURCE_ROOT; };
 		CAC5FBA22AE9B586006913FE /* points-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "points-noise.wav"; sourceTree = "<group>"; };
 		CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "in-game-audio.wav"; sourceTree = "<group>"; };
@@ -406,8 +406,8 @@
 		A9B9F83720B44AC300FC0BDA /* Playables */ = {
 			isa = PBXGroup;
 			children = (
+				CAABA6312AEB1E8C00B9810E /* DefaultGifNodes.swift */,
 				A9ACB9862099E74600966991 /* BirdNode.swift */,
-				A9CCA26D20BBD5B5005795BD /* NyancatNode.swift */,
 			);
 			path = Playables;
 			sourceTree = "<group>";
@@ -629,13 +629,13 @@
 				A9EC756820A6E479007C42EC /* RoutingUtilityScene.swift in Sources */,
 				A9D4CFD7209AF515006461AF /* SKScene+SpriteUploader.swift in Sources */,
 				A92E72EE209D87570015F647 /* ButtonNode.swift in Sources */,
+				CAABA6322AEB1E8C00B9810E /* DefaultGifNodes.swift in Sources */,
 				A9092FA5216B35C800D773BC /* TriggleButtonNode.swift in Sources */,
 				A992D8B620A03B90003A9998 /* GameOverlay.swift in Sources */,
 				A9ACB9232099A1F200966991 /* PlayScene.swift in Sources */,
 				A9ACB98D2099F0FC00966991 /* Touchable.swift in Sources */,
 				A90192FB21F1BDF40020C612 /* PhysicsContactable.swift in Sources */,
 				A9D4CFDD209B3A50006461AF /* ColumnNode.swift in Sources */,
-				A9CCA26E20BBD5B5005795BD /* NyancatNode.swift in Sources */,
 				A9CC5C3720A0216500040E61 /* ControlInputDirection.swift in Sources */,
 				A9D4CFDB209AFA06006461AF /* PlaySceneProtocol.swift in Sources */,
 				A9ACB98B2099F0D300966991 /* Updatable.swift in Sources */,

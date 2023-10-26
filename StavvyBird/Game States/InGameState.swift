@@ -93,7 +93,7 @@ class InGameState: GKState {
                 withTextureAtlas: assetName,
                 size: adapter.playerSize)
         case .stavvyGold, .stavvyRat, .stavvyPig, .eldyBird, .stavvyRaven:
-            let player = NyancatNode(
+            let player = DefaultGifNodes(
                 animatedGif: assetName,
                 correctAspectRatioFor: adapter.playerSize.width)
             player.xScale = playerScale.x

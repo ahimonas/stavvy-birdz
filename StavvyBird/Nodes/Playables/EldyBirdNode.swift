@@ -4,7 +4,7 @@
 import SpriteKit
 import Foundation
 
-class NyancatNode: SKNode, Updatable, Playable, PhysicsContactable {
+class EldyBirdNode: SKNode, Updatable, Playable, PhysicsContactable {
     
 
     var size: CGSize
@@ -106,7 +106,7 @@ class NyancatNode: SKNode, Updatable, Playable, PhysicsContactable {
 }
 
 
-extension NyancatNode: Touchable {
+extension EldyBirdNode: Touchable {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !shouldAcceptTouches { return }
