@@ -4,7 +4,7 @@
 import Foundation
 import SpriteKit
 
-protocol GameSceneProtocol {
+protocol PlaySceneProtocol {
     var updatables: [Updatable] { get }
     var touchables: [Touchable] { get }
     

@@ -16,7 +16,7 @@ class GameOverState: GKState {
     }
     
     unowned var levelScene: GameSceneAdapter
-    var overlay: SceneOverlay!
+    var overlay: GameOverlay!
     
     
     private(set) var currentScoreLabel: SKLabelNode?
@@ -25,14 +25,14 @@ class GameOverState: GKState {
         self.levelScene = scene
         super.init()
      
-        overlay = SceneOverlay(overlaySceneFileName: overlaySceneFileName, zPosition: 100)
-        currentScoreLabel = overlay.contentNode.childNode(withName: "Current Score") as? SKLabelNode
+        overlay = GameOverlay(overlaySceneFileName: overlaySceneFileName, zPosition: 100)
+        currentScoreLabel = overlay.myCurrSpritNod.childNode(withName: "Current Score") as? SKLabelNode
     }
        
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
         
-        if previousState is PlayingState {
+        if previousState is InGameState {
             levelScene.removePipes()
         }
         
@@ -65,7 +65,7 @@ class GameOverState: GKState {
     override func willExit(to nextState: GKState) {
         super.willExit(to: nextState)
         
-        if nextState is PlayingState {
+        if nextState is InGameState {
             levelScene.overlay = nil
             levelScene.isHUDHidden = false
             levelScene.playerCharacter?.shouldAcceptTouches = true
@@ -92,14 +92,14 @@ extension GameOverState {
     }
     
     fileprivate func updasteOverlayPresentation() {
-        let contentNode = overlay.contentNode
+        let myCurrSpritNod = overlay.myCurrSpritNod
         
-        if let bestScoreLabel = contentNode.childNode(withName: "Best Score") as? SKLabelNode {
+        if let bestScoreLabel = myCurrSpritNod.childNode(withName: "Best Score") as? SKLabelNode {
             let bestScore = UserDefaults.standard.integer(for: .bestScore)
             bestScoreLabel.text = "Best Score: \(bestScore)"
         }
         
-        if let currentScore = contentNode.childNode(withName: "Current Score") as? SKLabelNode {
+        if let currentScore = myCurrSpritNod.childNode(withName: "Current Score") as? SKLabelNode {
             currentScore.text = "Current Score: \(levelScene.score)"
         }
     }

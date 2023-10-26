@@ -6,12 +6,14 @@ import SpriteKit
 import GameplayKit
 import GameKit
 
-class GameScene: SKScene {
+
+//Game
+class PlayScene: SKScene {
 
     static var viewportSize: CGSize = .zero
         
     lazy var stateMachine: GKStateMachine = GKStateMachine(states: [
-        PlayingState(adapter: sceneAdapeter!),
+        InGameState(adapter: sceneAdapeter!),
         GameOverState(scene: sceneAdapeter!),
         PausedState(scene: self, adapter: sceneAdapeter!)
         ])
@@ -31,13 +33,13 @@ class GameScene: SKScene {
         self.previousTiming = 0
         sceneAdapeter = GameSceneAdapter(with: self)
         sceneAdapeter?.myGkStateMach = stateMachine
-        sceneAdapeter?.myGkStateMach?.enter(PlayingState.self)
+        sceneAdapeter?.myGkStateMach?.enter(InGameState.self)
     }
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
-        GameScene.viewportSize = view.bounds.size
+        PlayScene.viewportSize = view.bounds.size
     }
         
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -80,7 +82,7 @@ class GameScene: SKScene {
     
 }
 
-extension GameScene: ButtonNodeResponderType {
+extension PlayScene: ButtonNodeResponderType {
     
     func buttonTriggered(button: ButtonNode) {
         guard let identifier = button.buttonIdentifier else {
@@ -93,10 +95,10 @@ extension GameScene: ButtonNodeResponderType {
         case .pause:
             sceneAdapeter?.myGkStateMach?.enter(PausedState.self) //showLeaderBoard();
         case .resume:
-            sceneAdapeter?.myGkStateMach?.enter(PlayingState.self)
+            sceneAdapeter?.myGkStateMach?.enter(InGameState.self)
         case .home:
             let sceneId = Scenes.title.getName()
-            guard let gameScene = GameScene(fileNamed: sceneId) else {
+            guard let gameScene = PlayScene(fileNamed: sceneId) else {
                 return
             }
             gameScene.scaleMode = RoutingUtilityScene.sceneScaleMode
@@ -105,7 +107,7 @@ extension GameScene: ButtonNodeResponderType {
             transition.pausesOutgoingScene = false
             self.view?.presentScene(gameScene, transition: transition)
         case .retry:
-            sceneAdapeter?.myGkStateMach?.enter(PlayingState.self)
+            sceneAdapeter?.myGkStateMach?.enter(InGameState.self)
         default:
             debugPrint("Unable to invoke")
             

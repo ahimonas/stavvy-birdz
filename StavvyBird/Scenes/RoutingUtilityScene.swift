@@ -401,12 +401,12 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         switch identifier {
         case .play:
             let sceneId = Scenes.game.getName()
-            sceneToPresent = GameScene(fileNamed: sceneId)
+            sceneToPresent = PlayScene(fileNamed: sceneId)
             
             transition = SKTransition.fade(withDuration: 1.0)
         case .settings:
             let sceneId = Scenes.setting.getName()
-            sceneToPresent = SettingsScene(fileNamed: sceneId)
+            sceneToPresent = AtmosphereScene(fileNamed: sceneId)
             
             RoutingUtilityScene.lastPushTransitionDirection = .down
             transition = SKTransition.push(with: .down, duration: 1.0)
@@ -424,8 +424,8 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
            initInAppPurchases()
   
             let sceneId = Scenes.characters.getName()
-            sceneToPresent = CharactersScene(fileNamed: sceneId)
-            debugPrint("created CharactersScene instance")
+            sceneToPresent = ItemShopScene(fileNamed: sceneId)
+            debugPrint("created ItemShopScene instance")
             RoutingUtilityScene.lastPushTransitionDirection = .right
             transition = SKTransition.push(with: .right, duration: 1.0)
             /*
@@ -521,7 +521,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         
 
         
-        debugPrint("presented CharactersScene instance")
+        debugPrint("presented ItemShopScene instance")
     }
     
 
