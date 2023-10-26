@@ -28,13 +28,7 @@
 		A950486420BAE29C0020ECD9 /* eldy-bird.gif in Resources */ = {isa = PBXBuildFile; fileRef = A950485F20BAE29C0020ECD9 /* eldy-bird.gif */; };
 		A950486520BAE29C0020ECD9 /* stavvy-raven.gif in Resources */ = {isa = PBXBuildFile; fileRef = A950486020BAE29C0020ECD9 /* stavvy-raven.gif */; };
 		A992D8B620A03B90003A9998 /* GameOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A992D8B520A03B90003A9998 /* GameOverlay.swift */; };
-		A9A3139920B0006400B36175 /* TitleScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9A3139820B0006400B36175 /* TitleScene iPad.sks */; };
-		A9A3139D20B0226D00B36175 /* AtmosphereScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9A3139C20B0226D00B36175 /* AtmosphereScene iPad.sks */; };
-		A9A313A120B0239100B36175 /* PlayScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9A313A020B0239100B36175 /* PlayScene iPad.sks */; };
-		A9A313A320B0263C00B36175 /* ResumeScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9A313A220B0263C00B36175 /* ResumeScene iPad.sks */; };
-		A9A313A520B026E000B36175 /* GameOverScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9A313A420B026E000B36175 /* GameOverScene iPad.sks */; };
 		A9ACB91D2099A1F200966991 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB91C2099A1F200966991 /* AppDelegate.swift */; };
-		A9ACB91F2099A1F200966991 /* PlayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9ACB91E2099A1F200966991 /* PlayScene.sks */; };
 		A9ACB9232099A1F200966991 /* PlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB9222099A1F200966991 /* PlayScene.swift */; };
 		A9ACB9252099A1F200966991 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB9242099A1F200966991 /* GameViewController.swift */; };
 		A9ACB9282099A1F200966991 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9ACB9262099A1F200966991 /* Main.storyboard */; };
@@ -49,12 +43,9 @@
 		A9ACB99C209A0DE100966991 /* CGFloat+MathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB99B209A0DE100966991 /* CGFloat+MathUtils.swift */; };
 		A9ACB99F209A0F4D00966991 /* GameSceneAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB99E209A0F4D00966991 /* GameSceneAdapter.swift */; };
 		A9B9C729209EE31C0045548D /* TitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B9C728209EE31C0045548D /* TitleScene.swift */; };
-		A9B9C72B209EE3290045548D /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9B9C72A209EE3290045548D /* TitleScene.sks */; };
 		A9B9F83620B449EC00FC0BDA /* Playable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B9F83520B449EC00FC0BDA /* Playable.swift */; };
 		A9CC5C31209EFA0600040E61 /* SKTexture+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CC5C30209EFA0600040E61 /* SKTexture+Gradient.swift */; };
 		A9CC5C3720A0216500040E61 /* ControlInputDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CC5C3620A0216500040E61 /* ControlInputDirection.swift */; };
-		A9CC5C3A20A02D0A00040E61 /* ResumeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9CC5C3920A02D0A00040E61 /* ResumeScene.sks */; };
-		A9CC5C3D20A030A900040E61 /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9CC5C3C20A030A900040E61 /* GameOverScene.sks */; };
 		A9D0897920B97CA800BE2896 /* ItemShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D0897820B97CA800BE2896 /* ItemShopScene.swift */; };
 		A9D4CFD7209AF515006461AF /* SKScene+SpriteUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4CFD6209AF515006461AF /* SKScene+SpriteUploader.swift */; };
 		A9D4CFD9209AF53E006461AF /* SKTextureAtlas+FrameUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4CFD8209AF53E006461AF /* SKTextureAtlas+FrameUploader.swift */; };
@@ -62,15 +53,26 @@
 		A9D4CFDD209B3A50006461AF /* ColumnNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4CFDC209B3A4F006461AF /* ColumnNode.swift */; };
 		A9D4CFE0209B4040006461AF /* PipeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4CFDF209B4040006461AF /* PipeFactory.swift */; };
 		A9E14DAF20B1764B0075D725 /* SKEmitterNode+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E14DAE20B1764B0075D725 /* SKEmitterNode+Utils.swift */; };
-		A9EBCCAA20B9785400BB08A3 /* ItemShopScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9EBCCA820B9785400BB08A3 /* ItemShopScene iPad.sks */; };
-		A9EBCCAB20B9785400BB08A3 /* ItemShopScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9EBCCA920B9785400BB08A3 /* ItemShopScene.sks */; };
-		A9EC755E20A6CB03007C42EC /* AtmosphereScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9EC755D20A6CB03007C42EC /* AtmosphereScene.sks */; };
 		A9EC756420A6D3E9007C42EC /* AtmosphereScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC756320A6D3E9007C42EC /* AtmosphereScene.swift */; };
 		A9EC756820A6E479007C42EC /* RoutingUtilityScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC756720A6E479007C42EC /* RoutingUtilityScene.swift */; };
 		CA29A1922ACF755B00470B9F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA29A1912ACF755B00470B9F /* GameKit.framework */; };
 		CA47A3C12ACB5E3100E8ED52 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */; };
 		CA7047542AE9C33B0020A04A /* home-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA7047532AE9C33B0020A04A /* home-audio.wav */; };
 		CAABA6322AEB1E8C00B9810E /* DefaultGifNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAABA6312AEB1E8C00B9810E /* DefaultGifNodes.swift */; };
+		CAABA6872AEB25CF00B9810E /* TitleScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67D2AEB25CF00B9810E /* TitleScene iPad.sks */; };
+		CAABA6882AEB25CF00B9810E /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67E2AEB25CF00B9810E /* TitleScene.sks */; };
+		CAABA6892AEB25CF00B9810E /* PlayScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67F2AEB25CF00B9810E /* PlayScene iPad.sks */; };
+		CAABA68A2AEB25CF00B9810E /* ScoreScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6802AEB25CF00B9810E /* ScoreScene.sks */; };
+		CAABA68B2AEB25CF00B9810E /* ItemShopScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6812AEB25CF00B9810E /* ItemShopScene.sks */; };
+		CAABA68C2AEB25CF00B9810E /* PlayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6822AEB25CF00B9810E /* PlayScene.sks */; };
+		CAABA68D2AEB25CF00B9810E /* AtmosphereScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6832AEB25CF00B9810E /* AtmosphereScene.sks */; };
+		CAABA68E2AEB25CF00B9810E /* AtmosphereScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6842AEB25CF00B9810E /* AtmosphereScene iPad.sks */; };
+		CAABA68F2AEB25CF00B9810E /* ItemShopScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6852AEB25CF00B9810E /* ItemShopScene iPad.sks */; };
+		CAABA6902AEB25CF00B9810E /* ScoreScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6862AEB25CF00B9810E /* ScoreScene iPad.sks */; };
+		CAABA6962AEB25EC00B9810E /* ResumeScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6922AEB25EC00B9810E /* ResumeScene iPad.sks */; };
+		CAABA6972AEB25EC00B9810E /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6932AEB25EC00B9810E /* GameOverScene.sks */; };
+		CAABA6982AEB25EC00B9810E /* ResumeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6942AEB25EC00B9810E /* ResumeScene.sks */; };
+		CAABA6992AEB25EC00B9810E /* GameOverScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6952AEB25EC00B9810E /* GameOverScene iPad.sks */; };
 		CAC5FBA12AE9B52D006913FE /* game-over-noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */; };
 		CAC5FBA32AE9B586006913FE /* points-noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA22AE9B586006913FE /* points-noise.wav */; };
 		CAC5FBA52AE9B65B006913FE /* in-game-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */; };
@@ -101,14 +103,8 @@
 		A950485F20BAE29C0020ECD9 /* eldy-bird.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "eldy-bird.gif"; sourceTree = "<group>"; };
 		A950486020BAE29C0020ECD9 /* stavvy-raven.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "stavvy-raven.gif"; sourceTree = "<group>"; };
 		A992D8B520A03B90003A9998 /* GameOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverlay.swift; sourceTree = "<group>"; };
-		A9A3139820B0006400B36175 /* TitleScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "TitleScene iPad.sks"; sourceTree = "<group>"; };
-		A9A3139C20B0226D00B36175 /* AtmosphereScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "AtmosphereScene iPad.sks"; sourceTree = "<group>"; };
-		A9A313A020B0239100B36175 /* PlayScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "PlayScene iPad.sks"; sourceTree = "<group>"; };
-		A9A313A220B0263C00B36175 /* ResumeScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "ResumeScene iPad.sks"; sourceTree = "<group>"; };
-		A9A313A420B026E000B36175 /* GameOverScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "GameOverScene iPad.sks"; sourceTree = "<group>"; };
 		A9ACB9192099A1F200966991 /* StavvyBird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StavvyBird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9ACB91C2099A1F200966991 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A9ACB91E2099A1F200966991 /* PlayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayScene.sks; sourceTree = "<group>"; };
 		A9ACB9222099A1F200966991 /* PlayScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayScene.swift; sourceTree = "<group>"; };
 		A9ACB9242099A1F200966991 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A9ACB9272099A1F200966991 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -124,12 +120,9 @@
 		A9ACB99B209A0DE100966991 /* CGFloat+MathUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+MathUtils.swift"; sourceTree = "<group>"; };
 		A9ACB99E209A0F4D00966991 /* GameSceneAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneAdapter.swift; sourceTree = "<group>"; };
 		A9B9C728209EE31C0045548D /* TitleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScene.swift; sourceTree = "<group>"; };
-		A9B9C72A209EE3290045548D /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TitleScene.sks; sourceTree = "<group>"; };
 		A9B9F83520B449EC00FC0BDA /* Playable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playable.swift; sourceTree = "<group>"; };
 		A9CC5C30209EFA0600040E61 /* SKTexture+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKTexture+Gradient.swift"; sourceTree = "<group>"; };
 		A9CC5C3620A0216500040E61 /* ControlInputDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlInputDirection.swift; sourceTree = "<group>"; };
-		A9CC5C3920A02D0A00040E61 /* ResumeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ResumeScene.sks; sourceTree = "<group>"; };
-		A9CC5C3C20A030A900040E61 /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
 		A9D0897820B97CA800BE2896 /* ItemShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemShopScene.swift; sourceTree = "<group>"; };
 		A9D4CFD6209AF515006461AF /* SKScene+SpriteUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKScene+SpriteUploader.swift"; sourceTree = "<group>"; };
 		A9D4CFD8209AF53E006461AF /* SKTextureAtlas+FrameUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKTextureAtlas+FrameUploader.swift"; sourceTree = "<group>"; };
@@ -137,9 +130,6 @@
 		A9D4CFDC209B3A4F006461AF /* ColumnNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnNode.swift; sourceTree = "<group>"; };
 		A9D4CFDF209B4040006461AF /* PipeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipeFactory.swift; sourceTree = "<group>"; };
 		A9E14DAE20B1764B0075D725 /* SKEmitterNode+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKEmitterNode+Utils.swift"; sourceTree = "<group>"; };
-		A9EBCCA820B9785400BB08A3 /* ItemShopScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "ItemShopScene iPad.sks"; sourceTree = "<group>"; };
-		A9EBCCA920B9785400BB08A3 /* ItemShopScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ItemShopScene.sks; sourceTree = "<group>"; };
-		A9EC755D20A6CB03007C42EC /* AtmosphereScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AtmosphereScene.sks; sourceTree = "<group>"; };
 		A9EC756320A6D3E9007C42EC /* AtmosphereScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtmosphereScene.swift; sourceTree = "<group>"; };
 		A9EC756720A6E479007C42EC /* RoutingUtilityScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingUtilityScene.swift; sourceTree = "<group>"; };
 		CA29A1912ACF755B00470B9F /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -148,6 +138,20 @@
 		CA7047532AE9C33B0020A04A /* home-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "home-audio.wav"; sourceTree = "<group>"; };
 		CA94BB7D2AD8D7AE005AAF83 /* Stavvy Birds.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Stavvy Birds.storekit"; sourceTree = "<group>"; };
 		CAABA6312AEB1E8C00B9810E /* DefaultGifNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultGifNodes.swift; sourceTree = "<group>"; };
+		CAABA67D2AEB25CF00B9810E /* TitleScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "TitleScene iPad.sks"; sourceTree = "<group>"; };
+		CAABA67E2AEB25CF00B9810E /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TitleScene.sks; sourceTree = "<group>"; };
+		CAABA67F2AEB25CF00B9810E /* PlayScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "PlayScene iPad.sks"; sourceTree = "<group>"; };
+		CAABA6802AEB25CF00B9810E /* ScoreScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ScoreScene.sks; sourceTree = "<group>"; };
+		CAABA6812AEB25CF00B9810E /* ItemShopScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ItemShopScene.sks; sourceTree = "<group>"; };
+		CAABA6822AEB25CF00B9810E /* PlayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayScene.sks; sourceTree = "<group>"; };
+		CAABA6832AEB25CF00B9810E /* AtmosphereScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AtmosphereScene.sks; sourceTree = "<group>"; };
+		CAABA6842AEB25CF00B9810E /* AtmosphereScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "AtmosphereScene iPad.sks"; sourceTree = "<group>"; };
+		CAABA6852AEB25CF00B9810E /* ItemShopScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "ItemShopScene iPad.sks"; sourceTree = "<group>"; };
+		CAABA6862AEB25CF00B9810E /* ScoreScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "ScoreScene iPad.sks"; sourceTree = "<group>"; };
+		CAABA6922AEB25EC00B9810E /* ResumeScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "ResumeScene iPad.sks"; sourceTree = "<group>"; };
+		CAABA6932AEB25EC00B9810E /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
+		CAABA6942AEB25EC00B9810E /* ResumeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ResumeScene.sks; sourceTree = "<group>"; };
+		CAABA6952AEB25EC00B9810E /* GameOverScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "GameOverScene iPad.sks"; sourceTree = "<group>"; };
 		CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "game-over-noise.wav"; path = "StavvyBird/Assets/Sound/Game/Sound/game-over-noise.wav"; sourceTree = SOURCE_ROOT; };
 		CAC5FBA22AE9B586006913FE /* points-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "points-noise.wav"; sourceTree = "<group>"; };
 		CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "in-game-audio.wav"; sourceTree = "<group>"; };
@@ -441,8 +445,8 @@
 		A9CC5C3E20A0361700040E61 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				A9EC756220A6D10F007C42EC /* Main Scenes */,
-				A9EC756120A6D101007C42EC /* Game Overlay */,
+				CAABA6912AEB25D700B9810E /* extra scenes */,
+				CAABA67C2AEB25C200B9810E /* New Group */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -455,30 +459,32 @@
 			path = Factories;
 			sourceTree = "<group>";
 		};
-		A9EC756120A6D101007C42EC /* Game Overlay */ = {
+		CAABA67C2AEB25C200B9810E /* New Group */ = {
 			isa = PBXGroup;
 			children = (
-				A9CC5C3920A02D0A00040E61 /* ResumeScene.sks */,
-				A9A313A220B0263C00B36175 /* ResumeScene iPad.sks */,
-				A9CC5C3C20A030A900040E61 /* GameOverScene.sks */,
-				A9A313A420B026E000B36175 /* GameOverScene iPad.sks */,
+				CAABA6842AEB25CF00B9810E /* AtmosphereScene iPad.sks */,
+				CAABA6832AEB25CF00B9810E /* AtmosphereScene.sks */,
+				CAABA6852AEB25CF00B9810E /* ItemShopScene iPad.sks */,
+				CAABA6812AEB25CF00B9810E /* ItemShopScene.sks */,
+				CAABA67F2AEB25CF00B9810E /* PlayScene iPad.sks */,
+				CAABA6822AEB25CF00B9810E /* PlayScene.sks */,
+				CAABA6862AEB25CF00B9810E /* ScoreScene iPad.sks */,
+				CAABA6802AEB25CF00B9810E /* ScoreScene.sks */,
+				CAABA67D2AEB25CF00B9810E /* TitleScene iPad.sks */,
+				CAABA67E2AEB25CF00B9810E /* TitleScene.sks */,
 			);
-			path = "Game Overlay";
+			path = "New Group";
 			sourceTree = "<group>";
 		};
-		A9EC756220A6D10F007C42EC /* Main Scenes */ = {
+		CAABA6912AEB25D700B9810E /* extra scenes */ = {
 			isa = PBXGroup;
 			children = (
-				A9B9C72A209EE3290045548D /* TitleScene.sks */,
-				A9A3139820B0006400B36175 /* TitleScene iPad.sks */,
-				A9ACB91E2099A1F200966991 /* PlayScene.sks */,
-				A9A313A020B0239100B36175 /* PlayScene iPad.sks */,
-				A9EC755D20A6CB03007C42EC /* AtmosphereScene.sks */,
-				A9A3139C20B0226D00B36175 /* AtmosphereScene iPad.sks */,
-				A9EBCCA920B9785400BB08A3 /* ItemShopScene.sks */,
-				A9EBCCA820B9785400BB08A3 /* ItemShopScene iPad.sks */,
+				CAABA6952AEB25EC00B9810E /* GameOverScene iPad.sks */,
+				CAABA6932AEB25EC00B9810E /* GameOverScene.sks */,
+				CAABA6922AEB25EC00B9810E /* ResumeScene iPad.sks */,
+				CAABA6942AEB25EC00B9810E /* ResumeScene.sks */,
 			);
-			path = "Main Scenes";
+			path = "extra scenes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -545,34 +551,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9EBCCAB20B9785400BB08A3 /* ItemShopScene.sks in Resources */,
+				CAABA68C2AEB25CF00B9810E /* PlayScene.sks in Resources */,
 				A9ACB96B2099B42300966991 /* Actions.sks in Resources */,
 				A903943620AD9D1200376CC3 /* SnowParticleEffect.sks in Resources */,
 				A9ACB9282099A1F200966991 /* Main.storyboard in Resources */,
 				A9ACB9972099F19E00966991 /* .gitignore in Resources */,
 				A950486520BAE29C0020ECD9 /* stavvy-raven.gif in Resources */,
-				A9EC755E20A6CB03007C42EC /* AtmosphereScene.sks in Resources */,
-				A9A3139920B0006400B36175 /* TitleScene iPad.sks in Resources */,
 				A950486420BAE29C0020ECD9 /* eldy-bird.gif in Resources */,
-				A9ACB91F2099A1F200966991 /* PlayScene.sks in Resources */,
+				CAABA6982AEB25EC00B9810E /* ResumeScene.sks in Resources */,
 				A9ACB92A2099A1F300966991 /* Assets.xcassets in Resources */,
 				CAC5FBA32AE9B586006913FE /* points-noise.wav in Resources */,
-				A9A313A320B0263C00B36175 /* ResumeScene iPad.sks in Resources */,
-				A9EBCCAA20B9785400BB08A3 /* ItemShopScene iPad.sks in Resources */,
-				A9CC5C3A20A02D0A00040E61 /* ResumeScene.sks in Resources */,
-				A9B9C72B209EE3290045548D /* TitleScene.sks in Resources */,
+				CAABA6892AEB25CF00B9810E /* PlayScene iPad.sks in Resources */,
+				CAABA6872AEB25CF00B9810E /* TitleScene iPad.sks in Resources */,
 				CAC5FBA52AE9B65B006913FE /* in-game-audio.wav in Resources */,
+				CAABA6902AEB25CF00B9810E /* ScoreScene iPad.sks in Resources */,
+				CAABA6962AEB25EC00B9810E /* ResumeScene iPad.sks in Resources */,
 				CA7047542AE9C33B0020A04A /* home-audio.wav in Resources */,
+				CAABA68E2AEB25CF00B9810E /* AtmosphereScene iPad.sks in Resources */,
+				CAABA6882AEB25CF00B9810E /* TitleScene.sks in Resources */,
+				CAABA68D2AEB25CF00B9810E /* AtmosphereScene.sks in Resources */,
 				A9ACB92D2099A1F300966991 /* LaunchScreen.storyboard in Resources */,
 				A950486120BAE29C0020ECD9 /* stavvy-rat.gif in Resources */,
-				A9A313A120B0239100B36175 /* PlayScene iPad.sks in Resources */,
+				CAABA6992AEB25EC00B9810E /* GameOverScene iPad.sks in Resources */,
+				CAABA68F2AEB25CF00B9810E /* ItemShopScene iPad.sks in Resources */,
 				CAC5FBA12AE9B52D006913FE /* game-over-noise.wav in Resources */,
-				A9A3139D20B0226D00B36175 /* AtmosphereScene iPad.sks in Resources */,
 				A950486320BAE29C0020ECD9 /* stavvy-gold.gif in Resources */,
-				A9A313A520B026E000B36175 /* GameOverScene iPad.sks in Resources */,
 				A950485A20BAE2170020ECD9 /* stavvy-pig.gif in Resources */,
 				A903943B20AD9E7900376CC3 /* Particles.xcassets in Resources */,
-				A9CC5C3D20A030A900040E61 /* GameOverScene.sks in Resources */,
+				CAABA68B2AEB25CF00B9810E /* ItemShopScene.sks in Resources */,
+				CAABA6972AEB25EC00B9810E /* GameOverScene.sks in Resources */,
+				CAABA68A2AEB25CF00B9810E /* ScoreScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
