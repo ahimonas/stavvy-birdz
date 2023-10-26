@@ -1,16 +1,16 @@
 //
-//  PipeNode.swift
+//  ColumnNode.swift
 //  StavvyBird
 //
 
 import SpriteKit
 
-typealias IsTopPipe = Bool
+typealias typeIsTopColumn = Bool
 
-class PipeNode: SKSpriteNode {
+class ColumnNode: SKSpriteNode {
     
     
-    init?(textures: (pipe: String, cap: String), of size: CGSize, side: IsTopPipe) {
+    init?(textures: (pipe: String, cap: String), of size: CGSize, side: typeIsTopColumn) {
         
         guard let texture = UIImage(named: textures.pipe)?.cgImage else {
             return nil

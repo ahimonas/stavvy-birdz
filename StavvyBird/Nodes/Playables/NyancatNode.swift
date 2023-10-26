@@ -6,11 +6,9 @@ import Foundation
 
 class NyancatNode: SKNode, Updatable, Playable, PhysicsContactable {
     
-    // MARK: - Conformance to Updatable, Playable & PhysicsContactable protocols
 
     var size: CGSize
     
-    // MARK: - Conformance to Updatable protocol
     
     var delta: TimeInterval = 0
     var previousTiming: TimeInterval = 0
@@ -37,12 +35,10 @@ class NyancatNode: SKNode, Updatable, Playable, PhysicsContactable {
     
     var collisionBitMask: UInt32 = PhysicsCategories.pipe.rawValue | PhysicsCategories.boundary.rawValue
 
-    // MARK: - Private properties
     
     private let impact = UIImpactFeedbackGenerator(style: .medium)
     private var animatedGifNode: SKSpriteNode
     
-    // MARK: - Initialisers
     
     init(animatedGif name: String, correctAspectRatioFor width: CGFloat) {
         animatedGifNode = SKSpriteNode(withAnimatedGif: name, correctAspectRatioFor: width)
@@ -68,7 +64,6 @@ class NyancatNode: SKNode, Updatable, Playable, PhysicsContactable {
         preparePlayer()
     }
     
-    // MARK: - Private methods
     
     private func preparePlayer() {
         animatedGifNode.name = self.name
@@ -87,7 +82,6 @@ class NyancatNode: SKNode, Updatable, Playable, PhysicsContactable {
         self.addChild(animatedGifNode)
     }
     
-    // MARK: - Conformance to Updatable protocol
     
     func update(_ timeInterval: CFTimeInterval) {
         delta = previousTiming == 0.0 ? 0.0 : timeInterval - previousTiming
@@ -113,7 +107,6 @@ class NyancatNode: SKNode, Updatable, Playable, PhysicsContactable {
 
 
 extension NyancatNode: Touchable {
-    // MARK: - Conformance to Touchable protocol
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !shouldAcceptTouches { return }

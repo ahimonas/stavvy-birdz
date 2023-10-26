@@ -4,7 +4,7 @@
 import UIKit
 import SpriteKit
 
-class InfiniteSpriteScrollNode: SKNode {
+class ContinuousBackground: SKNode {
     
     var willRenew: Bool = true
     let key = "background"
@@ -76,7 +76,7 @@ class InfiniteSpriteScrollNode: SKNode {
     
 }
 
-extension InfiniteSpriteScrollNode: Updatable {
+extension ContinuousBackground: Updatable {
     func update(_ currentTime: TimeInterval) {
         let computedUpdatable = computeUpdatable(currentTime: currentTime)
         delta = computedUpdatable.delta
