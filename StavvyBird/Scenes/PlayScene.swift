@@ -6,12 +6,14 @@ import SpriteKit
 import GameplayKit
 import GameKit
 
+
+//Game
 class PlayScene: SKScene {
 
     static var viewportSize: CGSize = .zero
         
     lazy var stateMachine: GKStateMachine = GKStateMachine(states: [
-        PlayingState(adapter: sceneAdapeter!),
+        InGameState(adapter: sceneAdapeter!),
         GameOverState(scene: sceneAdapeter!),
         PausedState(scene: self, adapter: sceneAdapeter!)
         ])
@@ -31,7 +33,7 @@ class PlayScene: SKScene {
         self.previousTiming = 0
         sceneAdapeter = GameSceneAdapter(with: self)
         sceneAdapeter?.myGkStateMach = stateMachine
-        sceneAdapeter?.myGkStateMach?.enter(PlayingState.self)
+        sceneAdapeter?.myGkStateMach?.enter(InGameState.self)
     }
     
     override func didMove(to view: SKView) {
@@ -93,7 +95,7 @@ extension PlayScene: ButtonNodeResponderType {
         case .pause:
             sceneAdapeter?.myGkStateMach?.enter(PausedState.self) //showLeaderBoard();
         case .resume:
-            sceneAdapeter?.myGkStateMach?.enter(PlayingState.self)
+            sceneAdapeter?.myGkStateMach?.enter(InGameState.self)
         case .home:
             let sceneId = Scenes.title.getName()
             guard let gameScene = PlayScene(fileNamed: sceneId) else {
@@ -105,7 +107,7 @@ extension PlayScene: ButtonNodeResponderType {
             transition.pausesOutgoingScene = false
             self.view?.presentScene(gameScene, transition: transition)
         case .retry:
-            sceneAdapeter?.myGkStateMach?.enter(PlayingState.self)
+            sceneAdapeter?.myGkStateMach?.enter(InGameState.self)
         default:
             debugPrint("Unable to invoke")
             

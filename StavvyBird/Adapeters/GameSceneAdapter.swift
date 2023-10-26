@@ -63,22 +63,27 @@ class GameSceneAdapter: NSObject, PlaySceneProtocol {
     var gameButtons = [ButtonNode]()
     weak var scene: SKScene?
 
-    var overlay: SceneOverlay? {
+    /*
+     let myCurrBackground: SKSpriteNode  //change these nodes
+     let myCurrSpritNod: SKSpriteNode
+     */
+    
+    var overlay: GameOverlay? {
         didSet {
             gameButtons = []
             
-            oldValue?.backgroundNode.run(SKAction.fadeOut(withDuration: overlayDuration)) {
+            oldValue?.myCurrBackground.run(SKAction.fadeOut(withDuration: overlayDuration)) {
                 debugPrint(#function + " change background")
-                oldValue?.backgroundNode.removeFromParent()
+                oldValue?.myCurrBackground.removeFromParent()
             }
             
             if let overlay = overlay, let scene = scene {
                 debugPrint(#function + "scene add the overly")
-                overlay.backgroundNode.removeFromParent()
-                scene.addChild(overlay.backgroundNode)
+                overlay.myCurrBackground.removeFromParent()
+                scene.addChild(overlay.myCurrBackground)
                 
-                overlay.backgroundNode.alpha = 1.0
-                overlay.backgroundNode.run(SKAction.fadeIn(withDuration: overlayDuration))
+                overlay.myCurrBackground.alpha = 1.0
+                overlay.myCurrBackground.run(SKAction.fadeIn(withDuration: overlayDuration))
                 
                 gameButtons = scene.getAllButtons()
             }

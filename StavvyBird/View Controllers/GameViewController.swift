@@ -14,10 +14,10 @@ import GameKit
 enum Scenes: String {
     case title = "TitleScene"
     case game = "PlayScene"
-    case characters = "CharactersScene"
-    case setting = "SettingsScene"
-    case pause = "PauseScene"
-    case failed = "FailedScene"
+    case characters = "ItemShopScene"
+    case setting = "AtmosphereScene"
+    case pause = "ResumeScene"
+    case failed = "GameOverScene"
 }
 
 extension Scenes {

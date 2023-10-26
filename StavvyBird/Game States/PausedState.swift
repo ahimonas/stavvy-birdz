@@ -13,13 +13,13 @@ class PausedState: GKState {
     
     unowned var levelScene: SKScene
     unowned var adapter: GameSceneAdapter
-    var overlay: SceneOverlay!
+    var overlay: GameOverlay!
         
     init(scene: SKScene, adapter: GameSceneAdapter) {
         self.levelScene = scene
         self.adapter = adapter
         super.init()
-        overlay = SceneOverlay(overlaySceneFileName: overlaySceneFileName, zPosition: 1000)
+        overlay = GameOverlay(overlaySceneFileName: overlaySceneFileName, zPosition: 1000)
     }
         
     override func didEnter(from previousState: GKState?) {

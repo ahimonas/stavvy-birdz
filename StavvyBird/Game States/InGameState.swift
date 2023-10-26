@@ -6,7 +6,7 @@
 import GameplayKit
 import SpriteKit
 
-class PlayingState: GKState {
+class InGameState: GKState {
         
     unowned var adapter: GameSceneAdapter
     
