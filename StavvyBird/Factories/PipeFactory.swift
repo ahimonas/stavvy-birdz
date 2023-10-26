@@ -8,8 +8,8 @@ import SpriteKit
 struct PipeFactory {
 
     
-    typealias PipeParts = (top: PipeNode, bottom: PipeNode, threshold: SKSpriteNode)
-    typealias DoublePipeParts = (top: PipeNode, bottom: PipeNode, midUp: PipeNode, midDown: PipeNode, threshold: SKSpriteNode)
+    typealias PipeParts = (top: PipeNode, bottom: PipeNode, myCurrThresh: SKSpriteNode)
+    typealias DoublePipeParts = (top: PipeNode, bottom: PipeNode, midUp: PipeNode, midDown: PipeNode, myCurrThresh: SKSpriteNode)
     
     
     static let pipeWidth: CGFloat = 102
@@ -19,7 +19,7 @@ struct PipeFactory {
     private static var doubleRangeHeight: CGFloat {
         return CGFloat.range(min: 41, max: 201)
     }
-    static let thresholdWidth: CGFloat = 21
+    static let myCurrThreshWidth: CGFloat = 21
     static let zPosition: CGFloat = 21
     
     
@@ -64,12 +64,12 @@ struct PipeFactory {
             return nil
         }
         
-        let pipeNode = SKSpriteNode(texture: nil, color: .clear, size: pipeParts.top.size)
-        pipeNode.addChild(pipeParts.top)
-        pipeNode.addChild(pipeParts.threshold)
-        pipeNode.addChild(pipeParts.bottom)
+        let myCurrPipNod = SKSpriteNode(texture: nil, color: .clear, size: pipeParts.top.size)
+        myCurrPipNod.addChild(pipeParts.top)
+        myCurrPipNod.addChild(pipeParts.myCurrThresh)
+        myCurrPipNod.addChild(pipeParts.bottom)
         
-        return pipeNode
+        return myCurrPipNod
     }
     
     private static func producseDoublePipe(sceneSize: CGSize) -> SKSpriteNode? {
@@ -77,14 +77,14 @@ struct PipeFactory {
             return nil
         }
         
-        let pipeNode = SKSpriteNode(texture: nil, color: .clear, size: pipeParts.top.size)
-        pipeNode.addChild(pipeParts.top)
-        pipeNode.addChild(pipeParts.threshold)
-        pipeNode.addChild(pipeParts.bottom)
-        pipeNode.addChild(pipeParts.midUp)
-        pipeNode.addChild(pipeParts.midDown)
+        let myCurrPipNod = SKSpriteNode(texture: nil, color: .clear, size: pipeParts.top.size)
+        myCurrPipNod.addChild(pipeParts.top)
+        myCurrPipNod.addChild(pipeParts.myCurrThresh)
+        myCurrPipNod.addChild(pipeParts.bottom)
+        myCurrPipNod.addChild(pipeParts.midUp)
+        myCurrPipNod.addChild(pipeParts.midDown)
         
-        return pipeNode
+        return myCurrPipNod
     }
     
     
@@ -103,27 +103,26 @@ struct PipeFactory {
         }
         
         // Threshold node - basically gap for the player bird
-        let threshold = SKSpriteNode(color: .clear, size: CGSize(width: thresholdWidth, height: CGFloat.range(min: 180, max: 350)))
-        threshold.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + threshold.size.height / 2)
+        let myCurrThresh = SKSpriteNode(color: .clear, size: CGSize(width: myCurrThreshWidth, height: CGFloat.range(min: 180, max: 350)))
+        myCurrThresh.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + myCurrThresh.size.height / 2)
         
-        threshold.physicsBody = SKPhysicsBody(rectangleOf: threshold.size)
-        threshold.physicsBody?.categoryBitMask =  PhysicsCategories.gap.rawValue
-        threshold.physicsBody?.contactTestBitMask =  PhysicsCategories.player.rawValue
-        threshold.physicsBody?.collisionBitMask = 0
-        threshold.physicsBody?.isDynamic = false
-        threshold.zPosition = zPosition
+        myCurrThresh.physicsBody = SKPhysicsBody(rectangleOf: myCurrThresh.size)
+        myCurrThresh.physicsBody?.categoryBitMask =  PhysicsCategories.gap.rawValue
+        myCurrThresh.physicsBody?.contactTestBitMask =  PhysicsCategories.player.rawValue
+        myCurrThresh.physicsBody?.collisionBitMask = 0
+        myCurrThresh.physicsBody?.isDynamic = false
+        myCurrThresh.zPosition = zPosition
         
-        // Top pipe
-        let topHeight = sceneSize.height - (pipeBottom?.size.height)! - threshold.size.height
+        let topHeight = sceneSize.height - (pipeBottom?.size.height)! - myCurrThresh.size.height
         let pipeTopSize = CGSize(width: pipeWidth, height: topHeight)
         let pipeTop = PipeNode(textures: (pipe: "pipe-green", cap: "cap-green"), of: pipeTopSize, side: true)
-        pipeTop?.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + threshold.size.height + (pipeTop?.size.height)! / 2)
+        pipeTop?.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + myCurrThresh.size.height + (pipeTop?.size.height)! / 2)
         
         guard let unwrappedPipeTop = pipeTop else {
             return nil
         }
         
-        return PipeParts(top: unwrappedPipeTop, bottom: unwrappedPipeBottom, threshold: threshold)
+        return PipeParts(top: unwrappedPipeTop, bottom: unwrappedPipeBottom, myCurrThresh: myCurrThresh)
     }
 
     private static func doublePipeParts(for sceneSize: CGSize) -> DoublePipeParts? {
@@ -139,22 +138,22 @@ struct PipeFactory {
             return nil
         }
         
-        // Threshold node
-        let threshold = SKSpriteNode(color: .clear, size: CGSize(width: thresholdWidth, height: CGFloat.range(min: 700, max: 1200)))
-        threshold.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + threshold.size.height / 2)
+        // Threshold node ? THRESH MEANING GAP ?
+        let myCurrThresh = SKSpriteNode(color: .clear, size: CGSize(width: myCurrThreshWidth, height: CGFloat.range(min: 700, max: 1200)))
+        myCurrThresh.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + myCurrThresh.size.height / 2)
         
-        threshold.physicsBody = SKPhysicsBody(rectangleOf: threshold.size)
-        threshold.physicsBody?.categoryBitMask = PhysicsCategories.gap.rawValue
-        threshold.physicsBody?.contactTestBitMask =  PhysicsCategories.player.rawValue
-        threshold.physicsBody?.collisionBitMask = 0
-        threshold.physicsBody?.isDynamic = false
-        threshold.zPosition = zPosition
+        myCurrThresh.physicsBody = SKPhysicsBody(rectangleOf: myCurrThresh.size)
+        myCurrThresh.physicsBody?.categoryBitMask = PhysicsCategories.gap.rawValue
+        myCurrThresh.physicsBody?.contactTestBitMask =  PhysicsCategories.player.rawValue
+        myCurrThresh.physicsBody?.collisionBitMask = 0
+        myCurrThresh.physicsBody?.isDynamic = false
+        myCurrThresh.zPosition = zPosition
         
         // Top pipe
-        let topHeight = sceneSize.height - (pipeBottom?.size.height)! - threshold.size.height
+        let topHeight = sceneSize.height - (pipeBottom?.size.height)! - myCurrThresh.size.height
         let pipeTopSize = CGSize(width: pipeWidth, height: topHeight)
         let pipeTop = PipeNode(textures: (pipe: "pipe-green", cap: "cap-green"), of: pipeTopSize, side: true)
-        pipeTop?.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + threshold.size.height + (pipeTop?.size.height)! / 2)
+        pipeTop?.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + myCurrThresh.size.height + (pipeTop?.size.height)! / 2)
         
         guard let unwrappedPipeTop = pipeTop else {
             return nil
@@ -180,7 +179,7 @@ struct PipeFactory {
             return nil
         }
         
-        return DoublePipeParts(top: unwrappedPipeTop, bottom: unwerappedPipeBottom, midUp: unwrappedPipeMidUp, midDown: unwrappedPipeMidDown, threshold: threshold)
+        return DoublePipeParts(top: unwrappedPipeTop, bottom: unwerappedPipeBottom, midUp: unwrappedPipeMidUp, midDown: unwrappedPipeMidDown, myCurrThresh: myCurrThresh)
     }
     
     
