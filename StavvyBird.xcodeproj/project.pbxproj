@@ -32,7 +32,6 @@
 		A9ACB9232099A1F200966991 /* PlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB9222099A1F200966991 /* PlayScene.swift */; };
 		A9ACB9252099A1F200966991 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB9242099A1F200966991 /* GameViewController.swift */; };
 		A9ACB9282099A1F200966991 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9ACB9262099A1F200966991 /* Main.storyboard */; };
-		A9ACB92A2099A1F300966991 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9ACB9292099A1F300966991 /* Assets.xcassets */; };
 		A9ACB92D2099A1F300966991 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9ACB92B2099A1F300966991 /* LaunchScreen.storyboard */; };
 		A9ACB96B2099B42300966991 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9ACB96A2099B42300966991 /* Actions.sks */; };
 		A9ACB9872099E74600966991 /* BirdNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB9862099E74600966991 /* BirdNode.swift */; };
@@ -73,6 +72,7 @@
 		CAABA6972AEB25EC00B9810E /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6932AEB25EC00B9810E /* GameOverScene.sks */; };
 		CAABA6982AEB25EC00B9810E /* ResumeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6942AEB25EC00B9810E /* ResumeScene.sks */; };
 		CAABA6992AEB25EC00B9810E /* GameOverScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6952AEB25EC00B9810E /* GameOverScene iPad.sks */; };
+		CAABA6CF2AEB2C7100B9810E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6CE2AEB2C7100B9810E /* Assets.xcassets */; };
 		CAC5FBA12AE9B52D006913FE /* game-over-noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */; };
 		CAC5FBA32AE9B586006913FE /* points-noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA22AE9B586006913FE /* points-noise.wav */; };
 		CAC5FBA52AE9B65B006913FE /* in-game-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */; };
@@ -108,7 +108,6 @@
 		A9ACB9222099A1F200966991 /* PlayScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayScene.swift; sourceTree = "<group>"; };
 		A9ACB9242099A1F200966991 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A9ACB9272099A1F200966991 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A9ACB9292099A1F300966991 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9ACB92C2099A1F300966991 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9ACB92E2099A1F300966991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9ACB96A2099B42300966991 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -152,6 +151,7 @@
 		CAABA6932AEB25EC00B9810E /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
 		CAABA6942AEB25EC00B9810E /* ResumeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ResumeScene.sks; sourceTree = "<group>"; };
 		CAABA6952AEB25EC00B9810E /* GameOverScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "GameOverScene iPad.sks"; sourceTree = "<group>"; };
+		CAABA6CE2AEB2C7100B9810E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "game-over-noise.wav"; path = "StavvyBird/Assets/Sound/Game/Sound/game-over-noise.wav"; sourceTree = SOURCE_ROOT; };
 		CAC5FBA22AE9B586006913FE /* points-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "points-noise.wav"; sourceTree = "<group>"; };
 		CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "in-game-audio.wav"; sourceTree = "<group>"; };
@@ -348,7 +348,7 @@
 				A903943720AD9D1A00376CC3 /* Particles */,
 				A9ACB96C2099B46E00966991 /* Actions */,
 				A9CC5C3E20A0361700040E61 /* Scenes */,
-				A9ACB9292099A1F300966991 /* Assets.xcassets */,
+				CAABA6CE2AEB2C7100B9810E /* Assets.xcassets */,
 				A9ACB95B2099B14A00966991 /* Sound */,
 			);
 			path = Assets;
@@ -556,10 +556,10 @@
 				A903943620AD9D1200376CC3 /* SnowParticleEffect.sks in Resources */,
 				A9ACB9282099A1F200966991 /* Main.storyboard in Resources */,
 				A9ACB9972099F19E00966991 /* .gitignore in Resources */,
+				CAABA6CF2AEB2C7100B9810E /* Assets.xcassets in Resources */,
 				A950486520BAE29C0020ECD9 /* stavvy-raven.gif in Resources */,
 				A950486420BAE29C0020ECD9 /* eldy-bird.gif in Resources */,
 				CAABA6982AEB25EC00B9810E /* ResumeScene.sks in Resources */,
-				A9ACB92A2099A1F300966991 /* Assets.xcassets in Resources */,
 				CAC5FBA32AE9B586006913FE /* points-noise.wav in Resources */,
 				CAABA6892AEB25CF00B9810E /* PlayScene iPad.sks in Resources */,
 				CAABA6872AEB25CF00B9810E /* TitleScene iPad.sks in Resources */,
