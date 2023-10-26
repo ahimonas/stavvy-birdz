@@ -6,7 +6,7 @@ import SpriteKit
 import GameplayKit
 import GameKit
 
-class GameScene: SKScene {
+class PlayScene: SKScene {
 
     static var viewportSize: CGSize = .zero
         
@@ -37,7 +37,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
-        GameScene.viewportSize = view.bounds.size
+        PlayScene.viewportSize = view.bounds.size
     }
         
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -80,7 +80,7 @@ class GameScene: SKScene {
     
 }
 
-extension GameScene: ButtonNodeResponderType {
+extension PlayScene: ButtonNodeResponderType {
     
     func buttonTriggered(button: ButtonNode) {
         guard let identifier = button.buttonIdentifier else {
@@ -96,7 +96,7 @@ extension GameScene: ButtonNodeResponderType {
             sceneAdapeter?.myGkStateMach?.enter(PlayingState.self)
         case .home:
             let sceneId = Scenes.title.getName()
-            guard let gameScene = GameScene(fileNamed: sceneId) else {
+            guard let gameScene = PlayScene(fileNamed: sceneId) else {
                 return
             }
             gameScene.scaleMode = RoutingUtilityScene.sceneScaleMode

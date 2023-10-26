@@ -401,7 +401,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         switch identifier {
         case .play:
             let sceneId = Scenes.game.getName()
-            sceneToPresent = GameScene(fileNamed: sceneId)
+            sceneToPresent = PlayScene(fileNamed: sceneId)
             
             transition = SKTransition.fade(withDuration: 1.0)
         case .settings:

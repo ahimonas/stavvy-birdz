@@ -13,7 +13,7 @@ import GameKit
 
 enum Scenes: String {
     case title = "TitleScene"
-    case game = "GameScene"
+    case game = "PlayScene"
     case characters = "CharactersScene"
     case setting = "SettingsScene"
     case pause = "PauseScene"

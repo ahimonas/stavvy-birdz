@@ -15,7 +15,7 @@ extension SKScene {
     }
 }
 
-class GameSceneAdapter: NSObject, GameSceneProtocol {
+class GameSceneAdapter: NSObject, PlaySceneProtocol {
     
     // MARK: - Properties
     
