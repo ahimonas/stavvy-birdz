@@ -150,7 +150,7 @@
 		CAC3F68D2AEB76E300CF1E6A /* AppBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppBtn.swift; sourceTree = "<group>"; };
 		CAC3F6922AEB775D00CF1E6A /* BirdNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirdNode.swift; sourceTree = "<group>"; };
 		CAC3F6942AEB776600CF1E6A /* DefaultGifNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultGifNodes.swift; sourceTree = "<group>"; };
-		CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "game-over-noise.wav"; path = "StavvyBird/Assets/Sound/Game/Sound/game-over-noise.wav"; sourceTree = SOURCE_ROOT; };
+		CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "game-over-noise.wav"; path = "StavvyBird/Assets/Audio/InGame/InSound/game-over-noise.wav"; sourceTree = SOURCE_ROOT; };
 		CAC5FBA22AE9B586006913FE /* points-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "points-noise.wav"; sourceTree = "<group>"; };
 		CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "in-game-audio.wav"; sourceTree = "<group>"; };
 		F3422C1C0B44F15782FAC636 /* Pods_StavvyBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StavvyBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,41 +189,11 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		A903943720AD9D1A00376CC3 /* Particles */ = {
-			isa = PBXGroup;
-			children = (
-				A903943520AD9D1200376CC3 /* SnowParticleEffect.sks */,
-				A903943920AD9E7900376CC3 /* Particles.xcassets */,
-			);
-			path = Particles;
-			sourceTree = "<group>";
-		};
 		A92E72DC209D80FA0015F647 /* Game States */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = "Game States";
-			sourceTree = "<group>";
-		};
-		A950485B20BAE2500020ECD9 /* Animated Players */ = {
-			isa = PBXGroup;
-			children = (
-				A950485C20BAE29C0020ECD9 /* stavvy-rat.gif */,
-				A950485F20BAE29C0020ECD9 /* eldy-bird.gif */,
-				A950486020BAE29C0020ECD9 /* stavvy-raven.gif */,
-				A950485E20BAE29C0020ECD9 /* stavvy-gold.gif */,
-				A950485920BAE2170020ECD9 /* stavvy-pig.gif */,
-			);
-			path = "Animated Players";
-			sourceTree = "<group>";
-		};
-		A992D8B720A0A54F003A9998 /* Sound */ = {
-			isa = PBXGroup;
-			children = (
-				CAC5FBA22AE9B586006913FE /* points-noise.wav */,
-				CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */,
-			);
-			path = Sound;
 			sourceTree = "<group>";
 		};
 		A9ACB9102099A1F200966991 = {
@@ -270,51 +240,17 @@
 			path = StavvyBird;
 			sourceTree = "<group>";
 		};
-		A9ACB95B2099B14A00966991 /* Sound */ = {
-			isa = PBXGroup;
-			children = (
-				A9CA8F6B209C9129004CB9D4 /* Game */,
-			);
-			path = Sound;
-			sourceTree = "<group>";
-		};
-		A9ACB96C2099B46E00966991 /* Actions */ = {
-			isa = PBXGroup;
-			children = (
-				A9ACB96A2099B42300966991 /* Actions.sks */,
-			);
-			path = Actions;
-			sourceTree = "<group>";
-		};
 		A9ACB98F2099F12000966991 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				A950485B20BAE2500020ECD9 /* Animated Players */,
-				A903943720AD9D1A00376CC3 /* Particles */,
-				A9ACB96C2099B46E00966991 /* Actions */,
-				A9CC5C3E20A0361700040E61 /* Scenes */,
+				CAC3F6AA2AEB82EF00CF1E6A /* Audio */,
+				CAC3F6A92AEB82B100CF1E6A /* All Scenes */,
+				CAC3F6A82AEB828F00CF1E6A /* Animations */,
+				CAC3F6A72AEB824A00CF1E6A /* Snowing */,
+				CAC3F6A62AEB820300CF1E6A /* Characters */,
 				A9ACB9292099A1F300966991 /* Assets.xcassets */,
-				A9ACB95B2099B14A00966991 /* Sound */,
 			);
 			path = Assets;
-			sourceTree = "<group>";
-		};
-		A9CA8F6B209C9129004CB9D4 /* Game */ = {
-			isa = PBXGroup;
-			children = (
-				A992D8B720A0A54F003A9998 /* Sound */,
-				A9CA8F70209C953A004CB9D4 /* Music */,
-			);
-			path = Game;
-			sourceTree = "<group>";
-		};
-		A9CA8F70209C953A004CB9D4 /* Music */ = {
-			isa = PBXGroup;
-			children = (
-				CA7047532AE9C33B0020A04A /* home-audio.wav */,
-				CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */,
-			);
-			path = Music;
 			sourceTree = "<group>";
 		};
 		A9CC5C3520A0215C00040E61 /* Control */ = {
@@ -322,15 +258,6 @@
 			children = (
 			);
 			path = Control;
-			sourceTree = "<group>";
-		};
-		A9CC5C3E20A0361700040E61 /* Scenes */ = {
-			isa = PBXGroup;
-			children = (
-				CAC3F6972AEB780F00CF1E6A /* game scenes */,
-				CAABA6912AEB25D700B9810E /* extra scenes */,
-			);
-			path = Scenes;
 			sourceTree = "<group>";
 		};
 		CAABA6912AEB25D700B9810E /* extra scenes */ = {
@@ -497,6 +424,87 @@
 				A90192FA21F1BDF40020C612 /* PhysicsContactable.swift */,
 			);
 			path = Procedures;
+			sourceTree = "<group>";
+		};
+		CAC3F6A62AEB820300CF1E6A /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				A950485C20BAE29C0020ECD9 /* stavvy-rat.gif */,
+				A950485F20BAE29C0020ECD9 /* eldy-bird.gif */,
+				A950486020BAE29C0020ECD9 /* stavvy-raven.gif */,
+				A950485E20BAE29C0020ECD9 /* stavvy-gold.gif */,
+				A950485920BAE2170020ECD9 /* stavvy-pig.gif */,
+			);
+			path = Characters;
+			sourceTree = "<group>";
+		};
+		CAC3F6A72AEB824A00CF1E6A /* Snowing */ = {
+			isa = PBXGroup;
+			children = (
+				A903943520AD9D1200376CC3 /* SnowParticleEffect.sks */,
+				A903943920AD9E7900376CC3 /* Particles.xcassets */,
+			);
+			path = Snowing;
+			sourceTree = "<group>";
+		};
+		CAC3F6A82AEB828F00CF1E6A /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				A9ACB96A2099B42300966991 /* Actions.sks */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
+		CAC3F6A92AEB82B100CF1E6A /* All Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				CAC3F6972AEB780F00CF1E6A /* game scenes */,
+				CAABA6912AEB25D700B9810E /* extra scenes */,
+			);
+			path = "All Scenes";
+			sourceTree = "<group>";
+		};
+		CAC3F6AA2AEB82EF00CF1E6A /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				CAC3F6AE2AEB835600CF1E6A /* InSound */,
+				CAC3F6AB2AEB831300CF1E6A /* InGame */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		CAC3F6AB2AEB831300CF1E6A /* InGame */ = {
+			isa = PBXGroup;
+			children = (
+				CAC3F6AD2AEB832900CF1E6A /* InMusic */,
+				CAC3F6AC2AEB831B00CF1E6A /* InSound */,
+			);
+			path = InGame;
+			sourceTree = "<group>";
+		};
+		CAC3F6AC2AEB831B00CF1E6A /* InSound */ = {
+			isa = PBXGroup;
+			children = (
+				CAC5FBA22AE9B586006913FE /* points-noise.wav */,
+				CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */,
+			);
+			path = InSound;
+			sourceTree = "<group>";
+		};
+		CAC3F6AD2AEB832900CF1E6A /* InMusic */ = {
+			isa = PBXGroup;
+			children = (
+				CA7047532AE9C33B0020A04A /* home-audio.wav */,
+				CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */,
+			);
+			path = InMusic;
+			sourceTree = "<group>";
+		};
+		CAC3F6AE2AEB835600CF1E6A /* InSound */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = InSound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
