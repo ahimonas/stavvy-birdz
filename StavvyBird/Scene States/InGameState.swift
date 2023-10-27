@@ -8,7 +8,7 @@ import SpriteKit
 
 class InGameState: GKState {
         
-    unowned var adapter: GameSceneAdapter
+    unowned var adapter: MyGameAdapter
     
     private let playerScale = CGPoint(x: 0.4, y: 0.4)
     private let snowEmitterAdvancementInSeconds: TimeInterval = 15
@@ -17,7 +17,7 @@ class InGameState: GKState {
     private(set) var infinitePipeProducer: SKAction! = nil
     let infinitePipeProducerKey = "Pipe Action"
         
-    init(adapter: GameSceneAdapter) {
+    init(adapter: MyGameAdapter) {
         self.adapter = adapter
         super.init()
         
@@ -27,7 +27,7 @@ class InGameState: GKState {
         preparePlayer(for: scene)
         
         if let scene = adapter.scene, let target = adapter.infiniteBackgroundNode {
-            infinitePipeProducer = PipeFactory.launch(for: scene, targetNode: target)
+            infinitePipeProducer = ColumnFactory.launch(for: scene, targetNode: target)
         }
         
         adapter.advanceSnowEmitter(for: snowEmitterAdvancementInSeconds)

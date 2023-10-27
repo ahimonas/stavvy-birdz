@@ -12,10 +12,10 @@ class PausedState: GKState {
     }
     
     unowned var levelScene: SKScene
-    unowned var adapter: GameSceneAdapter
+    unowned var adapter: MyGameAdapter
     var overlay: GameOverlay!
         
-    init(scene: SKScene, adapter: GameSceneAdapter) {
+    init(scene: SKScene, adapter: MyGameAdapter) {
         self.levelScene = scene
         self.adapter = adapter
         super.init()

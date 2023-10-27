@@ -15,13 +15,13 @@ class GameOverState: GKState {
         return Scenes.failed.getName()
     }
     
-    unowned var levelScene: GameSceneAdapter
+    unowned var levelScene: MyGameAdapter
     var overlay: GameOverlay!
     
     
     private(set) var currentScoreLabel: SKLabelNode?
         
-    init(scene: GameSceneAdapter) {
+    init(scene: MyGameAdapter) {
         self.levelScene = scene
         super.init()
      

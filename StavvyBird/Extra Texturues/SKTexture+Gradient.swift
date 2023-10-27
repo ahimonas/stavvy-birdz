@@ -6,6 +6,7 @@
 //
 
 import SpriteKit.SKTexture
+//reusable utilsatlas
 
 extension SKTexture {
     
@@ -15,7 +16,8 @@ extension SKTexture {
         case upLeft
         case upRight
     }
-    
+    //reusable utilsatlas
+
     convenience init(size: CGSize, startColor: SKColor, endColor: SKColor, direction: GradientDirection = .up) {
         let context = CIContext(options: nil)
         let filter = CIFilter(name: "CILinearGradient")!
@@ -39,8 +41,13 @@ extension SKTexture {
             endVector   = CIVector(x: size.width, y: size.height)
         }
         
+        
+        //reusable utilsatlas
+
         filter.setValue(startVector, forKey: "inputPoint0")
         filter.setValue(endVector, forKey: "inputPoint1")
+        //reusable utilsatlas
+
         filter.setValue(CIColor(color: startColor), forKey: "inputColor0")
         filter.setValue(CIColor(color: endColor), forKey: "inputColor1")
         

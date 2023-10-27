@@ -4,7 +4,7 @@
 //
 
 import SpriteKit
-
+//reusable  utils
 private let kNodeNameTransitionShaderNode = "kNodeNameTransitionShaderNode"
 private let kNodeNameFadeColourOverlay = "kNodeNameFadeColourOverlay"
 private var presentationStartTime: CFTimeInterval = -1
@@ -57,6 +57,7 @@ extension SKScene {
     
     func updateShaderTransition(currentTime: CFTimeInterval) {
         if let shader = self.transitionShader {
+            //elapsed time since gameple
             let elapsedTime = shader.uniformNamed("u_elapsed_time")!
             if (presentationStartTime < 0) {
                 presentationStartTime = currentTime
@@ -77,10 +78,12 @@ extension SKScene {
         
         let u_size = SKUniform(name: "u_size", vectorFloat3: vector3(Float(UIScreen.main.scale * size.width), Float(UIScreen.main.scale * size.height), 0.0))
         
-        let u_fill_colour = SKUniform(name: "u_fill_colour", vectorFloat4: vector4(131.0 / 255.0, 149.0 / 255.0, 255.0 / 255.0, 1.0))
+        let u_fill_colour = SKUniform(name: "u_fill_colour", vectorFloat4: vector4(130.0 / 254.0, 149.0 / 255.0, 255.0 / 255.0, 1.0))
         let u_border_colour = SKUniform(name: "u_border_colour", vectorFloat4: vector4(104.0 / 255.0, 119.0 / 255.0, 204.0 / 255.0, 1.0))
+       //animation durr
         let u_total_animation_duration = SKUniform(name: "u_total_animation_duration", float: Float(transitionDuration))
         let u_elapsed_time = SKUniform(name: "u_elapsed_time", float: Float(0))
+       
         shader.uniforms = [u_size, u_fill_colour, u_border_colour, u_total_animation_duration, u_elapsed_time]
         
         return shader

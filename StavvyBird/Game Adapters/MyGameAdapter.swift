@@ -15,7 +15,7 @@ extension SKScene {
     }
 }
 
-class GameSceneAdapter: NSObject, PlaySceneProtocol {
+class MyGameAdapter: NSObject, PlaySceneProtocol {
     
     // MARK: - Properties
     
@@ -187,7 +187,7 @@ class GameSceneAdapter: NSObject, PlaySceneProtocol {
     
 }
 
-extension GameSceneAdapter: SKPhysicsContactDelegate {
+extension MyGameAdapter: SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         let collision:UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)

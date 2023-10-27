@@ -24,14 +24,14 @@ class PlayScene: SKScene {
     private var previousTiming : TimeInterval = 0
     let maximumUpdateDeltaTime: TimeInterval = 1.0 / 60.0
 
-    var sceneAdapeter: GameSceneAdapter?
+    var sceneAdapeter: MyGameAdapter?
     let selection = UISelectionFeedbackGenerator()
     
     override func sceneDidLoad() {
         super.sceneDidLoad()
         
         self.previousTiming = 0
-        sceneAdapeter = GameSceneAdapter(with: self)
+        sceneAdapeter = MyGameAdapter(with: self)
         sceneAdapeter?.myGkStateMach = stateMachine
         sceneAdapeter?.myGkStateMach?.enter(InGameState.self)
     }

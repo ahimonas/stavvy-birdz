@@ -17,7 +17,7 @@ extension SKSpriteNode {
     
     func animateWithLocalAspectCorrectGIF(named name: String, width: CGFloat) {
         guard let size = animateWithLocalGIF(named: name) else {
-            debugPrint(#function + " could not unwrap size of the GIF texture - the method will be aborted")
+            debugPrint(#function + " unwrap failed d")
             return
         }
         
@@ -31,7 +31,7 @@ extension SKSpriteNode {
     func animateWithLocalGIF(named name: String) -> CGSize? {
         
         guard let bundleURL = Bundle.main.url(forResource: name, withExtension: "gif") else {
-            debugPrint(#function + " image with .gif extension does not exist")
+            debugPrint(#function + " gif failed t")
                 return nil
         }
         
@@ -48,7 +48,7 @@ extension SKSpriteNode {
             
             return textures.first?.size()
         } catch {
-            debugPrint(#function + " could not create data source from bundle URL: ", error)
+            debugPrint(#function + " url dne: ", error)
             return nil
         }
     }
@@ -56,16 +56,21 @@ extension SKSpriteNode {
     class func gif(with data: NSData) -> ([SKTexture]?, [Double]) {
         // Create source from data
         guard let source = CGImageSourceCreateWithData(data, nil) else {
-            print("SwiftGif: Source for the image does not exist")
+            print("swift gif dn ")
             return (nil, [])
         }
         
         return SKSpriteNode.animatedImage(with: source)
     }
     
+    //reusable repeat image
     class func animatedImage(with source: CGImageSource) -> ([SKTexture]?, [Double]) {
         let count = CGImageSourceGetCount(source)
+        
+        
         var delays = [Double]()
+        
+        
         var textures = [SKTexture]()
         
         for i in 0..<count {
@@ -116,14 +121,12 @@ extension SKSpriteNode {
         var a = value
         var b = target
 
-        // Swap for modulo
         if a < b {
             let c = a
             a = b
             b = c
         }
         
-        // Get greatest common divisor
         var rest: Int
         
         while true {

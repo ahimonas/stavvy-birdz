@@ -5,7 +5,7 @@
 
 import SpriteKit
 
-struct PipeFactory {
+struct ColumnFactory {
 
     
     typealias PipeParts = (top: ColumnNode, bottom: ColumnNode, myCurrThresh: SKSpriteNode)
@@ -35,11 +35,11 @@ struct PipeFactory {
 
         let renderFactoryPipeAction = SKAction.run {
             
-            guard var pipe = PipeFactory.producseDoublePipe(sceneSize: scene.size) else {
+            guard var pipe = ColumnFactory.producseDoublePipe(sceneSize: scene.size) else {
                 return
             }
             if Bool.pseudoRandomPipe {
-                guard let standardPipe = PipeFactory.produceStandardPipe(sceneSize: scene.size) else {
+                guard let standardPipe = ColumnFactory.produceStandardPipe(sceneSize: scene.size) else {
                     return
                 }
                 pipe = standardPipe
@@ -59,7 +59,7 @@ struct PipeFactory {
     
     
     private static func produceStandardPipe(sceneSize: CGSize) -> SKSpriteNode? {
-        guard let pipeParts = PipeFactory.standardPipeParts(for: sceneSize) else {
+        guard let pipeParts = ColumnFactory.standardPipeParts(for: sceneSize) else {
             debugPrint(#function + "The standard pip failed")
             return nil
         }
@@ -73,7 +73,7 @@ struct PipeFactory {
     }
     
     private static func producseDoublePipe(sceneSize: CGSize) -> SKSpriteNode? {
-        guard let pipeParts = PipeFactory.doublePipeParts(for: sceneSize) else {
+        guard let pipeParts = ColumnFactory.doublePipeParts(for: sceneSize) else {
             return nil
         }
         
@@ -87,9 +87,7 @@ struct PipeFactory {
         return myCurrPipNod
     }
     
-    
-    // MARK: - Pipe parts production
-    
+        
     private static func standardPipeParts(for sceneSize: CGSize) -> PipeParts? {
         let pipeX: CGFloat = sceneSize.width
         

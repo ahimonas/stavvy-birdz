@@ -37,7 +37,7 @@
 		A9ACB9972099F19E00966991 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A9ACB9962099F19E00966991 /* .gitignore */; };
 		A9ACB9992099F1D200966991 /* PhysicsCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB9982099F1D200966991 /* PhysicsCategories.swift */; };
 		A9ACB99C209A0DE100966991 /* CGFloat+MathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB99B209A0DE100966991 /* CGFloat+MathUtils.swift */; };
-		A9ACB99F209A0F4D00966991 /* GameSceneAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB99E209A0F4D00966991 /* GameSceneAdapter.swift */; };
+		A9ACB99F209A0F4D00966991 /* MyGameAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB99E209A0F4D00966991 /* MyGameAdapter.swift */; };
 		A9B9C729209EE31C0045548D /* TitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B9C728209EE31C0045548D /* TitleScene.swift */; };
 		A9B9F83620B449EC00FC0BDA /* Playable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B9F83520B449EC00FC0BDA /* Playable.swift */; };
 		A9CC5C31209EFA0600040E61 /* SKTexture+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CC5C30209EFA0600040E61 /* SKTexture+Gradient.swift */; };
@@ -47,7 +47,7 @@
 		A9D4CFD9209AF53E006461AF /* SKTextureAtlas+FrameUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4CFD8209AF53E006461AF /* SKTextureAtlas+FrameUploader.swift */; };
 		A9D4CFDB209AFA06006461AF /* PlaySceneProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4CFDA209AFA06006461AF /* PlaySceneProtocol.swift */; };
 		A9D4CFDD209B3A50006461AF /* ColumnNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4CFDC209B3A4F006461AF /* ColumnNode.swift */; };
-		A9D4CFE0209B4040006461AF /* PipeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4CFDF209B4040006461AF /* PipeFactory.swift */; };
+		A9D4CFE0209B4040006461AF /* ColumnFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4CFDF209B4040006461AF /* ColumnFactory.swift */; };
 		A9E14DAF20B1764B0075D725 /* SKEmitterNode+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E14DAE20B1764B0075D725 /* SKEmitterNode+Utils.swift */; };
 		A9EC756420A6D3E9007C42EC /* AtmosphereScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC756320A6D3E9007C42EC /* AtmosphereScene.swift */; };
 		A9EC756820A6E479007C42EC /* CrossSceneUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC756720A6E479007C42EC /* CrossSceneUtility.swift */; };
@@ -112,7 +112,7 @@
 		A9ACB9962099F19E00966991 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A9ACB9982099F1D200966991 /* PhysicsCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategories.swift; sourceTree = "<group>"; };
 		A9ACB99B209A0DE100966991 /* CGFloat+MathUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+MathUtils.swift"; sourceTree = "<group>"; };
-		A9ACB99E209A0F4D00966991 /* GameSceneAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneAdapter.swift; sourceTree = "<group>"; };
+		A9ACB99E209A0F4D00966991 /* MyGameAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGameAdapter.swift; sourceTree = "<group>"; };
 		A9B9C728209EE31C0045548D /* TitleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScene.swift; sourceTree = "<group>"; };
 		A9B9F83520B449EC00FC0BDA /* Playable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playable.swift; sourceTree = "<group>"; };
 		A9CC5C30209EFA0600040E61 /* SKTexture+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKTexture+Gradient.swift"; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		A9D4CFD8209AF53E006461AF /* SKTextureAtlas+FrameUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKTextureAtlas+FrameUploader.swift"; sourceTree = "<group>"; };
 		A9D4CFDA209AFA06006461AF /* PlaySceneProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySceneProtocol.swift; sourceTree = "<group>"; };
 		A9D4CFDC209B3A4F006461AF /* ColumnNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnNode.swift; sourceTree = "<group>"; };
-		A9D4CFDF209B4040006461AF /* PipeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipeFactory.swift; sourceTree = "<group>"; };
+		A9D4CFDF209B4040006461AF /* ColumnFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFactory.swift; sourceTree = "<group>"; };
 		A9E14DAE20B1764B0075D725 /* SKEmitterNode+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKEmitterNode+Utils.swift"; sourceTree = "<group>"; };
 		A9EC756320A6D3E9007C42EC /* AtmosphereScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtmosphereScene.swift; sourceTree = "<group>"; };
 		A9EC756720A6E479007C42EC /* CrossSceneUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossSceneUtility.swift; sourceTree = "<group>"; };
@@ -248,23 +248,24 @@
 		A9ACB91B2099A1F200966991 /* StavvyBird */ = {
 			isa = PBXGroup;
 			children = (
+				CAC3F6A32AEB7DEE00CF1E6A /* Procedures */,
+				CAC3F6A22AEB7DDE00CF1E6A /* Game Nodes */,
+				CAC3F6A12AEB7DBF00CF1E6A /* Input Direction */,
+				CAC3F6A02AEB7D3700CF1E6A /* Game Utils */,
+				CAC3F69E2AEB7C3A00CF1E6A /* Extra Texturues */,
+				CAC3F69D2AEB7ADD00CF1E6A /* Column Factory */,
+				CAC3F69C2AEB7A2200CF1E6A /* Game Adapters */,
+				CAC3F69B2AEB79D200CF1E6A /* Base Story */,
+				CAC3F69A2AEB79A100CF1E6A /* Game Controller */,
 				CAC3F6992AEB792200CF1E6A /* Scene States */,
 				CAC3F6982AEB786600CF1E6A /* functional scenes */,
 				CA94BB7D2AD8D7AE005AAF83 /* Stavvy Birds.storekit */,
 				CA47A3BF2ACB5DE400E8ED52 /* StavvyBird.entitlements */,
 				A9ACB91C2099A1F200966991 /* AppDelegate.swift */,
 				A9ACB92E2099A1F300966991 /* Info.plist */,
-				A9ACB9932099F16800966991 /* Storyboards */,
-				A9ACB9922099F15E00966991 /* View Controllers */,
-				A9ACB99D209A0F3D00966991 /* Adapeters */,
-				A9D4CFDE209B402A006461AF /* Factories */,
-				A9ACB99A209A0DD100966991 /* Extensions */,
 				A9CC5C3520A0215C00040E61 /* Control */,
 				A92E72DC209D80FA0015F647 /* Game States */,
 				A9ACB98F2099F12000966991 /* Assets */,
-				A9ACB98E2099F11900966991 /* Utils */,
-				A9ACB9892099F0C100966991 /* Protocols */,
-				A9ACB9882099F0B600966991 /* Nodes */,
 			);
 			path = StavvyBird;
 			sourceTree = "<group>";
@@ -285,37 +286,6 @@
 			path = Actions;
 			sourceTree = "<group>";
 		};
-		A9ACB9882099F0B600966991 /* Nodes */ = {
-			isa = PBXGroup;
-			children = (
-				CAC3F6962AEB77C300CF1E6A /* GameExtras */,
-				CAC3F6912AEB772E00CF1E6A /* players */,
-				CAC3F68A2AEB766B00CF1E6A /* ButtonToggles */,
-			);
-			path = Nodes;
-			sourceTree = "<group>";
-		};
-		A9ACB9892099F0C100966991 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				A9ACB98A2099F0D300966991 /* Updatable.swift */,
-				A9ACB98C2099F0FC00966991 /* Touchable.swift */,
-				A9D4CFDA209AFA06006461AF /* PlaySceneProtocol.swift */,
-				A9B9F83520B449EC00FC0BDA /* Playable.swift */,
-				A90192FA21F1BDF40020C612 /* PhysicsContactable.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		A9ACB98E2099F11900966991 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				A9ACB9982099F1D200966991 /* PhysicsCategories.swift */,
-				A903943320AD94F000376CC3 /* UserDefaults.swift */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
 		A9ACB98F2099F12000966991 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,46 +297,6 @@
 				A9ACB95B2099B14A00966991 /* Sound */,
 			);
 			path = Assets;
-			sourceTree = "<group>";
-		};
-		A9ACB9922099F15E00966991 /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				A9ACB9242099A1F200966991 /* GameViewController.swift */,
-			);
-			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		A9ACB9932099F16800966991 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				A9ACB9262099A1F200966991 /* Main.storyboard */,
-				A9ACB92B2099A1F300966991 /* LaunchScreen.storyboard */,
-			);
-			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		A9ACB99A209A0DD100966991 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				A9ACB99B209A0DE100966991 /* CGFloat+MathUtils.swift */,
-				A9D4CFD6209AF515006461AF /* SKScene+SpriteUploader.swift */,
-				A9D4CFD8209AF53E006461AF /* SKTextureAtlas+FrameUploader.swift */,
-				A9CC5C30209EFA0600040E61 /* SKTexture+Gradient.swift */,
-				A9E14DAE20B1764B0075D725 /* SKEmitterNode+Utils.swift */,
-				A950485720BADB7A0020ECD9 /* SKSpriteNode+GIF.swift */,
-				A935954320C2773F000FF0FA /* SKScene+ShaderTransition.swift */,
-				A941362220C4067C007FD610 /* Bool+PipeRandom.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		A9ACB99D209A0F3D00966991 /* Adapeters */ = {
-			isa = PBXGroup;
-			children = (
-				A9ACB99E209A0F4D00966991 /* GameSceneAdapter.swift */,
-			);
-			path = Adapeters;
 			sourceTree = "<group>";
 		};
 		A9CA8F6B209C9129004CB9D4 /* Game */ = {
@@ -390,7 +320,6 @@
 		A9CC5C3520A0215C00040E61 /* Control */ = {
 			isa = PBXGroup;
 			children = (
-				A9CC5C3620A0216500040E61 /* ControlInputDirection.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -402,14 +331,6 @@
 				CAABA6912AEB25D700B9810E /* extra scenes */,
 			);
 			path = Scenes;
-			sourceTree = "<group>";
-		};
-		A9D4CFDE209B402A006461AF /* Factories */ = {
-			isa = PBXGroup;
-			children = (
-				A9D4CFDF209B4040006461AF /* PipeFactory.swift */,
-			);
-			path = Factories;
 			sourceTree = "<group>";
 		};
 		CAABA6912AEB25D700B9810E /* extra scenes */ = {
@@ -489,6 +410,93 @@
 				A92E72E5209D818B0015F647 /* PausedState.swift */,
 			);
 			path = "Scene States";
+			sourceTree = "<group>";
+		};
+		CAC3F69A2AEB79A100CF1E6A /* Game Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A9ACB9242099A1F200966991 /* GameViewController.swift */,
+			);
+			path = "Game Controller";
+			sourceTree = "<group>";
+		};
+		CAC3F69B2AEB79D200CF1E6A /* Base Story */ = {
+			isa = PBXGroup;
+			children = (
+				A9ACB9262099A1F200966991 /* Main.storyboard */,
+				A9ACB92B2099A1F300966991 /* LaunchScreen.storyboard */,
+			);
+			path = "Base Story";
+			sourceTree = "<group>";
+		};
+		CAC3F69C2AEB7A2200CF1E6A /* Game Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				A9ACB99E209A0F4D00966991 /* MyGameAdapter.swift */,
+			);
+			path = "Game Adapters";
+			sourceTree = "<group>";
+		};
+		CAC3F69D2AEB7ADD00CF1E6A /* Column Factory */ = {
+			isa = PBXGroup;
+			children = (
+				A9D4CFDF209B4040006461AF /* ColumnFactory.swift */,
+			);
+			path = "Column Factory";
+			sourceTree = "<group>";
+		};
+		CAC3F69E2AEB7C3A00CF1E6A /* Extra Texturues */ = {
+			isa = PBXGroup;
+			children = (
+				A950485720BADB7A0020ECD9 /* SKSpriteNode+GIF.swift */,
+				A9ACB99B209A0DE100966991 /* CGFloat+MathUtils.swift */,
+				A9D4CFD6209AF515006461AF /* SKScene+SpriteUploader.swift */,
+				A9D4CFD8209AF53E006461AF /* SKTextureAtlas+FrameUploader.swift */,
+				A9CC5C30209EFA0600040E61 /* SKTexture+Gradient.swift */,
+				A9E14DAE20B1764B0075D725 /* SKEmitterNode+Utils.swift */,
+				A935954320C2773F000FF0FA /* SKScene+ShaderTransition.swift */,
+				A941362220C4067C007FD610 /* Bool+PipeRandom.swift */,
+			);
+			path = "Extra Texturues";
+			sourceTree = "<group>";
+		};
+		CAC3F6A02AEB7D3700CF1E6A /* Game Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A9ACB9982099F1D200966991 /* PhysicsCategories.swift */,
+				A903943320AD94F000376CC3 /* UserDefaults.swift */,
+			);
+			path = "Game Utils";
+			sourceTree = "<group>";
+		};
+		CAC3F6A12AEB7DBF00CF1E6A /* Input Direction */ = {
+			isa = PBXGroup;
+			children = (
+				A9CC5C3620A0216500040E61 /* ControlInputDirection.swift */,
+			);
+			path = "Input Direction";
+			sourceTree = "<group>";
+		};
+		CAC3F6A22AEB7DDE00CF1E6A /* Game Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				CAC3F6962AEB77C300CF1E6A /* GameExtras */,
+				CAC3F6912AEB772E00CF1E6A /* players */,
+				CAC3F68A2AEB766B00CF1E6A /* ButtonToggles */,
+			);
+			path = "Game Nodes";
+			sourceTree = "<group>";
+		};
+		CAC3F6A32AEB7DEE00CF1E6A /* Procedures */ = {
+			isa = PBXGroup;
+			children = (
+				A9ACB98A2099F0D300966991 /* Updatable.swift */,
+				A9ACB98C2099F0FC00966991 /* Touchable.swift */,
+				A9D4CFDA209AFA06006461AF /* PlaySceneProtocol.swift */,
+				A9B9F83520B449EC00FC0BDA /* Playable.swift */,
+				A90192FA21F1BDF40020C612 /* PhysicsContactable.swift */,
+			);
+			path = Procedures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -653,7 +661,7 @@
 				A9B9F83620B449EC00FC0BDA /* Playable.swift in Sources */,
 				A9D4CFD9209AF53E006461AF /* SKTextureAtlas+FrameUploader.swift in Sources */,
 				A94A97F721A287890087C018 /* ContinuousBackground.swift in Sources */,
-				A9ACB99F209A0F4D00966991 /* GameSceneAdapter.swift in Sources */,
+				A9ACB99F209A0F4D00966991 /* MyGameAdapter.swift in Sources */,
 				A92E72E4209D81820015F647 /* GameOverState.swift in Sources */,
 				CAC3F68E2AEB76E300CF1E6A /* BtnTrigger.swift in Sources */,
 				CAC3F68F2AEB76E300CF1E6A /* ButtonAction.swift in Sources */,
@@ -667,7 +675,7 @@
 				A9CC5C31209EFA0600040E61 /* SKTexture+Gradient.swift in Sources */,
 				A9EC756420A6D3E9007C42EC /* AtmosphereScene.swift in Sources */,
 				A903943420AD94F000376CC3 /* UserDefaults.swift in Sources */,
-				A9D4CFE0209B4040006461AF /* PipeFactory.swift in Sources */,
+				A9D4CFE0209B4040006461AF /* ColumnFactory.swift in Sources */,
 				A9B9C729209EE31C0045548D /* TitleScene.swift in Sources */,
 				A950485820BADB7A0020ECD9 /* SKSpriteNode+GIF.swift in Sources */,
 				A9D0897920B97CA800BE2896 /* ItemShopScene.swift in Sources */,
