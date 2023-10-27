@@ -406,7 +406,7 @@ class CrossSceneUtility: SKScene, ButtonNodeResponderType, GKGameCenterControlle
             transition = SKTransition.fade(withDuration: 1.0)
         case .settings:
             let sceneId = Scenes.setting.getName()
-            sceneToPresent = AtmosphereScene(fileNamed: sceneId)
+            sceneToPresent = AppSettings(fileNamed: sceneId)
             
             CrossSceneUtility.lastPushTransitionDirection = .down
             transition = SKTransition.push(with: .down, duration: 1.0)

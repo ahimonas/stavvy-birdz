@@ -7,9 +7,10 @@ import SpriteKit
 
 struct ColumnFactory {
 
-    
     typealias PipeParts = (top: ColumnNode, bottom: ColumnNode, myCurrThresh: SKSpriteNode)
-    typealias DoublePipeParts = (top: ColumnNode, bottom: ColumnNode, midUp: ColumnNode, midDown: ColumnNode, myCurrThresh: SKSpriteNode)
+    typealias RenderTwoPartPipe = 
+    
+    (top: ColumnNode, bottom: ColumnNode, midUp: ColumnNode, midDown: ColumnNode, myCurrThresh: SKSpriteNode)
     
     
     static let pipeWidth: CGFloat = 102
@@ -73,7 +74,7 @@ struct ColumnFactory {
     }
     
     private static func producseDoublePipe(sceneSize: CGSize) -> SKSpriteNode? {
-        guard let pipeParts = ColumnFactory.doublePipeParts(for: sceneSize) else {
+        guard let pipeParts = ColumnFactory.renderTwoPartPipe(for: sceneSize) else {
             return nil
         }
         
@@ -92,7 +93,7 @@ struct ColumnFactory {
         let pipeX: CGFloat = sceneSize.width
         
         let pipeBottomSize = CGSize(width: pipeWidth, height: rangedHeight) // rangeHeight
-        let pipeBottom = ColumnNode(textures: (pipe: "pipe-green", cap: "cap-green"), of: pipeBottomSize, side: false)
+        let pipeBottom = ColumnNode(textures: (pipe: "col-parts", cap: "col-top"), of: pipeBottomSize, side: false)
         pipeBottom?.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! / 2)
         
         guard let unwrappedPipeBottom = pipeBottom else {
@@ -113,7 +114,7 @@ struct ColumnFactory {
         
         let topHeight = sceneSize.height - (pipeBottom?.size.height)! - myCurrThresh.size.height
         let pipeTopSize = CGSize(width: pipeWidth, height: topHeight)
-        let pipeTop = ColumnNode(textures: (pipe: "pipe-green", cap: "cap-green"), of: pipeTopSize, side: true)
+        let pipeTop = ColumnNode(textures: (pipe: "col-parts", cap: "col-top"), of: pipeTopSize, side: true)
         pipeTop?.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + myCurrThresh.size.height + (pipeTop?.size.height)! / 2)
         
         guard let unwrappedPipeTop = pipeTop else {
@@ -123,12 +124,12 @@ struct ColumnFactory {
         return PipeParts(top: unwrappedPipeTop, bottom: unwrappedPipeBottom, myCurrThresh: myCurrThresh)
     }
 
-    private static func doublePipeParts(for sceneSize: CGSize) -> DoublePipeParts? {
+    private static func renderTwoPartPipe(for sceneSize: CGSize) -> RenderTwoPartPipe? {
         let pipeX = sceneSize.width
         let pipeBottomSize = CGSize(width: pipeWidth, height: doubleRangeHeight)
         
         // Pipe bottom part
-        let pipeBottom = ColumnNode(textures: (pipe: "pipe-green", cap: "cap-green"), of: pipeBottomSize, side: false)
+        let pipeBottom = ColumnNode(textures: (pipe: "col-parts", cap: "col-top"), of: pipeBottomSize, side: false)
         pipeBottom?.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! / 2)
         
         guard let unwerappedPipeBottom = pipeBottom else {
@@ -150,14 +151,14 @@ struct ColumnFactory {
         // Top pipe
         let topHeight = sceneSize.height - (pipeBottom?.size.height)! - myCurrThresh.size.height
         let pipeTopSize = CGSize(width: pipeWidth, height: topHeight)
-        let pipeTop = ColumnNode(textures: (pipe: "pipe-green", cap: "cap-green"), of: pipeTopSize, side: true)
+        let pipeTop = ColumnNode(textures: (pipe: "col-parts", cap: "col-top"), of: pipeTopSize, side: true)
         pipeTop?.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + myCurrThresh.size.height + (pipeTop?.size.height)! / 2)
         
         guard let unwrappedPipeTop = pipeTop else {
             return nil
         }
         
-        let midUpPipe = ColumnNode(textures: (pipe: "pipe-green", cap: "cap-green"), of: CGSize(width: pipeWidth, height: CGFloat.range(min: 50, max: 150)), side: true)
+        let midUpPipe = ColumnNode(textures: (pipe: "col-parts", cap: "col-top"), of: CGSize(width: pipeWidth, height: CGFloat.range(min: 50, max: 150)), side: true)
         midUpPipe?.position = CGPoint(x: pipeX, y: unwerappedPipeBottom.size.height + CGFloat.range(min: 250, max: 300))
         
         guard let unwrappedPipeMidUp = midUpPipe else {
@@ -170,14 +171,14 @@ struct ColumnFactory {
         let downMidSize = CGSize(width: pipeWidth, height: topMidUpDistance - CGFloat.range(min: 200, max: 250))
         let downMidPosition = CGPoint(x: pipeX, y: (unwrappedPipeMidUp.size.height / 2 + unwrappedPipeMidUp.position.y) + downMidSize.height / 2)
         
-        let midDownPipe = ColumnNode(textures: (pipe: "pipe-green", cap: "cap-green"), of: downMidSize, side: false)
+        let midDownPipe = ColumnNode(textures: (pipe: "col-parts", cap: "col-top"), of: downMidSize, side: false)
         midDownPipe?.position = downMidPosition
         
         guard let unwrappedPipeMidDown = midDownPipe else {
             return nil
         }
         
-        return DoublePipeParts(top: unwrappedPipeTop, bottom: unwerappedPipeBottom, midUp: unwrappedPipeMidUp, midDown: unwrappedPipeMidDown, myCurrThresh: myCurrThresh)
+        return RenderTwoPartPipe(top: unwrappedPipeTop, bottom: unwerappedPipeBottom, midUp: unwrappedPipeMidUp, midDown: unwrappedPipeMidDown, myCurrThresh: myCurrThresh)
     }
     
     

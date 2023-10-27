@@ -15,7 +15,7 @@ enum Scenes: String {
     case title = "TitleScene"
     case game = "PlayScene"
     case characters = "ItemShopScene"
-    case setting = "AtmosphereScene"
+    case setting = "AppSettings"
     case pause = "ResumeScene"
     case failed = "GameOverScene"
 }

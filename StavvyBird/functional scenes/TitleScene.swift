@@ -22,7 +22,7 @@ class TitleScene: CrossSceneUtility {
     
     
     private func loadSelectedPlayer() {
-        guard let pendingNode = childNode(withName: "Animated Bird") else {
+        guard let pendingNode = childNode(withName: "Animated Bird1") else {
             return
         }
         
