@@ -15,7 +15,7 @@ class PlayScene: SKScene {
     lazy var stateMachine: GKStateMachine = GKStateMachine(states: [
         InGameState(adapter: sceneAdapeter!),
         GameOverState(scene: sceneAdapeter!),
-        PausedState(scene: self, adapter: sceneAdapeter!)
+        GamePauseState(scene: self, adapter: sceneAdapeter!)
         ])
     
     var entities = [GKEntity]()
@@ -93,7 +93,7 @@ extension PlayScene: ButtonNodeResponderType {
         switch identifier {
         
         case .pause:
-            sceneAdapeter?.myGkStateMach?.enter(PausedState.self) //showLeaderBoard();
+            sceneAdapeter?.myGkStateMach?.enter(GamePauseState.self) //showLeaderBoard();
         case .resume:
             sceneAdapeter?.myGkStateMach?.enter(InGameState.self)
         case .home:

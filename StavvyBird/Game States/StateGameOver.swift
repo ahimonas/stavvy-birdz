@@ -4,7 +4,9 @@
 
 import GameplayKit
 import SpriteKit
+//GameOverState
 
+//StateGameOver
 class GameOverState: GKState {
 
     var gcEnabled = Bool()

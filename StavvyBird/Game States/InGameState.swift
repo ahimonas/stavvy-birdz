@@ -43,7 +43,7 @@ class InGameState: GKState {
             SKAction.play()
         }
         
-        if previousState is PausedState {
+        if previousState is GamePauseState {
             return
         }
         

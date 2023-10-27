@@ -5,7 +5,10 @@
 import GameplayKit
 import SpriteKit
 
-class PausedState: GKState {
+
+//GamePauseState
+//GamePauseState
+class GamePauseState: GKState {
         
     var overlaySceneFileName: String {
         return Scenes.pause.getName()
