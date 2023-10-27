@@ -3,7 +3,7 @@
 
 import SpriteKit
 
-class TitleScene: RoutingUtilityScene {
+class TitleScene: CrossSceneUtility {
         
     override func didMove(to view: SKView) {
         super.didMove(to: view)

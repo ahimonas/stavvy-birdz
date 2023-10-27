@@ -11,7 +11,7 @@ import GameKit
 import UIKit
 import StoreKit
 
-class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControllerDelegate,  SKPaymentTransactionObserver, SKProductsRequestDelegate  {
+class CrossSceneUtility: SKScene, ButtonNodeResponderType, GKGameCenterControllerDelegate,  SKPaymentTransactionObserver, SKProductsRequestDelegate  {
     var request : SKProductsRequest!
     var products : [SKProduct] = []
     var noAdsPurchased = false
@@ -396,7 +396,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
     
         var sceneToPresent: SKScene?
         var transition: SKTransition?
-        let sceneScaleMode: SKSceneScaleMode = RoutingUtilityScene.sceneScaleMode
+        let sceneScaleMode: SKSceneScaleMode = CrossSceneUtility.sceneScaleMode
         
         switch identifier {
         case .play:
@@ -408,7 +408,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             let sceneId = Scenes.setting.getName()
             sceneToPresent = AtmosphereScene(fileNamed: sceneId)
             
-            RoutingUtilityScene.lastPushTransitionDirection = .down
+            CrossSceneUtility.lastPushTransitionDirection = .down
             transition = SKTransition.push(with: .down, duration: 1.0)
         case .scores:
             showLeaderboard()
@@ -416,7 +416,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             let sceneId = Scenes.score.getName()
             sceneToPresent = ScoresScene(fileNamed: sceneId)
             
-            RoutingUtilityScene.lastPushTransitionDirection = .up
+            CrossSceneUtility.lastPushTransitionDirection = .up
             transition = SKTransition.push(with: .up, duration: 1.0)
             */
         case .characters:
@@ -426,7 +426,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             let sceneId = Scenes.characters.getName()
             sceneToPresent = ItemShopScene(fileNamed: sceneId)
             debugPrint("created ItemShopScene instance")
-            RoutingUtilityScene.lastPushTransitionDirection = .right
+            CrossSceneUtility.lastPushTransitionDirection = .right
             transition = SKTransition.push(with: .right, duration: 1.0)
             /*
             if(!UserDefaults.standard.bool(forKey: "removeAdsKey")){
@@ -479,7 +479,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             sceneToPresent = TitleScene(fileNamed: sceneId)
             var pushDirection: SKTransitionDirection?
             
-            if let lastPushTransitionDirection = RoutingUtilityScene.lastPushTransitionDirection {
+            if let lastPushTransitionDirection = CrossSceneUtility.lastPushTransitionDirection {
                 switch lastPushTransitionDirection {
                 case .up:
                     pushDirection = .down
@@ -492,7 +492,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                 @unknown default:
                     fatalError("Unknown case was deteced in .menu case in buttonTriggered method. Please, make sure that all the cases are properly handled.")
                 }
-                RoutingUtilityScene.lastPushTransitionDirection = pushDirection
+                CrossSceneUtility.lastPushTransitionDirection = pushDirection
             }
             if let pushDirection = pushDirection {
                 transition = SKTransition.push(with: pushDirection, duration: 1.0)

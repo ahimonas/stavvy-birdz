@@ -4,7 +4,7 @@
 import SpriteKit
 
 //settings
-class AtmosphereScene: RoutingUtilityScene, ToggleButtonNodeResponderType, TriggleButtonNodeResponderType {
+class AtmosphereScene: CrossSceneUtility, ToggleButtonNodeResponderType, TriggleButtonNodeResponderType {
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)

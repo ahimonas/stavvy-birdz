@@ -101,7 +101,7 @@ extension PlayScene: ButtonNodeResponderType {
             guard let gameScene = PlayScene(fileNamed: sceneId) else {
                 return
             }
-            gameScene.scaleMode = RoutingUtilityScene.sceneScaleMode
+            gameScene.scaleMode = CrossSceneUtility.sceneScaleMode
             let transition = SKTransition.fade(withDuration: 1.0)
             transition.pausesIncomingScene = false
             transition.pausesOutgoingScene = false

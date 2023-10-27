@@ -85,7 +85,7 @@ extension GameOverState {
         
         if currentScore > bestScore {
             UserDefaults.standard.set(currentScore, for: .bestScore)
-            let utilityScene = RoutingUtilityScene()
+            let utilityScene = CrossSceneUtility()
             utilityScene.saveScore(score: currentScore)
         }
         UserDefaults.standard.set(currentScore, for: .lastScore)

@@ -4,7 +4,7 @@
 import SpriteKit
 
 //characters
-class ItemShopScene: RoutingUtilityScene {
+class ItemShopScene: CrossSceneUtility {
     //@IBOutlet weak var EldyBird: UIButton!
 
     private var boughtEldy = false
