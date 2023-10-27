@@ -106,8 +106,8 @@ struct ColumnFactory {
         myCurrThresh.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + myCurrThresh.size.height / 2)
         
         myCurrThresh.physicsBody = SKPhysicsBody(rectangleOf: myCurrThresh.size)
-        myCurrThresh.physicsBody?.categoryBitMask =  PhysicsCategories.gap.rawValue
-        myCurrThresh.physicsBody?.contactTestBitMask =  PhysicsCategories.player.rawValue
+        myCurrThresh.physicsBody?.categoryBitMask =  GamePhysics.gap.rawValue
+        myCurrThresh.physicsBody?.contactTestBitMask =  GamePhysics.player.rawValue
         myCurrThresh.physicsBody?.collisionBitMask = 0
         myCurrThresh.physicsBody?.isDynamic = false
         myCurrThresh.zPosition = zPosition
@@ -142,8 +142,8 @@ struct ColumnFactory {
         myCurrThresh.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + myCurrThresh.size.height / 2)
         
         myCurrThresh.physicsBody = SKPhysicsBody(rectangleOf: myCurrThresh.size)
-        myCurrThresh.physicsBody?.categoryBitMask = PhysicsCategories.gap.rawValue
-        myCurrThresh.physicsBody?.contactTestBitMask =  PhysicsCategories.player.rawValue
+        myCurrThresh.physicsBody?.categoryBitMask = GamePhysics.gap.rawValue
+        myCurrThresh.physicsBody?.contactTestBitMask =  GamePhysics.player.rawValue
         myCurrThresh.physicsBody?.collisionBitMask = 0
         myCurrThresh.physicsBody?.isDynamic = false
         myCurrThresh.zPosition = zPosition

@@ -33,7 +33,7 @@ class DefaultGifNodes: SKNode, Updatable, Playable, PhysicsContactable {
         }
     }
     
-    var collisionBitMask: UInt32 = PhysicsCategories.pipe.rawValue | PhysicsCategories.boundary.rawValue
+    var collisionBitMask: UInt32 = GamePhysics.pipe.rawValue | GamePhysics.boundary.rawValue
 
     
     private let impact = UIImpactFeedbackGenerator(style: .medium)
@@ -71,8 +71,8 @@ class DefaultGifNodes: SKNode, Updatable, Playable, PhysicsContactable {
         animatedGifNode.zPosition = 50
         
         physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: size.width - 32, height: size.height - 32))
-        physicsBody?.categoryBitMask = PhysicsCategories.player.rawValue
-        physicsBody?.contactTestBitMask = PhysicsCategories.pipe.rawValue | PhysicsCategories.gap.rawValue | PhysicsCategories.boundary.rawValue
+        physicsBody?.categoryBitMask = GamePhysics.player.rawValue
+        physicsBody?.contactTestBitMask = GamePhysics.pipe.rawValue | GamePhysics.gap.rawValue | GamePhysics.boundary.rawValue
         physicsBody?.collisionBitMask = collisionBitMask
         
         physicsBody?.mass /= 7

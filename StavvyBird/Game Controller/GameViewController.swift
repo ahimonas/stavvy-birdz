@@ -13,14 +13,15 @@ import GameKit
 
 enum Scenes: String {
     case title = "TitleScene"
-    case game = "PlayScene"
     case characters = "ItemShopScene"
     case setting = "AppSettings"
     case pause = "ResumeScene"
     case failed = "GameOverScene"
+    case game = "PlayScene"
 }
 
 extension Scenes {
+    //get for ipad, probs will axe this
     func getName() -> String {
         let padId = " iPad"
         let isPad = UIDevice.current.userInterfaceIdiom == .pad
@@ -38,6 +39,7 @@ extension NodeScale {
     func getValue() -> Float {
         let isPad = UIDevice.current.userInterfaceIdiom == .pad
         
+        //same with this no need for that svale
         switch self {
         case .gameBackgroundScale:
             return isPad ? 1.5 : 1.35
@@ -46,6 +48,7 @@ extension NodeScale {
 }
 
 extension CGPoint {
+    //maybe rewrite
     init(x: Float, y: Float) {
         self.init()
         self.x = CGFloat(x)

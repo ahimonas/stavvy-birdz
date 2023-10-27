@@ -37,7 +37,7 @@ class BirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
         }
     }
     
-    var collisionBitMask: UInt32 = PhysicsCategories.pipe.rawValue | PhysicsCategories.boundary.rawValue
+    var collisionBitMask: UInt32 = GamePhysics.pipe.rawValue | GamePhysics.boundary.rawValue
         
     var flyTextures: [SKTexture]? = nil
     private(set) var animationTimeInterval: TimeInterval = 0
@@ -68,10 +68,10 @@ class BirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
 
     fileprivate func initPhysicsBoundary() {
         physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2.7)
-        physicsBody?.categoryBitMask = PhysicsCategories.player.rawValue
-        physicsBody?.contactTestBitMask = PhysicsCategories.pipe.rawValue | PhysicsCategories.gap.rawValue | PhysicsCategories.boundary.rawValue
+        physicsBody?.categoryBitMask = GamePhysics.player.rawValue
+        physicsBody?.contactTestBitMask = GamePhysics.pipe.rawValue | GamePhysics.gap.rawValue | GamePhysics.boundary.rawValue
         
-        physicsBody?.collisionBitMask = PhysicsCategories.pipe.rawValue | PhysicsCategories.boundary.rawValue
+        physicsBody?.collisionBitMask = GamePhysics.pipe.rawValue | GamePhysics.boundary.rawValue
         
         physicsBody?.allowsRotation = false
         physicsBody?.restitution = 0.0

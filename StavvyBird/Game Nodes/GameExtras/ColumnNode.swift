@@ -48,9 +48,9 @@ class ColumnNode: SKSpriteNode {
         
         // Add physics body
         physicsBody = SKPhysicsBody(rectangleOf: size)
-        physicsBody?.categoryBitMask = PhysicsCategories.pipe.rawValue
-        physicsBody?.contactTestBitMask =  PhysicsCategories.player.rawValue
-        physicsBody?.collisionBitMask = PhysicsCategories.player.rawValue
+        physicsBody?.categoryBitMask = GamePhysics.pipe.rawValue
+        physicsBody?.contactTestBitMask =  GamePhysics.player.rawValue
+        physicsBody?.collisionBitMask = GamePhysics.player.rawValue
         physicsBody?.isDynamic = false
         zPosition = 21
         

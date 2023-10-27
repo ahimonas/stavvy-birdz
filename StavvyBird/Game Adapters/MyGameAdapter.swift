@@ -161,8 +161,8 @@ class MyGameAdapter: NSObject, PlaySceneProtocol {
         let rect = CGRect(x: 0, y: floorDistance, width: scene.size.width, height: scene.size.height - floorDistance)
         scene.physicsBody = SKPhysicsBody(edgeLoopFrom: rect)
         
-        let boundary: PhysicsCategories = .boundary
-        let player: PhysicsCategories = .player
+        let boundary: GamePhysics = .boundary
+        let player: GamePhysics = .player
         
         scene.physicsBody?.categoryBitMask = boundary.rawValue
         scene.physicsBody?.collisionBitMask = player.rawValue
@@ -191,9 +191,9 @@ extension MyGameAdapter: SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         let collision:UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
-        let player = PhysicsCategories.player.rawValue
+        let player = GamePhysics.player.rawValue
         
-        if collision == (player | PhysicsCategories.gap.rawValue) {
+        if collision == (player | GamePhysics.gap.rawValue) {
             score += 1
             scoreLabel?.text = "\(score)"
             
@@ -203,11 +203,11 @@ extension MyGameAdapter: SKPhysicsContactDelegate {
         }
         
         //bird hit pipe
-        if collision == (player | PhysicsCategories.pipe.rawValue) {
+        if collision == (player | GamePhysics.pipe.rawValue) {
             handleDeadState()
         }
         //bird hit boundary
-        if collision == (player | PhysicsCategories.boundary.rawValue) {
+        if collision == (player | GamePhysics.boundary.rawValue) {
             handleDeadState()
         }
     }
