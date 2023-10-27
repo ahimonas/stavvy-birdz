@@ -11,8 +11,8 @@ class InGameState: GKState {
     unowned var adapter: MyGameAdapter
     
     private let playerScale = CGPoint(x: 0.4, y: 0.4)
-    private let snowEmitterAdvancementInSeconds: TimeInterval = 15
-    private let animationTimeInterval: TimeInterval = 0.1
+    private let snowEmitterAdvancementInSeconds: TimeInterval = 14
+    private let animationTimeInterval: TimeInterval = 0.11
     
     private(set) var infinitePipeProducer: SKAction! = nil
     let infinitePipeProducerKey = "Pipe Action"

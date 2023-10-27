@@ -151,7 +151,7 @@
 		CAC3F68D2AEB76E300CF1E6A /* AppBtn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppBtn.swift; sourceTree = "<group>"; };
 		CAC3F6922AEB775D00CF1E6A /* BirdNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirdNode.swift; sourceTree = "<group>"; };
 		CAC3F6942AEB776600CF1E6A /* DefaultGifNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultGifNodes.swift; sourceTree = "<group>"; };
-		CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "game-over-noise.wav"; path = "StavvyBird/Assets/Sound/Game/Sound/game-over-noise.wav"; sourceTree = SOURCE_ROOT; };
+		CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "game-over-noise.wav"; path = "StavvyBird/Assets/Music/game-over-noise.wav"; sourceTree = SOURCE_ROOT; };
 		CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "in-game-audio.wav"; sourceTree = "<group>"; };
 		F3422C1C0B44F15782FAC636 /* Pods_StavvyBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StavvyBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -189,36 +189,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		A903943720AD9D1A00376CC3 /* Particles */ = {
-			isa = PBXGroup;
-			children = (
-				A903943520AD9D1200376CC3 /* SnowParticleEffect.sks */,
-				A903943920AD9E7900376CC3 /* Particles.xcassets */,
-			);
-			path = Particles;
-			sourceTree = "<group>";
-		};
-		A950485B20BAE2500020ECD9 /* Animated Players */ = {
-			isa = PBXGroup;
-			children = (
-				A950485C20BAE29C0020ECD9 /* stavvy-rat.gif */,
-				A950485F20BAE29C0020ECD9 /* eldy-bird.gif */,
-				A950486020BAE29C0020ECD9 /* stavvy-raven.gif */,
-				A950485E20BAE29C0020ECD9 /* stavvy-gold.gif */,
-				A950485920BAE2170020ECD9 /* stavvy-pig.gif */,
-			);
-			path = "Animated Players";
-			sourceTree = "<group>";
-		};
-		A992D8B720A0A54F003A9998 /* Sound */ = {
-			isa = PBXGroup;
-			children = (
-				CA1A580F2AEC1FFF00C984C1 /* points-noise1.wav */,
-				CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */,
-			);
-			path = Sound;
-			sourceTree = "<group>";
-		};
 		A9ACB9102099A1F200966991 = {
 			isa = PBXGroup;
 			children = (
@@ -241,10 +211,12 @@
 		A9ACB91B2099A1F200966991 /* StavvyBird */ = {
 			isa = PBXGroup;
 			children = (
+				CA1A58132AEC21D600C984C1 /* Game States */,
+				CA1A58122AEC216100C984C1 /* Game Defaults */,
+				CA1A58112AEC214000C984C1 /* ShadersAndTextures */,
 				CAC3F6A32AEB7DEE00CF1E6A /* Procedures */,
 				CAC3F6A22AEB7DDE00CF1E6A /* Game Nodes */,
 				CAC3F6A12AEB7DBF00CF1E6A /* Input Direction */,
-				CAC3F6A02AEB7D3700CF1E6A /* Game Utils */,
 				CAC3F69E2AEB7C3A00CF1E6A /* Extra Texturues */,
 				CAC3F69D2AEB7ADD00CF1E6A /* Column Factory */,
 				CAC3F69C2AEB7A2200CF1E6A /* Game Adapters */,
@@ -261,63 +233,120 @@
 			path = StavvyBird;
 			sourceTree = "<group>";
 		};
-		A9ACB95B2099B14A00966991 /* Sound */ = {
-			isa = PBXGroup;
-			children = (
-				A9CA8F6B209C9129004CB9D4 /* Game */,
-			);
-			path = Sound;
-			sourceTree = "<group>";
-		};
-		A9ACB96C2099B46E00966991 /* Actions */ = {
-			isa = PBXGroup;
-			children = (
-				A9ACB96A2099B42300966991 /* Actions.sks */,
-			);
-			path = Actions;
-			sourceTree = "<group>";
-		};
 		A9ACB98F2099F12000966991 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				A950485B20BAE2500020ECD9 /* Animated Players */,
-				A903943720AD9D1A00376CC3 /* Particles */,
-				A9ACB96C2099B46E00966991 /* Actions */,
-				A9CC5C3E20A0361700040E61 /* Scenes */,
+				CA1A581A2AEC3EAD00C984C1 /* Game Scenes */,
+				CA1A58192AEC3E7600C984C1 /* Animations */,
+				CA1A58172AEC3E0B00C984C1 /* Music */,
+				CA1A58162AEC3DE100C984C1 /* Snowing */,
+				CA1A58142AEC23D200C984C1 /* All Players */,
 				A9ACB9292099A1F300966991 /* Assets.xcassets */,
-				A9ACB95B2099B14A00966991 /* Sound */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		A9CA8F6B209C9129004CB9D4 /* Game */ = {
+		CA1A58112AEC214000C984C1 /* ShadersAndTextures */ = {
 			isa = PBXGroup;
 			children = (
-				A992D8B720A0A54F003A9998 /* Sound */,
-				A9CA8F70209C953A004CB9D4 /* Music */,
+				A950485720BADB7A0020ECD9 /* SKSpriteNode+GIF.swift */,
+				A9ACB99B209A0DE100966991 /* CGFloat+MathUtils.swift */,
+				A9D4CFD6209AF515006461AF /* SKScene+SpriteUploader.swift */,
+				A9D4CFD8209AF53E006461AF /* SKTextureAtlas+FrameUploader.swift */,
+				A9CC5C30209EFA0600040E61 /* SKTexture+Gradient.swift */,
+				A9E14DAE20B1764B0075D725 /* SKEmitterNode+Utils.swift */,
+				A935954320C2773F000FF0FA /* SKScene+ShaderTransition.swift */,
+				A941362220C4067C007FD610 /* Bool+PipeRandom.swift */,
 			);
-			path = Game;
+			path = ShadersAndTextures;
 			sourceTree = "<group>";
 		};
-		A9CA8F70209C953A004CB9D4 /* Music */ = {
+		CA1A58122AEC216100C984C1 /* Game Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				A9ACB9982099F1D200966991 /* PhysicsCategories.swift */,
+				A903943320AD94F000376CC3 /* UserDefaults.swift */,
+			);
+			path = "Game Defaults";
+			sourceTree = "<group>";
+		};
+		CA1A58132AEC21D600C984C1 /* Game States */ = {
+			isa = PBXGroup;
+			children = (
+				A92E72E1209D815B0015F647 /* InGameState.swift */,
+				A92E72E3209D81820015F647 /* GameOverState.swift */,
+				A92E72E5209D818B0015F647 /* PausedState.swift */,
+			);
+			path = "Game States";
+			sourceTree = "<group>";
+		};
+		CA1A58142AEC23D200C984C1 /* All Players */ = {
+			isa = PBXGroup;
+			children = (
+				A950485C20BAE29C0020ECD9 /* stavvy-rat.gif */,
+				A950485F20BAE29C0020ECD9 /* eldy-bird.gif */,
+				A950486020BAE29C0020ECD9 /* stavvy-raven.gif */,
+				A950485E20BAE29C0020ECD9 /* stavvy-gold.gif */,
+				A950485920BAE2170020ECD9 /* stavvy-pig.gif */,
+			);
+			path = "All Players";
+			sourceTree = "<group>";
+		};
+		CA1A58162AEC3DE100C984C1 /* Snowing */ = {
+			isa = PBXGroup;
+			children = (
+				A903943520AD9D1200376CC3 /* SnowParticleEffect.sks */,
+				A903943920AD9E7900376CC3 /* Particles.xcassets */,
+			);
+			path = Snowing;
+			sourceTree = "<group>";
+		};
+		CA1A58172AEC3E0B00C984C1 /* Music */ = {
 			isa = PBXGroup;
 			children = (
 				CA7047532AE9C33B0020A04A /* home-audio.wav */,
 				CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */,
+				CA1A580F2AEC1FFF00C984C1 /* points-noise1.wav */,
+				CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */,
 			);
 			path = Music;
 			sourceTree = "<group>";
 		};
-		A9CC5C3E20A0361700040E61 /* Scenes */ = {
+		CA1A58192AEC3E7600C984C1 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				CAC3F6972AEB780F00CF1E6A /* game scenes */,
-				CAABA6912AEB25D700B9810E /* extra scenes */,
+				A9ACB96A2099B42300966991 /* Actions.sks */,
 			);
-			path = Scenes;
+			path = Animations;
 			sourceTree = "<group>";
 		};
-		CAABA6912AEB25D700B9810E /* extra scenes */ = {
+		CA1A581A2AEC3EAD00C984C1 /* Game Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				CA1A581C2AEC3ECC00C984C1 /* Overlay Scenes */,
+				CA1A581B2AEC3EC000C984C1 /* In Game Scenes */,
+			);
+			path = "Game Scenes";
+			sourceTree = "<group>";
+		};
+		CA1A581B2AEC3EC000C984C1 /* In Game Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				CAABA6842AEB25CF00B9810E /* AtmosphereScene iPad.sks */,
+				CAABA6832AEB25CF00B9810E /* AtmosphereScene.sks */,
+				CAABA6852AEB25CF00B9810E /* ItemShopScene iPad.sks */,
+				CAABA6812AEB25CF00B9810E /* ItemShopScene.sks */,
+				CAABA67F2AEB25CF00B9810E /* PlayScene iPad.sks */,
+				CAABA6822AEB25CF00B9810E /* PlayScene.sks */,
+				CAABA6862AEB25CF00B9810E /* ScoreScene iPad.sks */,
+				CAABA6802AEB25CF00B9810E /* ScoreScene.sks */,
+				CAABA67D2AEB25CF00B9810E /* TitleScene iPad.sks */,
+				CAABA67E2AEB25CF00B9810E /* TitleScene.sks */,
+			);
+			path = "In Game Scenes";
+			sourceTree = "<group>";
+		};
+		CA1A581C2AEC3ECC00C984C1 /* Overlay Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				CAABA6952AEB25EC00B9810E /* GameOverScene iPad.sks */,
@@ -325,7 +354,7 @@
 				CAABA6922AEB25EC00B9810E /* ResumeScene iPad.sks */,
 				CAABA6942AEB25EC00B9810E /* ResumeScene.sks */,
 			);
-			path = "extra scenes";
+			path = "Overlay Scenes";
 			sourceTree = "<group>";
 		};
 		CAC3F68A2AEB766B00CF1E6A /* ButtonToggles */ = {
@@ -356,23 +385,6 @@
 			path = GameExtras;
 			sourceTree = "<group>";
 		};
-		CAC3F6972AEB780F00CF1E6A /* game scenes */ = {
-			isa = PBXGroup;
-			children = (
-				CAABA6842AEB25CF00B9810E /* AtmosphereScene iPad.sks */,
-				CAABA6832AEB25CF00B9810E /* AtmosphereScene.sks */,
-				CAABA6852AEB25CF00B9810E /* ItemShopScene iPad.sks */,
-				CAABA6812AEB25CF00B9810E /* ItemShopScene.sks */,
-				CAABA67F2AEB25CF00B9810E /* PlayScene iPad.sks */,
-				CAABA6822AEB25CF00B9810E /* PlayScene.sks */,
-				CAABA6862AEB25CF00B9810E /* ScoreScene iPad.sks */,
-				CAABA6802AEB25CF00B9810E /* ScoreScene.sks */,
-				CAABA67D2AEB25CF00B9810E /* TitleScene iPad.sks */,
-				CAABA67E2AEB25CF00B9810E /* TitleScene.sks */,
-			);
-			path = "game scenes";
-			sourceTree = "<group>";
-		};
 		CAC3F6982AEB786600CF1E6A /* functional scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,9 +401,6 @@
 		CAC3F6992AEB792200CF1E6A /* Scene States */ = {
 			isa = PBXGroup;
 			children = (
-				A92E72E1209D815B0015F647 /* InGameState.swift */,
-				A92E72E3209D81820015F647 /* GameOverState.swift */,
-				A92E72E5209D818B0015F647 /* PausedState.swift */,
 			);
 			path = "Scene States";
 			sourceTree = "<group>";
@@ -432,25 +441,8 @@
 		CAC3F69E2AEB7C3A00CF1E6A /* Extra Texturues */ = {
 			isa = PBXGroup;
 			children = (
-				A950485720BADB7A0020ECD9 /* SKSpriteNode+GIF.swift */,
-				A9ACB99B209A0DE100966991 /* CGFloat+MathUtils.swift */,
-				A9D4CFD6209AF515006461AF /* SKScene+SpriteUploader.swift */,
-				A9D4CFD8209AF53E006461AF /* SKTextureAtlas+FrameUploader.swift */,
-				A9CC5C30209EFA0600040E61 /* SKTexture+Gradient.swift */,
-				A9E14DAE20B1764B0075D725 /* SKEmitterNode+Utils.swift */,
-				A935954320C2773F000FF0FA /* SKScene+ShaderTransition.swift */,
-				A941362220C4067C007FD610 /* Bool+PipeRandom.swift */,
 			);
 			path = "Extra Texturues";
-			sourceTree = "<group>";
-		};
-		CAC3F6A02AEB7D3700CF1E6A /* Game Utils */ = {
-			isa = PBXGroup;
-			children = (
-				A9ACB9982099F1D200966991 /* PhysicsCategories.swift */,
-				A903943320AD94F000376CC3 /* UserDefaults.swift */,
-			);
-			path = "Game Utils";
 			sourceTree = "<group>";
 		};
 		CAC3F6A12AEB7DBF00CF1E6A /* Input Direction */ = {
