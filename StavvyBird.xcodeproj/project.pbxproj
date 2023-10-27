@@ -189,13 +189,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		A92E72DC209D80FA0015F647 /* Game States */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Game States";
-			sourceTree = "<group>";
-		};
 		A9ACB9102099A1F200966991 = {
 			isa = PBXGroup;
 			children = (
@@ -234,7 +227,6 @@
 				A9ACB91C2099A1F200966991 /* AppDelegate.swift */,
 				A9ACB92E2099A1F300966991 /* Info.plist */,
 				A9CC5C3520A0215C00040E61 /* Control */,
-				A92E72DC209D80FA0015F647 /* Game States */,
 				A9ACB98F2099F12000966991 /* Assets */,
 			);
 			path = StavvyBird;
