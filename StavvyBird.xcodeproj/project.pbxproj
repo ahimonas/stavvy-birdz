@@ -222,7 +222,6 @@
 				CAC3F69C2AEB7A2200CF1E6A /* Game Adapters */,
 				CAC3F69B2AEB79D200CF1E6A /* Base Story */,
 				CAC3F69A2AEB79A100CF1E6A /* Game Controller */,
-				CAC3F6992AEB792200CF1E6A /* Scene States */,
 				CAC3F6982AEB786600CF1E6A /* functional scenes */,
 				CA94BB7D2AD8D7AE005AAF83 /* Stavvy Birds.storekit */,
 				CA47A3BF2ACB5DE400E8ED52 /* StavvyBird.entitlements */,
@@ -398,13 +397,6 @@
 				A9EC756720A6E479007C42EC /* CrossSceneUtility.swift */,
 			);
 			path = "functional scenes";
-			sourceTree = "<group>";
-		};
-		CAC3F6992AEB792200CF1E6A /* Scene States */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Scene States";
 			sourceTree = "<group>";
 		};
 		CAC3F69A2AEB79A100CF1E6A /* Game Controller */ = {
