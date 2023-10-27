@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E584577D0AD326EAF825AA7 /* Pods_StavvyBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547D8F6A64D1BD06473A18CD /* Pods_StavvyBird.framework */; };
+		7CEB207AEAACAA10CF754727 /* Pods_StavvyBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3422C1C0B44F15782FAC636 /* Pods_StavvyBird.framework */; };
 		A90192FB21F1BDF40020C612 /* PhysicsContactable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90192FA21F1BDF40020C612 /* PhysicsContactable.swift */; };
 		A903943420AD94F000376CC3 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A903943320AD94F000376CC3 /* UserDefaults.swift */; };
 		A903943620AD9D1200376CC3 /* SnowParticleEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = A903943520AD9D1200376CC3 /* SnowParticleEffect.sks */; };
@@ -79,10 +79,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		547D8F6A64D1BD06473A18CD /* Pods_StavvyBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StavvyBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5917CCDB90FC8251A6B93800 /* Pods-FlappyFlyBird.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlappyFlyBird.debug.xcconfig"; path = "Target Support Files/Pods-FlappyFlyBird/Pods-FlappyFlyBird.debug.xcconfig"; sourceTree = "<group>"; };
-		7CDAB81EF91D0B72FD584166 /* Pods-FlappyFlyBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlappyFlyBird.release.xcconfig"; path = "Target Support Files/Pods-FlappyFlyBird/Pods-FlappyFlyBird.release.xcconfig"; sourceTree = "<group>"; };
-		8344C2F3ACC7992581C1D297 /* Pods-StavvyBird.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StavvyBird.debug.xcconfig"; path = "Target Support Files/Pods-StavvyBird/Pods-StavvyBird.debug.xcconfig"; sourceTree = "<group>"; };
+		27436BB7F7906BF807684381 /* Pods-StavvyBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StavvyBird.release.xcconfig"; path = "Target Support Files/Pods-StavvyBird/Pods-StavvyBird.release.xcconfig"; sourceTree = "<group>"; };
+		35F5FAE58799ED3B528A4F92 /* Pods-StavvyBird.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StavvyBird.debug.xcconfig"; path = "Target Support Files/Pods-StavvyBird/Pods-StavvyBird.debug.xcconfig"; sourceTree = "<group>"; };
 		A90192FA21F1BDF40020C612 /* PhysicsContactable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsContactable.swift; sourceTree = "<group>"; };
 		A903943320AD94F000376CC3 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		A903943520AD9D1200376CC3 /* SnowParticleEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SnowParticleEffect.sks; sourceTree = "<group>"; };
@@ -155,7 +153,7 @@
 		CAC5FBA02AE9B52D006913FE /* game-over-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "game-over-noise.wav"; path = "StavvyBird/Assets/Sound/Game/Sound/game-over-noise.wav"; sourceTree = SOURCE_ROOT; };
 		CAC5FBA22AE9B586006913FE /* points-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "points-noise.wav"; sourceTree = "<group>"; };
 		CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "in-game-audio.wav"; sourceTree = "<group>"; };
-		E96DC9F22650A686DDD7743B /* Pods-StavvyBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StavvyBird.release.xcconfig"; path = "Target Support Files/Pods-StavvyBird/Pods-StavvyBird.release.xcconfig"; sourceTree = "<group>"; };
+		F3422C1C0B44F15782FAC636 /* Pods_StavvyBird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StavvyBird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,8 +162,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA29A1922ACF755B00470B9F /* GameKit.framework in Frameworks */,
-				6E584577D0AD326EAF825AA7 /* Pods_StavvyBird.framework in Frameworks */,
 				CA47A3C12ACB5E3100E8ED52 /* StoreKit.framework in Frameworks */,
+				7CEB207AEAACAA10CF754727 /* Pods_StavvyBird.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,7 +175,7 @@
 			children = (
 				CA29A1912ACF755B00470B9F /* GameKit.framework */,
 				CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */,
-				547D8F6A64D1BD06473A18CD /* Pods_StavvyBird.framework */,
+				F3422C1C0B44F15782FAC636 /* Pods_StavvyBird.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -185,10 +183,8 @@
 		5F52EF4792F1B6FA9ECBB339 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5917CCDB90FC8251A6B93800 /* Pods-FlappyFlyBird.debug.xcconfig */,
-				7CDAB81EF91D0B72FD584166 /* Pods-FlappyFlyBird.release.xcconfig */,
-				8344C2F3ACC7992581C1D297 /* Pods-StavvyBird.debug.xcconfig */,
-				E96DC9F22650A686DDD7743B /* Pods-StavvyBird.release.xcconfig */,
+				35F5FAE58799ED3B528A4F92 /* Pods-StavvyBird.debug.xcconfig */,
+				27436BB7F7906BF807684381 /* Pods-StavvyBird.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -494,18 +490,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9ACB93C2099A1F300966991 /* Build configuration list for PBXNativeTarget "StavvyBird" */;
 			buildPhases = (
-				F4B9E3B6CE434BBBB5EE463A /* [CP] Check Pods Manifest.lock */,
+				EF8A206E40D72ED6A4E5C7A5 /* [CP] Check Pods Manifest.lock */,
 				A9ACB9152099A1F200966991 /* Sources */,
 				A9ACB9162099A1F200966991 /* Frameworks */,
 				A9ACB9172099A1F200966991 /* Resources */,
-				F5563153ADC80FB39379F103 /* [CP] Embed Pods Frameworks */,
+				E4366FDAAF1CE7F97AC11DD7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = StavvyBird;
-			productName = "ios-spritekit-flappy-flying-bird";
+			productName = "ios-spritekit-StavvyBird";
 			productReference = A9ACB9192099A1F200966991 /* StavvyBird.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -587,7 +583,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F4B9E3B6CE434BBBB5EE463A /* [CP] Check Pods Manifest.lock */ = {
+		E4366FDAAF1CE7F97AC11DD7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StavvyBird/Pods-StavvyBird-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-StavvyBird/Pods-StavvyBird-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StavvyBird/Pods-StavvyBird-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF8A206E40D72ED6A4E5C7A5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -607,23 +620,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F5563153ADC80FB39379F103 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-StavvyBird/Pods-StavvyBird-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-StavvyBird/Pods-StavvyBird-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StavvyBird/Pods-StavvyBird-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -812,7 +808,7 @@
 		};
 		A9ACB93D2099A1F300966991 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8344C2F3ACC7992581C1D297 /* Pods-StavvyBird.debug.xcconfig */;
+			baseConfigurationReference = 35F5FAE58799ED3B528A4F92 /* Pods-StavvyBird.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
@@ -840,7 +836,7 @@
 		};
 		A9ACB93E2099A1F300966991 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E96DC9F22650A686DDD7743B /* Pods-StavvyBird.release.xcconfig */;
+			baseConfigurationReference = 27436BB7F7906BF807684381 /* Pods-StavvyBird.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
