@@ -33,7 +33,7 @@ class MyGameAdapter: NSObject, PlaySceneProtocol {
     var score: Int = 0
     private(set) var scoreLabel: SKLabelNode?
     
-    private(set) var scoreSound = SKAction.playSoundFileNamed("points-noise.wav", waitForCompletion: false)
+    private(set) var scoreSound = SKAction.playSoundFileNamed("points-noise1.wav", waitForCompletion: false)
     private(set) var hitSound = SKAction.playSoundFileNamed("game-over-noise.wav", waitForCompletion: false)
     
 //    var bird: BirdNode?
