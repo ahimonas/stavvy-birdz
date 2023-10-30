@@ -3,7 +3,7 @@
 
 import SpriteKit
 
-class TitleScene: RoutingUtilityScene {
+class HomeScene: RoutingUtilityScene {
         
     override func didMove(to view: SKView) {
         super.didMove(to: view)
@@ -29,23 +29,23 @@ class TitleScene: RoutingUtilityScene {
         let playableCharacter = UserDefaults.standard.playableCharacter(for: .character) ?? .bird
         
         let assetName = playableCharacter.getAssetName()
-        let playerSize = CGSize(width: 200, height: 200)
+        let characterDimensions = CGSize(width: 200, height: 200)
         
         switch playableCharacter {
             
         case .bird:
-            let stavvyBirdNode = PhysicsBirdNode(animationTimeInterval: 0.1, withTextureAtlas: assetName, size: playerSize)
-            stavvyBirdNode.isAffectedByGravity = false
+            let stavvyBirdNode = PhysicsBirdNode(timeIntervalForDrawingFrames: 0.1, withTextureAtlas: assetName, size: characterDimensions)
+            stavvyBirdNode.weighedDownByForce = false
             stavvyBirdNode.position = pendingNode.position
             stavvyBirdNode.zPosition = pendingNode.zPosition
             scene?.addChild(stavvyBirdNode)
             
         case .stavvyGold, .stavvyRat, .stavvyPig, .eldyBird, .stavvyRaven:
-            let myCurrPlayerNode = DefaultGifNodes(animatedGif: assetName, correctAspectRatioFor: playerSize.width)
+            let myCurrPlayerNode = DefaultGifNodes(animatedGif: assetName, correctAspectRatioFor: characterDimensions.width)
             myCurrPlayerNode.xScale = 1.0
             myCurrPlayerNode.yScale = 1.0
             
-            myCurrPlayerNode.isAffectedByGravity = false
+            myCurrPlayerNode.weighedDownByForce = false
             myCurrPlayerNode.position = pendingNode.position
             myCurrPlayerNode.zPosition = pendingNode.zPosition
             scene?.addChild(myCurrPlayerNode)
@@ -97,29 +97,27 @@ import GameKit
 class PlayScene: SKScene {
 
     static var viewportSize: CGSize = .zero
-        
-    lazy var stateMachine: GKStateMachine = GKStateMachine(states: [
-        InGameState(adapter: sceneAdapeter!),
-        GameOverState(scene: sceneAdapeter!),
-        PausedState(scene: self, adapter: sceneAdapeter!)
-        ])
+
+    lazy var instanceGKSM: GKStateMachine = 
+    GKStateMachine(states:
+        [InGameState(gameConfiguration: currConfigForGame!), GameOverState(scene: currConfigForGame!), PausedState(scene: self, gameConfiguration: currConfigForGame!)])
     
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     
-    private var previousTiming : TimeInterval = 0
+    private var precedingMoment : TimeInterval = 0
     let maximumUpdateDeltaTime: TimeInterval = 1.0 / 60.0
 
-    var sceneAdapeter: GameSceneAdapter?
+    var currConfigForGame: ConfigForScenes?
     let selection = UISelectionFeedbackGenerator()
     
     override func sceneDidLoad() {
         super.sceneDidLoad()
         
-        self.previousTiming = 0
-        sceneAdapeter = GameSceneAdapter(with: self)
-        sceneAdapeter?.myGkStateMach = stateMachine
-        sceneAdapeter?.myGkStateMach?.enter(InGameState.self)
+        self.precedingMoment = 0
+        currConfigForGame = ConfigForScenes(with: self)
+        currConfigForGame?.myGkStateMach = instanceGKSM
+        currConfigForGame?.myGkStateMach?.enter(InGameState.self)
     }
     
     override func didMove(to view: SKView) {
@@ -129,25 +127,25 @@ class PlayScene: SKScene {
     }
         
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        sceneAdapeter?.touchables.forEach({ touchable in
+        currConfigForGame?.touchables.forEach({ touchable in
             touchable.touchesBegan(touches, with: event)
         })
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        sceneAdapeter?.touchables.forEach { touchable in
+        currConfigForGame?.touchables.forEach { touchable in
             touchable.touchesMoved(touches, with: event)
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        sceneAdapeter?.touchables.forEach { touchable in
+        currConfigForGame?.touchables.forEach { touchable in
             touchable.touchesEnded(touches, with: event)
         }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        sceneAdapeter?.touchables.forEach { touchable in
+        currConfigForGame?.touchables.forEach { touchable in
             touchable.touchesCancelled(touches, with: event)
         }
     }
@@ -156,12 +154,12 @@ class PlayScene: SKScene {
         super.update(currentTime)
         
         guard view != nil else { return }
-        var deltaTime = currentTime - previousTiming
+        var deltaTime = currentTime - precedingMoment
         deltaTime = deltaTime > maximumUpdateDeltaTime ? maximumUpdateDeltaTime : deltaTime
-        previousTiming = currentTime
+        precedingMoment = currentTime
         if self.isPaused { return }
-        stateMachine.update(deltaTime: deltaTime)
-        sceneAdapeter?.updatables.filter({ return $0.willRenew }).forEach({ (activeUpdatable) in
+        instanceGKSM.update(deltaTime: deltaTime)
+        currConfigForGame?.updatables.filter({ return $0.willRenew }).forEach({ (activeUpdatable) in
             activeUpdatable.update(currentTime)
         })
     }
@@ -179,9 +177,9 @@ extension PlayScene: ButtonNodeResponderType {
         switch identifier {
         
         case .pause:
-            sceneAdapeter?.myGkStateMach?.enter(PausedState.self) //showLeaderBoard();
+            currConfigForGame?.myGkStateMach?.enter(PausedState.self) //showLeaderBoard();
         case .resume:
-            sceneAdapeter?.myGkStateMach?.enter(InGameState.self)
+            currConfigForGame?.myGkStateMach?.enter(InGameState.self)
         case .home:
             let sceneId = Scenes.title.getName()
             guard let gameScene = PlayScene(fileNamed: sceneId) else {
@@ -193,7 +191,7 @@ extension PlayScene: ButtonNodeResponderType {
             transition.pausesOutgoingScene = false
             self.view?.presentScene(gameScene, transition: transition)
         case .retry:
-            sceneAdapeter?.myGkStateMach?.enter(InGameState.self)
+            currConfigForGame?.myGkStateMach?.enter(InGameState.self)
         default:
             debugPrint("Unable to invoke")
             
@@ -209,7 +207,7 @@ func *(lhs: CGSize, value: CGFloat) -> CGSize {
 //Scene
 class GameOverlay {
         
-    let myCurrBackground: SKSpriteNode  //change these nodes
+    let myCurrBackground: SKSpriteNode  //change these skArray
     let myCurrSpritNod: SKSpriteNode
     
     

@@ -5,45 +5,20 @@ import SpriteKit
 import UIKit
 
 class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
-        
-    var delta: TimeInterval = 0
-    var previousTiming: TimeInterval = 0
-    var willRenew: Bool = true {
-        didSet {
-            if willRenew {
-                animate(with: animationTimeInterval)
-            } else {
-                self.removeAllActions()
-            }
-        }
-    }
+    var delta: TimeInterval = 0 //c
+    var precedingMoment: TimeInterval = 0
+    var flyTextures: [SKTexture]? = nil //c
     
-    var isAffectedByGravity: Bool = true {
-        didSet {
-            self.physicsBody?.affectedByGravity = isAffectedByGravity
-        }
-    }
-    
-    var shouldAcceptTouches: Bool = true {
-        didSet {
-            self.isUserInteractionEnabled = shouldAcceptTouches
-        }
-    }
-    
-    var shouldEnablePhysics: Bool = true {
-        didSet {
-            // Set the specified collision bit mask or 0 which basically disables all the collision testing
-            physicsBody?.collisionBitMask = shouldEnablePhysics ? collisionBitMask : 0
-        }
-    }
-    
+    var willRenew: Bool = true {didSet {if willRenew {animate(with: timeIntervalForDrawingFrames)} else {self.removeAllActions()}}}
+    var weighedDownByForce: Bool = true {didSet {self.physicsBody?.affectedByGravity = weighedDownByForce}}
+    var isInteractable: Bool = true {didSet {self.isUserInteractionEnabled = isInteractable}}
+    var shouldEnablePhysics: Bool = true {didSet {physicsBody?.collisionBitMask = shouldEnablePhysics ? collisionBitMask : 0}}
     var collisionBitMask: UInt32 = PhysicsCategories.pipe.rawValue | PhysicsCategories.boundary.rawValue
         
-    var flyTextures: [SKTexture]? = nil
-    private(set) var animationTimeInterval: TimeInterval = 0
+    private(set) var timeIntervalForDrawingFrames: TimeInterval = 0
     private let impact = UIImpactFeedbackGenerator(style: .medium)
         
-    convenience init(animationTimeInterval: TimeInterval, withTextureAtlas named: String, size: CGSize) {
+    convenience init(timeIntervalForDrawingFrames: TimeInterval, withTextureAtlas named: String, size: CGSize) {
         
         var textures = [SKTexture]()
         
@@ -56,16 +31,14 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
         }
         
         self.init(texture: textures.first, color: .clear, size: size)
-        self.animationTimeInterval = animationTimeInterval
+        self.timeIntervalForDrawingFrames = timeIntervalForDrawingFrames
 
         initPhysicsBoundary()
                 self.flyTextures = textures
         self.texture = textures.first
-        self.animate(with: animationTimeInterval)
+        self.animate(with: timeIntervalForDrawingFrames)
     }
     
-    // MARK: - Methods
-
     fileprivate func initPhysicsBoundary() {
         physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2.7)
         physicsBody?.categoryBitMask = PhysicsCategories.player.rawValue
@@ -89,8 +62,8 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
     
     
     func update(_ timeInterval: CFTimeInterval) {
-        delta = previousTiming == 0.0 ? 0.0 : timeInterval - previousTiming
-        previousTiming = timeInterval
+        delta = precedingMoment == 0.0 ? 0.0 : timeInterval - precedingMoment
+        precedingMoment = timeInterval
         
         guard let physicsBody = physicsBody else {
             return
@@ -113,9 +86,9 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
 
 extension PhysicsBirdNode: Touchable {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if !shouldAcceptTouches { return }
+        if !isInteractable { return }
         impact.impactOccurred()
-        isAffectedByGravity = true
+        weighedDownByForce = true
         physicsBody?.applyImpulse(CGVector(dx: 0, dy: 133)) //the bounce force
     }
 }

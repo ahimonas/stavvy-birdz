@@ -11,18 +11,18 @@ class DefaultGifNodes: SKNode, Updatable, Playable, PhysicsContactable {
     
     
     var delta: TimeInterval = 0
-    var previousTiming: TimeInterval = 0
+    var precedingMoment: TimeInterval = 0
     var willRenew: Bool = true
     
-    var isAffectedByGravity: Bool = true {
+    var weighedDownByForce: Bool = true {
         didSet {
-            physicsBody?.affectedByGravity = isAffectedByGravity
+            physicsBody?.affectedByGravity = weighedDownByForce
         }
     }
     
-    var shouldAcceptTouches: Bool = true {
+    var isInteractable: Bool = true {
         didSet {
-            self.isUserInteractionEnabled = shouldAcceptTouches
+            self.isUserInteractionEnabled = isInteractable
         }
     }
 
@@ -84,15 +84,13 @@ class DefaultGifNodes: SKNode, Updatable, Playable, PhysicsContactable {
     
     
     func update(_ timeInterval: CFTimeInterval) {
-        delta = previousTiming == 0.0 ? 0.0 : timeInterval - previousTiming
-        previousTiming = timeInterval
-        
-        guard let physicsBody = physicsBody else {
-            return
-        }
-        
-        let dxVeloc = physicsBody.velocity.dx
+        delta = precedingMoment == 0.0 ? 0.0 : timeInterval - precedingMoment
+        precedingMoment = timeInterval
+
+        guard let physicsBody = physicsBody else {return}
         let dyVeloc = physicsBody.velocity.dy
+
+        let dxVeloc = physicsBody.velocity.dx
         let myCurrThresh: CGFloat = 300
         
         if dyVeloc > myCurrThresh {
@@ -109,11 +107,11 @@ class DefaultGifNodes: SKNode, Updatable, Playable, PhysicsContactable {
 extension DefaultGifNodes: Touchable {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if !shouldAcceptTouches { return }
+        if !isInteractable { return }
         
         impact.impactOccurred()
         
-        isAffectedByGravity = true
+        weighedDownByForce = true
         // Apply an impulse to the DY value of the physics body of the bird
         physicsBody?.applyImpulse(CGVector(dx: 0, dy: 150))
     }
