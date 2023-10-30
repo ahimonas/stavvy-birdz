@@ -5,16 +5,9 @@ import SpriteKit
 
 //characters
 class ItemShopScene: RoutingUtilityScene {
-    //@IBOutlet weak var EldyBird: UIButton!
-
     private var boughtEldy = false
-    // MARK: - Properties
-    
-    private var selectNode: SKShapeNode?
+    private var characterSelector: SKShapeNode?
     private var playableCharacters: [PlayableCharacter : SKNode] = [:]
-    
-    // MARK: - Overrides
-    
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
@@ -41,39 +34,33 @@ class ItemShopScene: RoutingUtilityScene {
        // defaults.dictionaryRepresentation().map{print("\($0.key): \($0.value)")}
         
         func preparePlayableCharacters() {
-            let stavvyBird = childNode(withName: PlayableCharacter.bird.rawValue) as? SKSpriteNode
-            playableCharacters[.bird] = stavvyBird
+            let currGkPoint=CGPoint(x: 0.6, y: 0.6)
+
+            let stavvyBird =
+            childNode(withName: PlayableCharacter.bird.rawValue) as? SKSpriteNode; playableCharacters[.bird] = stavvyBird
             
-            let scale = CGPoint(x: 0.6, y: 0.6)
+            let stavvyRat =
+            childNode(withName: PlayableCharacter.stavvyRat.rawValue) as? DefaultGifNodes
+            stavvyRat?.xScale = currGkPoint.x; stavvyRat?.yScale = currGkPoint.y; playableCharacters[.stavvyRat] = stavvyRat
             
-            let stavvyRat = childNode(withName: PlayableCharacter.stavvyRat.rawValue) as? DefaultGifNodes
-            stavvyRat?.xScale = scale.x //DefaultGifNodes
-            stavvyRat?.yScale = scale.y
-            playableCharacters[.stavvyRat] = stavvyRat
+            let stavvyGold =
+            childNode(withName: PlayableCharacter.stavvyGold.rawValue) as? DefaultGifNodes
+            stavvyGold?.xScale = currGkPoint.x; stavvyGold?.yScale = currGkPoint.y; playableCharacters[.stavvyGold] = stavvyGold
             
-            let stavvyGold = childNode(withName: PlayableCharacter.stavvyGold.rawValue) as? DefaultGifNodes
-            stavvyGold?.xScale = scale.x
-            stavvyGold?.yScale = scale.y
-            playableCharacters[.stavvyGold] = stavvyGold
+            let stavvyPig =
+            childNode(withName: PlayableCharacter.stavvyPig.rawValue) as? DefaultGifNodes
+            stavvyPig?.xScale = currGkPoint.x; stavvyPig?.yScale = currGkPoint.y; playableCharacters[.stavvyPig] = stavvyPig
             
-            let stavvyPig = childNode(withName: PlayableCharacter.stavvyPig.rawValue) as? DefaultGifNodes
-            stavvyPig?.xScale = scale.x
-            stavvyPig?.yScale = scale.y
-            playableCharacters[.stavvyPig] = stavvyPig
+            let eldyBird =
+            childNode(withName: PlayableCharacter.eldyBird.rawValue) as? DefaultGifNodes
+            eldyBird?.xScale = currGkPoint.x; eldyBird?.yScale = currGkPoint.y; playableCharacters[.eldyBird] = eldyBird
             
-            let eldyBird = childNode(withName: PlayableCharacter.eldyBird.rawValue) as? DefaultGifNodes
-            eldyBird?.xScale = scale.x
-            eldyBird?.yScale = scale.y
-            playableCharacters[.eldyBird] = eldyBird
-            // ravens position 5
-            let stavvyRaven = childNode(withName: PlayableCharacter.stavvyRaven.rawValue) as? DefaultGifNodes
-            stavvyRaven?.xScale = scale.x
-            stavvyRaven?.yScale = scale.y
-            playableCharacters[.stavvyRaven] = stavvyRaven
-             
+            let stavvyRaven =
+            childNode(withName: PlayableCharacter.stavvyRaven.rawValue) as? DefaultGifNodes
+            stavvyRaven?.xScale = currGkPoint.x; stavvyRaven?.yScale = currGkPoint.y; playableCharacters[.stavvyRaven] = stavvyRaven
         }
         
-        selectNode = childNode(withName: "Select Node") as? SKShapeNode
+        characterSelector = childNode(withName: "Character Select") as? SKShapeNode
         preparePlayableCharacters()
       
         func loadSelectedChacter() {
@@ -176,9 +163,9 @@ class ItemShopScene: RoutingUtilityScene {
             let unhide = SKAction.fadeIn(withDuration: 0.14)
             let move = SKAction.move(to: playableCharacterNode.position, duration: 0.0)
             let sequece = SKAction.sequence([hide, move, unhide])
-            selectNode?.run(sequece)
+            characterSelector?.run(sequece)
         } else {
-            selectNode?.position = playableCharacterNode.position
+            characterSelector?.position = playableCharacterNode.position
         }
     }
     

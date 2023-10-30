@@ -8,8 +8,7 @@ import SpriteKit
 
 class InGameState: GKState {
         
-    unowned var adapter: GameSceneAdapter
-    
+    unowned var gameConfiguration: ConfigForScenes
     private let playerScale = CGPoint(x: 0.4, y: 0.4)
     private let snowEmitterAdvancementInSeconds: TimeInterval = 15
     private let animationTimeInterval: TimeInterval = 0.1
@@ -17,29 +16,29 @@ class InGameState: GKState {
     private(set) var infinitePipeProducer: SKAction! = nil
     let infinitePipeProducerKey = "Pipe Action"
         
-    init(adapter: GameSceneAdapter) {
-        self.adapter = adapter
+    init(gameConfiguration: ConfigForScenes) {
+        self.gameConfiguration = gameConfiguration
         super.init()
         
-        guard let scene = adapter.scene else {
+        guard let scene = gameConfiguration.scene else {
             return
         }
         preparePlayer(for: scene)
         
-        if let scene = adapter.scene, let target = adapter.infiniteBackgroundNode {
+        if let scene = gameConfiguration.scene, let target = gameConfiguration.infiniteBackgroundNode {
             infinitePipeProducer = ColumnFactory.launch(for: scene, targetNode: target)
         }
         
-        adapter.advanceSnowEmitter(for: snowEmitterAdvancementInSeconds)
+        gameConfiguration.advanceSnowEmitter(for: snowEmitterAdvancementInSeconds)
     }
         
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
-        adapter.playerCharacter?.weighedDownByForce = false
-        adapter.scene?.run(infinitePipeProducer, withKey: infinitePipeProducerKey)
+        gameConfiguration.playerCharacter?.weighedDownByForce = false
+        gameConfiguration.scene?.run(infinitePipeProducer, withKey: infinitePipeProducerKey)
         
-        if adapter.isSoundOn {
-            adapter.scene?.addChild(adapter.playingAudio)
+        if gameConfiguration.isSoundOn {
+            gameConfiguration.scene?.addChild(gameConfiguration.playingAudio)
             SKAction.play()
         }
         
@@ -47,13 +46,13 @@ class InGameState: GKState {
             return
         }
         
-        guard let scene = adapter.scene, let player = adapter.playerCharacter else {
+        guard let scene = gameConfiguration.scene, let player = gameConfiguration.playerCharacter else {
             return
         }
         
         
-        if adapter.isSoundOn {
-            if let menuAudio = scene.childNode(withName: adapter.menuAudio.name!) {
+        if gameConfiguration.isSoundOn {
+            if let menuAudio = scene.childNode(withName: gameConfiguration.menuAudio.name!) {
                 menuAudio.removeFromParent()
             }
         }
@@ -66,14 +65,14 @@ class InGameState: GKState {
     override func willExit(to nextState: GKState) {
         super.willExit(to: nextState)
         
-        if adapter.isSoundOn {
-            adapter.playingAudio.removeFromParent()
+        if gameConfiguration.isSoundOn {
+            gameConfiguration.playingAudio.removeFromParent()
         }
 
         if nextState is GameOverState {
-            adapter.scene?.removeAction(forKey: infinitePipeProducerKey)
-            adapter.removePipes()
-            adapter.resetScores()
+            gameConfiguration.scene?.removeAction(forKey: infinitePipeProducerKey)
+            gameConfiguration.removePipes()
+            gameConfiguration.resetScores()
         }
     }
     
@@ -88,32 +87,32 @@ class InGameState: GKState {
         
         switch character {
         case .bird:
-            adapter.playerCharacter = PhysicsBirdNode(
+            gameConfiguration.playerCharacter = PhysicsBirdNode(
                 animationTimeInterval: animationTimeInterval,
                 withTextureAtlas: assetName,
-                size: adapter.characterDimensions)
+                size: gameConfiguration.characterDimensions)
         case .stavvyGold, .stavvyRat, .stavvyPig, .eldyBird, .stavvyRaven:
             let player = DefaultGifNodes(
                 animatedGif: assetName,
-                correctAspectRatioFor: adapter.characterDimensions.width)
+                correctAspectRatioFor: gameConfiguration.characterDimensions.width)
             player.xScale = playerScale.x
             player.yScale = playerScale.y
-            adapter.playerCharacter = player
+            gameConfiguration.playerCharacter = player
         }
         
-        guard let playableCharacter = adapter.playerCharacter else {
+        guard let playableCharacter = gameConfiguration.playerCharacter else {
             debugPrint(#function + " Stavvy Bird failed")
             return
         }
         position(player: character, in: scene)
         scene.addChild(playableCharacter)
         
-        adapter.updatables.append(playableCharacter)
-        adapter.touchables.append(playableCharacter)
+        gameConfiguration.updatables.append(playableCharacter)
+        gameConfiguration.touchables.append(playableCharacter)
     }
     
     private func position(player: PlayableCharacter, in scene: SKScene) {
-        guard let playerNode = adapter.playerCharacter else {
+        guard let playerNode = gameConfiguration.playerCharacter else {
             return
         }
         
@@ -140,13 +139,13 @@ class GameOverState: GKState {
         return Scenes.failed.getName()
     }
     
-    unowned var levelScene: GameSceneAdapter
+    unowned var levelScene: ConfigForScenes
     var overlay: GameOverlay!
     
     
     private(set) var currentScoreLabel: SKLabelNode?
         
-    init(scene: GameSceneAdapter) {
+    init(scene: ConfigForScenes) {
         self.levelScene = scene
         super.init()
      
@@ -237,12 +236,12 @@ class PausedState: GKState {
     }
     
     unowned var levelScene: SKScene
-    unowned var adapter: GameSceneAdapter
+    unowned var gameConfiguration: ConfigForScenes
     var overlay: GameOverlay!
         
-    init(scene: SKScene, adapter: GameSceneAdapter) {
+    init(scene: SKScene, gameConfiguration: ConfigForScenes) {
         self.levelScene = scene
-        self.adapter = adapter
+        self.gameConfiguration = gameConfiguration
         super.init()
         overlay = GameOverlay(overlaySceneFileName: overlaySceneFileName, zPosition: 1000)
     }
@@ -251,16 +250,16 @@ class PausedState: GKState {
         super.didEnter(from: previousState)
         
         levelScene.isPaused = true
-        adapter.overlay = overlay
-        adapter.isHUDHidden = true
+        gameConfiguration.overlay = overlay
+        gameConfiguration.isHUDHidden = true
     }
     
     override func willExit(to nextState: GKState) {
         super.willExit(to: nextState)
         
         levelScene.isPaused = false
-        adapter.overlay = nil
-        adapter.isHUDHidden = false
+        gameConfiguration.overlay = nil
+        gameConfiguration.isHUDHidden = false
     }
         
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {

@@ -15,7 +15,7 @@ extension SKScene {
     }
 }
 
-class GameSceneAdapter: NSObject, PlaySceneProtocol {
+class ConfigForScenes: NSObject, PlaySceneProtocol {
         
     private let actionFadeTime: TimeInterval = 0.24
     let characterDimensions = CGSize(width: 101, height: 101)
@@ -124,9 +124,9 @@ class GameSceneAdapter: NSObject, PlaySceneProtocol {
         prepareInfiniteBackgroundScroller(for: scene)
     }
     
-    convenience init?(with scene: SKScene, stateMachine: GKStateMachine) {
+    convenience init?(with scene: SKScene, instanceGKSM: GKStateMachine) {
         self.init(with: scene)
-        self.myGkStateMach = stateMachine
+        self.myGkStateMach = instanceGKSM
     }
     
     
@@ -135,18 +135,18 @@ class GameSceneAdapter: NSObject, PlaySceneProtocol {
     }
     
     func removePipes() {
-        var nodes = [SKNode]()
+        var skArray = [SKNode]()
         
         infiniteBackgroundNode?.children.forEach({ node in
             let nodeName = node.name
-            if let doesContainNodeName = nodeName?.contains("pipe"), doesContainNodeName { nodes += [node] }
+            if let doesContainNodeName = nodeName?.contains("pipe"), doesContainNodeName { skArray += [node] }
         })
-        nodes.forEach { node in
+        skArray.forEach { node in
             node.removeAllActions()
             node.removeAllChildren()
             node.removeFromParent()
         }
-        nodes.removeAll()
+        skArray.removeAll()
     }
     
     private func prepareWorld(for scene: SKScene) {
@@ -180,7 +180,7 @@ class GameSceneAdapter: NSObject, PlaySceneProtocol {
     
 }
 
-extension GameSceneAdapter: SKPhysicsContactDelegate {
+extension ConfigForScenes: SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         let collision:UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)

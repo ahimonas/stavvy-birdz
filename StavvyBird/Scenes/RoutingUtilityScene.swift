@@ -28,7 +28,6 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
     var noAdsBtn:SKSpriteNode!
     var scoreboard :SKSpriteNode!
 
-    // MARK: leaderboard
     func authenticateLocalPlayer() {
         let localPlayer : GKLocalPlayer = GKLocalPlayer()
         localPlayer.authenticateHandler = { (viewController, error) -> Void in
@@ -460,7 +459,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             initInAppPurchases()
             inAppPurchase()
             debugPrint("eldy button pressed - purchase non-consumable")
-            
+        /*
         case .venu:
             saveScore(score: 10)
             //initInAppPurchases()
@@ -473,10 +472,10 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             
         case .zenu:
             showLeaderboard()
-            
+            */ 
         case .menu:
             let sceneId = Scenes.title.getName()
-            sceneToPresent = TitleScene(fileNamed: sceneId)
+            sceneToPresent = HomeScene(fileNamed: sceneId)
             var pushDirection: SKTransitionDirection?
             
             if let lastPushTransitionDirection = RoutingUtilityScene.lastPushTransitionDirection {

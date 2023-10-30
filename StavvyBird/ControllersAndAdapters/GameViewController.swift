@@ -70,7 +70,7 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
         
         let sceneName = Scenes.title.getName()
         
-        if let scene = SKScene(fileNamed: sceneName) as? TitleScene {
+        if let scene = SKScene(fileNamed: sceneName) as? HomeScene {
 
             // Set the scale mode to scale to fit the window
             scene.scaleMode = .aspectFill

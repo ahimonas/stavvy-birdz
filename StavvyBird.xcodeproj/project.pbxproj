@@ -37,7 +37,6 @@
 		CAABA6872AEB25CF00B9810E /* TitleScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67D2AEB25CF00B9810E /* TitleScene iPad.sks */; };
 		CAABA6882AEB25CF00B9810E /* HomeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67E2AEB25CF00B9810E /* HomeScene.sks */; };
 		CAABA6892AEB25CF00B9810E /* PlayScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67F2AEB25CF00B9810E /* PlayScene iPad.sks */; };
-		CAABA68A2AEB25CF00B9810E /* ScoreScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6802AEB25CF00B9810E /* ScoreScene.sks */; };
 		CAABA68B2AEB25CF00B9810E /* ItemShopScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6812AEB25CF00B9810E /* ItemShopScene.sks */; };
 		CAABA68C2AEB25CF00B9810E /* PlayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6822AEB25CF00B9810E /* PlayScene.sks */; };
 		CAABA68D2AEB25CF00B9810E /* AtmosphereScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6832AEB25CF00B9810E /* AtmosphereScene.sks */; };
@@ -92,7 +91,6 @@
 		CAABA67D2AEB25CF00B9810E /* TitleScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "TitleScene iPad.sks"; sourceTree = "<group>"; };
 		CAABA67E2AEB25CF00B9810E /* HomeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HomeScene.sks; sourceTree = "<group>"; };
 		CAABA67F2AEB25CF00B9810E /* PlayScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "PlayScene iPad.sks"; sourceTree = "<group>"; };
-		CAABA6802AEB25CF00B9810E /* ScoreScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ScoreScene.sks; sourceTree = "<group>"; };
 		CAABA6812AEB25CF00B9810E /* ItemShopScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ItemShopScene.sks; sourceTree = "<group>"; };
 		CAABA6822AEB25CF00B9810E /* PlayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayScene.sks; sourceTree = "<group>"; };
 		CAABA6832AEB25CF00B9810E /* AtmosphereScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AtmosphereScene.sks; sourceTree = "<group>"; };
@@ -290,7 +288,6 @@
 			isa = PBXGroup;
 			children = (
 				CAABA67E2AEB25CF00B9810E /* HomeScene.sks */,
-				CAABA6802AEB25CF00B9810E /* ScoreScene.sks */,
 				CAABA6822AEB25CF00B9810E /* PlayScene.sks */,
 				CAABA6832AEB25CF00B9810E /* AtmosphereScene.sks */,
 				CAABA6942AEB25EC00B9810E /* ResumeScene.sks */,
@@ -402,7 +399,6 @@
 				A950485A20BAE2170020ECD9 /* stavvy-pig.gif in Resources */,
 				CAABA68B2AEB25CF00B9810E /* ItemShopScene.sks in Resources */,
 				CAABA6972AEB25EC00B9810E /* GameOverScene.sks in Resources */,
-				CAABA68A2AEB25CF00B9810E /* ScoreScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
