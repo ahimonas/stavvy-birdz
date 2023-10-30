@@ -27,7 +27,7 @@ class InGameState: GKState {
         preparePlayer(for: scene)
         
         if let scene = adapter.scene, let target = adapter.infiniteBackgroundNode {
-            infinitePipeProducer = PipeFactory.launch(for: scene, targetNode: target)
+            infinitePipeProducer = ColumnFactory.launch(for: scene, targetNode: target)
         }
         
         adapter.advanceSnowEmitter(for: snowEmitterAdvancementInSeconds)
@@ -88,7 +88,7 @@ class InGameState: GKState {
         
         switch character {
         case .bird:
-            adapter.playerCharacter = BirdNode(
+            adapter.playerCharacter = PhysicsBirdNode(
                 animationTimeInterval: animationTimeInterval,
                 withTextureAtlas: assetName,
                 size: adapter.playerSize)
@@ -129,13 +129,6 @@ class InGameState: GKState {
    
 }
 
-
-//  SounioTechnologies LLC
-//  StavvyBird
-// revisit
-
-import GameplayKit
-import SpriteKit
 
 class GameOverState: GKState {
 
@@ -237,14 +230,6 @@ extension GameOverState {
     }
 }
 
-
-//  SounioTechnologies LLC
-//  StavvyBird
-//revisit
-
-import GameplayKit
-import SpriteKit
-
 class PausedState: GKState {
         
     var overlaySceneFileName: String {
@@ -277,9 +262,7 @@ class PausedState: GKState {
         adapter.overlay = nil
         adapter.isHUDHidden = false
     }
-    
-    // MARK: Convenience
-    
+        
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
         return true
     }

@@ -4,7 +4,7 @@
 import SpriteKit
 import UIKit
 
-class BirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
+class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
         
     var delta: TimeInterval = 0
     var previousTiming: TimeInterval = 0
@@ -111,7 +111,7 @@ class BirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
     
 }
 
-extension BirdNode: Touchable {
+extension PhysicsBirdNode: Touchable {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !shouldAcceptTouches { return }
         impact.impactOccurred()

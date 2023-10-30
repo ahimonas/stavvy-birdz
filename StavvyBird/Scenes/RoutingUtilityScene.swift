@@ -490,7 +490,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                 case .right:
                     pushDirection = .left
                 @unknown default:
-                    fatalError("Unknown case was deteced in .menu case in buttonTriggered method. Please, make sure that all the cases are properly handled.")
+                    fatalError("Menu unable to handle directions.")
                 }
                 RoutingUtilityScene.lastPushTransitionDirection = pushDirection
             }
@@ -506,7 +506,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
              
             
         default:
-            debugPrint(#function + "triggered button node action that is not supported by the TitleScene class")
+            debugPrint(#function + "BUTTON NOT SUPPORTED BY TITLE SCNE ")
         }
         
         guard let presentationScene = sceneToPresent, let unwrappedTransition = transition  else {
