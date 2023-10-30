@@ -31,7 +31,6 @@ enum ButtonIdentifier: String {
     case characters = "Characters"
     case difficulty = "Difficulty"
     
-    /// Convenience array of all available button identifiers.
     static let allButtonIdentifiers: [ButtonIdentifier] = [
         .play, .pause, .resume, .menu, .venu, .penu, .zenu,.titley, .settings, .home, .retry, .cancel, .scores, sound, .characters, .difficulty, .eldy, .raven
     ]

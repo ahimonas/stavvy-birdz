@@ -17,11 +17,10 @@ extension SKScene {
 
 class GameSceneAdapter: NSObject, PlaySceneProtocol {
         
-    private let overlayDuration: TimeInterval = 0.24
-
-    let gravity: CGFloat = -5.1
-    let playerSize = CGSize(width: 100, height: 100)
-    let backgroundResourceName = "game-play-screen"//"Background-Winter"
+    private let actionFadeTime: TimeInterval = 0.24
+    let characterDimensions = CGSize(width: 101, height: 101)
+    let forceOfGravity: CGFloat = -5.1
+    let namedPngFile = "game-play-screen"//"Background-Winter"
     let floorDistance: CGFloat = 0
     
     let isSoundOn: Bool = {
@@ -31,8 +30,8 @@ class GameSceneAdapter: NSObject, PlaySceneProtocol {
     var score: Int = 0
     private(set) var scoreLabel: SKLabelNode?
     
-    private(set) var scoreSound = SKAction.playSoundFileNamed("points-noise.wav", waitForCompletion: false)
-    private(set) var hitSound = SKAction.playSoundFileNamed("game-over-noise.wav", waitForCompletion: false)
+    private(set) var pointAddedNoise = SKAction.playSoundFileNamed("points-noise.wav", waitForCompletion: false)
+    private(set) var crashNoise = SKAction.playSoundFileNamed("game-over-noise.wav", waitForCompletion: false)
     
 //    var bird: BirdNode?
     typealias PlayableCharacter = (PhysicsContactable & Updatable & Touchable & Playable & SKNode)
@@ -58,19 +57,15 @@ class GameSceneAdapter: NSObject, PlaySceneProtocol {
     var updatables = [Updatable]()
     var touchables = [Touchable]()
     
-    var gameButtons = [ButtonNode]()
+    var listOfNodes = [ButtonNode]()
     weak var scene: SKScene?
 
-    /*
-     let myCurrBackground: SKSpriteNode  //change these nodes
-     let myCurrSpritNod: SKSpriteNode
-     */
     
     var overlay: GameOverlay? {
         didSet {
-            gameButtons = []
+            listOfNodes = []
             
-            oldValue?.myCurrBackground.run(SKAction.fadeOut(withDuration: overlayDuration)) {
+            oldValue?.myCurrBackground.run(SKAction.fadeOut(withDuration: actionFadeTime)) {
                 debugPrint(#function + " change background")
                 oldValue?.myCurrBackground.removeFromParent()
             }
@@ -81,9 +76,9 @@ class GameSceneAdapter: NSObject, PlaySceneProtocol {
                 scene.addChild(overlay.myCurrBackground)
                 
                 overlay.myCurrBackground.alpha = 1.0
-                overlay.myCurrBackground.run(SKAction.fadeIn(withDuration: overlayDuration))
+                overlay.myCurrBackground.run(SKAction.fadeIn(withDuration: actionFadeTime))
                 
-                gameButtons = scene.getAllButtons()
+                listOfNodes = scene.getAllButtons()
             }
         }
     }
@@ -155,7 +150,7 @@ class GameSceneAdapter: NSObject, PlaySceneProtocol {
     }
     
     private func prepareWorld(for scene: SKScene) {
-        scene.physicsWorld.gravity = CGVector(dx: 0.0, dy: gravity)
+        scene.physicsWorld.gravity = CGVector(dx: 0.0, dy: forceOfGravity)
         let rect = CGRect(x: 0, y: floorDistance, width: scene.size.width, height: scene.size.height - floorDistance)
         scene.physicsBody = SKPhysicsBody(edgeLoopFrom: rect)
         
@@ -171,7 +166,7 @@ class GameSceneAdapter: NSObject, PlaySceneProtocol {
     private func prepareInfiniteBackgroundScroller(for scene: SKScene) {
         let scaleFactor = NodeScale.gameBackgroundScale.getValue()
         
-        infiniteBackgroundNode = ContinuousBackground(fileName: backgroundResourceName, scaleFactor: CGPoint(x: scaleFactor, y: scaleFactor))
+        infiniteBackgroundNode = ContinuousBackground(fileName: namedPngFile, scaleFactor: CGPoint(x: scaleFactor, y: scaleFactor))
         infiniteBackgroundNode!.zPosition = 0
         
         scene.addChild(infiniteBackgroundNode!)
@@ -195,7 +190,7 @@ extension GameSceneAdapter: SKPhysicsContactDelegate {
             score += 1
             scoreLabel?.text = "\(score)"
             
-            if isSoundOn { scene?.run(scoreSound) }
+            if isSoundOn { scene?.run(pointAddedNoise) }
             
             notification.notificationOccurred(.success)
         }
@@ -223,6 +218,6 @@ extension GameSceneAdapter: SKPhysicsContactDelegate {
     
     private func hit() {
         impact.impactOccurred()
-        if isSoundOn { scene?.run(hitSound) }
+        if isSoundOn { scene?.run(crashNoise) }
     }
 }

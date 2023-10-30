@@ -35,7 +35,7 @@ class InGameState: GKState {
         
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
-        adapter.playerCharacter?.isAffectedByGravity = false
+        adapter.playerCharacter?.weighedDownByForce = false
         adapter.scene?.run(infinitePipeProducer, withKey: infinitePipeProducerKey)
         
         if adapter.isSoundOn {
@@ -91,11 +91,11 @@ class InGameState: GKState {
             adapter.playerCharacter = PhysicsBirdNode(
                 animationTimeInterval: animationTimeInterval,
                 withTextureAtlas: assetName,
-                size: adapter.playerSize)
+                size: adapter.characterDimensions)
         case .stavvyGold, .stavvyRat, .stavvyPig, .eldyBird, .stavvyRaven:
             let player = DefaultGifNodes(
                 animatedGif: assetName,
-                correctAspectRatioFor: adapter.playerSize.width)
+                correctAspectRatioFor: adapter.characterDimensions.width)
             player.xScale = playerScale.x
             player.yScale = playerScale.y
             adapter.playerCharacter = player

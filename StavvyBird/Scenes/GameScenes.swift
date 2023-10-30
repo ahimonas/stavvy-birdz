@@ -29,23 +29,23 @@ class TitleScene: RoutingUtilityScene {
         let playableCharacter = UserDefaults.standard.playableCharacter(for: .character) ?? .bird
         
         let assetName = playableCharacter.getAssetName()
-        let playerSize = CGSize(width: 200, height: 200)
+        let characterDimensions = CGSize(width: 200, height: 200)
         
         switch playableCharacter {
             
         case .bird:
-            let stavvyBirdNode = PhysicsBirdNode(animationTimeInterval: 0.1, withTextureAtlas: assetName, size: playerSize)
-            stavvyBirdNode.isAffectedByGravity = false
+            let stavvyBirdNode = PhysicsBirdNode(animationTimeInterval: 0.1, withTextureAtlas: assetName, size: characterDimensions)
+            stavvyBirdNode.weighedDownByForce = false
             stavvyBirdNode.position = pendingNode.position
             stavvyBirdNode.zPosition = pendingNode.zPosition
             scene?.addChild(stavvyBirdNode)
             
         case .stavvyGold, .stavvyRat, .stavvyPig, .eldyBird, .stavvyRaven:
-            let myCurrPlayerNode = DefaultGifNodes(animatedGif: assetName, correctAspectRatioFor: playerSize.width)
+            let myCurrPlayerNode = DefaultGifNodes(animatedGif: assetName, correctAspectRatioFor: characterDimensions.width)
             myCurrPlayerNode.xScale = 1.0
             myCurrPlayerNode.yScale = 1.0
             
-            myCurrPlayerNode.isAffectedByGravity = false
+            myCurrPlayerNode.weighedDownByForce = false
             myCurrPlayerNode.position = pendingNode.position
             myCurrPlayerNode.zPosition = pendingNode.zPosition
             scene?.addChild(myCurrPlayerNode)
@@ -107,7 +107,7 @@ class PlayScene: SKScene {
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     
-    private var previousTiming : TimeInterval = 0
+    private var precedingMoment : TimeInterval = 0
     let maximumUpdateDeltaTime: TimeInterval = 1.0 / 60.0
 
     var sceneAdapeter: GameSceneAdapter?
@@ -116,7 +116,7 @@ class PlayScene: SKScene {
     override func sceneDidLoad() {
         super.sceneDidLoad()
         
-        self.previousTiming = 0
+        self.precedingMoment = 0
         sceneAdapeter = GameSceneAdapter(with: self)
         sceneAdapeter?.myGkStateMach = stateMachine
         sceneAdapeter?.myGkStateMach?.enter(InGameState.self)
@@ -156,9 +156,9 @@ class PlayScene: SKScene {
         super.update(currentTime)
         
         guard view != nil else { return }
-        var deltaTime = currentTime - previousTiming
+        var deltaTime = currentTime - precedingMoment
         deltaTime = deltaTime > maximumUpdateDeltaTime ? maximumUpdateDeltaTime : deltaTime
-        previousTiming = currentTime
+        precedingMoment = currentTime
         if self.isPaused { return }
         stateMachine.update(deltaTime: deltaTime)
         sceneAdapeter?.updatables.filter({ return $0.willRenew }).forEach({ (activeUpdatable) in

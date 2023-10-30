@@ -11,12 +11,12 @@ class DefaultGifNodes: SKNode, Updatable, Playable, PhysicsContactable {
     
     
     var delta: TimeInterval = 0
-    var previousTiming: TimeInterval = 0
+    var precedingMoment: TimeInterval = 0
     var willRenew: Bool = true
     
-    var isAffectedByGravity: Bool = true {
+    var weighedDownByForce: Bool = true {
         didSet {
-            physicsBody?.affectedByGravity = isAffectedByGravity
+            physicsBody?.affectedByGravity = weighedDownByForce
         }
     }
     
@@ -84,8 +84,8 @@ class DefaultGifNodes: SKNode, Updatable, Playable, PhysicsContactable {
     
     
     func update(_ timeInterval: CFTimeInterval) {
-        delta = previousTiming == 0.0 ? 0.0 : timeInterval - previousTiming
-        previousTiming = timeInterval
+        delta = precedingMoment == 0.0 ? 0.0 : timeInterval - precedingMoment
+        precedingMoment = timeInterval
         
         guard let physicsBody = physicsBody else {
             return
@@ -113,7 +113,7 @@ extension DefaultGifNodes: Touchable {
         
         impact.impactOccurred()
         
-        isAffectedByGravity = true
+        weighedDownByForce = true
         // Apply an impulse to the DY value of the physics body of the bird
         physicsBody?.applyImpulse(CGVector(dx: 0, dy: 150))
     }

@@ -7,8 +7,11 @@ import UIKit
 class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
         
     var delta: TimeInterval = 0
-    var previousTiming: TimeInterval = 0
+    
+    var precedingMoment: TimeInterval = 0
+    
     var willRenew: Bool = true {
+        
         didSet {
             if willRenew {
                 animate(with: animationTimeInterval)
@@ -18,9 +21,9 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
         }
     }
     
-    var isAffectedByGravity: Bool = true {
+    var weighedDownByForce: Bool = true {
         didSet {
-            self.physicsBody?.affectedByGravity = isAffectedByGravity
+            self.physicsBody?.affectedByGravity = weighedDownByForce
         }
     }
     
@@ -89,8 +92,8 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
     
     
     func update(_ timeInterval: CFTimeInterval) {
-        delta = previousTiming == 0.0 ? 0.0 : timeInterval - previousTiming
-        previousTiming = timeInterval
+        delta = precedingMoment == 0.0 ? 0.0 : timeInterval - precedingMoment
+        precedingMoment = timeInterval
         
         guard let physicsBody = physicsBody else {
             return
@@ -115,7 +118,7 @@ extension PhysicsBirdNode: Touchable {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !shouldAcceptTouches { return }
         impact.impactOccurred()
-        isAffectedByGravity = true
+        weighedDownByForce = true
         physicsBody?.applyImpulse(CGVector(dx: 0, dy: 133)) //the bounce force
     }
 }
