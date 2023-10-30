@@ -10,7 +10,6 @@
 		6E584577D0AD326EAF825AA7 /* Pods_StavvyBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547D8F6A64D1BD06473A18CD /* Pods_StavvyBird.framework */; };
 		A903943420AD94F000376CC3 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A903943320AD94F000376CC3 /* UserDefaults.swift */; };
 		A92E72E2209D815B0015F647 /* GameStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E72E1209D815B0015F647 /* GameStates.swift */; };
-		A92E72EE209D87570015F647 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E72ED209D87570015F647 /* ButtonNode.swift */; };
 		A94A97F721A287890087C018 /* ContinuousBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A97F621A287890087C018 /* ContinuousBackground.swift */; };
 		A950485A20BAE2170020ECD9 /* stavvy-pig.gif in Resources */ = {isa = PBXBuildFile; fileRef = A950485920BAE2170020ECD9 /* stavvy-pig.gif */; };
 		A950486120BAE29C0020ECD9 /* stavvy-rat.gif in Resources */ = {isa = PBXBuildFile; fileRef = A950485C20BAE29C0020ECD9 /* stavvy-rat.gif */; };
@@ -24,20 +23,16 @@
 		A9ACB96B2099B42300966991 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9ACB96A2099B42300966991 /* Actions.sks */; };
 		A9ACB9872099E74600966991 /* PhysicsBirdNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB9862099E74600966991 /* PhysicsBirdNode.swift */; };
 		A9ACB9972099F19E00966991 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A9ACB9962099F19E00966991 /* .gitignore */; };
-		A9ACB9992099F1D200966991 /* PhysicsCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB9982099F1D200966991 /* PhysicsCategories.swift */; };
-		A9ACB99C209A0DE100966991 /* MathBirdTransitionsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB99B209A0DE100966991 /* MathBirdTransitionsUtils.swift */; };
 		A9ACB99F209A0F4D00966991 /* GameSceneAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB99E209A0F4D00966991 /* GameSceneAdapter.swift */; };
 		A9B9C729209EE31C0045548D /* GameScenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B9C728209EE31C0045548D /* GameScenes.swift */; };
-		A9CC5C3720A0216500040E61 /* ControlInputDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CC5C3620A0216500040E61 /* ControlInputDirection.swift */; };
 		A9D0897920B97CA800BE2896 /* ItemShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D0897820B97CA800BE2896 /* ItemShopScene.swift */; };
 		A9D4CFE0209B4040006461AF /* ColumnFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4CFDF209B4040006461AF /* ColumnFactory.swift */; };
 		A9EC756820A6E479007C42EC /* RoutingUtilityScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC756720A6E479007C42EC /* RoutingUtilityScene.swift */; };
+		CA0135632AEF659100EDB576 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0135622AEF659100EDB576 /* ButtonNode.swift */; };
 		CA1440C02AEF53260035B063 /* GamProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1440BF2AEF53260035B063 /* GamProtocols.swift */; };
 		CA29A1922ACF755B00470B9F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA29A1912ACF755B00470B9F /* GameKit.framework */; };
 		CA47A3C12ACB5E3100E8ED52 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */; };
 		CA7047542AE9C33B0020A04A /* home-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA7047532AE9C33B0020A04A /* home-audio.wav */; };
-		CA8D50E02AEF5694008638C8 /* TriggleButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D50DE2AEF5694008638C8 /* TriggleButtonNode.swift */; };
-		CA8D50E12AEF5694008638C8 /* ToggleButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D50DF2AEF5694008638C8 /* ToggleButtonNode.swift */; };
 		CAABA6322AEB1E8C00B9810E /* DefaultGifNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAABA6312AEB1E8C00B9810E /* DefaultGifNodes.swift */; };
 		CAABA6872AEB25CF00B9810E /* TitleScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67D2AEB25CF00B9810E /* TitleScene iPad.sks */; };
 		CAABA6882AEB25CF00B9810E /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67E2AEB25CF00B9810E /* TitleScene.sks */; };
@@ -66,7 +61,6 @@
 		8344C2F3ACC7992581C1D297 /* Pods-StavvyBird.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StavvyBird.debug.xcconfig"; path = "Target Support Files/Pods-StavvyBird/Pods-StavvyBird.debug.xcconfig"; sourceTree = "<group>"; };
 		A903943320AD94F000376CC3 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		A92E72E1209D815B0015F647 /* GameStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStates.swift; sourceTree = "<group>"; };
-		A92E72ED209D87570015F647 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		A94A97F621A287890087C018 /* ContinuousBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContinuousBackground.swift; sourceTree = "<group>"; };
 		A950485920BAE2170020ECD9 /* stavvy-pig.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "stavvy-pig.gif"; sourceTree = "<group>"; };
 		A950485C20BAE29C0020ECD9 /* stavvy-rat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "stavvy-rat.gif"; sourceTree = "<group>"; };
@@ -82,21 +76,17 @@
 		A9ACB96A2099B42300966991 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		A9ACB9862099E74600966991 /* PhysicsBirdNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsBirdNode.swift; sourceTree = "<group>"; };
 		A9ACB9962099F19E00966991 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		A9ACB9982099F1D200966991 /* PhysicsCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategories.swift; sourceTree = "<group>"; };
-		A9ACB99B209A0DE100966991 /* MathBirdTransitionsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathBirdTransitionsUtils.swift; sourceTree = "<group>"; };
 		A9ACB99E209A0F4D00966991 /* GameSceneAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneAdapter.swift; sourceTree = "<group>"; };
 		A9B9C728209EE31C0045548D /* GameScenes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScenes.swift; sourceTree = "<group>"; };
-		A9CC5C3620A0216500040E61 /* ControlInputDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlInputDirection.swift; sourceTree = "<group>"; };
 		A9D0897820B97CA800BE2896 /* ItemShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemShopScene.swift; sourceTree = "<group>"; };
 		A9D4CFDF209B4040006461AF /* ColumnFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFactory.swift; sourceTree = "<group>"; };
 		A9EC756720A6E479007C42EC /* RoutingUtilityScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingUtilityScene.swift; sourceTree = "<group>"; };
+		CA0135622AEF659100EDB576 /* ButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		CA1440BF2AEF53260035B063 /* GamProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamProtocols.swift; sourceTree = "<group>"; };
 		CA29A1912ACF755B00470B9F /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		CA47A3BF2ACB5DE400E8ED52 /* StavvyBird.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StavvyBird.entitlements; sourceTree = "<group>"; };
 		CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CA7047532AE9C33B0020A04A /* home-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "home-audio.wav"; sourceTree = "<group>"; };
-		CA8D50DE2AEF5694008638C8 /* TriggleButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggleButtonNode.swift; sourceTree = "<group>"; };
-		CA8D50DF2AEF5694008638C8 /* ToggleButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleButtonNode.swift; sourceTree = "<group>"; };
 		CA94BB7D2AD8D7AE005AAF83 /* Stavvy Birds.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Stavvy Birds.storekit"; sourceTree = "<group>"; };
 		CAABA6312AEB1E8C00B9810E /* DefaultGifNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultGifNodes.swift; sourceTree = "<group>"; };
 		CAABA67D2AEB25CF00B9810E /* TitleScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "TitleScene iPad.sks"; sourceTree = "<group>"; };
@@ -155,24 +145,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		A903943C20ADAB0100376CC3 /* UI Components */ = {
-			isa = PBXGroup;
-			children = (
-				CA8D50DF2AEF5694008638C8 /* ToggleButtonNode.swift */,
-				CA8D50DE2AEF5694008638C8 /* TriggleButtonNode.swift */,
-				A92E72ED209D87570015F647 /* ButtonNode.swift */,
-			);
-			path = "UI Components";
-			sourceTree = "<group>";
-		};
-		A92E72DC209D80FA0015F647 /* Game States */ = {
-			isa = PBXGroup;
-			children = (
-				A92E72E1209D815B0015F647 /* GameStates.swift */,
-			);
-			path = "Game States";
-			sourceTree = "<group>";
-		};
 		A950485B20BAE2500020ECD9 /* Animated Players */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,10 +188,8 @@
 				A9ACB99D209A0F3D00966991 /* Adapeters */,
 				A9D4CFDE209B402A006461AF /* ColumnsBackgroundsCharacters */,
 				A9ACB99A209A0DD100966991 /* GameUtils */,
-				A92E72DC209D80FA0015F647 /* Game States */,
 				A9ACB9902099F13700966991 /* Scenes */,
 				A9ACB98F2099F12000966991 /* Assets */,
-				A9ACB9882099F0B600966991 /* Nodes */,
 			);
 			path = StavvyBird;
 			sourceTree = "<group>";
@@ -230,14 +200,6 @@
 				A9ACB96A2099B42300966991 /* Actions.sks */,
 			);
 			path = Actions;
-			sourceTree = "<group>";
-		};
-		A9ACB9882099F0B600966991 /* Nodes */ = {
-			isa = PBXGroup;
-			children = (
-				A903943C20ADAB0100376CC3 /* UI Components */,
-			);
-			path = Nodes;
 			sourceTree = "<group>";
 		};
 		A9ACB98F2099F12000966991 /* Assets */ = {
@@ -282,11 +244,10 @@
 		A9ACB99A209A0DD100966991 /* GameUtils */ = {
 			isa = PBXGroup;
 			children = (
-				A9CC5C3620A0216500040E61 /* ControlInputDirection.swift */,
+				A92E72E1209D815B0015F647 /* GameStates.swift */,
+				CA0135622AEF659100EDB576 /* ButtonNode.swift */,
 				CA1440BF2AEF53260035B063 /* GamProtocols.swift */,
-				A9ACB9982099F1D200966991 /* PhysicsCategories.swift */,
 				A903943320AD94F000376CC3 /* UserDefaults.swift */,
-				A9ACB99B209A0DE100966991 /* MathBirdTransitionsUtils.swift */,
 			);
 			path = GameUtils;
 			sourceTree = "<group>";
@@ -503,20 +464,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9EC756820A6E479007C42EC /* RoutingUtilityScene.swift in Sources */,
-				A92E72EE209D87570015F647 /* ButtonNode.swift in Sources */,
 				CAABA6322AEB1E8C00B9810E /* DefaultGifNodes.swift in Sources */,
-				CA8D50E12AEF5694008638C8 /* ToggleButtonNode.swift in Sources */,
-				A9CC5C3720A0216500040E61 /* ControlInputDirection.swift in Sources */,
 				A9ACB9252099A1F200966991 /* GameViewController.swift in Sources */,
 				A9ACB9872099E74600966991 /* PhysicsBirdNode.swift in Sources */,
 				A94A97F721A287890087C018 /* ContinuousBackground.swift in Sources */,
 				A9ACB99F209A0F4D00966991 /* GameSceneAdapter.swift in Sources */,
-				CA8D50E02AEF5694008638C8 /* TriggleButtonNode.swift in Sources */,
-				A9ACB99C209A0DE100966991 /* MathBirdTransitionsUtils.swift in Sources */,
-				A9ACB9992099F1D200966991 /* PhysicsCategories.swift in Sources */,
 				A9ACB91D2099A1F200966991 /* AppDelegate.swift in Sources */,
 				A92E72E2209D815B0015F647 /* GameStates.swift in Sources */,
 				A903943420AD94F000376CC3 /* UserDefaults.swift in Sources */,
+				CA0135632AEF659100EDB576 /* ButtonNode.swift in Sources */,
 				A9D4CFE0209B4040006461AF /* ColumnFactory.swift in Sources */,
 				CA1440C02AEF53260035B063 /* GamProtocols.swift in Sources */,
 				A9B9C729209EE31C0045548D /* GameScenes.swift in Sources */,
