@@ -16,9 +16,7 @@ extension SKScene {
 }
 
 class GameSceneAdapter: NSObject, PlaySceneProtocol {
-    
-    // MARK: - Properties
-    
+        
     private let overlayDuration: TimeInterval = 0.24
 
     let gravity: CGFloat = -5.1

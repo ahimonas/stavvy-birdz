@@ -184,8 +184,7 @@
 				A9ACB91C2099A1F200966991 /* AppDelegate.swift */,
 				A9ACB92E2099A1F300966991 /* Info.plist */,
 				A9ACB9932099F16800966991 /* Storyboards */,
-				A9ACB9922099F15E00966991 /* View Controllers */,
-				A9ACB99D209A0F3D00966991 /* Adapeters */,
+				A9ACB9922099F15E00966991 /* ControllersAndAdapters */,
 				A9D4CFDE209B402A006461AF /* ColumnsBackgroundsCharacters */,
 				A9ACB99A209A0DD100966991 /* GameUtils */,
 				A9ACB9902099F13700966991 /* Scenes */,
@@ -224,12 +223,13 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
-		A9ACB9922099F15E00966991 /* View Controllers */ = {
+		A9ACB9922099F15E00966991 /* ControllersAndAdapters */ = {
 			isa = PBXGroup;
 			children = (
+				A9ACB99E209A0F4D00966991 /* GameSceneAdapter.swift */,
 				A9ACB9242099A1F200966991 /* GameViewController.swift */,
 			);
-			path = "View Controllers";
+			path = ControllersAndAdapters;
 			sourceTree = "<group>";
 		};
 		A9ACB9932099F16800966991 /* Storyboards */ = {
@@ -252,19 +252,11 @@
 			path = GameUtils;
 			sourceTree = "<group>";
 		};
-		A9ACB99D209A0F3D00966991 /* Adapeters */ = {
-			isa = PBXGroup;
-			children = (
-				A9ACB99E209A0F4D00966991 /* GameSceneAdapter.swift */,
-			);
-			path = Adapeters;
-			sourceTree = "<group>";
-		};
 		A9CC5C3E20A0361700040E61 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				CAB3CDD12AEF588200F7908F /* Iphone */,
-				CAABA6912AEB25D700B9810E /* Ipad */,
+				CAABA6912AEB25D700B9810E /* Ipad-depricated */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -280,7 +272,7 @@
 			path = ColumnsBackgroundsCharacters;
 			sourceTree = "<group>";
 		};
-		CAABA6912AEB25D700B9810E /* Ipad */ = {
+		CAABA6912AEB25D700B9810E /* Ipad-depricated */ = {
 			isa = PBXGroup;
 			children = (
 				CAABA6842AEB25CF00B9810E /* AtmosphereScene iPad.sks */,
@@ -291,7 +283,7 @@
 				CAABA6952AEB25EC00B9810E /* GameOverScene iPad.sks */,
 				CAABA6922AEB25EC00B9810E /* ResumeScene iPad.sks */,
 			);
-			path = Ipad;
+			path = "Ipad-depricated";
 			sourceTree = "<group>";
 		};
 		CAB3CDD12AEF588200F7908F /* Iphone */ = {
@@ -640,9 +632,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sounio.io.stavvbird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -667,8 +661,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sounio.io.stavvbird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
