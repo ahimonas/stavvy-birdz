@@ -187,6 +187,8 @@ class MyGameAdapter: NSObject, PlaySceneProtocol {
     
 }
 
+
+
 extension MyGameAdapter: SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -227,4 +229,25 @@ extension MyGameAdapter: SKPhysicsContactDelegate {
         impact.impactOccurred()
         if isSoundOn { scene?.run(hitSound) }
     }
+}
+
+
+extension SKEmitterNode {
+    
+    func safeAdvanceSimulationTime(_ sec: TimeInterval) {
+        //reusable utilsatlas
+
+        let emitterPaused = self.isPaused
+        
+        if emitterPaused {
+            self.isPaused = false
+        }
+        advanceSimulationTime(sec)
+        //reusable utilsatlas
+
+        if emitterPaused {
+            self.isPaused = true
+        }
+    }
+     
 }
