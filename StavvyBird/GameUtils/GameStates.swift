@@ -161,7 +161,7 @@ class GameOverState: GKState {
             levelScene.removePipes()
         }
         
-        levelScene.playerCharacter?.shouldAcceptTouches = false
+        levelScene.playerCharacter?.isInteractable = false
         
         updateScores()
         
@@ -193,7 +193,7 @@ class GameOverState: GKState {
         if nextState is InGameState {
             levelScene.overlay = nil
             levelScene.isHUDHidden = false
-            levelScene.playerCharacter?.shouldAcceptTouches = true
+            levelScene.playerCharacter?.isInteractable = true
         }
     }
         

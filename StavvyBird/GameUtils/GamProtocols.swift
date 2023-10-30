@@ -36,7 +36,7 @@ extension Updatable {
 
 protocol Touchable: AnyObject {
         
-    var shouldAcceptTouches: Bool { get set }
+    var isInteractable: Bool { get set }
     
     
     func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)

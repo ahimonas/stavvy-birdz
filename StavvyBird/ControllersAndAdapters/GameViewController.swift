@@ -12,7 +12,7 @@ import GoogleMobileAds
 import GameKit
 
 enum Scenes: String {
-    case title = "TitleScene"
+    case title = "HomeScene"
     case game = "PlayScene"
     case characters = "ItemShopScene"
     case setting = "AtmosphereScene"
@@ -65,10 +65,8 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
     }
     
     override func viewDidLoad() {
-
         super.viewDidLoad()
         authenticateLocalPlayer()
-
         
         let sceneName = Scenes.title.getName()
         

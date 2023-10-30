@@ -35,7 +35,7 @@
 		CA7047542AE9C33B0020A04A /* home-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA7047532AE9C33B0020A04A /* home-audio.wav */; };
 		CAABA6322AEB1E8C00B9810E /* DefaultGifNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAABA6312AEB1E8C00B9810E /* DefaultGifNodes.swift */; };
 		CAABA6872AEB25CF00B9810E /* TitleScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67D2AEB25CF00B9810E /* TitleScene iPad.sks */; };
-		CAABA6882AEB25CF00B9810E /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67E2AEB25CF00B9810E /* TitleScene.sks */; };
+		CAABA6882AEB25CF00B9810E /* HomeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67E2AEB25CF00B9810E /* HomeScene.sks */; };
 		CAABA6892AEB25CF00B9810E /* PlayScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67F2AEB25CF00B9810E /* PlayScene iPad.sks */; };
 		CAABA68A2AEB25CF00B9810E /* ScoreScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6802AEB25CF00B9810E /* ScoreScene.sks */; };
 		CAABA68B2AEB25CF00B9810E /* ItemShopScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6812AEB25CF00B9810E /* ItemShopScene.sks */; };
@@ -90,7 +90,7 @@
 		CA94BB7D2AD8D7AE005AAF83 /* Stavvy Birds.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Stavvy Birds.storekit"; sourceTree = "<group>"; };
 		CAABA6312AEB1E8C00B9810E /* DefaultGifNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultGifNodes.swift; sourceTree = "<group>"; };
 		CAABA67D2AEB25CF00B9810E /* TitleScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "TitleScene iPad.sks"; sourceTree = "<group>"; };
-		CAABA67E2AEB25CF00B9810E /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TitleScene.sks; sourceTree = "<group>"; };
+		CAABA67E2AEB25CF00B9810E /* HomeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HomeScene.sks; sourceTree = "<group>"; };
 		CAABA67F2AEB25CF00B9810E /* PlayScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "PlayScene iPad.sks"; sourceTree = "<group>"; };
 		CAABA6802AEB25CF00B9810E /* ScoreScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ScoreScene.sks; sourceTree = "<group>"; };
 		CAABA6812AEB25CF00B9810E /* ItemShopScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ItemShopScene.sks; sourceTree = "<group>"; };
@@ -289,7 +289,7 @@
 		CAB3CDD12AEF588200F7908F /* Iphone */ = {
 			isa = PBXGroup;
 			children = (
-				CAABA67E2AEB25CF00B9810E /* TitleScene.sks */,
+				CAABA67E2AEB25CF00B9810E /* HomeScene.sks */,
 				CAABA6802AEB25CF00B9810E /* ScoreScene.sks */,
 				CAABA6822AEB25CF00B9810E /* PlayScene.sks */,
 				CAABA6832AEB25CF00B9810E /* AtmosphereScene.sks */,
@@ -391,7 +391,7 @@
 				CAABA6962AEB25EC00B9810E /* ResumeScene iPad.sks in Resources */,
 				CA7047542AE9C33B0020A04A /* home-audio.wav in Resources */,
 				CAABA68E2AEB25CF00B9810E /* AtmosphereScene iPad.sks in Resources */,
-				CAABA6882AEB25CF00B9810E /* TitleScene.sks in Resources */,
+				CAABA6882AEB25CF00B9810E /* HomeScene.sks in Resources */,
 				CAB3CDD52AEF59E000F7908F /* game-over-noise.wav in Resources */,
 				CAABA68D2AEB25CF00B9810E /* AtmosphereScene.sks in Resources */,
 				A9ACB92D2099A1F300966991 /* LaunchScreen.storyboard in Resources */,
