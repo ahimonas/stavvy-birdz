@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A9ACB9322099A1F300966991"
-               BuildableName = "StavvyBirdTests.xctest"
-               BlueprintName = "StavvyBirdTests"
+               BuildableName = "flappy-fly-birdTests.xctest"
+               BlueprintName = "flappy-fly-birdTests"
                ReferencedContainer = "container:StavvyBird.xcodeproj">
             </BuildableReference>
          </TestableReference>

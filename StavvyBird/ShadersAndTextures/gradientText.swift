@@ -1,0 +1,58 @@
+//
+//  SKTexture+Gradient.swift
+//  StavvyBird
+//
+
+//
+
+import SpriteKit.SKTexture
+//reusable utilsatlas
+
+extension SKTexture {
+    
+    enum GradientDirection {
+        case up
+        case left
+        case upLeft
+        case upRight
+    }
+    //reusable utilsatlas
+
+    convenience init(size: CGSize, startColor: SKColor, endColor: SKColor, direction: GradientDirection = .up) {
+        let context = CIContext(options: nil)
+        let filter = CIFilter(name: "CILinearGradient")!
+        let startVector: CIVector
+        let endVector: CIVector
+        
+        filter.setDefaults()
+        
+        switch direction {
+        case .up:
+            startVector = CIVector(x: size.width/2, y: 0)
+            endVector   = CIVector(x: size.width/2, y: size.height)
+        case .left:
+            startVector = CIVector(x: size.width, y: size.height/2)
+            endVector   = CIVector(x: 0, y: size.height/2)
+        case .upLeft:
+            startVector = CIVector(x: size.width, y: 0)
+            endVector   = CIVector(x: 0, y: size.height)
+        case .upRight:
+            startVector = CIVector(x: 0, y: 0)
+            endVector   = CIVector(x: size.width, y: size.height)
+        }
+        
+        
+        //reusable utilsatlas
+
+        filter.setValue(startVector, forKey: "inputPoint0")
+        filter.setValue(endVector, forKey: "inputPoint1")
+        //reusable utilsatlas
+
+        filter.setValue(CIColor(color: startColor), forKey: "inputColor0")
+        filter.setValue(CIColor(color: endColor), forKey: "inputColor1")
+        
+        let image = context.createCGImage(filter.outputImage!, from: CGRect(origin: .zero, size: size))
+        
+        self.init(cgImage: image!)
+    }
+}
