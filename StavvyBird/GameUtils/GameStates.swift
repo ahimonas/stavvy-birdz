@@ -9,9 +9,9 @@ import SpriteKit
 class InGameState: GKState {
         
     unowned var gameConfiguration: ConfigForScenes
-    private let playerScale = CGPoint(x: 0.4, y: 0.4)
-    private let snowEmitterAdvancementInSeconds: TimeInterval = 15
-    private let animationTimeInterval: TimeInterval = 0.1
+    let sizeOfCharacter = CGPoint(x: 0.4, y: 0.4)
+    let snowEmitterAdvancementInSeconds: TimeInterval = 15
+    let timeIntervalForDrawingFrames: TimeInterval = 0.1
     
     private(set) var infinitePipeProducer: SKAction! = nil
     let infinitePipeProducerKey = "Pipe Action"
@@ -88,15 +88,15 @@ class InGameState: GKState {
         switch character {
         case .bird:
             gameConfiguration.playerCharacter = PhysicsBirdNode(
-                animationTimeInterval: animationTimeInterval,
+                timeIntervalForDrawingFrames: timeIntervalForDrawingFrames,
                 withTextureAtlas: assetName,
                 size: gameConfiguration.characterDimensions)
         case .stavvyGold, .stavvyRat, .stavvyPig, .eldyBird, .stavvyRaven:
             let player = DefaultGifNodes(
                 animatedGif: assetName,
                 correctAspectRatioFor: gameConfiguration.characterDimensions.width)
-            player.xScale = playerScale.x
-            player.yScale = playerScale.y
+            player.xScale = sizeOfCharacter.x
+            player.yScale = sizeOfCharacter.y
             gameConfiguration.playerCharacter = player
         }
         

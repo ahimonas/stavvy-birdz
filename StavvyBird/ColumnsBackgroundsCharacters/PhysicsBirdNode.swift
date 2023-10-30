@@ -9,16 +9,16 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
     var precedingMoment: TimeInterval = 0
     var flyTextures: [SKTexture]? = nil //c
     
-    var willRenew: Bool = true {didSet {if willRenew {animate(with: animationTimeInterval)} else {self.removeAllActions()}}}
+    var willRenew: Bool = true {didSet {if willRenew {animate(with: timeIntervalForDrawingFrames)} else {self.removeAllActions()}}}
     var weighedDownByForce: Bool = true {didSet {self.physicsBody?.affectedByGravity = weighedDownByForce}}
     var isInteractable: Bool = true {didSet {self.isUserInteractionEnabled = isInteractable}}
     var shouldEnablePhysics: Bool = true {didSet {physicsBody?.collisionBitMask = shouldEnablePhysics ? collisionBitMask : 0}}
     var collisionBitMask: UInt32 = PhysicsCategories.pipe.rawValue | PhysicsCategories.boundary.rawValue
         
-    private(set) var animationTimeInterval: TimeInterval = 0
+    private(set) var timeIntervalForDrawingFrames: TimeInterval = 0
     private let impact = UIImpactFeedbackGenerator(style: .medium)
         
-    convenience init(animationTimeInterval: TimeInterval, withTextureAtlas named: String, size: CGSize) {
+    convenience init(timeIntervalForDrawingFrames: TimeInterval, withTextureAtlas named: String, size: CGSize) {
         
         var textures = [SKTexture]()
         
@@ -31,12 +31,12 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
         }
         
         self.init(texture: textures.first, color: .clear, size: size)
-        self.animationTimeInterval = animationTimeInterval
+        self.timeIntervalForDrawingFrames = timeIntervalForDrawingFrames
 
         initPhysicsBoundary()
                 self.flyTextures = textures
         self.texture = textures.first
-        self.animate(with: animationTimeInterval)
+        self.animate(with: timeIntervalForDrawingFrames)
     }
     
     fileprivate func initPhysicsBoundary() {

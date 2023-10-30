@@ -34,7 +34,7 @@ class HomeScene: RoutingUtilityScene {
         switch playableCharacter {
             
         case .bird:
-            let stavvyBirdNode = PhysicsBirdNode(animationTimeInterval: 0.1, withTextureAtlas: assetName, size: characterDimensions)
+            let stavvyBirdNode = PhysicsBirdNode(timeIntervalForDrawingFrames: 0.1, withTextureAtlas: assetName, size: characterDimensions)
             stavvyBirdNode.weighedDownByForce = false
             stavvyBirdNode.position = pendingNode.position
             stavvyBirdNode.zPosition = pendingNode.zPosition
