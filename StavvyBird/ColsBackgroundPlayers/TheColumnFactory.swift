@@ -17,15 +17,17 @@ struct ColumnFactory {
         return CGFloat.range(min: 71, max: 851)
     }
     private static var doubleRangeHeight: CGFloat {
-        return CGFloat.range(min: 41, max: 201)
+        return CGFloat.range(min: 100, max: 350)
     }
-    static let myCurrThreshWidth: CGFloat = 21
+    static let myCurrThreshWidth: CGFloat = 1
     static let zPosition: CGFloat = 21
     
     
+
     static func launch(for scene: SKScene, targetNode: SKNode) -> SKAction {
-        let pipeName = "pipe"
-        
+        let pipeName = "column"
+        let pipeName2 = "column"
+
         let cleanUpAction = SKAction.run {
             targetNode.childNode(withName: pipeName)?.removeFromParent()
         }
@@ -35,25 +37,38 @@ struct ColumnFactory {
 
         let renderFactoryPipeAction = SKAction.run {
             
-            guard var pipe = ColumnFactory.producseDoublePipe(sceneSize: scene.size) else {
+            guard var column = ColumnFactory.producseDoublePipe(sceneSize: scene.size) else {
                 return
             }
-            if Bool.pseudoRandomPipe {
-                guard let standardPipe = ColumnFactory.produceStandardPipe(sceneSize: scene.size) else {
-                    return
-                }
-                pipe = standardPipe
-            }
+
+            column.name = pipeName
+            targetNode.addChild(column)
             
-            pipe.name = pipeName
-            targetNode.addChild(pipe)
-            
-            let pipeRelocation = SKAction.move(to: CGPoint(x: -(pipe.size.width + scene.size.width), y: pipe.position.y), duration: pipeMoveDuration)
+            let pipeRelocation = SKAction.move(to: CGPoint(x: -(column.size.width + scene.size.width), y: column.position.y), duration: pipeMoveDuration)
             let sequence = SKAction.sequence([pipeRelocation, cleanUpAction])
-            pipe.run(sequence)
+            column.run(sequence)
         }
         
-        let actionsSequential = SKAction.sequence([waitAction, renderFactoryPipeAction])
+        let cleanUpAction2 = SKAction.run {
+            targetNode.childNode(withName: pipeName)?.removeFromParent()
+        }
+        
+        let pipeMoveDuration2: TimeInterval = 8
+
+        let renderFactoryPipeAction2 = SKAction.run {
+            guard let column2 = ColumnFactory.producseDoublePipe(sceneSize: scene.size) else {
+                return
+            }
+            column2.name = pipeName2
+            targetNode.addChild(column2)
+            
+            let pipeRelocation2 = SKAction.move(to: CGPoint(x: -(column2.size.width + scene.size.width), y: column2.position.y), duration: pipeMoveDuration2)
+            let sequence2 = SKAction.sequence([pipeRelocation2, cleanUpAction2])
+            column2.run(sequence2)
+        }
+        
+        
+        let actionsSequential = SKAction.sequence([waitAction, renderFactoryPipeAction, renderFactoryPipeAction2])
         return SKAction.repeatForever(actionsSequential)
     }
     
@@ -78,11 +93,11 @@ struct ColumnFactory {
         }
         
         let myCurrPipNod = SKSpriteNode(texture: nil, color: .clear, size: pipeParts.top.size)
-        myCurrPipNod.addChild(pipeParts.top)
+        //myCurrPipNod.addChild(pipeParts.top)
         myCurrPipNod.addChild(pipeParts.myCurrThresh)
-        myCurrPipNod.addChild(pipeParts.bottom)
+        //myCurrPipNod.addChild(pipeParts.bottom)
         myCurrPipNod.addChild(pipeParts.midUp)
-        myCurrPipNod.addChild(pipeParts.midDown)
+        //myCurrPipNod.addChild(pipeParts.midDown)
         
         return myCurrPipNod
     }
@@ -127,7 +142,10 @@ struct ColumnFactory {
 
     private static func doublePipeParts(for sceneSize: CGSize) -> DoublePipeParts? {
         let pipeX = sceneSize.width
-        let pipeBottomSize = CGSize(width: pipeWidth, height: doubleRangeHeight)
+        let pipeY = sceneSize.height
+
+        let currWIDTH = CGFloat.range(min: 60, max: 610)
+        let pipeBottomSize = CGSize(width: currWIDTH, height: doubleRangeHeight)
         
         // Pipe bottom part
         let pipeBottom = ColumnNode(textures: (pipe: "column-parts", cap: "column-top"), of: pipeBottomSize, side: false)
@@ -139,7 +157,7 @@ struct ColumnFactory {
         }
         
         // Threshold node ? THRESH MEANING GAP ?
-        let myCurrThresh = SKSpriteNode(color: .clear, size: CGSize(width: myCurrThreshWidth, height: CGFloat.range(min: 700, max: 1200)))
+        let myCurrThresh = SKSpriteNode(color: .clear, size: CGSize(width: myCurrThreshWidth, height: CGFloat.range(min: 500, max: 1200)))
         myCurrThresh.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + myCurrThresh.size.height / 2)
         
         myCurrThresh.physicsBody = SKPhysicsBody(rectangleOf: myCurrThresh.size)
@@ -151,7 +169,7 @@ struct ColumnFactory {
         
         // Top pipe
         let topHeight = sceneSize.height - (pipeBottom?.size.height)! - myCurrThresh.size.height
-        let pipeTopSize = CGSize(width: pipeWidth, height: topHeight)
+        let pipeTopSize = CGSize(width: currWIDTH, height: topHeight)
         let pipeTop = ColumnNode(textures: (pipe: "column-parts", cap: "column-top"), of: pipeTopSize, side: true)
         pipeTop?.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + myCurrThresh.size.height + (pipeTop?.size.height)! / 2)
         
@@ -159,8 +177,15 @@ struct ColumnFactory {
             return nil
         }
         
-        let midUpPipe = ColumnNode(textures: (pipe: "column-parts", cap: "column-top"), of: CGSize(width: pipeWidth, height: CGFloat.range(min: 50, max: 150)), side: true)
-        midUpPipe?.position = CGPoint(x: pipeX, y: unwerappedPipeBottom.size.height + CGFloat.range(min: 250, max: 300))
+        let myRando = CGFloat.range(min: 60, max: 350)
+        let midUpPipe = ColumnNode(textures: (pipe: "column-parts", cap: "sparky22"), of: CGSize(width: currWIDTH, height: myRando), side: true)
+        
+        let myRandoHeightplacment = CGFloat.range(min: 5, max: pipeY-100)
+
+        
+        midUpPipe?.position = CGPoint(x: pipeX, y: myRandoHeightplacment)
+        
+        
         
         guard let unwrappedPipeMidUp = midUpPipe else {
             return nil
@@ -169,10 +194,12 @@ struct ColumnFactory {
         let topBottomPoint = (unwrappedPipeTop.position.y - unwrappedPipeTop.size.height / 2)
         let topMidUpDistance = topBottomPoint - (unwrappedPipeMidUp.size.height / 2 + unwrappedPipeMidUp.position.y)
         
-        let downMidSize = CGSize(width: pipeWidth, height: topMidUpDistance - CGFloat.range(min: 200, max: 250))
-        let downMidPosition = CGPoint(x: pipeX, y: (unwrappedPipeMidUp.size.height / 2 + unwrappedPipeMidUp.position.y) + downMidSize.height / 2)
+        let downMidSize = CGSize(width: currWIDTH, height: topMidUpDistance - CGFloat.range(min: 20, max: 100))
+        //let downMidPosition = CGPoint(x: pipeX, y: (unwrappedPipeMidUp.size.height / 2 + unwrappedPipeMidUp.position.y) + downMidSize.height / 2)
         
-        let midDownPipe = ColumnNode(textures: (pipe: "column-parts", cap: "column-top"), of: downMidSize, side: false)
+        let downMidPosition = CGPoint(x: 100, y: (unwrappedPipeMidUp.size.height / 2 + unwrappedPipeMidUp.position.y) + downMidSize.height / 2)
+
+        let midDownPipe = ColumnNode(textures: (pipe: "column-parts", cap: "sparky22"), of: downMidSize, side: false)
         midDownPipe?.position = downMidPosition
         
         guard let unwrappedPipeMidDown = midDownPipe else {
@@ -192,41 +219,62 @@ import SpriteKit
 typealias typeIsTopColumn = Bool
 
 class ColumnNode: SKSpriteNode {
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
+
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return newImage
+    }
     
     
     init?(textures: (pipe: String, cap: String), of size: CGSize, side: typeIsTopColumn) {
         
         guard let texture = UIImage(named: textures.pipe)?.cgImage else {
-            return nil
+                 return nil
+             }
+        
+        guard let pipeTOPP = UIImage(named: textures.cap)?.cgImage else {
+                 return nil
+             }
+        
+             let textureRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+             
+             // Render tiled pipe form the previously loaded cgImage
+        if(size.height > 0){
+            UIGraphicsBeginImageContext(size)
+            let context = UIGraphicsGetCurrentContext()
+            // context?.draw(texture, in: textureRect, byTiling: true)
+            context?.draw(pipeTOPP, in:textureRect)
         }
-        let textureRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+            let tiledBackground = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            guard let unwrappedTiledBackground = tiledBackground, let tiledCGImage =  unwrappedTiledBackground.cgImage else {
+                return nil
+            }
+            let backgroundTexture = SKTexture(cgImage: tiledCGImage)
+            let pipe = SKSpriteNode(texture: backgroundTexture)
+            pipe.zPosition = 1
+            
+            let cap = SKSpriteNode(imageNamed: textures.cap)
+            //cap.position = CGPoint(x: 0.0, y: side ? -pipe.size.height / 2 + cap.size.height / 2 : pipe.size.height / 2 - cap.size.height / 2)
+            
+            // Changes width and height of cap
+            //cap.size = CGSize(width: pipe.size.width + pipe.size.width/3, height: cap.size.height*2)
+            //cap.zPosition = 5
+            //pipe.addChild(cap)
+            
+            if side {
+                let angle: CGFloat = 180.0
+                cap.zRotation = angle.toRadians
+            }
         
-        // Render tiled pipe form the previously loaded cgImage
-        UIGraphicsBeginImageContext(size)
-        let context = UIGraphicsGetCurrentContext()
-        context?.draw(texture, in: textureRect, byTiling: true)
-        let tiledBackground = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        guard let unwrappedTiledBackground = tiledBackground, let tiledCGImage =  unwrappedTiledBackground.cgImage else {
-            return nil
-        }
-        let backgroundTexture = SKTexture(cgImage: tiledCGImage)
-        let pipe = SKSpriteNode(texture: backgroundTexture)
-        pipe.zPosition = 1
-        
-        let cap = SKSpriteNode(imageNamed: textures.cap)
-        cap.position = CGPoint(x: 0.0, y: side ? -pipe.size.height / 2 + cap.size.height / 2 : pipe.size.height / 2 - cap.size.height / 2)
-        
-        // Changes width and height of cap
-        cap.size = CGSize(width: pipe.size.width + pipe.size.width/3, height: cap.size.height*2)
-        cap.zPosition = 5
-        pipe.addChild(cap)
-        
-        if side {
-            let angle: CGFloat = 180.0
-            cap.zRotation = angle.toRadians
-        }
         
         super.init(texture: backgroundTexture, color: .clear, size: backgroundTexture.size())
         
@@ -237,8 +285,13 @@ class ColumnNode: SKSpriteNode {
         physicsBody?.collisionBitMask = BondaryMapping.player.rawValue
         physicsBody?.isDynamic = false
         zPosition = 21
+        /*
+        if(size.height > 1){
+            
+                self.addChild(pipe)
+            }
+         */
         
-        self.addChild(pipe)
     }
     
     required init?(coder aDecoder: NSCoder) {
