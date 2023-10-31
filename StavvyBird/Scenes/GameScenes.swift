@@ -127,25 +127,25 @@ class PlayScene: SKScene {
     }
         
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        currConfigForGame?.touchables.forEach({ touchable in
+        currConfigForGame?.tangibles.forEach({ touchable in
             touchable.touchesBegan(touches, with: event)
         })
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        currConfigForGame?.touchables.forEach { touchable in
+        currConfigForGame?.tangibles.forEach { touchable in
             touchable.touchesMoved(touches, with: event)
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        currConfigForGame?.touchables.forEach { touchable in
+        currConfigForGame?.tangibles.forEach { touchable in
             touchable.touchesEnded(touches, with: event)
         }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        currConfigForGame?.touchables.forEach { touchable in
+        currConfigForGame?.tangibles.forEach { touchable in
             touchable.touchesCancelled(touches, with: event)
         }
     }
@@ -159,7 +159,7 @@ class PlayScene: SKScene {
         precedingMoment = currentTime
         if self.isPaused { return }
         instanceGKSM.update(deltaTime: deltaTime)
-        currConfigForGame?.updatables.filter({ return $0.willRelive }).forEach({ (activeUpdatable) in
+        currConfigForGame?.modernizers.filter({ return $0.willRelive }).forEach({ (activeUpdatable) in
             activeUpdatable.update(currentTime)
         })
     }

@@ -107,8 +107,8 @@ class InGameState: GKState {
         position(player: character, in: scene)
         scene.addChild(playableCharacter)
         
-        gameConfiguration.updatables.append(playableCharacter)
-        gameConfiguration.touchables.append(playableCharacter)
+        gameConfiguration.modernizers.append(playableCharacter)
+        gameConfiguration.tangibles.append(playableCharacter)
     }
     
     private func position(player: PlayableCharacter, in scene: SKScene) {

@@ -65,8 +65,8 @@ extension Touchable {
 
 
 protocol PlaySceneProtocol {
-    var updatables: [Updatable] { get }
-    var touchables: [Touchable] { get }
+    var modernizers: [Updatable] { get }
+    var tangibles: [Touchable] { get }
     
     var scene: SKScene? { get }
     init?(with scene: SKScene)
@@ -110,16 +110,17 @@ enum ControlInputDirection: Int {
     }
 }
 
-
-
-import Foundation
-
-struct PhysicsCategories : OptionSet {
+struct BondaryMapping : OptionSet {
+    let zeroLayer = 0
+    let firsLayer = 1
     let rawValue : UInt32
-    static let boundary     = PhysicsCategories(rawValue: 1 << 0)
-    static let player       = PhysicsCategories(rawValue: 1 << 1)
-    static let pipe         = PhysicsCategories(rawValue: 1 << 2)
-    static let gap          = PhysicsCategories(rawValue: 1 << 3)
+    let secondLayer = 2
+    let thirdLayer = 3
+    
+    static let boundary     = BondaryMapping(rawValue: 1 << 0)
+    static let player       = BondaryMapping(rawValue: 1 << 1)
+    static let pipe         = BondaryMapping(rawValue: 1 << 2)
+    static let gap          = BondaryMapping(rawValue: 1 << 3)
 }
 
 

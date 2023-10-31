@@ -13,7 +13,7 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
     var isHeavy: Bool = true {didSet {self.physicsBody?.affectedByGravity = isHeavy}}
     var isInteractable: Bool = true {didSet {self.isUserInteractionEnabled = isInteractable}}
     var shouldEnablePhysics: Bool = true {didSet {physicsBody?.collisionBitMask = shouldEnablePhysics ? collisionBitMask : 0}}
-    var collisionBitMask: UInt32 = PhysicsCategories.pipe.rawValue | PhysicsCategories.boundary.rawValue
+    var collisionBitMask: UInt32 = BondaryMapping.pipe.rawValue | BondaryMapping.boundary.rawValue
         
     private(set) var timeIntervalForDrawingFrames: TimeInterval = 0
     private let impact = UIImpactFeedbackGenerator(style: .medium)
@@ -39,18 +39,18 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
         self.animate(with: timeIntervalForDrawingFrames)
     }
     
-    fileprivate func initPhysicsBoundary() {
+     func initPhysicsBoundary() {
         physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2.7)
-        physicsBody?.categoryBitMask = PhysicsCategories.player.rawValue
-        physicsBody?.contactTestBitMask = PhysicsCategories.pipe.rawValue | PhysicsCategories.gap.rawValue | PhysicsCategories.boundary.rawValue
+        physicsBody?.categoryBitMask = BondaryMapping.player.rawValue
+        physicsBody?.contactTestBitMask = BondaryMapping.pipe.rawValue | BondaryMapping.gap.rawValue | BondaryMapping.boundary.rawValue
         
-        physicsBody?.collisionBitMask = PhysicsCategories.pipe.rawValue | PhysicsCategories.boundary.rawValue
+        physicsBody?.collisionBitMask = BondaryMapping.pipe.rawValue | BondaryMapping.boundary.rawValue
         
         physicsBody?.allowsRotation = false
         physicsBody?.restitution = 0.0
     }
     
-    fileprivate func animate(with timing: TimeInterval) {
+     func animate(with timing: TimeInterval) {
         guard let walkTextures = flyTextures else {
             return
         }

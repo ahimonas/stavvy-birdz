@@ -15,23 +15,13 @@ extension SKScene {
     }
 }
 
-class ConfigForScenes: NSObject, PlaySceneProtocol {
-        
-    private let actionFadeTime: TimeInterval = 0.24
-    let characterDimensions = CGSize(width: 101, height: 101)
-    let forceOfGravity: CGFloat = -5.1
-    let namedPngFile = "game-play-screen"//"Background-Winter"
-    let floorDistance: CGFloat = 0
-    
-    let isSoundOn: Bool = {
-        return UserDefaults.standard.bool(for: .isSoundOn)
-    }()
-    
+class ConfigForScenes: NSObject,
+                       PlaySceneProtocol {
     var score: Int = 0
-    private(set) var scoreLabel: SKLabelNode?
+
+var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, seperationFromBottom: CGFloat = 0, characterDimensions = CGSize(width: 101, height: 101), forceOfGravity: CGFloat = -5.1
     
-    private(set) var pointAddedNoise = SKAction.playSoundFileNamed("points-noise.wav", waitForCompletion: false)
-    private(set) var crashNoise = SKAction.playSoundFileNamed("game-over-noise.wav", waitForCompletion: false)
+    var isSoundOn: Bool = {return UserDefaults.standard.bool(for: .isSoundOn)}(), scoreLabel: SKLabelNode?, pointAddedNoise = SKAction.playSoundFileNamed("points-noise.wav", waitForCompletion: false), crashNoise = SKAction.playSoundFileNamed("game-over-noise.wav", waitForCompletion: false)
     
 //    var bird: BirdNode?
     typealias PlayableCharacter = (PhysicsContactable & Updatable & Touchable & Playable & SKNode)
@@ -53,18 +43,14 @@ class ConfigForScenes: NSObject, PlaySceneProtocol {
     
     
     var myGkStateMach: GKStateMachine?
-    
-    var updatables = [Updatable]()
-    var touchables = [Touchable]()
-    
-    var listOfNodes = [ButtonNode]()
     weak var scene: SKScene?
+
+    var (modernizers, tangibles, listOfNodes) = ([Updatable](), [Touchable](), [ButtonNode]())
 
     
     var overlay: GameOverlay? {
         didSet {
             listOfNodes = []
-            
             oldValue?.myCurrBackground.run(SKAction.fadeOut(withDuration: actionFadeTime)) {
                 debugPrint(#function + " change background")
                 oldValue?.myCurrBackground.removeFromParent()
@@ -151,11 +137,11 @@ class ConfigForScenes: NSObject, PlaySceneProtocol {
     
     private func prepareWorld(for scene: SKScene) {
         scene.physicsWorld.gravity = CGVector(dx: 0.0, dy: forceOfGravity)
-        let rect = CGRect(x: 0, y: floorDistance, width: scene.size.width, height: scene.size.height - floorDistance)
+        let rect = CGRect(x: 0, y: seperationFromBottom, width: scene.size.width, height: scene.size.height - seperationFromBottom)
         scene.physicsBody = SKPhysicsBody(edgeLoopFrom: rect)
         
-        let boundary: PhysicsCategories = .boundary
-        let player: PhysicsCategories = .player
+        let boundary: BondaryMapping = .boundary
+        let player: BondaryMapping = .player
         
         scene.physicsBody?.categoryBitMask = boundary.rawValue
         scene.physicsBody?.collisionBitMask = player.rawValue
@@ -170,7 +156,7 @@ class ConfigForScenes: NSObject, PlaySceneProtocol {
         infiniteBackgroundNode!.zPosition = 0
         
         scene.addChild(infiniteBackgroundNode!)
-        updatables.append(infiniteBackgroundNode!)
+        modernizers.append(infiniteBackgroundNode!)
     }
     
     func advanceSnowEmitter(for duration: TimeInterval) {
@@ -184,9 +170,9 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         let collision:UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
-        let player = PhysicsCategories.player.rawValue
+        let player = BondaryMapping.player.rawValue
         
-        if collision == (player | PhysicsCategories.gap.rawValue) {
+        if collision == (player | BondaryMapping.gap.rawValue) {
             score += 1
             scoreLabel?.text = "\(score)"
             
@@ -196,11 +182,11 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
         }
         
         //bird hit pipe
-        if collision == (player | PhysicsCategories.pipe.rawValue) {
+        if collision == (player | BondaryMapping.pipe.rawValue) {
             handleDeadState()
         }
         //bird hit boundary
-        if collision == (player | PhysicsCategories.boundary.rawValue) {
+        if collision == (player | BondaryMapping.boundary.rawValue) {
             handleDeadState()
         }
     }
