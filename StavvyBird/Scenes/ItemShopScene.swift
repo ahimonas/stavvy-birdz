@@ -3,7 +3,7 @@
 
 import SpriteKit
 
-//characters
+//ItemShopCharacters
 class ItemShopScene: RoutingUtilityScene {
     private var boughtEldy = false
     private var characterSelector: SKShapeNode?
@@ -114,7 +114,7 @@ class ItemShopScene: RoutingUtilityScene {
 
 
                 /*
-                if let controller = self.view?.window?.rootViewController as? GameViewController {
+                if let controller = self.view?.window?.rootViewController as? MainUiGameView {
                     controller.removeAd()
                 }
                  */
@@ -137,7 +137,7 @@ class ItemShopScene: RoutingUtilityScene {
                 UserDefaults.standard.set(selectedPlayableCharacter, for: .character)
                 debugPrint(" ravens bird was paid for ")
                 
-                if let controller = self.view?.window?.rootViewController as? GameViewController {
+                if let controller = self.view?.window?.rootViewController as? MainUiGameView {
                     controller.removeAd()
                 }
                  

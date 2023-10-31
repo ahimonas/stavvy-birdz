@@ -24,7 +24,6 @@ extension Scenes {
     func getName() -> String {
         let padId = " iPad"
         let isPad = UIDevice.current.userInterfaceIdiom == .pad
-        
         return isPad ? self.rawValue + padId : self.rawValue
     }
 }
@@ -54,7 +53,7 @@ extension CGPoint {
 }
 
 
-class GameViewController: UIViewController, GADBannerViewDelegate {
+class UIControllerForGameplay: UIViewController, GADBannerViewDelegate {
 
     var bannerView: GADBannerView!
     var admobBanner = UIView()

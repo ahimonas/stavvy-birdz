@@ -21,18 +21,17 @@ enum ButtonIdentifier: String {
     case eldy = "EldyBird"
     case raven = "RavensBird"
     case titley = "Titley"
-
     case home = "Home"
     case settings = "Settings"
     case retry = "Retry"
     case cancel = "Cancel"
     case scores = "Scores"
     case sound = "Sound"
-    case characters = "Characters"
-    case difficulty = "Difficulty"
+    case ItemShopCharacters = "ItemShopCharacters"
+    //case difficulty = "Difficulty" .difficulty
     
     static let allButtonIdentifiers: [ButtonIdentifier] = [
-        .play, .pause, .resume, .menu, .venu, .penu, .zenu,.titley, .settings, .home, .retry, .cancel, .scores, sound, .characters, .difficulty, .eldy, .raven
+        .play, .pause, .resume, .menu, .venu, .penu, .zenu,.titley, .settings, .home, .retry, .cancel, .scores, sound, .ItemShopCharacters, .eldy, .raven
     ]
     
     var selectedTextureName: String? {

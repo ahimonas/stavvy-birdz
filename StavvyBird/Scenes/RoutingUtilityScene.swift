@@ -182,7 +182,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                     lazy var beam = self.childNode(withName: "RavensBird") as! SKSpriteNode
                     beam.isHidden = true;
                     //remove adds from ad sense
-                    if let controller = self.view?.window?.rootViewController as? GameViewController {
+                    if let controller = self.view?.window?.rootViewController as? MainUiGameView {
                         controller.removeAd()
                     }
                                         
@@ -203,7 +203,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                     UserDefaults.standard.set(true, forKey: "removeRavensLock")
                     lazy var beam = self.childNode(withName: "RavensBird") as! SKSpriteNode
                     beam.isHidden = true;
-                    if let controller = self.view?.window?.rootViewController as? GameViewController {
+                    if let controller = self.view?.window?.rootViewController as? MainUiGameView {
                         controller.removeAd()
                     }
                     
@@ -418,11 +418,11 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             RoutingUtilityScene.lastPushTransitionDirection = .up
             transition = SKTransition.push(with: .up, duration: 1.0)
             */
-        case .characters:
+        case .ItemShopCharacters:
             //authenticateLocalPlayer()
            initInAppPurchases()
   
-            let sceneId = Scenes.characters.getName()
+            let sceneId = Scenes.ItemShopCharacters.getName()
             sceneToPresent = ItemShopScene(fileNamed: sceneId)
             debugPrint("created ItemShopScene instance")
             RoutingUtilityScene.lastPushTransitionDirection = .right
@@ -500,7 +500,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             }
             
 
-            //let controller = sceneToPresent?.rootViewController as! GameViewController
+            //let controller = sceneToPresent?.rootViewController as! MainUiGameView
             //controller.removeAd()
              
             
