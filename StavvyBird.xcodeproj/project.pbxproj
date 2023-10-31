@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		6E584577D0AD326EAF825AA7 /* Pods_StavvyBird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547D8F6A64D1BD06473A18CD /* Pods_StavvyBird.framework */; };
 		A903943420AD94F000376CC3 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A903943320AD94F000376CC3 /* UserDefaults.swift */; };
-		A94A97F721A287890087C018 /* ContinuousBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A97F621A287890087C018 /* ContinuousBackground.swift */; };
 		A950485A20BAE2170020ECD9 /* stavvy-pig.gif in Resources */ = {isa = PBXBuildFile; fileRef = A950485920BAE2170020ECD9 /* stavvy-pig.gif */; };
 		A950486120BAE29C0020ECD9 /* stavvy-rat.gif in Resources */ = {isa = PBXBuildFile; fileRef = A950485C20BAE29C0020ECD9 /* stavvy-rat.gif */; };
 		A950486320BAE29C0020ECD9 /* stavvy-gold.gif in Resources */ = {isa = PBXBuildFile; fileRef = A950485E20BAE29C0020ECD9 /* stavvy-gold.gif */; };
@@ -31,6 +30,7 @@
 		CAA9D4222AF0B7E200DEA75E /* ConfigForScenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9D4212AF0B7E200DEA75E /* ConfigForScenes.swift */; };
 		CAA9D4242AF0B80000DEA75E /* MainUiGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9D4232AF0B80000DEA75E /* MainUiGameView.swift */; };
 		CAA9D4282AF0B98200DEA75E /* StatesForGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9D4272AF0B98200DEA75E /* StatesForGame.swift */; };
+		CAA9D42D2AF0C15100DEA75E /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CAA9D42C2AF0C15100DEA75E /* info.plist */; };
 		CAABA6322AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAABA6312AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift */; };
 		CAABA6872AEB25CF00B9810E /* TitleScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67D2AEB25CF00B9810E /* TitleScene iPad.sks */; };
 		CAABA6882AEB25CF00B9810E /* HomeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67E2AEB25CF00B9810E /* HomeScene.sks */; };
@@ -46,6 +46,7 @@
 		CAABA6982AEB25EC00B9810E /* ResumeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6942AEB25EC00B9810E /* ResumeScene.sks */; };
 		CAABA6992AEB25EC00B9810E /* GameOverScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6952AEB25EC00B9810E /* GameOverScene iPad.sks */; };
 		CAABA6CF2AEB2C7100B9810E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6CE2AEB2C7100B9810E /* Assets.xcassets */; };
+		CAAEAD542AF0C5C6000D9594 /* ContinuousBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAEAD532AF0C5C6000D9594 /* ContinuousBackground.swift */; };
 		CAB3CDD52AEF59E000F7908F /* game-over-noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAB3CDD42AEF59E000F7908F /* game-over-noise.wav */; };
 		CAC5FBA32AE9B586006913FE /* points-noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA22AE9B586006913FE /* points-noise.wav */; };
 		CAC5FBA52AE9B65B006913FE /* in-game-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */; };
@@ -59,7 +60,6 @@
 		7CDAB81EF91D0B72FD584166 /* Pods-FlappyFlyBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlappyFlyBird.release.xcconfig"; path = "Target Support Files/Pods-FlappyFlyBird/Pods-FlappyFlyBird.release.xcconfig"; sourceTree = "<group>"; };
 		8344C2F3ACC7992581C1D297 /* Pods-StavvyBird.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StavvyBird.debug.xcconfig"; path = "Target Support Files/Pods-StavvyBird/Pods-StavvyBird.debug.xcconfig"; sourceTree = "<group>"; };
 		A903943320AD94F000376CC3 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
-		A94A97F621A287890087C018 /* ContinuousBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContinuousBackground.swift; sourceTree = "<group>"; };
 		A950485920BAE2170020ECD9 /* stavvy-pig.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "stavvy-pig.gif"; sourceTree = "<group>"; };
 		A950485C20BAE29C0020ECD9 /* stavvy-rat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "stavvy-rat.gif"; sourceTree = "<group>"; };
 		A950485E20BAE29C0020ECD9 /* stavvy-gold.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "stavvy-gold.gif"; sourceTree = "<group>"; };
@@ -67,7 +67,6 @@
 		A950486020BAE29C0020ECD9 /* stavvy-raven.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "stavvy-raven.gif"; sourceTree = "<group>"; };
 		A9ACB9192099A1F200966991 /* StavvyBird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StavvyBird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9ACB91C2099A1F200966991 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A9ACB92E2099A1F300966991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9ACB96A2099B42300966991 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		A9ACB9862099E74600966991 /* PhysicsBirdNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsBirdNode.swift; sourceTree = "<group>"; };
 		A9ACB9962099F19E00966991 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -85,6 +84,7 @@
 		CAA9D4212AF0B7E200DEA75E /* ConfigForScenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigForScenes.swift; sourceTree = "<group>"; };
 		CAA9D4232AF0B80000DEA75E /* MainUiGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUiGameView.swift; sourceTree = "<group>"; };
 		CAA9D4272AF0B98200DEA75E /* StatesForGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatesForGame.swift; sourceTree = "<group>"; };
+		CAA9D42C2AF0C15100DEA75E /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = info.plist; path = StavvyBird/info.plist; sourceTree = SOURCE_ROOT; };
 		CAABA6312AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheOriginalAnimatedNodes.swift; sourceTree = "<group>"; };
 		CAABA67D2AEB25CF00B9810E /* TitleScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "TitleScene iPad.sks"; sourceTree = "<group>"; };
 		CAABA67E2AEB25CF00B9810E /* HomeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HomeScene.sks; sourceTree = "<group>"; };
@@ -100,6 +100,7 @@
 		CAABA6942AEB25EC00B9810E /* ResumeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ResumeScene.sks; sourceTree = "<group>"; };
 		CAABA6952AEB25EC00B9810E /* GameOverScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "GameOverScene iPad.sks"; sourceTree = "<group>"; };
 		CAABA6CE2AEB2C7100B9810E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CAAEAD532AF0C5C6000D9594 /* ContinuousBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContinuousBackground.swift; sourceTree = "<group>"; };
 		CAB3CDD42AEF59E000F7908F /* game-over-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "game-over-noise.wav"; sourceTree = "<group>"; };
 		CAC5FBA22AE9B586006913FE /* points-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "points-noise.wav"; sourceTree = "<group>"; };
 		CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "in-game-audio.wav"; sourceTree = "<group>"; };
@@ -177,13 +178,14 @@
 		A9ACB91B2099A1F200966991 /* StavvyBird */ = {
 			isa = PBXGroup;
 			children = (
+				A9ACB91C2099A1F200966991 /* AppDelegate.swift */,
+				CAA9D42E2AF0C26000DEA75E /* supporting */,
+				CAA9D42C2AF0C15100DEA75E /* info.plist */,
 				CADBD96E2AF0B1450093477F /* MainUIDeviceStoryboards */,
 				CA94BB7D2AD8D7AE005AAF83 /* Stavvy Birds.storekit */,
 				CA47A3BF2ACB5DE400E8ED52 /* StavvyBird.entitlements */,
-				A9ACB91C2099A1F200966991 /* AppDelegate.swift */,
-				A9ACB92E2099A1F300966991 /* Info.plist */,
+				CAAEAD522AF0C596000D9594 /* ColsBackgroundPlayers */,
 				CAA9D4252AF0B84300DEA75E /* ControllersAndAdapter */,
-				A9D4CFDE209B402A006461AF /* ColumnsBackgroundsCharacters */,
 				CAA9D4262AF0B93F00DEA75E /* UtilsForGame */,
 				A9ACB9902099F13700966991 /* Scenes */,
 				A9ACB98F2099F12000966991 /* Assets */,
@@ -230,17 +232,6 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
-		A9D4CFDE209B402A006461AF /* ColumnsBackgroundsCharacters */ = {
-			isa = PBXGroup;
-			children = (
-				A9ACB9862099E74600966991 /* PhysicsBirdNode.swift */,
-				CAABA6312AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift */,
-				A94A97F621A287890087C018 /* ContinuousBackground.swift */,
-				A9D4CFDF209B4040006461AF /* ColumnFactory.swift */,
-			);
-			path = ColumnsBackgroundsCharacters;
-			sourceTree = "<group>";
-		};
 		CAA9D4252AF0B84300DEA75E /* ControllersAndAdapter */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +252,13 @@
 			path = UtilsForGame;
 			sourceTree = "<group>";
 		};
+		CAA9D42E2AF0C26000DEA75E /* supporting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = supporting;
+			sourceTree = "<group>";
+		};
 		CAABA6912AEB25D700B9810E /* Ipad-depricated */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +271,17 @@
 				CAABA6922AEB25EC00B9810E /* ResumeScene iPad.sks */,
 			);
 			path = "Ipad-depricated";
+			sourceTree = "<group>";
+		};
+		CAAEAD522AF0C596000D9594 /* ColsBackgroundPlayers */ = {
+			isa = PBXGroup;
+			children = (
+				A9ACB9862099E74600966991 /* PhysicsBirdNode.swift */,
+				CAABA6312AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift */,
+				A9D4CFDF209B4040006461AF /* ColumnFactory.swift */,
+				CAAEAD532AF0C5C6000D9594 /* ContinuousBackground.swift */,
+			);
+			path = ColsBackgroundPlayers;
 			sourceTree = "<group>";
 		};
 		CAB3CDD12AEF588200F7908F /* Iphone */ = {
@@ -376,6 +385,7 @@
 				A9ACB96B2099B42300966991 /* Actions.sks in Resources */,
 				A9ACB9972099F19E00966991 /* .gitignore in Resources */,
 				CAABA6CF2AEB2C7100B9810E /* Assets.xcassets in Resources */,
+				CAA9D42D2AF0C15100DEA75E /* info.plist in Resources */,
 				A950486520BAE29C0020ECD9 /* stavvy-raven.gif in Resources */,
 				A950486420BAE29C0020ECD9 /* eldy-bird.gif in Resources */,
 				CAABA6982AEB25EC00B9810E /* ResumeScene.sks in Resources */,
@@ -455,7 +465,6 @@
 				CAABA6322AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift in Sources */,
 				A9ACB9872099E74600966991 /* PhysicsBirdNode.swift in Sources */,
 				CAA9D4222AF0B7E200DEA75E /* ConfigForScenes.swift in Sources */,
-				A94A97F721A287890087C018 /* ContinuousBackground.swift in Sources */,
 				A9ACB91D2099A1F200966991 /* AppDelegate.swift in Sources */,
 				A903943420AD94F000376CC3 /* UserDefaults.swift in Sources */,
 				CAA9D4282AF0B98200DEA75E /* StatesForGame.swift in Sources */,
@@ -464,6 +473,7 @@
 				CA1440C02AEF53260035B063 /* GamProtocols.swift in Sources */,
 				CAA9D4242AF0B80000DEA75E /* MainUiGameView.swift in Sources */,
 				A9B9C729209EE31C0045548D /* GameScenes.swift in Sources */,
+				CAAEAD542AF0C5C6000D9594 /* ContinuousBackground.swift in Sources */,
 				A9D0897920B97CA800BE2896 /* ItemShopScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
