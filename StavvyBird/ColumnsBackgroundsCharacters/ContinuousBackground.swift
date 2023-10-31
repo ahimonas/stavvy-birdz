@@ -6,7 +6,7 @@ import SpriteKit
 
 class ContinuousBackground: SKNode {
     
-    var willRenew: Bool = true
+    var willRelive: Bool = true
     let key = "background"
     var tiles: [SKNode]
     var background: SKNode
@@ -15,7 +15,7 @@ class ContinuousBackground: SKNode {
     let maxNumOfTiles = 2 //hmm
     
     internal var delta = TimeInterval(0)
-    internal var precedingMoment = TimeInterval(0)
+    internal var previousTime = TimeInterval(0)
         
     init(fileName: String, scaleFactor scale: CGPoint = CGPoint(x: 1.0, y: 1.0), speed: TimeInterval = 98) {
         self.backgroundSpeed = speed
@@ -80,7 +80,7 @@ extension ContinuousBackground: Updatable {
     func update(_ currentTime: TimeInterval) {
         let computedUpdatable = computeUpdatable(currentTime: currentTime)
         delta = computedUpdatable.delta
-        precedingMoment = computedUpdatable.precedingMoment
+        previousTime = computedUpdatable.precedingMoment
         moveBackground()
     }
 }

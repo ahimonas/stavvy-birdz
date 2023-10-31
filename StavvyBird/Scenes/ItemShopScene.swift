@@ -40,23 +40,23 @@ class ItemShopScene: RoutingUtilityScene {
             childNode(withName: PlayableCharacter.bird.rawValue) as? SKSpriteNode; playableCharacters[.bird] = stavvyBird
             
             let stavvyRat =
-            childNode(withName: PlayableCharacter.stavvyRat.rawValue) as? DefaultGifNodes
+            childNode(withName: PlayableCharacter.stavvyRat.rawValue) as? TheOriginalAnimatedNodes
             stavvyRat?.xScale = currGkPoint.x; stavvyRat?.yScale = currGkPoint.y; playableCharacters[.stavvyRat] = stavvyRat
             
             let stavvyGold =
-            childNode(withName: PlayableCharacter.stavvyGold.rawValue) as? DefaultGifNodes
+            childNode(withName: PlayableCharacter.stavvyGold.rawValue) as? TheOriginalAnimatedNodes
             stavvyGold?.xScale = currGkPoint.x; stavvyGold?.yScale = currGkPoint.y; playableCharacters[.stavvyGold] = stavvyGold
             
             let stavvyPig =
-            childNode(withName: PlayableCharacter.stavvyPig.rawValue) as? DefaultGifNodes
+            childNode(withName: PlayableCharacter.stavvyPig.rawValue) as? TheOriginalAnimatedNodes
             stavvyPig?.xScale = currGkPoint.x; stavvyPig?.yScale = currGkPoint.y; playableCharacters[.stavvyPig] = stavvyPig
             
             let eldyBird =
-            childNode(withName: PlayableCharacter.eldyBird.rawValue) as? DefaultGifNodes
+            childNode(withName: PlayableCharacter.eldyBird.rawValue) as? TheOriginalAnimatedNodes
             eldyBird?.xScale = currGkPoint.x; eldyBird?.yScale = currGkPoint.y; playableCharacters[.eldyBird] = eldyBird
             
             let stavvyRaven =
-            childNode(withName: PlayableCharacter.stavvyRaven.rawValue) as? DefaultGifNodes
+            childNode(withName: PlayableCharacter.stavvyRaven.rawValue) as? TheOriginalAnimatedNodes
             stavvyRaven?.xScale = currGkPoint.x; stavvyRaven?.yScale = currGkPoint.y; playableCharacters[.stavvyRaven] = stavvyRaven
         }
         

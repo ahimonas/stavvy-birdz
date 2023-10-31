@@ -18,8 +18,8 @@ import ImageIO
 protocol Updatable: AnyObject {
     
     var delta: TimeInterval { get }
-    var precedingMoment: TimeInterval { get }
-    var willRenew: Bool { get set }
+    var previousTime: TimeInterval { get }
+    var willRelive: Bool { get set }
     
     func update(_ currentTime: TimeInterval)
 }
@@ -27,7 +27,7 @@ protocol Updatable: AnyObject {
 
 extension Updatable {
     func computeUpdatable(currentTime: TimeInterval) -> (delta: TimeInterval, precedingMoment: TimeInterval) {
-        let currDelta = (self.precedingMoment == 0.0) ? 0.0 : currentTime - self.precedingMoment
+        let currDelta = (self.previousTime == 0.0) ? 0.0 : currentTime - self.previousTime
         let previousMarkTime = currentTime
         return (delta: currDelta, precedingMoment: previousMarkTime)
     }
@@ -78,7 +78,7 @@ protocol PlaySceneProtocol {
 protocol Playable: AnyObject {
     var size: CGSize { get set }
 
-    var weighedDownByForce: Bool { get set }
+    var isHeavy: Bool { get set }
 }
 
 

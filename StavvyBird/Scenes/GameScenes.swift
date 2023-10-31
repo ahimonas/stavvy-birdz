@@ -35,17 +35,17 @@ class HomeScene: RoutingUtilityScene {
             
         case .bird:
             let stavvyBirdNode = PhysicsBirdNode(timeIntervalForDrawingFrames: 0.1, withTextureAtlas: assetName, size: characterDimensions)
-            stavvyBirdNode.weighedDownByForce = false
+            stavvyBirdNode.isHeavy = false
             stavvyBirdNode.position = pendingNode.position
             stavvyBirdNode.zPosition = pendingNode.zPosition
             scene?.addChild(stavvyBirdNode)
             
         case .stavvyGold, .stavvyRat, .stavvyPig, .eldyBird, .stavvyRaven:
-            let myCurrPlayerNode = DefaultGifNodes(animatedGif: assetName, correctAspectRatioFor: characterDimensions.width)
+            let myCurrPlayerNode = TheOriginalAnimatedNodes(animatedGif: assetName, correctAspectRatioFor: characterDimensions.width)
             myCurrPlayerNode.xScale = 1.0
             myCurrPlayerNode.yScale = 1.0
             
-            myCurrPlayerNode.weighedDownByForce = false
+            myCurrPlayerNode.isHeavy = false
             myCurrPlayerNode.position = pendingNode.position
             myCurrPlayerNode.zPosition = pendingNode.zPosition
             scene?.addChild(myCurrPlayerNode)
@@ -159,7 +159,7 @@ class PlayScene: SKScene {
         precedingMoment = currentTime
         if self.isPaused { return }
         instanceGKSM.update(deltaTime: deltaTime)
-        currConfigForGame?.updatables.filter({ return $0.willRenew }).forEach({ (activeUpdatable) in
+        currConfigForGame?.updatables.filter({ return $0.willRelive }).forEach({ (activeUpdatable) in
             activeUpdatable.update(currentTime)
         })
     }
