@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading-screen" translatesAutoresizingMaskIntoConstraints="NO" id="eCY-Un-8Cj">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="811"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="© Sounio Technologies LLC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6m-7y-Fxl">
-                                <rect key="frame" x="81" y="730.66666666666663" width="213" height="23.333333333333371"/>
+                                <rect key="frame" x="81" y="733.66666666666663" width="213" height="23.333333333333371"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
                                 <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -32,7 +32,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Art By @KCYAL8R" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecT-KN-KbQ">
-                                <rect key="frame" x="119.33333333333333" y="699.33333333333337" width="136.66666666666669" height="23.333333333333371"/>
+                                <rect key="frame" x="119.33333333333333" y="702.33333333333337" width="136.66666666666669" height="23.333333333333371"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
                                 <color key="textColor" systemColor="viewFlipsideBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -43,20 +43,20 @@
                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="21"/>
                                 </variation>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="yAJ-pv-Edz">
-                                <rect key="frame" x="120" y="169.99999999999997" width="135" height="409.33333333333326"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" image="SplashBoard" translatesAutoresizingMaskIntoConstraints="NO" id="yAJ-pv-Edz">
+                                <rect key="frame" x="120" y="170" width="145" height="412.33333333333331"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.14901961389999999" green="0.14901961389999999" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="M6m-7y-Fxl" secondAttribute="bottom" constant="24" id="3C1-mA-Xl0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="M6m-7y-Fxl" secondAttribute="bottom" constant="21" id="3C1-mA-Xl0"/>
                             <constraint firstItem="ecT-KN-KbQ" firstAttribute="top" secondItem="yAJ-pv-Edz" secondAttribute="bottom" constant="120" id="4FH-q0-7DQ">
                                 <variation key="heightClass=regular-widthClass=regular" constant="250"/>
                             </constraint>
                             <constraint firstItem="M6m-7y-Fxl" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="HSF-oQ-5ci"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yAJ-pv-Edz" secondAttribute="trailing" constant="120" id="J2H-4X-UjB">
-                                <variation key="heightClass=regular-widthClass=regular" constant="250"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yAJ-pv-Edz" secondAttribute="trailing" constant="110" id="J2H-4X-UjB">
+                                <variation key="heightClass=regular-widthClass=regular" constant="177"/>
                             </constraint>
                             <constraint firstItem="eCY-Un-8Cj" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Qvy-xG-qmr"/>
                             <constraint firstItem="ecT-KN-KbQ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Sd3-dm-aaH"/>
@@ -68,7 +68,7 @@
                             </constraint>
                             <constraint firstItem="M6m-7y-Fxl" firstAttribute="top" secondItem="ecT-KN-KbQ" secondAttribute="bottom" constant="8" id="hBB-xH-MPO"/>
                             <constraint firstItem="eCY-Un-8Cj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="m4k-Ho-hvb"/>
-                            <constraint firstAttribute="bottom" secondItem="eCY-Un-8Cj" secondAttribute="bottom" id="mgp-YW-Aw4"/>
+                            <constraint firstAttribute="bottom" secondItem="eCY-Un-8Cj" secondAttribute="bottom" constant="1" id="mgp-YW-Aw4"/>
                             <constraint firstItem="eCY-Un-8Cj" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xk6-NN-sQ8"/>
                             <constraint firstItem="yAJ-pv-Edz" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ypR-Ec-Ky0"/>
                         </constraints>
@@ -80,7 +80,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreen" width="879" height="818"/>
+        <image name="SplashBoard" width="879" height="818"/>
         <image name="loading-screen" width="1024" height="1024"/>
         <systemColor name="viewFlipsideBackgroundColor">
             <color red="0.12156862745098039" green="0.12941176470588237" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -18,8 +18,6 @@
 		A950486520BAE29C0020ECD9 /* stavvy-raven.gif in Resources */ = {isa = PBXBuildFile; fileRef = A950486020BAE29C0020ECD9 /* stavvy-raven.gif */; };
 		A9ACB91D2099A1F200966991 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB91C2099A1F200966991 /* AppDelegate.swift */; };
 		A9ACB9252099A1F200966991 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB9242099A1F200966991 /* GameViewController.swift */; };
-		A9ACB9282099A1F200966991 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9ACB9262099A1F200966991 /* Main.storyboard */; };
-		A9ACB92D2099A1F300966991 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9ACB92B2099A1F300966991 /* LaunchScreen.storyboard */; };
 		A9ACB96B2099B42300966991 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9ACB96A2099B42300966991 /* Actions.sks */; };
 		A9ACB9872099E74600966991 /* PhysicsBirdNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB9862099E74600966991 /* PhysicsBirdNode.swift */; };
 		A9ACB9972099F19E00966991 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A9ACB9962099F19E00966991 /* .gitignore */; };
@@ -51,6 +49,8 @@
 		CAB3CDD52AEF59E000F7908F /* game-over-noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAB3CDD42AEF59E000F7908F /* game-over-noise.wav */; };
 		CAC5FBA32AE9B586006913FE /* points-noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA22AE9B586006913FE /* points-noise.wav */; };
 		CAC5FBA52AE9B65B006913FE /* in-game-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */; };
+		CADBD9672AF0AE9D0093477F /* SplashBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CADBD9652AF0AE9D0093477F /* SplashBoard.storyboard */; };
+		CADBD96D2AF0B1190093477F /* GamePlay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CADBD96B2AF0B1190093477F /* GamePlay.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,8 +69,6 @@
 		A9ACB9192099A1F200966991 /* StavvyBird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StavvyBird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9ACB91C2099A1F200966991 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9ACB9242099A1F200966991 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		A9ACB9272099A1F200966991 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A9ACB92C2099A1F300966991 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9ACB92E2099A1F300966991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9ACB96A2099B42300966991 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		A9ACB9862099E74600966991 /* PhysicsBirdNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsBirdNode.swift; sourceTree = "<group>"; };
@@ -105,6 +103,8 @@
 		CAB3CDD42AEF59E000F7908F /* game-over-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "game-over-noise.wav"; sourceTree = "<group>"; };
 		CAC5FBA22AE9B586006913FE /* points-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "points-noise.wav"; sourceTree = "<group>"; };
 		CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "in-game-audio.wav"; sourceTree = "<group>"; };
+		CADBD9662AF0AE9D0093477F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SplashBoard.storyboard; sourceTree = "<group>"; };
+		CADBD96C2AF0B1190093477F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/GamePlay.storyboard; sourceTree = "<group>"; };
 		E96DC9F22650A686DDD7743B /* Pods-StavvyBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StavvyBird.release.xcconfig"; path = "Target Support Files/Pods-StavvyBird/Pods-StavvyBird.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,11 +177,11 @@
 		A9ACB91B2099A1F200966991 /* StavvyBird */ = {
 			isa = PBXGroup;
 			children = (
+				CADBD96E2AF0B1450093477F /* MainUIDeviceStoryboards */,
 				CA94BB7D2AD8D7AE005AAF83 /* Stavvy Birds.storekit */,
 				CA47A3BF2ACB5DE400E8ED52 /* StavvyBird.entitlements */,
 				A9ACB91C2099A1F200966991 /* AppDelegate.swift */,
 				A9ACB92E2099A1F300966991 /* Info.plist */,
-				A9ACB9932099F16800966991 /* Storyboards */,
 				A9ACB9922099F15E00966991 /* ControllersAndAdapters */,
 				A9D4CFDE209B402A006461AF /* ColumnsBackgroundsCharacters */,
 				A9ACB99A209A0DD100966991 /* GameUtils */,
@@ -228,15 +228,6 @@
 				A9ACB9242099A1F200966991 /* GameViewController.swift */,
 			);
 			path = ControllersAndAdapters;
-			sourceTree = "<group>";
-		};
-		A9ACB9932099F16800966991 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				A9ACB9262099A1F200966991 /* Main.storyboard */,
-				A9ACB92B2099A1F300966991 /* LaunchScreen.storyboard */,
-			);
-			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		A9ACB99A209A0DD100966991 /* GameUtils */ = {
@@ -308,6 +299,15 @@
 			path = GameAudio;
 			sourceTree = "<group>";
 		};
+		CADBD96E2AF0B1450093477F /* MainUIDeviceStoryboards */ = {
+			isa = PBXGroup;
+			children = (
+				CADBD96B2AF0B1190093477F /* GamePlay.storyboard */,
+				CADBD9652AF0AE9D0093477F /* SplashBoard.storyboard */,
+			);
+			path = MainUIDeviceStoryboards;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -374,7 +374,6 @@
 			files = (
 				CAABA68C2AEB25CF00B9810E /* PlayScene.sks in Resources */,
 				A9ACB96B2099B42300966991 /* Actions.sks in Resources */,
-				A9ACB9282099A1F200966991 /* Main.storyboard in Resources */,
 				A9ACB9972099F19E00966991 /* .gitignore in Resources */,
 				CAABA6CF2AEB2C7100B9810E /* Assets.xcassets in Resources */,
 				A950486520BAE29C0020ECD9 /* stavvy-raven.gif in Resources */,
@@ -391,14 +390,15 @@
 				CAABA6882AEB25CF00B9810E /* HomeScene.sks in Resources */,
 				CAB3CDD52AEF59E000F7908F /* game-over-noise.wav in Resources */,
 				CAABA68D2AEB25CF00B9810E /* AtmosphereScene.sks in Resources */,
-				A9ACB92D2099A1F300966991 /* LaunchScreen.storyboard in Resources */,
 				A950486120BAE29C0020ECD9 /* stavvy-rat.gif in Resources */,
 				CAABA6992AEB25EC00B9810E /* GameOverScene iPad.sks in Resources */,
 				CAABA68F2AEB25CF00B9810E /* ItemShopScene iPad.sks in Resources */,
 				A950486320BAE29C0020ECD9 /* stavvy-gold.gif in Resources */,
+				CADBD9672AF0AE9D0093477F /* SplashBoard.storyboard in Resources */,
 				A950485A20BAE2170020ECD9 /* stavvy-pig.gif in Resources */,
 				CAABA68B2AEB25CF00B9810E /* ItemShopScene.sks in Resources */,
 				CAABA6972AEB25EC00B9810E /* GameOverScene.sks in Resources */,
+				CADBD96D2AF0B1190093477F /* GamePlay.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,20 +471,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A9ACB9262099A1F200966991 /* Main.storyboard */ = {
+		CADBD9652AF0AE9D0093477F /* SplashBoard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A9ACB9272099A1F200966991 /* Base */,
+				CADBD9662AF0AE9D0093477F /* Base */,
 			);
-			name = Main.storyboard;
+			name = SplashBoard.storyboard;
 			sourceTree = "<group>";
 		};
-		A9ACB92B2099A1F300966991 /* LaunchScreen.storyboard */ = {
+		CADBD96B2AF0B1190093477F /* GamePlay.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A9ACB92C2099A1F300966991 /* Base */,
+				CADBD96C2AF0B1190093477F /* Base */,
 			);
-			name = LaunchScreen.storyboard;
+			name = GamePlay.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
