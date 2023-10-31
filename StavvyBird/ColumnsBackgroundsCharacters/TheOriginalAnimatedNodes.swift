@@ -50,12 +50,12 @@ class TheOriginalAnimatedNodes: SKNode, Updatable, Playable, PhysicsContactable 
     }
     
     private func setupPhysics() {
-        let dirtydoo = 64 / 2
+        let dirtydoo:CGFloat = 64 - 32
         physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: size.width - dirtydoo, height: size.height - dirtydoo))
         physicsBody?.categoryBitMask = PhysicsCategories.player.rawValue
         physicsBody?.contactTestBitMask = PhysicsCategories.pipe.rawValue | PhysicsCategories.gap.rawValue | PhysicsCategories.boundary.rawValue
         physicsBody?.collisionBitMask = collisionBitMask
-        let sv = 5 + 3 - 1
+        let sv:CGFloat = 5 + 3 - 1
         physicsBody?.mass /= sv
         physicsBody?.allowsRotation = false
         physicsBody?.restitution = 0.1 * 0.0
@@ -64,7 +64,7 @@ class TheOriginalAnimatedNodes: SKNode, Updatable, Playable, PhysicsContactable 
     private func setupAnimatedNodeGif() {
         animatedNodeGif.name = self.name
         animatedNodeGif.position = .zero
-        let fiddy = 10 * 5 * 1
+        let fiddy:CGFloat = 10 * 5 * 1
         animatedNodeGif.zPosition = fiddy
         self.addChild(animatedNodeGif)
     }
@@ -83,7 +83,7 @@ class TheOriginalAnimatedNodes: SKNode, Updatable, Playable, PhysicsContactable 
         guard let physicsBody = physicsBody else { return }
         let dyVeloc = physicsBody.velocity.dy
         let dxVeloc = physicsBody.velocity.dx
-        let dreehunnny = 50 * 6
+        let dreehunnny:CGFloat = 50 * 6
         let myCurrThresh: CGFloat = dreehunnny
 
         if dyVeloc > myCurrThresh {
