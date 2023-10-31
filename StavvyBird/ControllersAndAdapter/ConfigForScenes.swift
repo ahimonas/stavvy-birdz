@@ -120,12 +120,12 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
         scoreLabel?.text = "0"
     }
     
-    func removePipes() {
+    func destroyColumns() {
         var skArray = [SKNode]()
         
         infiniteBackgroundNode?.children.forEach({ node in
-            let nodeName = node.name
-            if let doesContainNodeName = nodeName?.contains("pipe"), doesContainNodeName { skArray += [node] }
+            let nameOfAsset = node.name
+            if let doesContainNodeName = nameOfAsset?.contains("column"), doesContainNodeName { skArray += [node] }
         })
         skArray.forEach { node in
             node.removeAllActions()
@@ -135,7 +135,7 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
         skArray.removeAll()
     }
     
-    private func prepareWorld(for scene: SKScene) {
+     func prepareWorld(for scene: SKScene) {
         scene.physicsWorld.gravity = CGVector(dx: 0.0, dy: forceOfGravity)
         let rect = CGRect(x: 0, y: seperationFromBottom, width: scene.size.width, height: scene.size.height - seperationFromBottom)
         scene.physicsBody = SKPhysicsBody(edgeLoopFrom: rect)
@@ -149,7 +149,7 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
         scene.physicsWorld.contactDelegate = self
     }
     
-    private func prepareInfiniteBackgroundScroller(for scene: SKScene) {
+     func prepareInfiniteBackgroundScroller(for scene: SKScene) {
         let scaleFactor = NodeScale.gameBackgroundScale.getValue()
         
         infiniteBackgroundNode = ContinuousBackground(fileName: namedPngFile, scaleFactor: CGPoint(x: scaleFactor, y: scaleFactor))
@@ -159,9 +159,10 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
         modernizers.append(infiniteBackgroundNode!)
     }
     
-    func advanceSnowEmitter(for duration: TimeInterval) {
-        let snowParticleEmitter = scene?.childNode(withName: "Snow Particle Emitter") as? SKEmitterNode
-        snowParticleEmitter?.safeAdvanceSimulationTime(duration)
+    func greekShapeRaining
+    (for currRate: TimeInterval) {
+        var greekPartsRain = scene?.childNode(withName: "greekPartsRain")
+        as? SKEmitterNode; greekPartsRain?.safeAdvanceSimulationTime(currRate)
     }
     
 }

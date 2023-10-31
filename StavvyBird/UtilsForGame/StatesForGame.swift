@@ -29,7 +29,7 @@ class InGameState: GKState {
             infinitePipeProducer = ColumnFactory.launch(for: scene, targetNode: target)
         }
         
-        gameConfiguration.advanceSnowEmitter(for: snowEmitterAdvancementInSeconds)
+        gameConfiguration.greekShapeRaining(for: snowEmitterAdvancementInSeconds)
     }
         
     override func didEnter(from previousState: GKState?) {
@@ -71,7 +71,7 @@ class InGameState: GKState {
 
         if nextState is GameOverState {
             gameConfiguration.scene?.removeAction(forKey: infinitePipeProducerKey)
-            gameConfiguration.removePipes()
+            gameConfiguration.destroyColumns()
             gameConfiguration.resetScores()
         }
     }
@@ -157,7 +157,7 @@ class GameOverState: GKState {
         super.didEnter(from: previousState)
         
         if previousState is InGameState {
-            levelScene.removePipes()
+            levelScene.destroyColumns()
         }
         
         levelScene.playerCharacter?.isInteractable = false

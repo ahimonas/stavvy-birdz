@@ -106,7 +106,7 @@ class ButtonNode: SKSpriteNode {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        guard let nodeName = name, let buttonIdentifier = ButtonIdentifier(rawValue: nodeName) else {
+        guard let nameOfAsset = name, let buttonIdentifier = ButtonIdentifier(rawValue: nameOfAsset) else {
             fatalError("The button didn't exist.")
         }
         self.buttonIdentifier = buttonIdentifier

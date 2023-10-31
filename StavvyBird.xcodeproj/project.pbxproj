@@ -16,11 +16,9 @@
 		A950486520BAE29C0020ECD9 /* stavvy-raven.gif in Resources */ = {isa = PBXBuildFile; fileRef = A950486020BAE29C0020ECD9 /* stavvy-raven.gif */; };
 		A9ACB91D2099A1F200966991 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB91C2099A1F200966991 /* AppDelegate.swift */; };
 		A9ACB96B2099B42300966991 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A9ACB96A2099B42300966991 /* Actions.sks */; };
-		A9ACB9872099E74600966991 /* PhysicsBirdNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9ACB9862099E74600966991 /* PhysicsBirdNode.swift */; };
 		A9ACB9972099F19E00966991 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A9ACB9962099F19E00966991 /* .gitignore */; };
 		A9B9C729209EE31C0045548D /* GameScenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B9C728209EE31C0045548D /* GameScenes.swift */; };
 		A9D0897920B97CA800BE2896 /* ItemShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D0897820B97CA800BE2896 /* ItemShopScene.swift */; };
-		A9D4CFE0209B4040006461AF /* ColumnFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D4CFDF209B4040006461AF /* ColumnFactory.swift */; };
 		A9EC756820A6E479007C42EC /* RoutingUtilityScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC756720A6E479007C42EC /* RoutingUtilityScene.swift */; };
 		CA0135632AEF659100EDB576 /* ButtonNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0135622AEF659100EDB576 /* ButtonNodes.swift */; };
 		CA1440C02AEF53260035B063 /* GamProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1440BF2AEF53260035B063 /* GamProtocols.swift */; };
@@ -52,6 +50,8 @@
 		CAC5FBA52AE9B65B006913FE /* in-game-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */; };
 		CADBD9672AF0AE9D0093477F /* SplashBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CADBD9652AF0AE9D0093477F /* SplashBoard.storyboard */; };
 		CADBD96D2AF0B1190093477F /* GamePlay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CADBD96B2AF0B1190093477F /* GamePlay.storyboard */; };
+		CAF65C072AF0D0510057F824 /* PhysicsBirdNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF65C062AF0D0510057F824 /* PhysicsBirdNode.swift */; };
+		CAF65C092AF0D0660057F824 /* TheColumnFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF65C082AF0D0660057F824 /* TheColumnFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,11 +68,9 @@
 		A9ACB9192099A1F200966991 /* StavvyBird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StavvyBird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9ACB91C2099A1F200966991 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9ACB96A2099B42300966991 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		A9ACB9862099E74600966991 /* PhysicsBirdNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsBirdNode.swift; sourceTree = "<group>"; };
 		A9ACB9962099F19E00966991 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A9B9C728209EE31C0045548D /* GameScenes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScenes.swift; sourceTree = "<group>"; };
 		A9D0897820B97CA800BE2896 /* ItemShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemShopScene.swift; sourceTree = "<group>"; };
-		A9D4CFDF209B4040006461AF /* ColumnFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFactory.swift; sourceTree = "<group>"; };
 		A9EC756720A6E479007C42EC /* RoutingUtilityScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingUtilityScene.swift; sourceTree = "<group>"; };
 		CA0135622AEF659100EDB576 /* ButtonNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonNodes.swift; sourceTree = "<group>"; };
 		CA1440BF2AEF53260035B063 /* GamProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamProtocols.swift; sourceTree = "<group>"; };
@@ -106,6 +104,8 @@
 		CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "in-game-audio.wav"; sourceTree = "<group>"; };
 		CADBD9662AF0AE9D0093477F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SplashBoard.storyboard; sourceTree = "<group>"; };
 		CADBD96C2AF0B1190093477F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/GamePlay.storyboard; sourceTree = "<group>"; };
+		CAF65C062AF0D0510057F824 /* PhysicsBirdNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsBirdNode.swift; sourceTree = "<group>"; };
+		CAF65C082AF0D0660057F824 /* TheColumnFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheColumnFactory.swift; sourceTree = "<group>"; };
 		E96DC9F22650A686DDD7743B /* Pods-StavvyBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StavvyBird.release.xcconfig"; path = "Target Support Files/Pods-StavvyBird/Pods-StavvyBird.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,13 +142,6 @@
 				E96DC9F22650A686DDD7743B /* Pods-StavvyBird.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		A950485B20BAE2500020ECD9 /* Animated Players */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Animated Players";
 			sourceTree = "<group>";
 		};
 		A9ACB9102099A1F200966991 = {
@@ -204,9 +197,7 @@
 				A950486020BAE29C0020ECD9 /* stavvy-raven.gif */,
 				A950485E20BAE29C0020ECD9 /* stavvy-gold.gif */,
 				A950485920BAE2170020ECD9 /* stavvy-pig.gif */,
-				CAAEAD552AF0C65A000D9594 /* New Group */,
 				CAB3CDD32AEF595000F7908F /* GameAudio */,
-				A950485B20BAE2500020ECD9 /* Animated Players */,
 				A9ACB96C2099B46E00966991 /* Actions */,
 				A9CC5C3E20A0361700040E61 /* Scenes */,
 				CAABA6CE2AEB2C7100B9810E /* Assets.xcassets */,
@@ -277,19 +268,12 @@
 		CAAEAD522AF0C596000D9594 /* ColsBackgroundPlayers */ = {
 			isa = PBXGroup;
 			children = (
-				A9ACB9862099E74600966991 /* PhysicsBirdNode.swift */,
+				CAF65C082AF0D0660057F824 /* TheColumnFactory.swift */,
+				CAF65C062AF0D0510057F824 /* PhysicsBirdNode.swift */,
 				CAABA6312AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift */,
-				A9D4CFDF209B4040006461AF /* ColumnFactory.swift */,
 				CAAEAD532AF0C5C6000D9594 /* ContinuousBackground.swift */,
 			);
 			path = ColsBackgroundPlayers;
-			sourceTree = "<group>";
-		};
-		CAAEAD552AF0C65A000D9594 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		CAB3CDD12AEF588200F7908F /* Iphone */ = {
@@ -471,17 +455,17 @@
 			files = (
 				A9EC756820A6E479007C42EC /* RoutingUtilityScene.swift in Sources */,
 				CAABA6322AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift in Sources */,
-				A9ACB9872099E74600966991 /* PhysicsBirdNode.swift in Sources */,
 				CAA9D4222AF0B7E200DEA75E /* ConfigForScenes.swift in Sources */,
 				A9ACB91D2099A1F200966991 /* AppDelegate.swift in Sources */,
 				A903943420AD94F000376CC3 /* UserDefaults.swift in Sources */,
 				CAA9D4282AF0B98200DEA75E /* StatesForGame.swift in Sources */,
 				CA0135632AEF659100EDB576 /* ButtonNodes.swift in Sources */,
-				A9D4CFE0209B4040006461AF /* ColumnFactory.swift in Sources */,
+				CAF65C092AF0D0660057F824 /* TheColumnFactory.swift in Sources */,
 				CA1440C02AEF53260035B063 /* GamProtocols.swift in Sources */,
 				CAA9D4242AF0B80000DEA75E /* MainUiGameView.swift in Sources */,
 				A9B9C729209EE31C0045548D /* GameScenes.swift in Sources */,
 				CAAEAD542AF0C5C6000D9594 /* ContinuousBackground.swift in Sources */,
+				CAF65C072AF0D0510057F824 /* PhysicsBirdNode.swift in Sources */,
 				A9D0897920B97CA800BE2896 /* ItemShopScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
