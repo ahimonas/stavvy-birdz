@@ -144,7 +144,7 @@ struct ColumnFactory {
         let pipeX = sceneSize.width
         let pipeY = sceneSize.height
 
-        let currWIDTH = CGFloat.range(min: 60, max: 610)
+        let currWIDTH = CGFloat.range(min: 100, max: 300)
         let pipeBottomSize = CGSize(width: currWIDTH, height: doubleRangeHeight)
         
         // Pipe bottom part
@@ -177,8 +177,9 @@ struct ColumnFactory {
             return nil
         }
         
-        let myRando = CGFloat.range(min: 60, max: 350)
-        let midUpPipe = ColumnNode(textures: (pipe: "column-parts", cap: "sparky22"), of: CGSize(width: currWIDTH, height: myRando), side: true)
+        let myRando = CGFloat.range(min: 100, max: 400)
+        
+        let midUpPipe = ColumnNode(textures: (pipe: "column-parts", cap: "sparky33"), of: CGSize(width: currWIDTH, height: myRando), side: true)
         
         let myRandoHeightplacment = CGFloat.range(min: 5, max: pipeY-100)
 
@@ -269,12 +270,12 @@ class ColumnNode: SKSpriteNode {
             //cap.size = CGSize(width: pipe.size.width + pipe.size.width/3, height: cap.size.height*2)
             //cap.zPosition = 5
             //pipe.addChild(cap)
-            
+            /*
             if side {
                 let angle: CGFloat = 180.0
                 cap.zRotation = angle.toRadians
             }
-        
+    */
         
         super.init(texture: backgroundTexture, color: .clear, size: backgroundTexture.size())
         
