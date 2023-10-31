@@ -9,7 +9,11 @@ struct ColumnFactory {
 
     
     typealias PipeParts = (top: ColumnNode, bottom: ColumnNode, myCurrThresh: SKSpriteNode)
-    typealias DoublePipeParts = (top: ColumnNode, bottom: ColumnNode, midUp: ColumnNode, midDown: ColumnNode, myCurrThresh: SKSpriteNode)
+    typealias DoublePipeParts = (top: BlockNode, bottom: BlockNode, midUp: BlockNode, midDown: BlockNode, myCurrThresh: SKSpriteNode)
+    
+    typealias singlePipeParts = ( midUp: BlockNode, myCurrThresh: SKSpriteNode)
+
+    
     
     
     static let pipeWidth: CGFloat = 102
@@ -112,7 +116,7 @@ struct ColumnFactory {
             return nil
         }
         
-        let myCurrPipNod = SKSpriteNode(texture: nil, color: .clear, size: pipeParts.top.size)
+        let myCurrPipNod = SKSpriteNode(texture: nil, color: .clear, size: pipeParts.midUp.size)
         //myCurrPipNod.addChild(pipeParts.top)
         myCurrPipNod.addChild(pipeParts.myCurrThresh)
         //myCurrPipNod.addChild(pipeParts.bottom)
@@ -160,6 +164,7 @@ struct ColumnFactory {
         return PipeParts(top: unwrappedPipeTop, bottom: unwrappedPipeBottom, myCurrThresh: myCurrThresh)
     }
 
+    /*
     private static func doublePipeParts(for sceneSize: CGSize) -> DoublePipeParts? {
         let pipeX = sceneSize.width
         let pipeY = sceneSize.height
@@ -229,7 +234,83 @@ struct ColumnFactory {
         
         return DoublePipeParts(top: unwrappedPipeTop, bottom: unwerappedPipeBottom, midUp: unwrappedPipeMidUp, midDown: unwrappedPipeMidDown, myCurrThresh: myCurrThresh)
     }
+     */
     
+    
+    
+    
+    
+    
+    
+    
+    private static func doublePipeParts(for sceneSize: CGSize) -> singlePipeParts? {
+        let pipeX = sceneSize.width
+        let pipeY = sceneSize.height
+
+        let currWIDTH = CGFloat.range(min: 100, max: 300)
+        let pipeBottomSize = CGSize(width: currWIDTH, height: doubleRangeHeight)
+        
+        // Pipe bottom part
+        let pipeBottom = BlockNode(textures: (pipe: "column-parts", cap: "column-top"), of: pipeBottomSize)
+        pipeBottom?.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! / 2)
+        
+        guard let unwerappedPipeBottom = pipeBottom else {
+            debugPrint(#function + " could not contruct ColumnNode instnace")
+            return nil
+        }
+        
+        // Threshold node ? THRESH MEANING GAP ?
+        let myCurrThresh = SKSpriteNode(color: .clear, size: CGSize(width: myCurrThreshWidth, height: CGFloat.range(min: 500, max: 1200)))
+        myCurrThresh.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + myCurrThresh.size.height / 2)
+        
+        myCurrThresh.physicsBody = SKPhysicsBody(rectangleOf: myCurrThresh.size)
+        myCurrThresh.physicsBody?.categoryBitMask = BondaryMapping.gap.rawValue
+        myCurrThresh.physicsBody?.contactTestBitMask =  BondaryMapping.player.rawValue
+        myCurrThresh.physicsBody?.collisionBitMask = 0
+        myCurrThresh.physicsBody?.isDynamic = false
+        myCurrThresh.zPosition = zPosition
+        
+        // Top pipe
+        let topHeight = sceneSize.height - (pipeBottom?.size.height)! - myCurrThresh.size.height
+        let pipeTopSize = CGSize(width: currWIDTH, height: topHeight)
+        let pipeTop = BlockNode(textures: (pipe: "column-parts", cap: "column-top"), of: pipeTopSize);
+        pipeTop?.position = CGPoint(x: pipeX, y: (pipeBottom?.size.height)! + myCurrThresh.size.height + (pipeTop?.size.height)! / 2)
+        
+        guard let unwrappedPipeTop = pipeTop else {
+            return nil
+        }
+        
+        let myRando = CGFloat.range(min: 100, max: 400)
+        
+        let midUpPipe = BlockNode(textures: (pipe: "column-parts", cap: "sparky22"), of: CGSize(width: currWIDTH, height: myRando))
+        
+        let myRandoHeightplacment = CGFloat.range(min: 200, max: pipeY-20)
+        
+        midUpPipe?.position = CGPoint(x: pipeX, y: myRandoHeightplacment)
+        
+        
+        
+        guard let unwrappedPipeMidUp = midUpPipe else {
+            return nil
+        }
+        
+        let topBottomPoint = (unwrappedPipeTop.position.y - unwrappedPipeTop.size.height / 2)
+        let topMidUpDistance = topBottomPoint - (unwrappedPipeMidUp.size.height / 2 + unwrappedPipeMidUp.position.y)
+        
+        let downMidSize = CGSize(width: currWIDTH, height: topMidUpDistance - CGFloat.range(min: 20, max: 100))
+        //let downMidPosition = CGPoint(x: pipeX, y: (unwrappedPipeMidUp.size.height / 2 + unwrappedPipeMidUp.position.y) + downMidSize.height / 2)
+        
+        let downMidPosition = CGPoint(x: 100, y: (unwrappedPipeMidUp.size.height / 2 + unwrappedPipeMidUp.position.y) + downMidSize.height / 2)
+
+        let midDownPipe = BlockNode(textures: (pipe: "column-parts", cap: "sparky22"), of: downMidSize)
+        ///midDownPipe?.position = downMidPosition
+        
+        guard let unwrappedPipeMidDown = midDownPipe else {
+            return nil
+        }
+        
+        return singlePipeParts(midUp: unwrappedPipeMidUp, myCurrThresh: myCurrThresh)
+    }
     
 }
 
@@ -240,19 +321,6 @@ import SpriteKit
 typealias typeIsTopColumn = Bool
 
 class ColumnNode: SKSpriteNode {
-    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
-
-        let scale = newWidth / image.size.width
-        let newHeight = image.size.height * scale
-        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
-
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        return newImage
-    }
-    
     
     init?(textures: (pipe: String, cap: String), of size: CGSize, side: typeIsTopColumn) {
         
@@ -320,4 +388,75 @@ class ColumnNode: SKSpriteNode {
     }
     
 }
+
+
+
+
+
+
+
+
+class BlockNode: SKSpriteNode {
+    
+    init?(textures: (pipe: String, cap: String), of size: CGSize) {
+        
+        guard let pipeTOPP = UIImage(named: "sparky22" )?.cgImage else {
+                 return nil
+             }
+        
+             let textureRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+             
+             // Render tiled pipe form the previously loaded cgImage
+        if(size.height > 0){
+            UIGraphicsBeginImageContext(size)
+            let context = UIGraphicsGetCurrentContext()
+            context?.draw(pipeTOPP, in:textureRect)
+        }
+            let boundaryWithGraphic = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            guard let unwrappedBoundaryWithGraphic = boundaryWithGraphic, let tiledCGImage =  unwrappedBoundaryWithGraphic.cgImage else {
+                return nil
+            }
+        
+        
+        
+            let textureWrapperForGraphic = SKTexture(cgImage: tiledCGImage)
+            //let pipe = SKSpriteNode(texture: backgroundTexture)
+            //pipe.zPosition = 1
+            
+            //cap.position = CGPoint(x: 0.0, y: side ? -pipe.size.height / 2 + cap.size.height / 2 : pipe.size.height / 2 - cap.size.height / 2)
+        
+        
+        super.init(texture: textureWrapperForGraphic, color: .clear, size: textureWrapperForGraphic.size())
+        
+        
+        // Add physics body
+        physicsBody = SKPhysicsBody(rectangleOf: size)
+        physicsBody?.categoryBitMask = BondaryMapping.pipe.rawValue
+        physicsBody?.contactTestBitMask =  BondaryMapping.player.rawValue
+        physicsBody?.collisionBitMask = BondaryMapping.player.rawValue
+        physicsBody?.isDynamic = false
+        zPosition = 21
+        /*
+        if(size.height > 1){
+            
+                self.addChild(pipe)
+            }
+         */
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("NSCoder has failed")
+    }
+    
+}
+
+
+
+
+
+
+
 
