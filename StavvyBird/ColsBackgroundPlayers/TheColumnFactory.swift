@@ -27,13 +27,14 @@ struct ColumnFactory {
     static func launch(for scene: SKScene, targetNode: SKNode) -> SKAction {
         let pipeName = "column"
         let pipeName2 = "column"
+        let pipeName3 = "column"
 
         let cleanUpAction = SKAction.run {
             targetNode.childNode(withName: pipeName)?.removeFromParent()
         }
         
         let waitAction = SKAction.wait(forDuration: UserDefaults.standard.getDifficultyLevel().rawValue)
-        let pipeMoveDuration: TimeInterval = 4.5
+        let pipeMoveDuration: TimeInterval = 3
 
         let renderFactoryPipeAction = SKAction.run {
             
@@ -53,7 +54,7 @@ struct ColumnFactory {
             targetNode.childNode(withName: pipeName)?.removeFromParent()
         }
         
-        let pipeMoveDuration2: TimeInterval = 8
+        let pipeMoveDuration2: TimeInterval = 6
 
         let renderFactoryPipeAction2 = SKAction.run {
             guard let column2 = ColumnFactory.producseDoublePipe(sceneSize: scene.size) else {
@@ -67,8 +68,27 @@ struct ColumnFactory {
             column2.run(sequence2)
         }
         
+        let cleanUpAction3 = SKAction.run {
+            targetNode.childNode(withName: pipeName)?.removeFromParent()
+        }
         
-        let actionsSequential = SKAction.sequence([waitAction, renderFactoryPipeAction, renderFactoryPipeAction2])
+        let pipeMoveDuration3: TimeInterval = 9
+
+        let renderFactoryPipeAction3 = SKAction.run {
+            guard let column3 = ColumnFactory.producseDoublePipe(sceneSize: scene.size) else {
+                return
+            }
+            column3.name = pipeName3
+            targetNode.addChild(column3)
+            
+            let pipeRelocation3 = SKAction.move(to: CGPoint(x: -(column3.size.width + scene.size.width), y: column3.position.y), duration: pipeMoveDuration3)
+            let sequence3 = SKAction.sequence([pipeRelocation3, cleanUpAction3])
+            column3.run(sequence3)
+        }
+        
+        
+        
+        let actionsSequential = SKAction.sequence([waitAction, renderFactoryPipeAction, renderFactoryPipeAction2, renderFactoryPipeAction3])//
         return SKAction.repeatForever(actionsSequential)
     }
     
@@ -179,9 +199,9 @@ struct ColumnFactory {
         
         let myRando = CGFloat.range(min: 100, max: 400)
         
-        let midUpPipe = ColumnNode(textures: (pipe: "column-parts", cap: "sparky33"), of: CGSize(width: currWIDTH, height: myRando), side: true)
+        let midUpPipe = ColumnNode(textures: (pipe: "column-parts", cap: "sparky22"), of: CGSize(width: currWIDTH, height: myRando), side: true)
         
-        let myRandoHeightplacment = CGFloat.range(min: 5, max: pipeY-100)
+        let myRandoHeightplacment = CGFloat.range(min: 200, max: pipeY-20)
 
         
         midUpPipe?.position = CGPoint(x: pipeX, y: myRandoHeightplacment)
@@ -201,7 +221,7 @@ struct ColumnFactory {
         let downMidPosition = CGPoint(x: 100, y: (unwrappedPipeMidUp.size.height / 2 + unwrappedPipeMidUp.position.y) + downMidSize.height / 2)
 
         let midDownPipe = ColumnNode(textures: (pipe: "column-parts", cap: "sparky22"), of: downMidSize, side: false)
-        midDownPipe?.position = downMidPosition
+        ///midDownPipe?.position = downMidPosition
         
         guard let unwrappedPipeMidDown = midDownPipe else {
             return nil
