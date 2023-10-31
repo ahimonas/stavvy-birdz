@@ -147,11 +147,6 @@
 		A950485B20BAE2500020ECD9 /* Animated Players */ = {
 			isa = PBXGroup;
 			children = (
-				A950485C20BAE29C0020ECD9 /* stavvy-rat.gif */,
-				A950485F20BAE29C0020ECD9 /* eldy-bird.gif */,
-				A950486020BAE29C0020ECD9 /* stavvy-raven.gif */,
-				A950485E20BAE29C0020ECD9 /* stavvy-gold.gif */,
-				A950485920BAE2170020ECD9 /* stavvy-pig.gif */,
 			);
 			path = "Animated Players";
 			sourceTree = "<group>";
@@ -204,6 +199,12 @@
 		A9ACB98F2099F12000966991 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				A950485C20BAE29C0020ECD9 /* stavvy-rat.gif */,
+				A950485F20BAE29C0020ECD9 /* eldy-bird.gif */,
+				A950486020BAE29C0020ECD9 /* stavvy-raven.gif */,
+				A950485E20BAE29C0020ECD9 /* stavvy-gold.gif */,
+				A950485920BAE2170020ECD9 /* stavvy-pig.gif */,
+				CAAEAD552AF0C65A000D9594 /* New Group */,
 				CAB3CDD32AEF595000F7908F /* GameAudio */,
 				A950485B20BAE2500020ECD9 /* Animated Players */,
 				A9ACB96C2099B46E00966991 /* Actions */,
@@ -282,6 +283,13 @@
 				CAAEAD532AF0C5C6000D9594 /* ContinuousBackground.swift */,
 			);
 			path = ColsBackgroundPlayers;
+			sourceTree = "<group>";
+		};
+		CAAEAD552AF0C65A000D9594 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		CAB3CDD12AEF588200F7908F /* Iphone */ = {
