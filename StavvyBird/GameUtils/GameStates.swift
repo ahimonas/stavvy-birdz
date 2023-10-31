@@ -34,7 +34,7 @@ class InGameState: GKState {
         
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
-        gameConfiguration.playerCharacter?.weighedDownByForce = false
+        gameConfiguration.playerCharacter?.isHeavy = false
         gameConfiguration.scene?.run(infinitePipeProducer, withKey: infinitePipeProducerKey)
         
         if gameConfiguration.isSoundOn {
@@ -59,7 +59,7 @@ class InGameState: GKState {
                 
         let character = UserDefaults.standard.playableCharacter(for: .character) ?? .bird
         position(player: character, in: scene)
-        player.willRenew = true
+        player.willRelive = true
     }
     
     override func willExit(to nextState: GKState) {
@@ -92,7 +92,7 @@ class InGameState: GKState {
                 withTextureAtlas: assetName,
                 size: gameConfiguration.characterDimensions)
         case .stavvyGold, .stavvyRat, .stavvyPig, .eldyBird, .stavvyRaven:
-            let player = DefaultGifNodes(
+            let player = TheOriginalAnimatedNodes(
                 animatedGif: assetName,
                 correctAspectRatioFor: gameConfiguration.characterDimensions.width)
             player.xScale = sizeOfCharacter.x
@@ -169,7 +169,7 @@ class GameOverState: GKState {
         levelScene.overlay = overlay
         levelScene.isHUDHidden = true
         
-        levelScene.playerCharacter?.willRenew = false
+        levelScene.playerCharacter?.willRelive = false
         
         levelScene.scene?.removeAllActions()
         

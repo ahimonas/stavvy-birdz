@@ -6,11 +6,11 @@ import UIKit
 
 class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
     var delta: TimeInterval = 0 //c
-    var precedingMoment: TimeInterval = 0
+    var previousTime: TimeInterval = 0
     var flyTextures: [SKTexture]? = nil //c
     
-    var willRenew: Bool = true {didSet {if willRenew {animate(with: timeIntervalForDrawingFrames)} else {self.removeAllActions()}}}
-    var weighedDownByForce: Bool = true {didSet {self.physicsBody?.affectedByGravity = weighedDownByForce}}
+    var willRelive: Bool = true {didSet {if willRelive {animate(with: timeIntervalForDrawingFrames)} else {self.removeAllActions()}}}
+    var isHeavy: Bool = true {didSet {self.physicsBody?.affectedByGravity = isHeavy}}
     var isInteractable: Bool = true {didSet {self.isUserInteractionEnabled = isInteractable}}
     var shouldEnablePhysics: Bool = true {didSet {physicsBody?.collisionBitMask = shouldEnablePhysics ? collisionBitMask : 0}}
     var collisionBitMask: UInt32 = PhysicsCategories.pipe.rawValue | PhysicsCategories.boundary.rawValue
@@ -62,8 +62,8 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
     
     
     func update(_ timeInterval: CFTimeInterval) {
-        delta = precedingMoment == 0.0 ? 0.0 : timeInterval - precedingMoment
-        precedingMoment = timeInterval
+        delta = previousTime == 0.0 ? 0.0 : timeInterval - previousTime
+        previousTime = timeInterval
         
         guard let physicsBody = physicsBody else {
             return
@@ -88,7 +88,7 @@ extension PhysicsBirdNode: Touchable {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !isInteractable { return }
         impact.impactOccurred()
-        weighedDownByForce = true
+        isHeavy = true
         physicsBody?.applyImpulse(CGVector(dx: 0, dy: 133)) //the bounce force
     }
 }

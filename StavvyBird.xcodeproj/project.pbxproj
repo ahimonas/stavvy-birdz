@@ -33,7 +33,7 @@
 		CA29A1922ACF755B00470B9F /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA29A1912ACF755B00470B9F /* GameKit.framework */; };
 		CA47A3C12ACB5E3100E8ED52 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */; };
 		CA7047542AE9C33B0020A04A /* home-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA7047532AE9C33B0020A04A /* home-audio.wav */; };
-		CAABA6322AEB1E8C00B9810E /* DefaultGifNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAABA6312AEB1E8C00B9810E /* DefaultGifNodes.swift */; };
+		CAABA6322AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAABA6312AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift */; };
 		CAABA6872AEB25CF00B9810E /* TitleScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67D2AEB25CF00B9810E /* TitleScene iPad.sks */; };
 		CAABA6882AEB25CF00B9810E /* HomeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67E2AEB25CF00B9810E /* HomeScene.sks */; };
 		CAABA6892AEB25CF00B9810E /* PlayScene iPad.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67F2AEB25CF00B9810E /* PlayScene iPad.sks */; };
@@ -87,7 +87,7 @@
 		CA47A3C02ACB5E3100E8ED52 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CA7047532AE9C33B0020A04A /* home-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "home-audio.wav"; sourceTree = "<group>"; };
 		CA94BB7D2AD8D7AE005AAF83 /* Stavvy Birds.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Stavvy Birds.storekit"; sourceTree = "<group>"; };
-		CAABA6312AEB1E8C00B9810E /* DefaultGifNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultGifNodes.swift; sourceTree = "<group>"; };
+		CAABA6312AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheOriginalAnimatedNodes.swift; sourceTree = "<group>"; };
 		CAABA67D2AEB25CF00B9810E /* TitleScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "TitleScene iPad.sks"; sourceTree = "<group>"; };
 		CAABA67E2AEB25CF00B9810E /* HomeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HomeScene.sks; sourceTree = "<group>"; };
 		CAABA67F2AEB25CF00B9810E /* PlayScene iPad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "PlayScene iPad.sks"; sourceTree = "<group>"; };
@@ -263,7 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				A9ACB9862099E74600966991 /* PhysicsBirdNode.swift */,
-				CAABA6312AEB1E8C00B9810E /* DefaultGifNodes.swift */,
+				CAABA6312AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift */,
 				A94A97F621A287890087C018 /* ContinuousBackground.swift */,
 				A9D4CFDF209B4040006461AF /* ColumnFactory.swift */,
 			);
@@ -452,7 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9EC756820A6E479007C42EC /* RoutingUtilityScene.swift in Sources */,
-				CAABA6322AEB1E8C00B9810E /* DefaultGifNodes.swift in Sources */,
+				CAABA6322AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift in Sources */,
 				A9ACB9252099A1F200966991 /* GameViewController.swift in Sources */,
 				A9ACB9872099E74600966991 /* PhysicsBirdNode.swift in Sources */,
 				A94A97F721A287890087C018 /* ContinuousBackground.swift in Sources */,
