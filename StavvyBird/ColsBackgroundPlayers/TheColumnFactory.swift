@@ -105,7 +105,7 @@ struct ColumnFactory {
         let myCurrThresh = SKSpriteNode(color: .green, size: CGSize(width: myCurrThreshWidth, height: blockY*2))
         myCurrThresh.position = CGPoint(x: blockX, y: 0)
         myCurrThresh.physicsBody = SKPhysicsBody(rectangleOf: myCurrThresh.size)
-        myCurrThresh.physicsBody?.categoryBitMask = BondaryMapping.gap.rawValue
+        myCurrThresh.physicsBody?.categoryBitMask = BondaryMapping.breaker.rawValue
         myCurrThresh.physicsBody?.contactTestBitMask =  BondaryMapping.characterX.rawValue
         myCurrThresh.physicsBody?.collisionBitMask = 0
         myCurrThresh.physicsBody?.isDynamic = false
@@ -123,7 +123,7 @@ struct ColumnFactory {
         
         
         let myRandoHeightplacment = CGFloat.range(min: bottomBoundary+10, max: topBoundary-100)
-        //we can put the poistion anywhere within that gap
+        //we can put the poistion anywhere within that breaker
         midUpPipe?.position = CGPoint(x: blockX, y: myRandoHeightplacment)
         
         //wrap the block to make sure its not null

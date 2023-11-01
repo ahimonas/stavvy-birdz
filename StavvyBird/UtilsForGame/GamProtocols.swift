@@ -13,8 +13,6 @@ import SpriteKit.SKTexture
 import SpriteKit.SKEmitterNode
 import ImageIO
 
-
-
 protocol Updatable: AnyObject {
     var delta: TimeInterval { get }
     var previousTime: TimeInterval { get }
@@ -23,14 +21,24 @@ protocol Updatable: AnyObject {
 }
 
 
-extension Updatable {
-    func computeUpdatable(currentTime: TimeInterval) -> (delta: TimeInterval, precedingMoment: TimeInterval) {
-        let currDelta = (self.previousTime == 0.0) ? 0.0 : currentTime - self.previousTime
-        let previousMarkTime = currentTime
-        return (delta: currDelta, precedingMoment: previousMarkTime)
-    }
+protocol PhysicsContactable {
+    var collisionBitMask: UInt32 { get }
+    var shouldEnablePhysics: Bool { get set }
 }
 
+
+
+enum ControlInputDirection: Int {
+    case up = 0, down, left, right
+    init?(vector: SIMD2<Float>) {
+        guard length(vector) >= 0.5 else { return nil }
+        if abs(vector.x) > abs(vector.y) {
+            self = vector.x > 0 ? .right : .left
+        } else {
+            self = vector.y > 0 ? .up : .down
+        }
+    }
+}
 
 protocol Touchable: AnyObject {
     var isInteractable: Bool { get set }
@@ -47,11 +55,8 @@ protocol Touchable: AnyObject {
 }
 
 extension Touchable {
+    //in order to touch the nodes
     func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {}
-    /*
-    func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {}
-    func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {}
-    */
     func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {}
     func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {}
     func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {}
@@ -60,48 +65,19 @@ extension Touchable {
 
 
 protocol PlaySceneProtocol {
-    var modernizers: [Updatable] { get }
-    var tangibles: [Touchable] { get }
-    
-    var scene: SKScene? { get }
+    var modernizers: [Updatable] { get }; var tangibles: [Touchable] { get }; var scene: SKScene? { get }
     init?(with scene: SKScene)
-    
 }
-
-
 
 protocol Playable: AnyObject {
-    var size: CGSize { get set }
-
-    var isHeavy: Bool { get set }
+    var size: CGSize { get set }; var isHeavy: Bool { get set }
 }
 
-
-protocol PhysicsContactable {
-    var collisionBitMask: UInt32 { get }
-    var shouldEnablePhysics: Bool { get set }
-}
-
-
-//
-//  ControlInput.swift
-//  StavvyBird
-//
-
-//
-
-
-enum ControlInputDirection: Int {
-    case up = 0, down, left, right
-    
-    init?(vector: SIMD2<Float>) {
-        guard length(vector) >= 0.5 else { return nil }
-        
-        if abs(vector.x) > abs(vector.y) {
-            self = vector.x > 0 ? .right : .left
-        } else {
-            self = vector.y > 0 ? .up : .down
-        }
+extension Updatable {
+    func computeUpdatable(currentTime: TimeInterval) -> (delta: TimeInterval, precedingMoment: TimeInterval) {
+        let currDelta = (self.previousTime == 0.0) ? 0.0 : currentTime - self.previousTime
+        let previousMarkTime = currentTime
+        return (delta: currDelta, precedingMoment: previousMarkTime)
     }
 }
 
@@ -114,7 +90,7 @@ struct BondaryMapping : OptionSet {
     
     static let boundary = BondaryMapping(rawValue: 1 << 0); static let characterX = BondaryMapping(rawValue: 1 << 1)
     static let block = BondaryMapping(rawValue: 1 << 2); static let column = BondaryMapping(rawValue: 1 << 2)
-    static let gap = BondaryMapping(rawValue: 1 << 3)
+    static let breaker = BondaryMapping(rawValue: 1 << 3)
 }
 
 extension CGFloat {
@@ -157,205 +133,126 @@ extension SKTextureAtlas {
         }
         for index in beginIndex...textureIndex {
             let namePattern = pattern(name, index)
-            let texture = currSkAtl.textureNamed(namePattern)
-            skTextArray.append(texture)
+            let mySkTx = currSkAtl.textureNamed(namePattern)
+            skTextArray.append(mySkTx)
         }
         return skTextArray
     }
 }
 
-//complete
-
-import SpriteKit.SKTexture
-
-extension SKTexture {
-    
-    enum GradientDirection {
-        case up
-        case left
-        case upLeft
-        case upRight
-    }
-    
-    convenience init(size: CGSize, startColor: SKColor, endColor: SKColor, direction: GradientDirection = .up) {
-        let context = CIContext(options: nil)
-        let filter = CIFilter(name: "CILinearGradient")!
-        let startVector: CIVector
-        let endVector: CIVector
-        
-        filter.setDefaults()
-        
-        switch direction {
-        case .up:
-            startVector = CIVector(x: size.width/2, y: 0)
-            endVector   = CIVector(x: size.width/2, y: size.height)
-        case .left:
-            startVector = CIVector(x: size.width, y: size.height/2)
-            endVector   = CIVector(x: 0, y: size.height/2)
-        case .upLeft:
-            startVector = CIVector(x: size.width, y: 0)
-            endVector   = CIVector(x: 0, y: size.height)
-        case .upRight:
-            startVector = CIVector(x: 0, y: 0)
-            endVector   = CIVector(x: size.width, y: size.height)
-        }
-        
-        filter.setValue(startVector, forKey: "inputPoint0")
-        filter.setValue(endVector, forKey: "inputPoint1")
-        filter.setValue(CIColor(color: startColor), forKey: "inputColor0")
-        filter.setValue(CIColor(color: endColor), forKey: "inputColor1")
-        
-        let image = context.createCGImage(filter.outputImage!, from: CGRect(origin: .zero, size: size))
-        
-        self.init(cgImage: image!)
-    }
-}
-
-
+//done
 extension SKEmitterNode {
     func safeAdvanceSimulationTime(_ sec: TimeInterval) {
         let emitterPaused = self.isPaused
-        
-        if emitterPaused {
-            self.isPaused = false
-        }
+        if emitterPaused { self.isPaused = false }
         advanceSimulationTime(sec)
-        
-        if emitterPaused {
-            self.isPaused = true
-        }
+        if emitterPaused { self.isPaused = true }
     }
 }
 
+//done
 extension SKSpriteNode {
-    
-    convenience init(withAnimatedGif name: String, correctAspectRatioFor width: CGFloat) {
+    convenience init
+    (withAnimatedGif name: String, correctAspectRatioFor width: CGFloat) {
         self.init(texture: nil, color: .clear, size: .zero)
-        animateWithLocalAspectCorrectGIF(named: name, width: width)
+        resizerWithTheAsset(named: name, width: width)
     }
     
-    func animateWithLocalAspectCorrectGIF(named name: String, width: CGFloat) {
-        guard let size = animateWithLocalGIF(named: name) else {
-            debugPrint(#function + " could not unwrap size of the GIF texture - the method will be aborted")
+    func resizerWithTheAsset(named name: String, width: CGFloat) {
+        guard let myCurrRation = animateWithLocalGIF(named: name) else {
+            debugPrint(#function + "----UNABEL TO ANIMATE GIF--------------")
             return
         }
         
-        let aspect = size.width / size.height
-        let newHeight = size.width / aspect
-        self.size.width = size.width
+        let aspect = myCurrRation.width / myCurrRation.height
+        let newHeight = myCurrRation.width / aspect
+        self.size.width = myCurrRation.width
         self.size.height = newHeight
     }
     
     @discardableResult
     func animateWithLocalGIF(named name: String) -> CGSize? {
-        
-        guard let bundleURL = Bundle.main.url(forResource: name, withExtension: "gif") else {
-            debugPrint(#function + " image with .gif extension does not exist")
+        debugPrint(#function + " -------Animstion----------")
+
+        guard let imageDataGifContent = Bundle.main.url(
+            forResource: name, withExtension: "gif") else {
+            debugPrint(#function + " -------GIF not found-----------")
                 return nil
         }
         
         do {
-            let imageData = try Data(contentsOf: bundleURL)
-            let data =  SKSpriteNode.gif(with: imageData as NSData)
-            
-            guard let textures = data.0 else  {
-                return nil
-            }
-            
-            let action = SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: data.1[0]))
-            self.run(action)
-            
-            return textures.first?.size()
+            let myNsData = try Data(contentsOf: imageDataGifContent); let myCurrNs =  SKSpriteNode.gif(with: myNsData as NSData)
+            guard let currGameAnimationFrames = myCurrNs.0 else  { return nil }
+            let skRunner = SKAction.repeatForever(SKAction.animate(with: currGameAnimationFrames, timePerFrame: myCurrNs.1[0]))
+            self.run(skRunner)
+            return currGameAnimationFrames.first?.size()
         } catch {
-            debugPrint(#function + " could not create data source from bundle URL: ", error)
+            debugPrint(#function + " ------NS GIF NODE IS WIFFED------- ", error)
             return nil
         }
     }
     
     class func gif(with data: NSData) -> ([SKTexture]?, [Double]) {
-        // Create source from data
-        guard let source = CGImageSourceCreateWithData(data, nil) else {
-            print("SwiftGif: Source for the image does not exist")
+        print("-----------Gif things---------------t")
+        guard let myCurrSrc = CGImageSourceCreateWithData(data, nil) else {
+            print("-----------Gif things---------------t")
             return (nil, [])
         }
-        
-        return SKSpriteNode.animatedImage(with: source)
+        return SKSpriteNode.animatedImage(with: myCurrSrc)
     }
     
     class func animatedImage(with source: CGImageSource) -> ([SKTexture]?, [Double]) {
-        let count = CGImageSourceGetCount(source)
-        var delays = [Double]()
-        var textures = [SKTexture]()
-        
-        for i in 0..<count {
-
-            if let image = CGImageSourceCreateImageAtIndex(source, i, nil) {
-                let texture = SKTexture(cgImage: image)
-                textures.append(texture)
+        let myIndexer = CGImageSourceGetCount(source)
+        var currGameTiming = [Double]()
+        var currGameAnimationFrames = [SKTexture]()
+        for i in 0..<myIndexer {
+            if let myAsset = CGImageSourceCreateImageAtIndex(source, i, nil) {
+                let mySkTx = SKTexture(cgImage: myAsset)
+                currGameAnimationFrames.append(mySkTx)
             }
-        
-            let delaySeconds = SKSpriteNode.delayForImageAtIndex(index: Int(i), source: source)
-            delays.append(delaySeconds)
+            let resultingTime = SKSpriteNode.delayForImageAtIndex(index: Int(i), source: source); currGameTiming.append(resultingTime)
         }
         
-        return (textures, delays)
+        return (currGameAnimationFrames, currGameTiming)
     }
-    
     class func gcdForArray(array: Array<Int>) -> Int {
-        if array.isEmpty { return 1 }
+        let retVal = 1
+        let tempy = array;
+        if tempy.isEmpty { return retVal }
         var gcd = array[0]
-        
-        array.forEach { val in
-            gcd = SKSpriteNode.gcdFor(pair: val, target: gcd)
-        }
-        
+        tempy.forEach { val in gcd = SKSpriteNode.gcdFor(pair: val, target: gcd) }
         return gcd
     }
     
     class func delayForImageAtIndex(index: Int, source: CGImageSource!) -> Double {
-        var delay = 0.1
-        
-        let cfProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil)
-        let gifProperties: CFDictionary = unsafeBitCast(CFDictionaryGetValue(cfProperties, Unmanaged.passUnretained(kCGImagePropertyGIFDictionary).toOpaque()), to: CFDictionary.self)
-        
-        var delayObject: AnyObject = unsafeBitCast(CFDictionaryGetValue(gifProperties, Unmanaged.passUnretained(kCGImagePropertyGIFUnclampedDelayTime).toOpaque()), to: AnyObject.self)
-        
-        if delayObject.doubleValue == 0 {
-            delayObject = unsafeBitCast(CFDictionaryGetValue(gifProperties, Unmanaged.passUnretained(kCGImagePropertyGIFDelayTime).toOpaque()), to: AnyObject.self)
-        }
-        
-        delay = delayObject as! Double
-        
-        if delay < 0.01 { delay = 0.01 }
+        debugPrint(#function + " ------Image Index------- ")
+        var imageStutter = 0.1
+        let terminalDbl = Double(0)
+        let sourceImgCopyProp = CGImageSourceCopyPropertiesAtIndex(source, index, nil)
+        let savvyBirdDictionaryProp: CFDictionary = unsafeBitCast(CFDictionaryGetValue(sourceImgCopyProp, Unmanaged.passUnretained(kCGImagePropertyGIFDictionary).toOpaque()), to: CFDictionary.self)
+        let terminal = 0.01
 
-        return delay
+        var impeederCast: AnyObject = unsafeBitCast(CFDictionaryGetValue(savvyBirdDictionaryProp, Unmanaged.passUnretained(kCGImagePropertyGIFUnclampedDelayTime).toOpaque()), to: AnyObject.self)
+        
+        if impeederCast.doubleValue == terminalDbl {
+            impeederCast = unsafeBitCast(CFDictionaryGetValue(savvyBirdDictionaryProp, Unmanaged.passUnretained(kCGImagePropertyGIFDelayTime).toOpaque()), to: AnyObject.self)
+        }
+        imageStutter = impeederCast as! Double
+        if imageStutter < terminal { imageStutter = terminal }
+        return imageStutter
     }
     
     class func gcdFor(pair value: Int, target: Int) -> Int {
-        var a = value
-        var b = target
-
-        // Swap for modulo
-        if a < b {
-            let c = a
-            a = b
-            b = c
+        var myVal1 = value; var myVal2 = target
+        if myVal1 < myVal2 {
+            let myVal3 = myVal1; myVal1 = myVal2; myVal2 = myVal3
         }
-        
-        // Get greatest common divisor
-        var rest: Int
-        
-        while true {
-            rest = a % b
-            
-            if rest == 0 { return b }
-            else {
-                a = b
-                b = rest
-            }
+        var remainder: Int
+        while true { remainder = myVal1 % myVal2
+            if remainder == 0 { return myVal2 }
+            else { myVal1 = myVal2; myVal2 = remainder }
         }
     }
-    
 }
 
 
@@ -378,8 +275,8 @@ extension SKScene {
     }
     
 
-    //What in the worold?
-    func present(scene: SKScene?, shaderName: String, transitionDuration: TimeInterval) {
+/*
+ func present(scene: SKScene?, shaderName: String, transitionDuration: TimeInterval) {
     
         // Create shader and add it to the scene
         let shaderContainer = SKSpriteNode(imageNamed: "dummy")
@@ -438,6 +335,7 @@ extension SKScene {
         
         return shader
     }
+ */
 }
 /*
 extension Bool {

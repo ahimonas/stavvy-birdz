@@ -34,7 +34,7 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
      func initPhysicsBoundary() {
         physicsBody = SKPhysicsBody(circleOfRadius: size.width / 22) //CHANGE THE SIZE OF THE BODY
         physicsBody?.categoryBitMask = BondaryMapping.characterX.rawValue
-        physicsBody?.contactTestBitMask = BondaryMapping.block.rawValue | BondaryMapping.gap.rawValue | BondaryMapping.boundary.rawValue
+        physicsBody?.contactTestBitMask = BondaryMapping.block.rawValue | BondaryMapping.breaker.rawValue | BondaryMapping.boundary.rawValue
         physicsBody?.collisionBitMask = BondaryMapping.block.rawValue | BondaryMapping.boundary.rawValue
         physicsBody?.allowsRotation = false
         physicsBody?.restitution = 0.0 

@@ -182,7 +182,7 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let pointOfImpact:UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
         let currBird = BondaryMapping.characterX.rawValue
-        if pointOfImpact == (currBird | BondaryMapping.gap.rawValue) {
+        if pointOfImpact == (currBird | BondaryMapping.breaker.rawValue) {
             score += 1; scoreLabel?.text = "\(score)"
             if isSoundOn { scene?.run(pointAddedNoise) }
             notification.notificationOccurred(.success)

@@ -167,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				A9ACB91C2099A1F200966991 /* AppDelegate.swift */,
-				CAA9D42E2AF0C26000DEA75E /* supporting */,
 				CAA9D42C2AF0C15100DEA75E /* info.plist */,
 				CADBD96E2AF0B1450093477F /* MainUIDeviceStoryboards */,
 				CA94BB7D2AD8D7AE005AAF83 /* Stavvy Birds.storekit */,
@@ -176,17 +175,10 @@
 				CAA9D4252AF0B84300DEA75E /* ControllersAndAdapter */,
 				CAA9D4262AF0B93F00DEA75E /* UtilsForGame */,
 				A9ACB9902099F13700966991 /* Scenes */,
+				CADA7FBB2AF2B5E3003625E6 /* Animations */,
 				A9ACB98F2099F12000966991 /* Assets */,
 			);
 			path = StavvyBird;
-			sourceTree = "<group>";
-		};
-		A9ACB96C2099B46E00966991 /* Actions */ = {
-			isa = PBXGroup;
-			children = (
-				A9ACB96A2099B42300966991 /* Actions.sks */,
-			);
-			path = Actions;
 			sourceTree = "<group>";
 		};
 		A9ACB98F2099F12000966991 /* Assets */ = {
@@ -198,7 +190,6 @@
 				A950485E20BAE29C0020ECD9 /* stavvy-gold.gif */,
 				A950485920BAE2170020ECD9 /* stavvy-pig.gif */,
 				CAB3CDD32AEF595000F7908F /* GameAudio */,
-				A9ACB96C2099B46E00966991 /* Actions */,
 				A9CC5C3E20A0361700040E61 /* Scenes */,
 				CAABA6CE2AEB2C7100B9810E /* Assets.xcassets */,
 			);
@@ -242,13 +233,6 @@
 				A903943320AD94F000376CC3 /* UserDefaults.swift */,
 			);
 			path = UtilsForGame;
-			sourceTree = "<group>";
-		};
-		CAA9D42E2AF0C26000DEA75E /* supporting */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = supporting;
 			sourceTree = "<group>";
 		};
 		CAABA6912AEB25D700B9810E /* Ipad-depricated */ = {
@@ -298,6 +282,14 @@
 				CAC5FBA22AE9B586006913FE /* points-noise.wav */,
 			);
 			path = GameAudio;
+			sourceTree = "<group>";
+		};
+		CADA7FBB2AF2B5E3003625E6 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				A9ACB96A2099B42300966991 /* Actions.sks */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		CADBD96E2AF0B1450093477F /* MainUIDeviceStoryboards */ = {
