@@ -85,18 +85,11 @@ enum PlayableCharacter: String {
 extension PlayableCharacter {
     func getAssetName() -> String {
         switch self {
-        case .bird:
-            return "Bird Right"
-        case .stavvyGold:
-            return "stavvy-gold"
-        case .stavvyRat:
-            return "stavvy-rat"
-        case .stavvyPig:
-            return "stavvy-pig"
-        case .eldyBird:
-            return "eldy-bird"
-        case .stavvyRaven:
-            return "stavvy-raven"
+        case .stavvyGold: return "stavvy-gold";
+        case .stavvyRat: return "stavvy-rat"; case .stavvyPig: return "stavvy-pig";
+        case .eldyBird: return "eldy-bird";
+        case .stavvyRaven: return "stavvy-raven";
+        case .bird: return "Birddy Bird";
         }
     }
 }

@@ -118,7 +118,7 @@ struct BondaryMapping : OptionSet {
     let thirdLayer = 3
     
     static let boundary     = BondaryMapping(rawValue: 1 << 0)
-    static let player       = BondaryMapping(rawValue: 1 << 1)
+    static let characterX       = BondaryMapping(rawValue: 1 << 1)
     static let pipe         = BondaryMapping(rawValue: 1 << 2)
     static let column         = BondaryMapping(rawValue: 1 << 2)
     static let gap          = BondaryMapping(rawValue: 1 << 3)

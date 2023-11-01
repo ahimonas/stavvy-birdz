@@ -142,10 +142,10 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
         scene.physicsBody = SKPhysicsBody(edgeLoopFrom: rect)
         
         let boundary: BondaryMapping = .boundary
-        let player: BondaryMapping = .player
+        let characterX: BondaryMapping = .characterX
         
         scene.physicsBody?.categoryBitMask = boundary.rawValue
-        scene.physicsBody?.collisionBitMask = player.rawValue
+        scene.physicsBody?.collisionBitMask = characterX.rawValue
         
         scene.physicsWorld.contactDelegate = self
     }
@@ -185,7 +185,7 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         let pointOfImpact:UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
-        let currBird = BondaryMapping.player.rawValue
+        let currBird = BondaryMapping.characterX.rawValue
         if pointOfImpact == (currBird | BondaryMapping.gap.rawValue) {
             score += 1; scoreLabel?.text = "\(score)"
             if isSoundOn { scene?.run(pointAddedNoise) }

@@ -23,7 +23,7 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
         var textures = [SKTexture]()
         
         do { textures = try SKTextureAtlas.upload(named: named, beginIndex: 1) { name, index -> String in
-                return "r_player\(index)" }
+                return "c_sb\(index)" }
         } catch { debugPrint(#function + "wip - unable to render atlas ", error) }
         
         self.init(texture: textures.first, color: .clear, size: size); self.timeIntervalForDrawingFrames = timeIntervalForDrawingFrames
@@ -33,11 +33,11 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
     
      func initPhysicsBoundary() {
         physicsBody = SKPhysicsBody(circleOfRadius: size.width / 22) //CHANGE THE SIZE OF THE BODY
-        physicsBody?.categoryBitMask = BondaryMapping.player.rawValue
+        physicsBody?.categoryBitMask = BondaryMapping.characterX.rawValue
         physicsBody?.contactTestBitMask = BondaryMapping.pipe.rawValue | BondaryMapping.gap.rawValue | BondaryMapping.boundary.rawValue
         physicsBody?.collisionBitMask = BondaryMapping.pipe.rawValue | BondaryMapping.boundary.rawValue
         physicsBody?.allowsRotation = false
-        physicsBody?.restitution = 0.0
+        physicsBody?.restitution = 0.0 
     }
     
      func animate(with timing: TimeInterval) {

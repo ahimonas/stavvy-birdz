@@ -106,7 +106,7 @@ struct ColumnFactory {
         myCurrThresh.position = CGPoint(x: pipeX, y: 0)
         myCurrThresh.physicsBody = SKPhysicsBody(rectangleOf: myCurrThresh.size)
         myCurrThresh.physicsBody?.categoryBitMask = BondaryMapping.gap.rawValue
-        myCurrThresh.physicsBody?.contactTestBitMask =  BondaryMapping.player.rawValue
+        myCurrThresh.physicsBody?.contactTestBitMask =  BondaryMapping.characterX.rawValue
         myCurrThresh.physicsBody?.collisionBitMask = 0
         myCurrThresh.physicsBody?.isDynamic = false
         myCurrThresh.zPosition = 21
@@ -177,8 +177,8 @@ class BlockNode: SKSpriteNode {
         //The phiscs Body is a map, when we change the order it does not colide with the bird and end the game
         physicsBody = SKPhysicsBody(rectangleOf: size)
         physicsBody?.categoryBitMask = BondaryMapping.pipe.rawValue
-        physicsBody?.contactTestBitMask =  BondaryMapping.player.rawValue
-        physicsBody?.collisionBitMask = BondaryMapping.player.rawValue
+        physicsBody?.contactTestBitMask =  BondaryMapping.characterX.rawValue
+        physicsBody?.collisionBitMask = BondaryMapping.characterX.rawValue
         physicsBody?.isDynamic = false
         zPosition = 21
     }

@@ -10,7 +10,7 @@ class InGameState: GKState {
         
     unowned var gameConfiguration: ConfigForScenes
     let sizeOfCharacter = CGPoint(x: 0.4, y: 0.4)
-    let snowEmitterAdvancementInSeconds: TimeInterval = 15
+    let greekRainParticleEmtterTiming: TimeInterval = 15
     let timeIntervalForDrawingFrames: TimeInterval = 0.1
     
     private(set) var infinitePipeProducer: SKAction! = nil
@@ -29,7 +29,7 @@ class InGameState: GKState {
             infinitePipeProducer = ColumnFactory.launch(for: scene, targetNode: target)
         }
         
-        gameConfiguration.greekShapeRaining(for: snowEmitterAdvancementInSeconds)
+        gameConfiguration.greekShapeRaining(for: greekRainParticleEmtterTiming)
     }
         
     override func didEnter(from previousState: GKState?) {
@@ -46,7 +46,7 @@ class InGameState: GKState {
             return
         }
         
-        guard let scene = gameConfiguration.scene, let player = gameConfiguration.playerCharacter else {
+        guard let scene = gameConfiguration.scene, let characterX = gameConfiguration.playerCharacter else {
             return
         }
         
@@ -58,8 +58,8 @@ class InGameState: GKState {
         }
                 
         let character = UserDefaults.standard.playableCharacter(for: .character) ?? .bird
-        position(player: character, in: scene)
-        player.willRelive = true
+        position(characterX: character, in: scene)
+        characterX.willRelive = true
     }
     
     override func willExit(to nextState: GKState) {
@@ -92,31 +92,31 @@ class InGameState: GKState {
                 withTextureAtlas: assetName,
                 size: gameConfiguration.characterDimensions)
         case .stavvyGold, .stavvyRat, .stavvyPig, .eldyBird, .stavvyRaven:
-            let player = TheOriginalAnimatedNodes(
+            let characterX = TheOriginalAnimatedNodes(
                 animatedGif: assetName,
                 correctAspectRatioFor: gameConfiguration.characterDimensions.width)
-            player.xScale = sizeOfCharacter.x
-            player.yScale = sizeOfCharacter.y
-            gameConfiguration.playerCharacter = player
+            characterX.xScale = sizeOfCharacter.x
+            characterX.yScale = sizeOfCharacter.y
+            gameConfiguration.playerCharacter = characterX
         }
         
         guard let playableCharacter = gameConfiguration.playerCharacter else {
             debugPrint(#function + " Stavvy Bird failed")
             return
         }
-        position(player: character, in: scene)
+        position(characterX: character, in: scene)
         scene.addChild(playableCharacter)
         
         gameConfiguration.modernizers.append(playableCharacter)
         gameConfiguration.tangibles.append(playableCharacter)
     }
     
-    private func position(player: PlayableCharacter, in scene: SKScene) {
+    private func position(characterX: PlayableCharacter, in scene: SKScene) {
         guard let playerNode = gameConfiguration.playerCharacter else {
             return
         }
         
-        switch player {
+        switch characterX {
         case .bird:
             playerNode.position = CGPoint(x: playerNode.size.width / 2 + 50, y: scene.size.height / 2)
         case .stavvyGold, .stavvyRat, .stavvyPig, .eldyBird, .stavvyRaven:
