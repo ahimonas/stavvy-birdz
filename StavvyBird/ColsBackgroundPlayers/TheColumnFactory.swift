@@ -41,7 +41,7 @@ struct ColumnFactory {
             targetNode.childNode(withName: pipeName)?.removeFromParent()
         }
         
-        let pipeMoveDuration2: TimeInterval = 6
+        let pipeMoveDuration2: TimeInterval = 7
 
         let renderFactoryPipeAction2 = SKAction.run {
             guard let column2 = ColumnFactory.producseDoublePipe(sceneSize: scene.size) else {
@@ -99,11 +99,11 @@ struct ColumnFactory {
         //This one worked pretty well
         //let randomBlockWidth = CGFloat.range(min: 100, max: 250)
         
-         let myCurrThreshWidth: CGFloat = 5
+        let myCurrThreshWidth: CGFloat = 3
 
         //it makes sense the threshhold of the screen is the height of the entier screen
-        let myCurrThresh = SKSpriteNode(color: .clear, size: CGSize(width: myCurrThreshWidth, height: pipeY))
-        myCurrThresh.position = CGPoint(x: pipeX, y: pipeY)
+        let myCurrThresh = SKSpriteNode(color: .green, size: CGSize(width: myCurrThreshWidth, height: pipeY*2))
+        myCurrThresh.position = CGPoint(x: pipeX, y: 0)
         myCurrThresh.physicsBody = SKPhysicsBody(rectangleOf: myCurrThresh.size)
         myCurrThresh.physicsBody?.categoryBitMask = BondaryMapping.gap.rawValue
         myCurrThresh.physicsBody?.contactTestBitMask =  BondaryMapping.player.rawValue
@@ -111,16 +111,18 @@ struct ColumnFactory {
         myCurrThresh.physicsBody?.isDynamic = false
         myCurrThresh.zPosition = 21
         
-        let randomBlockWidth = CGFloat.range(min: 80, max: 380)
+        let randomBlockWidth = CGFloat.range(min: 105, max: 350)
 
-        let randomBlockHeight = CGFloat.range(min: 180, max: 600) //height
+        let randomBlockHeight = CGFloat.range(min: 120, max: 470) //height
         let midUpPipe = BlockNode(textures: (pipe: "column-parts", cap: "sparky22"), of: CGSize(width: randomBlockWidth, height: randomBlockHeight))
         
         
         //halfofblock needs to be over the bottom axis, we can place the blocks anywhere between heree
-        let bottomBoundary = (randomBlockHeight/2)+1
-        let topBoundary = pipeY-(randomBlockHeight/2)-1
-        let myRandoHeightplacment = CGFloat.range(min: bottomBoundary, max: topBoundary)
+        let bottomBoundary = (randomBlockHeight/2)+2
+        let topBoundary = pipeY-(randomBlockHeight/2)-20
+        
+        
+        let myRandoHeightplacment = CGFloat.range(min: bottomBoundary+10, max: topBoundary-100)
         //we can put the poistion anywhere within that gap
         midUpPipe?.position = CGPoint(x: pipeX, y: myRandoHeightplacment)
         
