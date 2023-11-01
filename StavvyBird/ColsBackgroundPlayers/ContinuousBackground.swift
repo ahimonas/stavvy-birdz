@@ -12,7 +12,7 @@ class ContinuousBackground: SKNode {
     var background: SKNode
     var backgroundSpeed: TimeInterval
     
-    let maxNumOfTiles = 2 //hmm
+    let maxNumOfTiles = 8 //hmm
     
     internal var delta = TimeInterval(0)
     internal var previousTime = TimeInterval(0)
@@ -33,7 +33,6 @@ class ContinuousBackground: SKNode {
             myCurrTil.xScale = scale.x
             myCurrTil.yScale = scale.y
             myCurrTil.anchorPoint = .zero
-
             myCurrTil.position = CGPoint(x: CGFloat(x) * width * scale.x, y: yShift)
             myCurrTil.name = key
             myCurrTil.zPosition = 0

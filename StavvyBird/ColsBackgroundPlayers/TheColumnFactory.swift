@@ -38,7 +38,7 @@ struct ColumnFactory {
         }
         
         let cleanUpAction2 = SKAction.run {
-            targetNode.childNode(withName: pipeName)?.removeFromParent()
+            targetNode.childNode(withName: pipeName2)?.removeFromParent()
         }
         
         let pipeMoveDuration2: TimeInterval = 7
@@ -56,7 +56,7 @@ struct ColumnFactory {
         }
         
         let cleanUpAction3 = SKAction.run {
-            targetNode.childNode(withName: pipeName)?.removeFromParent()
+            targetNode.childNode(withName: pipeName3)?.removeFromParent()
         }
         
         let pipeMoveDuration3: TimeInterval = 9
