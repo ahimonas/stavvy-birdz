@@ -393,27 +393,27 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         }
         selection.selectionChanged()
     
-        var sceneToPresent: SKScene?
+        var presentationView: SKScene?
         var transition: SKTransition?
         let sceneScaleMode: SKSceneScaleMode = RoutingUtilityScene.sceneScaleMode
         
         switch identifier {
         case .play:
-            let sceneId = Scenes.game.getName()
-            sceneToPresent = PlayScene(fileNamed: sceneId)
+            let slectedView = Scenes.game.getName()
+            presentationView = PlayScene(fileNamed: slectedView)
             
             transition = SKTransition.fade(withDuration: 1.0)
         case .settings:
-            let sceneId = Scenes.setting.getName()
-            sceneToPresent = AtmosphereScene(fileNamed: sceneId)
+            let slectedView = Scenes.setting.getName()
+            presentationView = AtmosphereScene(fileNamed: slectedView)
             
             RoutingUtilityScene.lastPushTransitionDirection = .down
             transition = SKTransition.push(with: .down, duration: 1.0)
         case .scores:
             showLeaderboard()
             /*
-            let sceneId = Scenes.score.getName()
-            sceneToPresent = ScoresScene(fileNamed: sceneId)
+            let slectedView = Scenes.score.getName()
+            presentationView = ScoresScene(fileNamed: slectedView)
             
             RoutingUtilityScene.lastPushTransitionDirection = .up
             transition = SKTransition.push(with: .up, duration: 1.0)
@@ -422,8 +422,8 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             //authenticateLocalPlayer()
            initInAppPurchases()
   
-            let sceneId = Scenes.ItemShopCharacters.getName()
-            sceneToPresent = ItemShopScene(fileNamed: sceneId)
+            let slectedView = Scenes.ItemShopCharacters.getName()
+            presentationView = ItemShopScene(fileNamed: slectedView)
             debugPrint("created ItemShopScene instance")
             RoutingUtilityScene.lastPushTransitionDirection = .right
             transition = SKTransition.push(with: .right, duration: 1.0)
@@ -474,8 +474,8 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             showLeaderboard()
             */ 
         case .menu:
-            let sceneId = Scenes.title.getName()
-            sceneToPresent = HomeScene(fileNamed: sceneId)
+            let slectedView = Scenes.title.getName()
+            presentationView = HomeScene(fileNamed: slectedView)
             var pushDirection: SKTransitionDirection?
             
             if let lastPushTransitionDirection = RoutingUtilityScene.lastPushTransitionDirection {
@@ -500,7 +500,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             }
             
 
-            //let controller = sceneToPresent?.rootViewController as! MainUiGameView
+            //let controller = presentationView?.rootViewController as! MainUiGameView
             //controller.removeAd()
              
             
@@ -508,7 +508,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             debugPrint(#function + "BUTTON NOT SUPPORTED BY TITLE SCNE ")
         }
         
-        guard let presentationScene = sceneToPresent, let unwrappedTransition = transition  else {
+        guard let presentationScene = presentationView, let unwrappedTransition = transition  else {
             return
         }
         

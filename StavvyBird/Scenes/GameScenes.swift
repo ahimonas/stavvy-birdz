@@ -181,8 +181,8 @@ extension PlayScene: ButtonNodeResponderType {
         case .resume:
             currConfigForGame?.myGkStateMach?.enter(InGameState.self)
         case .home:
-            let sceneId = Scenes.title.getName()
-            guard let gameScene = PlayScene(fileNamed: sceneId) else {
+            let slectedView = Scenes.title.getName()
+            guard let gameScene = PlayScene(fileNamed: slectedView) else {
                 return
             }
             gameScene.scaleMode = RoutingUtilityScene.sceneScaleMode

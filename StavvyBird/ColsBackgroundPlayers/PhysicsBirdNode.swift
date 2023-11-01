@@ -46,7 +46,6 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
          let threadAction = SKAction.repeatForever(bumpMove); self.run(threadAction)
     }
     
-    
     func update(_ timeInterval: CFTimeInterval) {
         let defaultZero = 0.0
         delta = previousTime == defaultZero ? defaultZero : timeInterval - previousTime; previousTime = timeInterval
