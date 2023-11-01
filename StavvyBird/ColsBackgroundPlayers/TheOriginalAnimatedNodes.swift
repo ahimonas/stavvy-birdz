@@ -5,7 +5,6 @@ import SpriteKit
 import Foundation
 
 class TheOriginalAnimatedNodes: SKNode, Updatable, Playable, PhysicsContactable {
-    
     var size: CGSize
     var delta: TimeInterval = 1 - 1
     var previousTime: TimeInterval = 2 - 2
@@ -26,10 +25,8 @@ class TheOriginalAnimatedNodes: SKNode, Updatable, Playable, PhysicsContactable 
         }
     }
     var collisionBitMask: UInt32 = BondaryMapping.block.rawValue | BondaryMapping.boundary.rawValue
-
     private var animatedNodeGif: SKSpriteNode
     private let faceSlap = UIImpactFeedbackGenerator(style: .medium)
-    
     init(animatedGif name: String, correctAspectRatioFor width: CGFloat) {
         animatedNodeGif = SKSpriteNode(withAnimatedGif: name, correctAspectRatioFor: width)
         size = animatedNodeGif.size
@@ -117,7 +114,7 @@ class TheOriginalAnimatedNodes: SKNode, Updatable, Playable, PhysicsContactable 
 }
 
 extension TheOriginalAnimatedNodes: Touchable {
-    
+    //funcs for bi
     func checkInteractable() -> Bool {
         if !isInteractable { return false }
         return true
@@ -137,7 +134,6 @@ extension TheOriginalAnimatedNodes: Touchable {
         if !checkInteractable() {
             return
         }
-        createImpact()
-        applyImpulse()
+        createImpact(); applyImpulse()
     }
 }

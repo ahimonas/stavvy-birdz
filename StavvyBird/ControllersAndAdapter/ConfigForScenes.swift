@@ -57,13 +57,13 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
                 oldValue?.myCurrBackground.removeFromParent()
             }
             
-            if let overlay = overlay, let scene = scene {
-                debugPrint(#function + "scene add the overly")
-                overlay.myCurrBackground.removeFromParent()
-                scene.addChild(overlay.myCurrBackground)
-                
-                overlay.myCurrBackground.alpha = 1.0
-                overlay.myCurrBackground.run(SKAction.fadeIn(withDuration: actionFadeTime))
+            if let myCurrLayer = overlay, let scene = scene {
+                let backAlph = 1.0
+                myCurrLayer.myCurrBackground.removeFromParent()
+                scene.addChild(myCurrLayer.myCurrBackground)
+                debugPrint(#function + "---the overlay layer with scene add the overly---")
+                myCurrLayer.myCurrBackground.alpha = backAlph
+                myCurrLayer.myCurrBackground.run(SKAction.fadeIn(withDuration: actionFadeTime))
                 
                 listOfNodes = scene.getAllButtons()
             }
@@ -71,16 +71,12 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
     }
     
     private var _isHUDHidden: Bool = false
-    var isHUDHidden: Bool {
-        get {
-            return _isHUDHidden
-        }
-        set(newValue) {
-            _isHUDHidden = newValue
+        var isHUDHidden: Bool { get {return _isHUDHidden}
+        set(newValue) {_isHUDHidden = newValue
             
-            if let world = self.scene?.childNode(withName: "world") {
-                world.childNode(withName: "Score Node")?.isHidden = newValue
-                world.childNode(withName: "Pause")?.isHidden = newValue
+            if let myCurrGame = self.scene?.childNode(withName: "world") {
+                myCurrGame.childNode(withName: "Score Node")?.isHidden = newValue
+                myCurrGame.childNode(withName: "Pause")?.isHidden = newValue
             }
         }
     }

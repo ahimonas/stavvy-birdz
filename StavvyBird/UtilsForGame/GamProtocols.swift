@@ -359,7 +359,7 @@ extension SKSpriteNode {
 }
 
 
-/*
+
 private let kNodeNameTransitionShaderNode = "kNodeNameTransitionShaderNode"
 private let kNodeNameFadeColourOverlay = "kNodeNameFadeColourOverlay"
 private var presentationStartTime: CFTimeInterval = -1
@@ -438,9 +438,8 @@ extension SKScene {
         
         return shader
     }
-    
 }
-
+/*
 extension Bool {
     
     static var pseudoRandomPipe: Bool {
