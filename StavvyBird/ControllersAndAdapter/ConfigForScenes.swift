@@ -192,8 +192,8 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
             notification.notificationOccurred(.success)
         }
         
-        //bird hit pipe
-        if pointOfImpact == (currBird | BondaryMapping.pipe.rawValue) {
+        //bird hit block
+        if pointOfImpact == (currBird | BondaryMapping.block.rawValue) {
             handleDeadState()
         }
         //bird hit boundary

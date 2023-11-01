@@ -15,7 +15,7 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
     var isHeavy: Bool = true {didSet {self.physicsBody?.affectedByGravity = isHeavy}}
     var isInteractable: Bool = true {didSet {self.isUserInteractionEnabled = isInteractable}}
     var shouldEnablePhysics: Bool = true {didSet {physicsBody?.collisionBitMask = shouldEnablePhysics ? collisionBitMask : 0}}
-    var collisionBitMask: UInt32 = BondaryMapping.pipe.rawValue | BondaryMapping.boundary.rawValue
+    var collisionBitMask: UInt32 = BondaryMapping.block.rawValue | BondaryMapping.boundary.rawValue
     private(set) var timeIntervalForDrawingFrames: TimeInterval = 0
     private let impact = UIImpactFeedbackGenerator(style: .medium)
     convenience init(timeIntervalForDrawingFrames: TimeInterval, withTextureAtlas named: String, size: CGSize) {
@@ -34,8 +34,8 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
      func initPhysicsBoundary() {
         physicsBody = SKPhysicsBody(circleOfRadius: size.width / 22) //CHANGE THE SIZE OF THE BODY
         physicsBody?.categoryBitMask = BondaryMapping.characterX.rawValue
-        physicsBody?.contactTestBitMask = BondaryMapping.pipe.rawValue | BondaryMapping.gap.rawValue | BondaryMapping.boundary.rawValue
-        physicsBody?.collisionBitMask = BondaryMapping.pipe.rawValue | BondaryMapping.boundary.rawValue
+        physicsBody?.contactTestBitMask = BondaryMapping.block.rawValue | BondaryMapping.gap.rawValue | BondaryMapping.boundary.rawValue
+        physicsBody?.collisionBitMask = BondaryMapping.block.rawValue | BondaryMapping.boundary.rawValue
         physicsBody?.allowsRotation = false
         physicsBody?.restitution = 0.0 
     }

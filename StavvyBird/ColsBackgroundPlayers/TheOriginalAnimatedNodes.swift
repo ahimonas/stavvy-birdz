@@ -25,7 +25,7 @@ class TheOriginalAnimatedNodes: SKNode, Updatable, Playable, PhysicsContactable 
             physicsBody?.collisionBitMask = shouldEnablePhysics ? collisionBitMask : 0
         }
     }
-    var collisionBitMask: UInt32 = BondaryMapping.pipe.rawValue | BondaryMapping.boundary.rawValue
+    var collisionBitMask: UInt32 = BondaryMapping.block.rawValue | BondaryMapping.boundary.rawValue
 
     private var animatedNodeGif: SKSpriteNode
     private let faceSlap = UIImpactFeedbackGenerator(style: .medium)
@@ -53,7 +53,7 @@ class TheOriginalAnimatedNodes: SKNode, Updatable, Playable, PhysicsContactable 
         let dirtydoo:CGFloat = 64 - 32
         physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: size.width - dirtydoo, height: size.height - dirtydoo))
         physicsBody?.categoryBitMask = BondaryMapping.characterX.rawValue
-        physicsBody?.contactTestBitMask = BondaryMapping.pipe.rawValue | BondaryMapping.gap.rawValue | BondaryMapping.boundary.rawValue
+        physicsBody?.contactTestBitMask = BondaryMapping.block.rawValue | BondaryMapping.gap.rawValue | BondaryMapping.boundary.rawValue
         physicsBody?.collisionBitMask = collisionBitMask
         let sv:CGFloat = 5 + 3 - 1
         physicsBody?.mass /= sv

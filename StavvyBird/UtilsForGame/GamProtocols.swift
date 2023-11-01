@@ -16,11 +16,9 @@ import ImageIO
 
 
 protocol Updatable: AnyObject {
-    
     var delta: TimeInterval { get }
     var previousTime: TimeInterval { get }
     var willRelive: Bool { get set }
-    
     func update(_ currentTime: TimeInterval)
 }
 
@@ -35,10 +33,7 @@ extension Updatable {
 
 
 protocol Touchable: AnyObject {
-        
     var isInteractable: Bool { get set }
-    
-    
     func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     /*
     func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
@@ -117,60 +112,27 @@ struct BondaryMapping : OptionSet {
     let secondLayer = 2
     let thirdLayer = 3
     
-    static let boundary     = BondaryMapping(rawValue: 1 << 0)
-    static let characterX       = BondaryMapping(rawValue: 1 << 1)
-    static let pipe         = BondaryMapping(rawValue: 1 << 2)
-    static let column         = BondaryMapping(rawValue: 1 << 2)
-    static let gap          = BondaryMapping(rawValue: 1 << 3)
+    static let boundary = BondaryMapping(rawValue: 1 << 0); static let characterX = BondaryMapping(rawValue: 1 << 1)
+    static let block = BondaryMapping(rawValue: 1 << 2); static let column = BondaryMapping(rawValue: 1 << 2)
+    static let gap = BondaryMapping(rawValue: 1 << 3)
 }
 
-
-
-
-//
-//  Float+MathUtils.swift
-//  StavvyBird
-//
-
-
-
-
 extension CGFloat {
-    
-    // MARK: - Properties
-    
-    var toRadians: CGFloat {
-        return CGFloat.pi * self / 180
-    }
-    
-    // MARK: - Methods
-    
+    var toRadians: CGFloat {return CGFloat.pi * self / 180}
     func clamp(min: CGFloat, max: CGFloat) -> CGFloat {
-        if (self > max) {
-            return max
-        } else if (self < min) {
-            return min
-        } else {
-            return self
-        }
+        if(self > max){return max} else if ( self < min  ) { return min }else{return self }
     }
-    
-    static func range(min: CGFloat, max: CGFloat) -> CGFloat {
-        CGFloat.random(in: min...max)
-    }
+static func range(min: CGFloat, max: CGFloat) -> CGFloat { CGFloat.random(in: min...max) }
 }
 
 
 
 extension SKScene {
-    func upload<Node>(for key: String, with pattern: (_ key: String, _ index: Int)->String, inRange indices: ClosedRange<Int>) -> [Node] where Node: SKNode {
-        
-        var foundNodes = [Node]()
-        
+    func upload<Node>(for key: String, with pattern: (_ key: String, _ index: Int)->String, inRange indices: ClosedRange<Int>) -> [Node] where Node: SKNode { var foundNodes = [Node]()
         for index in indices.lowerBound...indices.upperBound {
-            let childName = pattern(key, index)
-            guard let node = self.childNode(withName: childName) as? Node else {
-                debugPrint(#function + " Unavailable:  child with the following name: ", childName)
+            let lowerLevelNode = pattern(key, index)
+            guard let node = self.childNode(withName: lowerLevelNode) as? Node else {
+                debugPrint(#function + " ----Unavailable:xchilde node ----", lowerLevelNode)
                 continue
             }
             foundNodes.append(node)
@@ -182,28 +144,27 @@ extension SKScene {
 
 
 
-
+//complete
 extension SKTextureAtlas {
-    class func upload(named name: String, beginIndex: Int = 1, pattern: (_ name: String, _ index: Int) -> String) throws -> [SKTexture] {
-        
-        let atlas = SKTextureAtlas(named: name)
-        var frames = [SKTexture]()
-        let count = atlas.textureNames.count
-        
-        if beginIndex > count {
-            throw NSError(domain: "Begin index is grather than the number of texture in a the texture atlas named: \(name)", code: 1, userInfo: nil)
+    class func upload
+    (named name: String, beginIndex: Int = 1, pattern: (_ name: String, _ index: Int) -> String)
+    throws -> [SKTexture] {
+        let currSkAtl = SKTextureAtlas(named: name)
+        var skTextArray = [SKTexture]()
+        let textureIndex = currSkAtl.textureNames.count
+        if beginIndex > textureIndex {
+            throw NSError(domain: "-- Atlas is messed up currSkAtl named: \(name)----------", code: 1, userInfo: nil)
         }
-        
-        for index in beginIndex...count {
+        for index in beginIndex...textureIndex {
             let namePattern = pattern(name, index)
-            let texture = atlas.textureNamed(namePattern)
-            frames.append(texture)
+            let texture = currSkAtl.textureNamed(namePattern)
+            skTextArray.append(texture)
         }
-        
-        return frames
+        return skTextArray
     }
 }
 
+//complete
 
 import SpriteKit.SKTexture
 
@@ -398,13 +359,11 @@ extension SKSpriteNode {
 }
 
 
-import SpriteKit
-
+/*
 private let kNodeNameTransitionShaderNode = "kNodeNameTransitionShaderNode"
 private let kNodeNameFadeColourOverlay = "kNodeNameFadeColourOverlay"
 private var presentationStartTime: CFTimeInterval = -1
 private var shaderChoice = -1
-
 extension SKScene {
     
     
@@ -421,7 +380,7 @@ extension SKScene {
 
     //What in the worold?
     func present(scene: SKScene?, shaderName: String, transitionDuration: TimeInterval) {
-        /*
+    
         // Create shader and add it to the scene
         let shaderContainer = SKSpriteNode(imageNamed: "dummy")
         shaderContainer.name = kNodeNameTransitionShaderNode
@@ -447,7 +406,6 @@ extension SKScene {
         // Reset the time presentScene was called so that the elapsed time from now can
         // be calculated in updateShaderTransitions(currentTime:)
         presentationStartTime = -1
-         */
     }
     
     func updateShaderTransition(currentTime: CFTimeInterval) {
@@ -489,8 +447,7 @@ extension Bool {
         return CGFloat.range(min: 1.0, max: 2.0) <= 1.6
     }
 }
-
-
+*/
 
 
 

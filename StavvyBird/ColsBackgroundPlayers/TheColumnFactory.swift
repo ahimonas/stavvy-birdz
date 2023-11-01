@@ -11,17 +11,17 @@ struct ColumnFactory {
     typealias singleBlockFragment = ( midUp: BlockNode, myCurrThresh: SKSpriteNode)
 
     static func launch(for scene: SKScene, targetNode: SKNode) -> SKAction {
-        //all the pipes need same name based on collision map
-        let pipeName = "column"
-        let pipeName2 = "column"
-        let pipeName3 = "column"
+        //all the blocks need same name based on collision map
+        let blockName = "column"
+        let blockName2 = "column"
+        let blockName3 = "column"
 
         let cleanUpAction = SKAction.run {
-            targetNode.childNode(withName: pipeName)?.removeFromParent()
+            targetNode.childNode(withName: blockName)?.removeFromParent()
         }
         
         let waitAction = SKAction.wait(forDuration: UserDefaults.standard.getDifficultyLevel().rawValue)
-        let pipeMoveDuration: TimeInterval = 3
+        let blockMoveDuration: TimeInterval = 3
 
         let renderFactoryPipeAction = SKAction.run {
             
@@ -29,47 +29,47 @@ struct ColumnFactory {
                 return
             }
 
-            column.name = pipeName
+            column.name = blockName
             targetNode.addChild(column)
             
-            let pipeRelocation = SKAction.move(to: CGPoint(x: -(column.size.width + scene.size.width), y: column.position.y), duration: pipeMoveDuration)
-            let sequence = SKAction.sequence([pipeRelocation, cleanUpAction])
+            let blockRelocation = SKAction.move(to: CGPoint(x: -(column.size.width + scene.size.width), y: column.position.y), duration: blockMoveDuration)
+            let sequence = SKAction.sequence([blockRelocation, cleanUpAction])
             column.run(sequence)
         }
         
         let cleanUpAction2 = SKAction.run {
-            targetNode.childNode(withName: pipeName2)?.removeFromParent()
+            targetNode.childNode(withName: blockName2)?.removeFromParent()
         }
         
-        let pipeMoveDuration2: TimeInterval = 7
+        let blockMoveDuration2: TimeInterval = 7
 
         let renderFactoryPipeAction2 = SKAction.run {
             guard let column2 = ColumnFactory.producseDoublePipe(sceneSize: scene.size) else {
                 return
             }
-            column2.name = pipeName2
+            column2.name = blockName2
             targetNode.addChild(column2)
             
-            let pipeRelocation2 = SKAction.move(to: CGPoint(x: -(column2.size.width + scene.size.width), y: column2.position.y), duration: pipeMoveDuration2)
-            let sequence2 = SKAction.sequence([pipeRelocation2, cleanUpAction2])
+            let blockRelocation2 = SKAction.move(to: CGPoint(x: -(column2.size.width + scene.size.width), y: column2.position.y), duration: blockMoveDuration2)
+            let sequence2 = SKAction.sequence([blockRelocation2, cleanUpAction2])
             column2.run(sequence2)
         }
         
         let cleanUpAction3 = SKAction.run {
-            targetNode.childNode(withName: pipeName3)?.removeFromParent()
+            targetNode.childNode(withName: blockName3)?.removeFromParent()
         }
         
-        let pipeMoveDuration3: TimeInterval = 9
+        let blockMoveDuration3: TimeInterval = 9
 
         let renderFactoryPipeAction3 = SKAction.run {
             guard let column3 = ColumnFactory.producseDoublePipe(sceneSize: scene.size) else {
                 return
             }
-            column3.name = pipeName3
+            column3.name = blockName3
             targetNode.addChild(column3)
             
-            let pipeRelocation3 = SKAction.move(to: CGPoint(x: -(column3.size.width + scene.size.width), y: column3.position.y), duration: pipeMoveDuration3)
-            let sequence3 = SKAction.sequence([pipeRelocation3, cleanUpAction3])
+            let blockRelocation3 = SKAction.move(to: CGPoint(x: -(column3.size.width + scene.size.width), y: column3.position.y), duration: blockMoveDuration3)
+            let sequence3 = SKAction.sequence([blockRelocation3, cleanUpAction3])
             column3.run(sequence3)
         }
         
@@ -81,29 +81,29 @@ struct ColumnFactory {
     
     
     private static func producseDoublePipe(sceneSize: CGSize) -> SKSpriteNode? {
-        guard let pipeParts = ColumnFactory.generateSkyBlock(for: sceneSize) else {
+        guard let blockParts = ColumnFactory.generateSkyBlock(for: sceneSize) else {
             return nil
         }
         
-        let myCurrPipNod = SKSpriteNode(texture: nil, color: .clear, size: pipeParts.midUp.size)
-        myCurrPipNod.addChild(pipeParts.myCurrThresh)
-        myCurrPipNod.addChild(pipeParts.midUp)
+        let myCurrPipNod = SKSpriteNode(texture: nil, color: .clear, size: blockParts.midUp.size)
+        myCurrPipNod.addChild(blockParts.myCurrThresh)
+        myCurrPipNod.addChild(blockParts.midUp)
         return myCurrPipNod
     }
     
     
     
     private static func generateSkyBlock(for sceneSize: CGSize) -> singleBlockFragment? {
-        let pipeX = sceneSize.width
-        let pipeY = sceneSize.height
+        let blockX = sceneSize.width
+        let blockY = sceneSize.height
         //This one worked pretty well
         //let randomBlockWidth = CGFloat.range(min: 100, max: 250)
         
         let myCurrThreshWidth: CGFloat = 3
 
         //it makes sense the threshhold of the screen is the height of the entier screen
-        let myCurrThresh = SKSpriteNode(color: .green, size: CGSize(width: myCurrThreshWidth, height: pipeY*2))
-        myCurrThresh.position = CGPoint(x: pipeX, y: 0)
+        let myCurrThresh = SKSpriteNode(color: .green, size: CGSize(width: myCurrThreshWidth, height: blockY*2))
+        myCurrThresh.position = CGPoint(x: blockX, y: 0)
         myCurrThresh.physicsBody = SKPhysicsBody(rectangleOf: myCurrThresh.size)
         myCurrThresh.physicsBody?.categoryBitMask = BondaryMapping.gap.rawValue
         myCurrThresh.physicsBody?.contactTestBitMask =  BondaryMapping.characterX.rawValue
@@ -114,23 +114,23 @@ struct ColumnFactory {
         let randomBlockWidth = CGFloat.range(min: 105, max: 350)
 
         let randomBlockHeight = CGFloat.range(min: 120, max: 470) //height
-        let midUpPipe = BlockNode(textures: (pipe: "column-parts", cap: "sparky22"), of: CGSize(width: randomBlockWidth, height: randomBlockHeight))
+        let midUpPipe = BlockNode(textures: (block: "column-parts", cap: "sparky22"), of: CGSize(width: randomBlockWidth, height: randomBlockHeight))
         
         
         //halfofblock needs to be over the bottom axis, we can place the blocks anywhere between heree
         let bottomBoundary = (randomBlockHeight/2)+2
-        let topBoundary = pipeY-(randomBlockHeight/2)-20
+        let topBoundary = blockY-(randomBlockHeight/2)-20
         
         
         let myRandoHeightplacment = CGFloat.range(min: bottomBoundary+10, max: topBoundary-100)
         //we can put the poistion anywhere within that gap
-        midUpPipe?.position = CGPoint(x: pipeX, y: myRandoHeightplacment)
+        midUpPipe?.position = CGPoint(x: blockX, y: myRandoHeightplacment)
         
-        //wrap the pipe to make sure its not null
+        //wrap the block to make sure its not null
         guard let unwrappedPipeMidUp = midUpPipe else {
             return nil
         }
-        //midUp is just a random piece of the pipe
+        //midUp is just a random piece of the block
         return singleBlockFragment(midUp: unwrappedPipeMidUp, myCurrThresh: myCurrThresh)
     }
     
@@ -140,7 +140,7 @@ struct ColumnFactory {
 
 class BlockNode: SKSpriteNode {
     
-    init?(textures: (pipe: String, cap: String), of size: CGSize) {
+    init?(textures: (block: String, cap: String), of size: CGSize) {
         
         guard let skyBlockIMGGG = UIImage(named: "sparky22" )?.cgImage else {
                  return nil
@@ -176,7 +176,7 @@ class BlockNode: SKSpriteNode {
                 
         //The phiscs Body is a map, when we change the order it does not colide with the bird and end the game
         physicsBody = SKPhysicsBody(rectangleOf: size)
-        physicsBody?.categoryBitMask = BondaryMapping.pipe.rawValue
+        physicsBody?.categoryBitMask = BondaryMapping.block.rawValue
         physicsBody?.contactTestBitMask =  BondaryMapping.characterX.rawValue
         physicsBody?.collisionBitMask = BondaryMapping.characterX.rawValue
         physicsBody?.isDynamic = false
