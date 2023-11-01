@@ -20,25 +20,23 @@ enum Scenes: String {
     case failed = "GameOverScene"
 }
 
+//standard
 extension Scenes {
     func getName() -> String {
-        let padId = " iPad"
-        let isPad = UIDevice.current.userInterfaceIdiom == .pad
+        let padId = " iPad"; let isPad = UIDevice.current.userInterfaceIdiom == .pad
         return isPad ? self.rawValue + padId : self.rawValue
     }
 }
 
 enum NodeScale: Float {
-    case gameBackgroundScale
+    case nodeScaleOfContinuousBackground
 }
 
 extension NodeScale {
-    
     func getValue() -> Float {
         let isPad = UIDevice.current.userInterfaceIdiom == .pad
-        
         switch self {
-        case .gameBackgroundScale:
+        case .nodeScaleOfContinuousBackground:
             return isPad ? 1.5 : 1.35
         }
     }

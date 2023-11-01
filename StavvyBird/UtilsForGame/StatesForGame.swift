@@ -8,37 +8,34 @@ import SpriteKit
 
 class InGameState: GKState {
         
-    unowned var gameConfiguration: ConfigForScenes
+    unowned var inGameConf: ConfigForScenes
     let sizeOfCharacter = CGPoint(x: 0.4, y: 0.4)
     let greekRainParticleEmtterTiming: TimeInterval = 15
     let timeIntervalForDrawingFrames: TimeInterval = 0.1
     
-    private(set) var infinitePipeProducer: SKAction! = nil
-    let infinitePipeProducerKey = "Pipe Action"
+    private(set) var skyBoxInfiniteGenerate: SKAction! = nil
+    let skyBoxInfiniteGenerateKey = "skybox action"
         
-    init(gameConfiguration: ConfigForScenes) {
-        self.gameConfiguration = gameConfiguration
+    init(inGameConf: ConfigForScenes) {
+        self.inGameConf = inGameConf
         super.init()
         
-        guard let scene = gameConfiguration.scene else {
-            return
-        }
+        guard let scene = inGameConf.scene else { return }
         preparePlayer(for: scene)
-        
-        if let scene = gameConfiguration.scene, let target = gameConfiguration.infiniteBackgroundNode {
-            infinitePipeProducer = ColumnFactory.launch(for: scene, targetNode: target)
+        if let scene = inGameConf.scene, let target = inGameConf.infiniteBackgroundNode {
+            skyBoxInfiniteGenerate = ColumnFactory.launch(for: scene, targetNode: target)
         }
         
-        gameConfiguration.greekShapeRaining(for: greekRainParticleEmtterTiming)
+        inGameConf.greekShapeRaining(for: greekRainParticleEmtterTiming)
     }
         
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
-        gameConfiguration.playerCharacter?.isHeavy = false
-        gameConfiguration.scene?.run(infinitePipeProducer, withKey: infinitePipeProducerKey)
+        inGameConf.currBirdCharForGame?.isHeavy = false
+        inGameConf.scene?.run(skyBoxInfiniteGenerate, withKey: skyBoxInfiniteGenerateKey)
         
-        if gameConfiguration.isSoundOn {
-            gameConfiguration.scene?.addChild(gameConfiguration.playingAudio)
+        if inGameConf.isSoundOn {
+            inGameConf.scene?.addChild(inGameConf.playingAudio)
             SKAction.play()
         }
         
@@ -46,13 +43,13 @@ class InGameState: GKState {
             return
         }
         
-        guard let scene = gameConfiguration.scene, let characterX = gameConfiguration.playerCharacter else {
+        guard let scene = inGameConf.scene, let characterX = inGameConf.currBirdCharForGame else {
             return
         }
         
         
-        if gameConfiguration.isSoundOn {
-            if let menuAudio = scene.childNode(withName: gameConfiguration.menuAudio.name!) {
+        if inGameConf.isSoundOn {
+            if let menuAudio = scene.childNode(withName: inGameConf.menuAudio.name!) {
                 menuAudio.removeFromParent()
             }
         }
@@ -65,14 +62,14 @@ class InGameState: GKState {
     override func willExit(to nextState: GKState) {
         super.willExit(to: nextState)
         
-        if gameConfiguration.isSoundOn {
-            gameConfiguration.playingAudio.removeFromParent()
+        if inGameConf.isSoundOn {
+            inGameConf.playingAudio.removeFromParent()
         }
 
         if nextState is GameOverState {
-            gameConfiguration.scene?.removeAction(forKey: infinitePipeProducerKey)
-            gameConfiguration.destroyColumns()
-            gameConfiguration.resetScores()
+            inGameConf.scene?.removeAction(forKey: skyBoxInfiniteGenerateKey)
+            inGameConf.destroyColumns()
+            inGameConf.resetScores()
         }
     }
     
@@ -86,43 +83,52 @@ class InGameState: GKState {
         let assetName = character.getAssetName()
         
         switch character {
-        case .bird:
-            gameConfiguration.playerCharacter = PhysicsBirdNode(
-                timeIntervalForDrawingFrames: timeIntervalForDrawingFrames,
-                withTextureAtlas: assetName,
-                size: gameConfiguration.characterDimensions)
         case .stavvyGold, .stavvyRat, .stavvyPig, .eldyBird, .stavvyRaven:
             let characterX = TheOriginalAnimatedNodes(
                 animatedGif: assetName,
-                correctAspectRatioFor: gameConfiguration.characterDimensions.width)
+                correctAspectRatioFor: inGameConf.characterDimensions.width)
             characterX.xScale = sizeOfCharacter.x
             characterX.yScale = sizeOfCharacter.y
-            gameConfiguration.playerCharacter = characterX
+            inGameConf.currBirdCharForGame = characterX
+        case .bird:
+            inGameConf.currBirdCharForGame = PhysicsBirdNode(
+                timeIntervalForDrawingFrames: timeIntervalForDrawingFrames,
+                withTextureAtlas: assetName,
+                size: inGameConf.characterDimensions)
         }
         
-        guard let playableCharacter = gameConfiguration.playerCharacter else {
+        guard let playableCharacter = inGameConf.currBirdCharForGame else {
             debugPrint(#function + " Stavvy Bird failed")
             return
         }
         position(characterX: character, in: scene)
         scene.addChild(playableCharacter)
         
-        gameConfiguration.modernizers.append(playableCharacter)
-        gameConfiguration.tangibles.append(playableCharacter)
+        inGameConf.modernizers.append(playableCharacter)
+        inGameConf.tangibles.append(playableCharacter)
     }
     
     private func position(characterX: PlayableCharacter, in scene: SKScene) {
-        guard let playerNode = gameConfiguration.playerCharacter else {
+        guard let playerNode = inGameConf.currBirdCharForGame else {
             return
         }
         
+        let twosCompany = 2; let twentysCompany = 20; let fiftysCompany = 50; let tensCompany = 10;
         switch characterX {
-        case .bird:
-            playerNode.position = CGPoint(x: playerNode.size.width / 2 + 50, y: scene.size.height / 2)
+
         case .stavvyGold, .stavvyRat, .stavvyPig, .eldyBird, .stavvyRaven:
-            playerNode.position = CGPoint(x: (playerNode.size.width / 2) - 20, y: scene.size.height / 2)
+            let twosCompany: CGFloat = 2;
+            let twentysCompany: CGFloat = 20;
+            playerNode.position = CGPoint(x: (playerNode.size.width / twosCompany) - twentysCompany, y: scene.size.height / twosCompany)
+        case .bird:
+            let twosCompany: CGFloat = 2;
+            let twentysCompany: CGFloat = 20;
+            let fiftysCompany: CGFloat = 50;
+            let tensCompany: CGFloat = 10;
+            playerNode.position = CGPoint(x: playerNode.size.width / twosCompany + fiftysCompany, y: scene.size.height / twosCompany)
+            playerNode.zPosition = tensCompany
+
         }
-        playerNode.zPosition = 10
 
     }
    
@@ -160,7 +166,7 @@ class GameOverState: GKState {
             levelScene.destroyColumns()
         }
         
-        levelScene.playerCharacter?.isInteractable = false
+        levelScene.currBirdCharForGame?.isInteractable = false
         
         updateScores()
         
@@ -169,7 +175,7 @@ class GameOverState: GKState {
         levelScene.overlay = overlay
         levelScene.isHUDHidden = true
         
-        levelScene.playerCharacter?.willRelive = false
+        levelScene.currBirdCharForGame?.willRelive = false
         
         levelScene.scene?.removeAllActions()
         
@@ -192,7 +198,7 @@ class GameOverState: GKState {
         if nextState is InGameState {
             levelScene.overlay = nil
             levelScene.isHUDHidden = false
-            levelScene.playerCharacter?.isInteractable = true
+            levelScene.currBirdCharForGame?.isInteractable = true
         }
     }
         
@@ -236,12 +242,12 @@ class PausedState: GKState {
     }
     
     unowned var levelScene: SKScene
-    unowned var gameConfiguration: ConfigForScenes
+    unowned var inGameConf: ConfigForScenes
     var overlay: GameOverlay!
         
-    init(scene: SKScene, gameConfiguration: ConfigForScenes) {
+    init(scene: SKScene, inGameConf: ConfigForScenes) {
         self.levelScene = scene
-        self.gameConfiguration = gameConfiguration
+        self.inGameConf = inGameConf
         super.init()
         overlay = GameOverlay(overlaySceneFileName: overlaySceneFileName, zPosition: 1000)
     }
@@ -250,16 +256,16 @@ class PausedState: GKState {
         super.didEnter(from: previousState)
         
         levelScene.isPaused = true
-        gameConfiguration.overlay = overlay
-        gameConfiguration.isHUDHidden = true
+        inGameConf.overlay = overlay
+        inGameConf.isHUDHidden = true
     }
     
     override func willExit(to nextState: GKState) {
         super.willExit(to: nextState)
         
         levelScene.isPaused = false
-        gameConfiguration.overlay = nil
-        gameConfiguration.isHUDHidden = false
+        inGameConf.overlay = nil
+        inGameConf.isHUDHidden = false
     }
         
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {

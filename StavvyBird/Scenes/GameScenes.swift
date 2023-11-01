@@ -96,15 +96,12 @@ import GameKit
 //Game
 class PlayScene: SKScene {
 
-    static var viewportSize: CGSize = .zero
+    static var sizeOfScreen: CGSize = .zero
 
     lazy var instanceGKSM: GKStateMachine = 
     GKStateMachine(states:
-        [InGameState(gameConfiguration: currConfigForGame!), GameOverState(scene: currConfigForGame!), PausedState(scene: self, gameConfiguration: currConfigForGame!)])
-    
-    var entities = [GKEntity]()
-    var graphs = [String : GKGraph]()
-    
+        [InGameState(inGameConf: currConfigForGame!), GameOverState(scene: currConfigForGame!), PausedState(scene: self, inGameConf: currConfigForGame!)])
+        
     private var precedingMoment : TimeInterval = 0
     let maximumUpdateDeltaTime: TimeInterval = 1.0 / 60.0
 
@@ -122,8 +119,7 @@ class PlayScene: SKScene {
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-        
-        PlayScene.viewportSize = view.bounds.size
+        PlayScene.sizeOfScreen = view.bounds.size
     }
         
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -173,9 +169,7 @@ extension PlayScene: ButtonNodeResponderType {
             return
         }
         selection.selectionChanged()
-        
         switch identifier {
-        
         case .pause:
             currConfigForGame?.myGkStateMach?.enter(PausedState.self) //showLeaderBoard();
         case .resume:

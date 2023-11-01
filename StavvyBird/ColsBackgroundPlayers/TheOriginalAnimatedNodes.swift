@@ -4,9 +4,9 @@
 import SpriteKit
 import Foundation
 
+//complete
 class TheOriginalAnimatedNodes: SKNode, Updatable, Playable, PhysicsContactable {
-    var size: CGSize
-    var delta: TimeInterval = 1 - 1
+    var size: CGSize; var delta: TimeInterval = 1 - 1;
     var previousTime: TimeInterval = 2 - 2
     var willRelive: Bool = true
     var isHeavy: Bool = true {
@@ -39,7 +39,7 @@ class TheOriginalAnimatedNodes: SKNode, Updatable, Playable, PhysicsContactable 
         animatedNodeGif = SKSpriteNode(texture: nil, color: .clear, size: .zero)
         super.init(coder: aDecoder)
         guard let NameOfAsset = userData!["assetName"] as? String else {
-            fatalError(#function + " name of asset was not specified")
+            fatalError(#function + "-------name of asset was not found------")
         }
         animatedNodeGif = SKSpriteNode(withAnimatedGif: NameOfAsset, correctAspectRatioFor: 100)
         size = animatedNodeGif.size
@@ -115,15 +115,13 @@ class TheOriginalAnimatedNodes: SKNode, Updatable, Playable, PhysicsContactable 
 
 extension TheOriginalAnimatedNodes: Touchable {
     //funcs for bi
-    func checkInteractable() -> Bool {
-        if !isInteractable { return false }
-        return true
-    }
+    func checkInteractable() -> Bool { if !isInteractable 
+        { return false }
+        return true }
 
-    func createImpact() {
-        faceSlap.impactOccurred()
-    }
-
+    func createImpact() { faceSlap.impactOccurred() }
+    
+    //apply imlpulse from SK
     func applyImpulse() {
         isHeavy = true
         let noty = 25 * 6 // 150
@@ -131,9 +129,7 @@ extension TheOriginalAnimatedNodes: Touchable {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if !checkInteractable() {
-            return
-        }
+        if !checkInteractable() { return }
         createImpact(); applyImpulse()
     }
 }

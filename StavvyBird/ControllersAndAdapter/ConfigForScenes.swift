@@ -19,14 +19,13 @@ extension SKScene {
 class ConfigForScenes: NSObject,
                        PlaySceneProtocol {
     var score: Int = 0
-
 var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, seperationFromBottom: CGFloat = 0, characterDimensions = CGSize(width: 101, height: 101), forceOfGravity: CGFloat = -5.1
     
     var isSoundOn: Bool = {return UserDefaults.standard.bool(for: .isSoundOn)}(), scoreLabel: SKLabelNode?, pointAddedNoise = SKAction.playSoundFileNamed("points-noise.wav", waitForCompletion: false), crashNoise = SKAction.playSoundFileNamed("game-over-noise.wav", waitForCompletion: false)
     
 //    var bird: BirdNode?
-    typealias PlayableCharacter = (PhysicsContactable & Updatable & Touchable & Playable & SKNode)
-    var playerCharacter: PlayableCharacter?
+    typealias PlayableCharacter = (Updatable & PhysicsContactable & Touchable & Playable & SKNode)
+    var currBirdCharForGame: PlayableCharacter?
     
     private(set) lazy var menuAudio: SKAudioNode = {
         let gameAudio = SKAudioNode(fileNamed: "home-audio.wav")
@@ -134,20 +133,17 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
     
      func prepareWorld(for scene: SKScene) {
         scene.physicsWorld.gravity = CGVector(dx: 0.0, dy: forceOfGravity)
-        let rect = CGRect(x: 0, y: seperationFromBottom, width: scene.size.width, height: scene.size.height - seperationFromBottom)
-        scene.physicsBody = SKPhysicsBody(edgeLoopFrom: rect)
+        let currCgRec = CGRect(x: 0, y: seperationFromBottom, width: scene.size.width, height: scene.size.height - seperationFromBottom)
+        scene.physicsBody = SKPhysicsBody(edgeLoopFrom: currCgRec)
         
-        let edges: EdgeMapping = .edges
-        let characterX: EdgeMapping = .characterX
-        
+         let edges: EdgeMapping = .edges; let characterX: EdgeMapping = .characterX
         scene.physicsBody?.categoryBitMask = edges.rawValue
         scene.physicsBody?.collisionBitMask = characterX.rawValue
-        
         scene.physicsWorld.contactDelegate = self
     }
     
      func prepareInfiniteBackgroundScroller(for scene: SKScene) {
-        let nodeFactorSize = NodeScale.gameBackgroundScale.getValue()
+        let nodeFactorSize = NodeScale.nodeScaleOfContinuousBackground.getValue()
         
         infiniteBackgroundNode = ContinuousBackground(fileName: namedPngFile, scaleFactor: CGPoint(x: nodeFactorSize, y: nodeFactorSize))
         infiniteBackgroundNode!.zPosition = 0
@@ -156,13 +152,11 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
     }
     
     func greekShapeRaining
-    (for currRate: TimeInterval) {
-        var greekPartsRain = scene?.childNode(withName: "greekPartsRain")
+    (for currRate: TimeInterval) { var greekPartsRain = scene?.childNode(withName: "greekPartsRain")
         as? SKEmitterNode; greekPartsRain?.safeAdvanceSimulationTime(currRate)
     }
     
 }
-
 extension ConfigForScenes: SKPhysicsContactDelegate {
     private func handleDeadState() {
         debugPrint("Bird Has Fallen"); initialCollisionGameOver();  debugPrint("Bird is dead "); impactCollision();  debugPrint("Bird hit assets");
@@ -170,11 +164,13 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
     
     private func initialCollisionGameOver() {
         if myGkStateMach?.currentState is GameOverState { return }
+        debugPrint("---------Game Over--------------");
         myGkStateMach?.enter(GameOverState.self)
     }
     
     private func impactCollision() {
         impact.impactOccurred()
+        debugPrint("---------Impact of Block--------------");
         if isSoundOn { scene?.run(crashNoise) }
     }
     
