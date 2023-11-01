@@ -44,7 +44,7 @@ class ContinuousBackground: SKNode {
                 if background_screen_position.x <= -node.frame.size.width {
                     node.position = CGPoint(x: node.position.x + (node.frame.size.width * limitOfBlox), y: node.position.y)
                 }
-            } else { debugPrint(#function + "failed to wrap") }
+            } else { debugPrint(#function + "----------failed to wrap-----------") }
         }
     }
 }

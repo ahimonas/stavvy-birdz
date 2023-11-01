@@ -26,8 +26,6 @@ protocol PhysicsContactable {
     var shouldEnablePhysics: Bool { get set }
 }
 
-
-
 enum ControlInputDirection: Int {
     case up = 0, down, left, right
     init?(vector: SIMD2<Float>) {
@@ -42,6 +40,7 @@ enum ControlInputDirection: Int {
 
 protocol Touchable: AnyObject {
     var isInteractable: Bool { get set }
+    /*Begin Touch*/
     func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     /*
     func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
@@ -63,7 +62,6 @@ extension Touchable {
 }
 
 
-
 protocol PlaySceneProtocol {
     var modernizers: [Updatable] { get }; var tangibles: [Touchable] { get }; var scene: SKScene? { get }
     init?(with scene: SKScene)
@@ -81,16 +79,18 @@ extension Updatable {
     }
 }
 
-struct BondaryMapping : OptionSet {
+
+//complette
+struct EdgeMapping : OptionSet {
     let zeroLayer = 0
     let firsLayer = 1
     let rawValue : UInt32
     let secondLayer = 2
     let thirdLayer = 3
     
-    static let boundary = BondaryMapping(rawValue: 1 << 0); static let characterX = BondaryMapping(rawValue: 1 << 1)
-    static let block = BondaryMapping(rawValue: 1 << 2); static let column = BondaryMapping(rawValue: 1 << 2)
-    static let breaker = BondaryMapping(rawValue: 1 << 3)
+    static let edges = EdgeMapping(rawValue: 1 << 0); static let characterX = EdgeMapping(rawValue: 1 << 1)
+    static let block = EdgeMapping(rawValue: 1 << 2); static let column = EdgeMapping(rawValue: 1 << 2)
+    static let breaker = EdgeMapping(rawValue: 1 << 3)
 }
 
 extension CGFloat {
@@ -100,7 +100,6 @@ extension CGFloat {
     }
 static func range(min: CGFloat, max: CGFloat) -> CGFloat { CGFloat.random(in: min...max) }
 }
-
 
 
 extension SKScene {
@@ -117,8 +116,6 @@ extension SKScene {
         return foundNodes
     }
 }
-
-
 
 //complete
 extension SKTextureAtlas {
@@ -256,13 +253,12 @@ extension SKSpriteNode {
 }
 
 
-
+/*
 private let kNodeNameTransitionShaderNode = "kNodeNameTransitionShaderNode"
 private let kNodeNameFadeColourOverlay = "kNodeNameFadeColourOverlay"
 private var presentationStartTime: CFTimeInterval = -1
 private var shaderChoice = -1
 extension SKScene {
-    
     
     private var transitionShader: SKShader? {
         get {
@@ -275,7 +271,6 @@ extension SKScene {
     }
     
 
-/*
  func present(scene: SKScene?, shaderName: String, transitionDuration: TimeInterval) {
     
         // Create shader and add it to the scene
@@ -335,8 +330,8 @@ extension SKScene {
         
         return shader
     }
+ }
  */
-}
 /*
 extension Bool {
     

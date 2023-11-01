@@ -3,7 +3,7 @@
 // revisit
 
 
-//Not done
+//Not done!!!!!
 import SpriteKit
 import GameplayKit
 
@@ -137,10 +137,10 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
         let rect = CGRect(x: 0, y: seperationFromBottom, width: scene.size.width, height: scene.size.height - seperationFromBottom)
         scene.physicsBody = SKPhysicsBody(edgeLoopFrom: rect)
         
-        let boundary: BondaryMapping = .boundary
-        let characterX: BondaryMapping = .characterX
+        let edges: EdgeMapping = .edges
+        let characterX: EdgeMapping = .characterX
         
-        scene.physicsBody?.categoryBitMask = boundary.rawValue
+        scene.physicsBody?.categoryBitMask = edges.rawValue
         scene.physicsBody?.collisionBitMask = characterX.rawValue
         
         scene.physicsWorld.contactDelegate = self
@@ -181,19 +181,19 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         let pointOfImpact:UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
-        let currBird = BondaryMapping.characterX.rawValue
-        if pointOfImpact == (currBird | BondaryMapping.breaker.rawValue) {
+        let currBird = EdgeMapping.characterX.rawValue
+        if pointOfImpact == (currBird | EdgeMapping.breaker.rawValue) {
             score += 1; scoreLabel?.text = "\(score)"
             if isSoundOn { scene?.run(pointAddedNoise) }
             notification.notificationOccurred(.success)
         }
         
         //bird hit block
-        if pointOfImpact == (currBird | BondaryMapping.block.rawValue) {
+        if pointOfImpact == (currBird | EdgeMapping.block.rawValue) {
             handleDeadState()
         }
-        //bird hit boundary
-        if pointOfImpact == (currBird | BondaryMapping.boundary.rawValue) {
+        //bird hit edges
+        if pointOfImpact == (currBird | EdgeMapping.edges.rawValue) {
             handleDeadState()
         }
     }

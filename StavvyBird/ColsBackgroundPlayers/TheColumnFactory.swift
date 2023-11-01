@@ -25,7 +25,7 @@ struct ColumnFactory {
 
         let renderFactoryPipeAction = SKAction.run {
             
-            guard let column = ColumnFactory.producseDoublePipe(sceneSize: scene.size) else {
+            guard let column = ColumnFactory.generateBlocks(sceneSize: scene.size) else {
                 return
             }
 
@@ -44,7 +44,7 @@ struct ColumnFactory {
         let blockMoveDuration2: TimeInterval = 7
 
         let renderFactoryPipeAction2 = SKAction.run {
-            guard let column2 = ColumnFactory.producseDoublePipe(sceneSize: scene.size) else {
+            guard let column2 = ColumnFactory.generateBlocks(sceneSize: scene.size) else {
                 return
             }
             column2.name = blockName2
@@ -62,7 +62,7 @@ struct ColumnFactory {
         let blockMoveDuration3: TimeInterval = 9
 
         let renderFactoryPipeAction3 = SKAction.run {
-            guard let column3 = ColumnFactory.producseDoublePipe(sceneSize: scene.size) else {
+            guard let column3 = ColumnFactory.generateBlocks(sceneSize: scene.size) else {
                 return
             }
             column3.name = blockName3
@@ -79,8 +79,7 @@ struct ColumnFactory {
         return SKAction.repeatForever(actionsSequential)
     }
     
-    
-    private static func producseDoublePipe(sceneSize: CGSize) -> SKSpriteNode? {
+    private static func generateBlocks(sceneSize: CGSize) -> SKSpriteNode? {
         guard let blockParts = ColumnFactory.generateSkyBlock(for: sceneSize) else {
             return nil
         }
@@ -105,8 +104,8 @@ struct ColumnFactory {
         let myCurrThresh = SKSpriteNode(color: .green, size: CGSize(width: myCurrThreshWidth, height: blockY*2))
         myCurrThresh.position = CGPoint(x: blockX, y: 0)
         myCurrThresh.physicsBody = SKPhysicsBody(rectangleOf: myCurrThresh.size)
-        myCurrThresh.physicsBody?.categoryBitMask = BondaryMapping.breaker.rawValue
-        myCurrThresh.physicsBody?.contactTestBitMask =  BondaryMapping.characterX.rawValue
+        myCurrThresh.physicsBody?.categoryBitMask = EdgeMapping.breaker.rawValue
+        myCurrThresh.physicsBody?.contactTestBitMask =  EdgeMapping.characterX.rawValue
         myCurrThresh.physicsBody?.collisionBitMask = 0
         myCurrThresh.physicsBody?.isDynamic = false
         myCurrThresh.zPosition = 21
@@ -115,7 +114,6 @@ struct ColumnFactory {
 
         let randomBlockHeight = CGFloat.range(min: 120, max: 470) //height
         let midUpPipe = BlockNode(textures: (block: "column-parts", cap: "sparky22"), of: CGSize(width: randomBlockWidth, height: randomBlockHeight))
-        
         
         //halfofblock needs to be over the bottom axis, we can place the blocks anywhere between heree
         let bottomBoundary = (randomBlockHeight/2)+2
@@ -127,11 +125,11 @@ struct ColumnFactory {
         midUpPipe?.position = CGPoint(x: blockX, y: myRandoHeightplacment)
         
         //wrap the block to make sure its not null
-        guard let unwrappedPipeMidUp = midUpPipe else {
+        guard let blockInstanceEncapsulator = midUpPipe else {
             return nil
         }
         //midUp is just a random piece of the block
-        return singleBlockFragment(midUp: unwrappedPipeMidUp, myCurrThresh: myCurrThresh)
+        return singleBlockFragment(midUp: blockInstanceEncapsulator, myCurrThresh: myCurrThresh)
     }
     
     
@@ -160,12 +158,12 @@ class BlockNode: SKSpriteNode {
             context?.draw(skyBlockIMGGG, in:textureRect)
         }
         
-        //boundary based on graphic
-        let boundaryWithGraphic = UIGraphicsGetImageFromCurrentImageContext()
+        //edges based on graphic
+        let edgesWithGraphic = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             
             //null check
-            guard let unwrappedBoundaryWithGraphic = boundaryWithGraphic, let blockCgImage =  unwrappedBoundaryWithGraphic.cgImage else {
+            guard let unwrappedBoundaryWithGraphic = edgesWithGraphic, let blockCgImage =  unwrappedBoundaryWithGraphic.cgImage else {
                 return nil
             }
         
@@ -176,9 +174,10 @@ class BlockNode: SKSpriteNode {
                 
         //The phiscs Body is a map, when we change the order it does not colide with the bird and end the game
         physicsBody = SKPhysicsBody(rectangleOf: size)
-        physicsBody?.categoryBitMask = BondaryMapping.block.rawValue
-        physicsBody?.contactTestBitMask =  BondaryMapping.characterX.rawValue
-        physicsBody?.collisionBitMask = BondaryMapping.characterX.rawValue
+        
+        physicsBody?.categoryBitMask = EdgeMapping.block.rawValue
+        physicsBody?.contactTestBitMask =  EdgeMapping.characterX.rawValue
+        physicsBody?.collisionBitMask = EdgeMapping.characterX.rawValue
         physicsBody?.isDynamic = false
         zPosition = 21
     }
