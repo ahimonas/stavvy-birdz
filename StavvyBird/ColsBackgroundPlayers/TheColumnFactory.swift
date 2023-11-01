@@ -8,21 +8,10 @@ import SpriteKit
 struct ColumnFactory {
 
  
-    typealias singlePipeParts = ( midUp: BlockNode, myCurrThresh: SKSpriteNode)
-
-    
-    static let pipeWidth: CGFloat = 102
-    private static var rangedHeight: CGFloat {
-        return CGFloat.range(min: 71, max: 851)
-    }
-    private static var doubleRangeHeight: CGFloat {
-        return CGFloat.range(min: 100, max: 350)
-    }
-    static let zPosition: CGFloat = 21
-    
-    
+    typealias singleBlockFragment = ( midUp: BlockNode, myCurrThresh: SKSpriteNode)
 
     static func launch(for scene: SKScene, targetNode: SKNode) -> SKAction {
+        //all the pipes need same name based on collision map
         let pipeName = "column"
         let pipeName2 = "column"
         let pipeName3 = "column"
@@ -97,23 +86,18 @@ struct ColumnFactory {
         }
         
         let myCurrPipNod = SKSpriteNode(texture: nil, color: .clear, size: pipeParts.midUp.size)
-        //myCurrPipNod.addChild(pipeParts.top)
         myCurrPipNod.addChild(pipeParts.myCurrThresh)
-        //myCurrPipNod.addChild(pipeParts.bottom)
         myCurrPipNod.addChild(pipeParts.midUp)
-        //myCurrPipNod.addChild(pipeParts.midDown)
-        
         return myCurrPipNod
     }
     
     
     
-    private static func generateSkyBlock(for sceneSize: CGSize) -> singlePipeParts? {
+    private static func generateSkyBlock(for sceneSize: CGSize) -> singleBlockFragment? {
         let pipeX = sceneSize.width
         let pipeY = sceneSize.height
         //This one worked pretty well
-        //let currWIDTH = CGFloat.range(min: 100, max: 250)
-        let currWIDTH = CGFloat.range(min: 80, max: 380)
+        //let randomBlockWidth = CGFloat.range(min: 100, max: 250)
         
          let myCurrThreshWidth: CGFloat = 5
 
@@ -125,135 +109,69 @@ struct ColumnFactory {
         myCurrThresh.physicsBody?.contactTestBitMask =  BondaryMapping.player.rawValue
         myCurrThresh.physicsBody?.collisionBitMask = 0
         myCurrThresh.physicsBody?.isDynamic = false
-        myCurrThresh.zPosition = zPosition
+        myCurrThresh.zPosition = 21
         
+        let randomBlockWidth = CGFloat.range(min: 80, max: 380)
+
         let randomBlockHeight = CGFloat.range(min: 180, max: 600) //height
-        
-        let midUpPipe = BlockNode(textures: (pipe: "column-parts", cap: "sparky22"), of: CGSize(width: currWIDTH, height: randomBlockHeight))
+        let midUpPipe = BlockNode(textures: (pipe: "column-parts", cap: "sparky22"), of: CGSize(width: randomBlockWidth, height: randomBlockHeight))
         
         
         //halfofblock needs to be over the bottom axis, we can place the blocks anywhere between heree
         let bottomBoundary = (randomBlockHeight/2)+1
         let topBoundary = pipeY-(randomBlockHeight/2)-1
         let myRandoHeightplacment = CGFloat.range(min: bottomBoundary, max: topBoundary)
-        
         //we can put the poistion anywhere within that gap
         midUpPipe?.position = CGPoint(x: pipeX, y: myRandoHeightplacment)
         
-        
+        //wrap the pipe to make sure its not null
         guard let unwrappedPipeMidUp = midUpPipe else {
             return nil
         }
-        
         //midUp is just a random piece of the pipe
-        return singlePipeParts(midUp: unwrappedPipeMidUp, myCurrThresh: myCurrThresh)
+        return singleBlockFragment(midUp: unwrappedPipeMidUp, myCurrThresh: myCurrThresh)
     }
     
     
     
 }
-
-/*RENDERING THE COLUMN*/
-
-import SpriteKit
-
-typealias typeIsTopColumn = Bool
-
-class ColumnNode: SKSpriteNode {
-    
-    init?(textures: (pipe: String, cap: String), of size: CGSize, side: typeIsTopColumn) {
-
-        guard let pipeTOPP = UIImage(named: textures.cap)?.cgImage else {
-                 return nil
-        }
-        
-        let textureRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-             
-             // Render tiled pipe form the previously loaded cgImage
-        if(size.height > 0){
-            UIGraphicsBeginImageContext(size)
-            let context = UIGraphicsGetCurrentContext()
-            // context?.draw(texture, in: textureRect, byTiling: true)
-            context?.draw(pipeTOPP, in:textureRect)
-        }
-            let tiledBackground = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            
-            guard let unwrappedTiledBackground = tiledBackground, let tiledCGImage =  unwrappedTiledBackground.cgImage else {
-                return nil
-            }
-            let backgroundTexture = SKTexture(cgImage: tiledCGImage)
-            let pipe = SKSpriteNode(texture: backgroundTexture)
-            pipe.zPosition = 1
-            
-            let cap = SKSpriteNode(imageNamed: textures.cap)
-            //cap.position = CGPoint(x: 0.0, y: side ? -pipe.size.height / 2 + cap.size.height / 2 : pipe.size.height / 2 - cap.size.height / 2)
-            
-            // Changes width and height of cap
-            //cap.size = CGSize(width: pipe.size.width + pipe.size.width/3, height: cap.size.height*2)
-            //cap.zPosition = 5
-            //pipe.addChild(cap)
-            /*
-            if side {
-                let angle: CGFloat = 180.0
-                cap.zRotation = angle.toRadians
-            }
-    */
-        
-        super.init(texture: backgroundTexture, color: .clear, size: backgroundTexture.size())
-        
-        // Add physics body
-        physicsBody = SKPhysicsBody(rectangleOf: size)
-        physicsBody?.categoryBitMask = BondaryMapping.pipe.rawValue
-        physicsBody?.contactTestBitMask =  BondaryMapping.player.rawValue
-        physicsBody?.collisionBitMask = BondaryMapping.player.rawValue
-        physicsBody?.isDynamic = false
-        zPosition = 21
-        /*
-        if(size.height > 1){
-            
-                self.addChild(pipe)
-            }
-         */
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("NSCoder has failed")
-    }
-    
-}
-
 
 class BlockNode: SKSpriteNode {
     
     init?(textures: (pipe: String, cap: String), of size: CGSize) {
         
-        guard let pipeTOPP = UIImage(named: "sparky22" )?.cgImage else {
+        guard let skyBlockIMGGG = UIImage(named: "sparky22" )?.cgImage else {
                  return nil
              }
         
-             let textureRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        //The rectangle we draw the block in, think outer container, if we touch this we die and we draw the image inside
+        let textureRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
              
-       // Render tiled pipe form the previously loaded cgImage
+        //MAKKE SURE THE BLOCK IS NOT OF THE SCREEN, app crashes if not
         if(size.height > 0){
+            //Begin Graphics with size of block passed in
             UIGraphicsBeginImageContext(size)
+            //get the context of that Graphic
             let context = UIGraphicsGetCurrentContext()
-            context?.draw(pipeTOPP, in:textureRect)
+            
+            //Draw the image as CImage within the block
+            context?.draw(skyBlockIMGGG, in:textureRect)
         }
-            let boundaryWithGraphic = UIGraphicsGetImageFromCurrentImageContext()
+        
+        //boundary based on graphic
+        let boundaryWithGraphic = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             
+            //null check
             guard let unwrappedBoundaryWithGraphic = boundaryWithGraphic, let blockCgImage =  unwrappedBoundaryWithGraphic.cgImage else {
                 return nil
             }
         
         let textureWrapperForGraphic = SKTexture(cgImage: blockCgImage)
         
+        //create an instance of itself with the above rectangle and image inside
         super.init(texture: textureWrapperForGraphic, color: .clear, size: textureWrapperForGraphic.size())
-        
-        // Add physics body
-        
+                
         //The phiscs Body is a map, when we change the order it does not colide with the bird and end the game
         physicsBody = SKPhysicsBody(rectangleOf: size)
         physicsBody?.categoryBitMask = BondaryMapping.pipe.rawValue
