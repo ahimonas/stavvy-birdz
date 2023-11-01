@@ -20,7 +20,7 @@ struct ColumnFactory {
             targetNode.childNode(withName: blockName)?.removeFromParent()
         }
         
-        let waitAction = SKAction.wait(forDuration: UserDefaults.standard.getDifficultyLevel().rawValue)
+        let waitAction = SKAction.wait(forDuration: UserDefaults.standard.rateOfBlocksInSky().rawValue)
         let blockMoveDuration: TimeInterval = 3
 
         let renderFactoryPipeAction = SKAction.run {

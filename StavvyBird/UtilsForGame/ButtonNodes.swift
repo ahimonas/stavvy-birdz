@@ -336,7 +336,7 @@ class TriggleButtonNode: ButtonNode {
     
         
     required init?(coder aDecoder: NSCoder) {
-        let difficultyLevel = UserDefaults.standard.getDifficultyLevel()
+        let difficultyLevel = UserDefaults.standard.rateOfBlocksInSky()
         triggle = .init(state: TriggleState.convert(from: difficultyLevel))
         
         super.init(coder: aDecoder)

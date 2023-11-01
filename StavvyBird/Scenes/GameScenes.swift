@@ -67,7 +67,7 @@ class AtmosphereScene: RoutingUtilityScene, ToggleButtonNodeResponderType, Trigg
             UserDefaults.standard.bool(for: .isSoundOn)
         
         let buttonForDifficulty = scene?.childNode(withName: "Difficulty") as? TriggleButtonNode
-        let difficultyLevel = UserDefaults.standard.getDifficultyLevel()
+        let difficultyLevel = UserDefaults.standard.rateOfBlocksInSky()
         let difficultyState = TriggleButtonNode.TriggleState.convert(from: difficultyLevel)
         buttonForDifficulty?.triggle = .init(state: difficultyState)
     }
@@ -185,7 +185,7 @@ extension PlayScene: ButtonNodeResponderType {
             guard let gameScene = PlayScene(fileNamed: slectedView) else {
                 return
             }
-            gameScene.scaleMode = RoutingUtilityScene.sceneScaleMode
+            gameScene.scaleMode = RoutingUtilityScene.aspectRatioTypeMode
             let transition = SKTransition.fade(withDuration: 1.0)
             transition.pausesIncomingScene = false
             transition.pausesOutgoingScene = false

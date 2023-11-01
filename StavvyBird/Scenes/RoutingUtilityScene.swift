@@ -384,7 +384,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
     }
     
     let selection = UISelectionFeedbackGenerator()
-    static let sceneScaleMode: SKSceneScaleMode = .aspectFill
+    static let aspectRatioTypeMode: SKSceneScaleMode = .aspectFill
     private static var lastPushTransitionDirection: SKTransitionDirection?
     
     func buttonTriggered(button: ButtonNode) {
@@ -395,7 +395,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
     
         var presentationView: SKScene?
         var transition: SKTransition?
-        let sceneScaleMode: SKSceneScaleMode = RoutingUtilityScene.sceneScaleMode
+        let aspectRatioTypeMode: SKSceneScaleMode = RoutingUtilityScene.aspectRatioTypeMode
         
         switch identifier {
         case .play:
@@ -512,7 +512,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             return
         }
         
-        presentationScene.scaleMode = sceneScaleMode
+        presentationScene.scaleMode = aspectRatioTypeMode
         unwrappedTransition.pausesIncomingScene = false
         unwrappedTransition.pausesOutgoingScene = false
         self.view?.presentScene(presentationScene, transition: unwrappedTransition)

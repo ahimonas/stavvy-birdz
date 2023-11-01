@@ -22,7 +22,7 @@ extension UserDefaults {
         set(level.rawValue, forKey: Setting.difficulty.rawValue)
     }
     
-    func getDifficultyLevel() -> Difficulty {
+    func rateOfBlocksInSky() -> Difficulty {
         let diffVal = double(forKey: Setting.difficulty.rawValue)
         return Difficulty(rawValue: diffVal) ?? .medium
     }
