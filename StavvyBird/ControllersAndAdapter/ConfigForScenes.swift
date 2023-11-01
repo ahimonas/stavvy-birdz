@@ -3,6 +3,7 @@
 // revisit
 
 
+//Not done
 import SpriteKit
 import GameplayKit
 
@@ -150,11 +151,10 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
     }
     
      func prepareInfiniteBackgroundScroller(for scene: SKScene) {
-        let scaleFactor = NodeScale.gameBackgroundScale.getValue()
+        let nodeFactorSize = NodeScale.gameBackgroundScale.getValue()
         
-        infiniteBackgroundNode = ContinuousBackground(fileName: namedPngFile, scaleFactor: CGPoint(x: scaleFactor, y: scaleFactor))
+        infiniteBackgroundNode = ContinuousBackground(fileName: namedPngFile, scaleFactor: CGPoint(x: nodeFactorSize, y: nodeFactorSize))
         infiniteBackgroundNode!.zPosition = 0
-        
         scene.addChild(infiniteBackgroundNode!)
         modernizers.append(infiniteBackgroundNode!)
     }
@@ -168,43 +168,39 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
 }
 
 extension ConfigForScenes: SKPhysicsContactDelegate {
-    
-    func didBegin(_ contact: SKPhysicsContact) {
-        let collision:UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
-        let player = BondaryMapping.player.rawValue
-        
-        if collision == (player | BondaryMapping.gap.rawValue) {
-            score += 1
-            scoreLabel?.text = "\(score)"
-            
-            if isSoundOn { scene?.run(pointAddedNoise) }
-            
-            notification.notificationOccurred(.success)
-        }
-        
-        //bird hit pipe
-        if collision == (player | BondaryMapping.pipe.rawValue) {
-            handleDeadState()
-        }
-        //bird hit boundary
-        if collision == (player | BondaryMapping.boundary.rawValue) {
-            handleDeadState()
-        }
-    }
-        
     private func handleDeadState() {
-        debugPrint("Bird Has Fallen")
-        deadState()
-        hit()
+        debugPrint("Bird Has Fallen"); initialCollisionGameOver();  debugPrint("Bird is dead "); impactCollision();  debugPrint("Bird hit assets");
     }
     
-    private func deadState() {
+    private func initialCollisionGameOver() {
         if myGkStateMach?.currentState is GameOverState { return }
         myGkStateMach?.enter(GameOverState.self)
     }
     
-    private func hit() {
+    private func impactCollision() {
         impact.impactOccurred()
         if isSoundOn { scene?.run(crashNoise) }
     }
+    
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        let pointOfImpact:UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
+        let currBird = BondaryMapping.player.rawValue
+        if pointOfImpact == (currBird | BondaryMapping.gap.rawValue) {
+            score += 1; scoreLabel?.text = "\(score)"
+            if isSoundOn { scene?.run(pointAddedNoise) }
+            notification.notificationOccurred(.success)
+        }
+        
+        //bird hit pipe
+        if pointOfImpact == (currBird | BondaryMapping.pipe.rawValue) {
+            handleDeadState()
+        }
+        //bird hit boundary
+        if pointOfImpact == (currBird | BondaryMapping.boundary.rawValue) {
+            handleDeadState()
+        }
+    }
+    
+    
 }

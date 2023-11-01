@@ -24,7 +24,6 @@ extension Scenes {
     func getName() -> String {
         let padId = " iPad"
         let isPad = UIDevice.current.userInterfaceIdiom == .pad
-        
         return isPad ? self.rawValue + padId : self.rawValue
     }
 }
@@ -47,9 +46,7 @@ extension NodeScale {
 
 extension CGPoint {
     init(x: Float, y: Float) {
-        self.init()
-        self.x = CGFloat(x)
-        self.y = CGFloat(y)
+        self.init(); self.x = CGFloat(x); self.y = CGFloat(y)
     }
 }
 

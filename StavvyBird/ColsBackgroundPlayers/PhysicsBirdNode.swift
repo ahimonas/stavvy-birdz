@@ -1,42 +1,34 @@
 //  SounioTechnologies LLC
 //  StavvyBird
 
+//Donee except swith out r_player
+
+
 import SpriteKit
 import UIKit
 
 class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
-    var delta: TimeInterval = 0 //c
-    var previousTime: TimeInterval = 0
+    let zero = 0;
+    var delta: TimeInterval = 0; var previousTime: TimeInterval = 0
     var flyTextures: [SKTexture]? = nil //c
-    
     var willRelive: Bool = true {didSet {if willRelive {animate(with: timeIntervalForDrawingFrames)} else {self.removeAllActions()}}}
     var isHeavy: Bool = true {didSet {self.physicsBody?.affectedByGravity = isHeavy}}
     var isInteractable: Bool = true {didSet {self.isUserInteractionEnabled = isInteractable}}
     var shouldEnablePhysics: Bool = true {didSet {physicsBody?.collisionBitMask = shouldEnablePhysics ? collisionBitMask : 0}}
     var collisionBitMask: UInt32 = BondaryMapping.pipe.rawValue | BondaryMapping.boundary.rawValue
-        
     private(set) var timeIntervalForDrawingFrames: TimeInterval = 0
     private let impact = UIImpactFeedbackGenerator(style: .medium)
-        
     convenience init(timeIntervalForDrawingFrames: TimeInterval, withTextureAtlas named: String, size: CGSize) {
         
         var textures = [SKTexture]()
         
-        do {
-            textures = try SKTextureAtlas.upload(named: named, beginIndex: 1) { name, index -> String in
-                return "r_player\(index)"
-            }
-        } catch {
-            debugPrint(#function + " Texture unabe to render: ", error)
-        }
+        do { textures = try SKTextureAtlas.upload(named: named, beginIndex: 1) { name, index -> String in
+                return "r_player\(index)" }
+        } catch { debugPrint(#function + "wip - unable to render atlas ", error) }
         
-        self.init(texture: textures.first, color: .clear, size: size)
-        self.timeIntervalForDrawingFrames = timeIntervalForDrawingFrames
-
+        self.init(texture: textures.first, color: .clear, size: size); self.timeIntervalForDrawingFrames = timeIntervalForDrawingFrames
         initPhysicsBoundary()
-                self.flyTextures = textures
-        self.texture = textures.first
-        self.animate(with: timeIntervalForDrawingFrames)
+        self.flyTextures = textures; self.texture = textures.first; self.animate(with: timeIntervalForDrawingFrames)
     }
     
      func initPhysicsBoundary() {
@@ -49,44 +41,26 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
     }
     
      func animate(with timing: TimeInterval) {
-        guard let walkTextures = flyTextures else {
-            return
-        }
-        
+        guard let walkTextures = flyTextures else { return }
         let bumpMove = SKAction.animate(with: walkTextures, timePerFrame: timing, resize: false, restore: true)
-        let threadAction = SKAction.repeatForever(bumpMove)
-        self.run(threadAction)
+         let threadAction = SKAction.repeatForever(bumpMove); self.run(threadAction)
     }
     
     
     func update(_ timeInterval: CFTimeInterval) {
-        delta = previousTime == 0.0 ? 0.0 : timeInterval - previousTime
-        previousTime = timeInterval
-        
-        guard let physicsBody = physicsBody else {
-            return
-        }
-        
-        let dxVeloc = physicsBody.velocity.dx
-        let dyVeloc = physicsBody.velocity.dy
-        let myCurrThresh: CGFloat = 370 //amount of overall gravtiy 0 is heavy 500 is light
-        
-        
-        if dyVeloc > myCurrThresh {
-            self.physicsBody?.velocity = CGVector(dx: dxVeloc, dy: myCurrThresh)
-        }
-
-        let velocityValue = dyVeloc * (dyVeloc < 0 ? 0.006 : 0.0037)
-        zRotation = velocityValue.clamp(min: -0.33, max: 0.99)
+        let defaultZero = 0.0
+        delta = previousTime == defaultZero ? defaultZero : timeInterval - previousTime; previousTime = timeInterval
+        guard let physicsBody = physicsBody else { return }
+        let dxVeloc = physicsBody.velocity.dx;  let dyVeloc = physicsBody.velocity.dy;  let myCurrThresh: CGFloat = 370
+        if dyVeloc > myCurrThresh { self.physicsBody?.velocity = CGVector(dx: dxVeloc, dy: myCurrThresh) }
+        let threshA = 0.006; let threshB = 0.0037; let velocityValue = dyVeloc * (dyVeloc < 0 ? threshA : threshB);
+        let backRotation = -0.33; let forwardRotation = 0.99; zRotation = velocityValue.clamp(min: backRotation, max: forwardRotation)
     }
-    
 }
-
 extension PhysicsBirdNode: Touchable {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !isInteractable { return }
-        impact.impactOccurred()
-        isHeavy = true
-        physicsBody?.applyImpulse(CGVector(dx: 0, dy: 133)) //the bounce force
+        //bounce force for applied impulse
+        let bumpForward = 0; let bumpVerticle = 133; impact.impactOccurred(); isHeavy = true; physicsBody?.applyImpulse(CGVector(dx: bumpForward, dy: bumpVerticle))
     }
 }
