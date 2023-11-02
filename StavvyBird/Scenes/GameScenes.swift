@@ -190,7 +190,7 @@ class PlayScene: SKScene {
 extension PlayScene: ButtonNodeResponderType {
     
     func buttonTriggered(button: ButtonNode) {
-        guard let identifier = button.buttonIdentifier else {
+        guard let identifier = button.myCurrButId else {
             return
         }
         selection.selectionChanged()

@@ -10,28 +10,14 @@ protocol ButtonNodeResponderType: AnyObject {
     func buttonTriggered(button: ButtonNode)
 }
 
-enum ButtonIdentifier: String {
-    case play = "Play"
-    case pause = "Pause"
-    case resume = "Resume"
-    case menu = "Menu"
-    case venu = "Venu"
-    case penu = "Penu"
-    case zenu = "Zenu"
-    case eldy = "EldyBird"
-    case raven = "RavensBird"
-    case titley = "Titley"
-    case home = "Home"
-    case settings = "Settings"
-    case retry = "Retry"
-    case cancel = "Cancel"
-    case scores = "Scores"
-    case sound = "Sound"
+enum myButtonIdentifier: String {
+    case start = "Start";case menu = "Menu"; case cancel = "Cancel"; case venu = "Venu";     case scores = "Scores"; case retry = "Retry"; case penu = "Penu";  case home = "Home"; case sound = "Sound"; case zenu = "Zenu"; case pause = "Pause"; case eldy = "EldyBird"; case settings = "Settings"; case raven = "RavensBird";case resume = "Resume"; case titley = "Titley";
+
     case ItemShopCharacters = "ItemShopCharacters"
     //case difficulty = "Difficulty" .difficulty
     
-    static let allButtonIdentifiers: [ButtonIdentifier] = [
-        .play, .pause, .resume, .menu, .venu, .penu, .zenu,.titley, .settings, .home, .retry, .cancel, .scores, sound, .ItemShopCharacters, .eldy, .raven
+    static let allOfTheGameButtonss: [myButtonIdentifier] = [
+        .start, .pause, .resume, .menu, .venu, .penu, .zenu,.titley, .settings, .home, .retry, .cancel, .scores, sound, .ItemShopCharacters, .eldy, .raven
     ]
     
     var selectedTextureName: String? {
@@ -44,7 +30,7 @@ enum ButtonIdentifier: String {
 
 class ButtonNode: SKSpriteNode {
     
-    var buttonIdentifier: ButtonIdentifier!
+    var myCurrButId: myButtonIdentifier!
     
 
     var responder: ButtonNodeResponderType {
@@ -60,11 +46,12 @@ class ButtonNode: SKSpriteNode {
             
             removeAllActions()
             
-            let newScale: CGFloat = isHighlighted ? 0.98 : 1.02
-            let scaleAction = SKAction.scale(by: newScale, duration: 0.14)
             
-            let newColorBlendFactor: CGFloat = isHighlighted ? 1.0 : 0.0
-            let colorBlendAction = SKAction.colorize(withColorBlendFactor: newColorBlendFactor, duration: 0.14)
+            let butCgHighlight: CGFloat = isHighlighted ? 0.98 : 1.02
+            let scaleAction = SKAction.scale(by: butCgHighlight, duration: 0.14)
+            
+            let mixTheHighlights: CGFloat = isHighlighted ? 1.0 : 0.0
+            let colorBlendAction = SKAction.colorize(withColorBlendFactor: mixTheHighlights, duration: 0.14)
             run(SKAction.group([scaleAction, colorBlendAction]))
         }
     }
@@ -106,14 +93,14 @@ class ButtonNode: SKSpriteNode {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        guard let nameOfAsset = name, let buttonIdentifier = ButtonIdentifier(rawValue: nameOfAsset) else {
+        guard let nameOfAsset = name, let myCurrButId = myButtonIdentifier(rawValue: nameOfAsset) else {
             fatalError("The button didn't exist.")
         }
-        self.buttonIdentifier = buttonIdentifier
+        self.myCurrButId = myCurrButId
         
         defaultTexture = texture
         
-        if let textureName = buttonIdentifier.selectedTextureName {
+        if let textureName = myCurrButId.selectedTextureName {
             selectedTexture = SKTexture(imageNamed: textureName)
         }
         else {
@@ -127,7 +114,7 @@ class ButtonNode: SKSpriteNode {
     override func copy(with zone: NSZone? = nil) -> Any {
         let newButton = super.copy(with: zone) as! ButtonNode
         
-        newButton.buttonIdentifier = buttonIdentifier
+        newButton.myCurrButId = myCurrButId
         newButton.defaultTexture = defaultTexture?.copy() as? SKTexture
         newButton.selectedTexture = selectedTexture?.copy() as? SKTexture
         return newButton

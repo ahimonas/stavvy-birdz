@@ -388,7 +388,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
     private static var lastPushTransitionDirection: SKTransitionDirection?
     
     func buttonTriggered(button: ButtonNode) {
-        guard let identifier = button.buttonIdentifier else {
+        guard let identifier = button.myCurrButId else {
             return
         }
         selection.selectionChanged()
@@ -398,9 +398,9 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         let aspectRatioTypeMode: SKSceneScaleMode = RoutingUtilityScene.aspectRatioTypeMode
         
         switch identifier {
-        case .play:
-            let slectedView = Scenes.game.getName()
-            presentationView = PlayScene(fileNamed: slectedView)
+        case .start:
+            let startView = Scenes.game.getName()
+            presentationView = PlayScene(fileNamed: startView)
             
             transition = SKTransition.fade(withDuration: 1.0)
         case .settings:

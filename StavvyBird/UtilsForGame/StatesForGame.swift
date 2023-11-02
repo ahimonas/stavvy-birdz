@@ -22,7 +22,7 @@ class InGameState: GKState {
         
         guard let scene = inGameConf.scene else { return }
         preparePlayer(for: scene)
-        if let scene = inGameConf.scene, let target = inGameConf.infiniteBackgroundNode {
+        if let scene = inGameConf.scene, let target = inGameConf.continuousBackgroundInstance {
             skyBoxInfiniteGenerate = ColumnFactory.launch(for: scene, targetNode: target)
         }
         
