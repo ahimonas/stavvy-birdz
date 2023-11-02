@@ -28,30 +28,55 @@ class HomeScene: RoutingUtilityScene {
         
         let playableCharacter = UserDefaults.standard.playableCharacter(for: .character) ?? .bird
         
-        let assetName = playableCharacter.getAssetName()
-        let characterDimensions = CGSize(width: 200, height: 200)
+        let getBirdName = playableCharacter.getBirdCharacterName()
+        let characterDimensions = CGSize(width: 199, height: 199)
         
+        //This resizes the players to a reasonable size
         switch playableCharacter {
             
         case .bird:
-            let stavvyBirdNode = PhysicsBirdNode(timeIntervalForDrawingFrames: 0.1, withTextureAtlas: assetName, size: characterDimensions)
+            let stavvyBirdNode = PhysicsBirdNode(timeIntervalForDrawingFrames: 0.1, withTextureAtlas: getBirdName, size: characterDimensions)
             stavvyBirdNode.isHeavy = false
             stavvyBirdNode.position = pendingNode.position
             stavvyBirdNode.zPosition = pendingNode.zPosition
             scene?.addChild(stavvyBirdNode)
             
-        case .stavvyGold, .stavvyRat, .stavvyPig, .eldyBird, .stavvyRaven:
-            let myCurrPlayerNode = TheOriginalAnimatedNodes(animatedGif: assetName, correctAspectRatioFor: characterDimensions.width)
-            myCurrPlayerNode.xScale = 1.0
-            myCurrPlayerNode.yScale = 1.0
-            
+        case .stavvyGold, .stavvyRat, .stavvyPig, .stavvyRaven:
+            let myCurrPlayerNode = TheOriginalAnimatedNodes(animatedGif: getBirdName, correctAspectRatioFor: characterDimensions.width)
+            myCurrPlayerNode.xScale = 1.0; myCurrPlayerNode.yScale = 1.0
             myCurrPlayerNode.isHeavy = false
-            myCurrPlayerNode.position = pendingNode.position
-            myCurrPlayerNode.zPosition = pendingNode.zPosition
+            myCurrPlayerNode.position = pendingNode.position; myCurrPlayerNode.zPosition = pendingNode.zPosition
             scene?.addChild(myCurrPlayerNode)
+            
+        case .eldyBird:
+            let myCurrPlayerNode = EldyBirdPhysics(animatedGif: getBirdName, correctAspectRatioFor: characterDimensions.width)
+            myCurrPlayerNode.xScale = 1.0; myCurrPlayerNode.yScale = 1.0
+            myCurrPlayerNode.isHeavy = false
+            myCurrPlayerNode.position = pendingNode.position; myCurrPlayerNode.zPosition = pendingNode.zPosition
+            scene?.addChild(myCurrPlayerNode)
+            
         }
         
+        
+
+    
+    
+        
         pendingNode.removeFromParent()
+    }
+    
+    private func processEldyPlayerScale(myCurrPlayerNode: EldyBirdPhysics){
+        guard let pendingNode = childNode(withName: "Animated Bird1") else {
+            return
+        }
+        
+        myCurrPlayerNode.xScale = 1.0
+        myCurrPlayerNode.yScale = 1.0
+        
+        myCurrPlayerNode.isHeavy = false
+        myCurrPlayerNode.position = pendingNode.position
+        myCurrPlayerNode.zPosition = pendingNode.zPosition
+        scene?.addChild(myCurrPlayerNode)
     }
 }
 
@@ -67,7 +92,7 @@ class AtmosphereScene: RoutingUtilityScene, ToggleButtonNodeResponderType, Trigg
             UserDefaults.standard.bool(for: .isSoundOn)
         
         let buttonForDifficulty = scene?.childNode(withName: "Difficulty") as? TriggleButtonNode
-        let difficultyLevel = UserDefaults.standard.getDifficultyLevel()
+        let difficultyLevel = UserDefaults.standard.rateOfBlocksInSky()
         let difficultyState = TriggleButtonNode.TriggleState.convert(from: difficultyLevel)
         buttonForDifficulty?.triggle = .init(state: difficultyState)
     }
@@ -96,15 +121,12 @@ import GameKit
 //Game
 class PlayScene: SKScene {
 
-    static var viewportSize: CGSize = .zero
+    static var sizeOfScreen: CGSize = .zero
 
     lazy var instanceGKSM: GKStateMachine = 
     GKStateMachine(states:
-        [InGameState(gameConfiguration: currConfigForGame!), GameOverState(scene: currConfigForGame!), PausedState(scene: self, gameConfiguration: currConfigForGame!)])
-    
-    var entities = [GKEntity]()
-    var graphs = [String : GKGraph]()
-    
+        [InGameState(inGameConf: currConfigForGame!), GameOverState(scene: currConfigForGame!), PausedState(scene: self, inGameConf: currConfigForGame!)])
+        
     private var precedingMoment : TimeInterval = 0
     let maximumUpdateDeltaTime: TimeInterval = 1.0 / 60.0
 
@@ -122,30 +144,29 @@ class PlayScene: SKScene {
     
     override func didMove(to view: SKView) {
         super.didMove(to: view)
-        
-        PlayScene.viewportSize = view.bounds.size
+        PlayScene.sizeOfScreen = view.bounds.size
     }
         
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        currConfigForGame?.touchables.forEach({ touchable in
+        currConfigForGame?.tangibles.forEach({ touchable in
             touchable.touchesBegan(touches, with: event)
         })
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        currConfigForGame?.touchables.forEach { touchable in
+        currConfigForGame?.tangibles.forEach { touchable in
             touchable.touchesMoved(touches, with: event)
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        currConfigForGame?.touchables.forEach { touchable in
+        currConfigForGame?.tangibles.forEach { touchable in
             touchable.touchesEnded(touches, with: event)
         }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        currConfigForGame?.touchables.forEach { touchable in
+        currConfigForGame?.tangibles.forEach { touchable in
             touchable.touchesCancelled(touches, with: event)
         }
     }
@@ -159,7 +180,7 @@ class PlayScene: SKScene {
         precedingMoment = currentTime
         if self.isPaused { return }
         instanceGKSM.update(deltaTime: deltaTime)
-        currConfigForGame?.updatables.filter({ return $0.willRelive }).forEach({ (activeUpdatable) in
+        currConfigForGame?.modernizers.filter({ return $0.willRelive }).forEach({ (activeUpdatable) in
             activeUpdatable.update(currentTime)
         })
     }
@@ -173,19 +194,17 @@ extension PlayScene: ButtonNodeResponderType {
             return
         }
         selection.selectionChanged()
-        
         switch identifier {
-        
         case .pause:
             currConfigForGame?.myGkStateMach?.enter(PausedState.self) //showLeaderBoard();
         case .resume:
             currConfigForGame?.myGkStateMach?.enter(InGameState.self)
         case .home:
-            let sceneId = Scenes.title.getName()
-            guard let gameScene = PlayScene(fileNamed: sceneId) else {
+            let slectedView = Scenes.title.getName()
+            guard let gameScene = PlayScene(fileNamed: slectedView) else {
                 return
             }
-            gameScene.scaleMode = RoutingUtilityScene.sceneScaleMode
+            gameScene.scaleMode = RoutingUtilityScene.aspectRatioTypeMode
             let transition = SKTransition.fade(withDuration: 1.0)
             transition.pausesIncomingScene = false
             transition.pausesOutgoingScene = false

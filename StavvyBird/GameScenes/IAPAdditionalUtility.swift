@@ -384,7 +384,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
     }
     
     let selection = UISelectionFeedbackGenerator()
-    static let aspectRatioTypeMode: SKSceneScaleMode = .aspectFill
+    static let sceneScaleMode: SKSceneScaleMode = .aspectFill
     private static var lastPushTransitionDirection: SKTransitionDirection?
     
     func buttonTriggered(button: ButtonNode) {
@@ -393,27 +393,27 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         }
         selection.selectionChanged()
     
-        var presentationView: SKScene?
+        var sceneToPresent: SKScene?
         var transition: SKTransition?
-        let aspectRatioTypeMode: SKSceneScaleMode = RoutingUtilityScene.aspectRatioTypeMode
+        let sceneScaleMode: SKSceneScaleMode = RoutingUtilityScene.sceneScaleMode
         
         switch identifier {
         case .play:
-            let slectedView = Scenes.game.getName()
-            presentationView = PlayScene(fileNamed: slectedView)
+            let sceneId = Scenes.game.getName()
+            sceneToPresent = PlayScene(fileNamed: sceneId)
             
             transition = SKTransition.fade(withDuration: 1.0)
         case .settings:
-            let slectedView = Scenes.setting.getName()
-            presentationView = AtmosphereScene(fileNamed: slectedView)
+            let sceneId = Scenes.setting.getName()
+            sceneToPresent = AtmosphereScene(fileNamed: sceneId)
             
             RoutingUtilityScene.lastPushTransitionDirection = .down
             transition = SKTransition.push(with: .down, duration: 1.0)
         case .scores:
             showLeaderboard()
             /*
-            let slectedView = Scenes.score.getName()
-            presentationView = ScoresScene(fileNamed: slectedView)
+            let sceneId = Scenes.score.getName()
+            sceneToPresent = ScoresScene(fileNamed: sceneId)
             
             RoutingUtilityScene.lastPushTransitionDirection = .up
             transition = SKTransition.push(with: .up, duration: 1.0)
@@ -422,8 +422,8 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             //authenticateLocalPlayer()
            initInAppPurchases()
   
-            let slectedView = Scenes.ItemShopCharacters.getName()
-            presentationView = ItemShopScene(fileNamed: slectedView)
+            let sceneId = Scenes.ItemShopCharacters.getName()
+            sceneToPresent = ItemShopScene(fileNamed: sceneId)
             debugPrint("created ItemShopScene instance")
             RoutingUtilityScene.lastPushTransitionDirection = .right
             transition = SKTransition.push(with: .right, duration: 1.0)
@@ -474,8 +474,8 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             showLeaderboard()
             */ 
         case .menu:
-            let slectedView = Scenes.title.getName()
-            presentationView = HomeScene(fileNamed: slectedView)
+            let sceneId = Scenes.title.getName()
+            sceneToPresent = AllAdditionalScenes(fileNamed: sceneId)
             var pushDirection: SKTransitionDirection?
             
             if let lastPushTransitionDirection = RoutingUtilityScene.lastPushTransitionDirection {
@@ -500,7 +500,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             }
             
 
-            //let controller = presentationView?.rootViewController as! MainUiGameView
+            //let controller = sceneToPresent?.rootViewController as! MainUiGameView
             //controller.removeAd()
              
             
@@ -508,11 +508,11 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             debugPrint(#function + "BUTTON NOT SUPPORTED BY TITLE SCNE ")
         }
         
-        guard let presentationScene = presentationView, let unwrappedTransition = transition  else {
+        guard let presentationScene = sceneToPresent, let unwrappedTransition = transition  else {
             return
         }
         
-        presentationScene.scaleMode = aspectRatioTypeMode
+        presentationScene.scaleMode = sceneScaleMode
         unwrappedTransition.pausesIncomingScene = false
         unwrappedTransition.pausesOutgoingScene = false
         self.view?.presentScene(presentationScene, transition: unwrappedTransition)
