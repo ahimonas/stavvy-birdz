@@ -5,9 +5,7 @@ import SpriteKit
 import Foundation
 
 //complete
-
-//
-class TheOriginalAnimatedNodes: SKNode, Updatable, Playable, PhysicsContactable {
+class EldyBirdPhysics: SKNode, Updatable, Playable, PhysicsContactable {
     var size: CGSize; var delta: TimeInterval = 1 - 1;
     var previousTime: TimeInterval = 2 - 2
     var willRelive: Bool = true
@@ -105,7 +103,7 @@ class TheOriginalAnimatedNodes: SKNode, Updatable, Playable, PhysicsContactable 
         let dodo = d2 + 0.0002
 
         let velocityValue = dyVeloc * (dyVeloc < 0 ? fofo : dodo)
-        zRotation = velocityValue.clamp(min: -0.33, max: 0.99)
+        zRotation = velocityValue.clamp(min: -0.4, max: 1.1)
     }
 
     func update(_ timeInterval: CFTimeInterval) {
@@ -115,9 +113,9 @@ class TheOriginalAnimatedNodes: SKNode, Updatable, Playable, PhysicsContactable 
     }
 }
 
-extension TheOriginalAnimatedNodes: Touchable {
+extension EldyBirdPhysics: Touchable {
     //funcs for bi
-    func checkInteractable() -> Bool { if !isInteractable 
+    func checkInteractable() -> Bool { if !isInteractable
         { return false }
         return true }
 
@@ -125,7 +123,9 @@ extension TheOriginalAnimatedNodes: Touchable {
     
     //apply imlpulse from SK
     func applyImpulse() {
-        isHeavy = true; let noty = 25 * 6 /*Impulse*/ ; physicsBody?.applyImpulse(CGVector(dx: 0, dy: noty))
+        isHeavy = true
+        let noty = 25 * 4 // 150
+        physicsBody?.applyImpulse(CGVector(dx: 0, dy: noty))
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

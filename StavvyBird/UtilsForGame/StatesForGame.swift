@@ -80,32 +80,42 @@ class InGameState: GKState {
     
     private func preparePlayer(for scene: SKScene) {
         let character = UserDefaults.standard.playableCharacter(for: .character) ?? .bird
-        let assetName = character.getAssetName()
+        let getBirdName = character.getBirdCharacterName()
         
         switch character {
-        case .stavvyGold, .stavvyRat, .stavvyPig, .eldyBird, .stavvyRaven:
+        case .stavvyGold, .stavvyRat, .stavvyPig, .stavvyRaven:
             let characterX = TheOriginalAnimatedNodes(
-                animatedGif: assetName,
+                animatedGif: getBirdName,
                 correctAspectRatioFor: inGameConf.characterDimensions.width)
             characterX.xScale = sizeOfCharacter.x
             characterX.yScale = sizeOfCharacter.y
             inGameConf.currBirdCharForGame = characterX
+            
+        case .eldyBird:
+            let characterX = EldyBirdPhysics(
+                animatedGif: getBirdName,
+                correctAspectRatioFor: inGameConf.characterDimensions.width)
+            characterX.xScale = sizeOfCharacter.x
+            characterX.yScale = sizeOfCharacter.y
+            inGameConf.currBirdCharForGame = characterX
+            
         case .bird:
             inGameConf.currBirdCharForGame = PhysicsBirdNode(
                 timeIntervalForDrawingFrames: timeIntervalForDrawingFrames,
-                withTextureAtlas: assetName,
+                withTextureAtlas: getBirdName,
                 size: inGameConf.characterDimensions)
         }
         
-        guard let playableCharacter = inGameConf.currBirdCharForGame else {
+        //cant change playable character
+        guard let myCurrBirdChar = inGameConf.currBirdCharForGame else {
             debugPrint(#function + " Stavvy Bird failed")
             return
         }
         position(characterX: character, in: scene)
-        scene.addChild(playableCharacter)
+        scene.addChild(myCurrBirdChar)
         
-        inGameConf.modernizers.append(playableCharacter)
-        inGameConf.tangibles.append(playableCharacter)
+        inGameConf.modernizers.append(myCurrBirdChar)
+        inGameConf.tangibles.append(myCurrBirdChar)
     }
     
     private func position(characterX: PlayableCharacter, in scene: SKScene) {
@@ -127,13 +137,9 @@ class InGameState: GKState {
             let tensCompany: CGFloat = 10;
             playerNode.position = CGPoint(x: playerNode.size.width / twosCompany + fiftysCompany, y: scene.size.height / twosCompany)
             playerNode.zPosition = tensCompany
-
         }
-
     }
-   
 }
-
 
 class GameOverState: GKState {
 
@@ -208,7 +214,6 @@ class GameOverState: GKState {
 }
 
 extension GameOverState {
-    
     fileprivate func updateScores() {
         let bestScore = UserDefaults.standard.integer(for: .bestScore)
         let currentScore = levelScene.score

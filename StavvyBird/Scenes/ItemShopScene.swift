@@ -35,6 +35,7 @@ class ItemShopScene: RoutingUtilityScene {
         
         func preparePlayableCharacters() {
             let currGkPoint=CGPoint(x: 0.6, y: 0.6)
+            let currGkPointEldy=CGPoint(x: 0.4, y: 0.4)
 
             let stavvyBird =
             childNode(withName: PlayableCharacter.bird.rawValue) as? SKSpriteNode; playableCharacters[.bird] = stavvyBird
@@ -52,15 +53,15 @@ class ItemShopScene: RoutingUtilityScene {
             stavvyPig?.xScale = currGkPoint.x; stavvyPig?.yScale = currGkPoint.y; playableCharacters[.stavvyPig] = stavvyPig
             
             let eldyBird =
-            childNode(withName: PlayableCharacter.eldyBird.rawValue) as? TheOriginalAnimatedNodes
-            eldyBird?.xScale = currGkPoint.x; eldyBird?.yScale = currGkPoint.y; playableCharacters[.eldyBird] = eldyBird
+            childNode(withName: PlayableCharacter.eldyBird.rawValue) as? EldyBirdPhysics
+            eldyBird?.xScale = currGkPointEldy.x; eldyBird?.yScale = currGkPointEldy.y; playableCharacters[.eldyBird] = eldyBird
             
             let stavvyRaven =
             childNode(withName: PlayableCharacter.stavvyRaven.rawValue) as? TheOriginalAnimatedNodes
             stavvyRaven?.xScale = currGkPoint.x; stavvyRaven?.yScale = currGkPoint.y; playableCharacters[.stavvyRaven] = stavvyRaven
         }
         
-        characterSelector = childNode(withName: "Character Select") as? SKShapeNode
+        characterSelector = childNode(withName: "Charcter Selection") as? SKShapeNode
         preparePlayableCharacters()
       
         func loadSelectedChacter() {
@@ -159,10 +160,13 @@ class ItemShopScene: RoutingUtilityScene {
         }
         
         if animated {
-            let hide = SKAction.fadeOut(withDuration: 0.14)
-            let unhide = SKAction.fadeIn(withDuration: 0.14)
+            let hide = SKAction.fadeOut(withDuration: 0.12)
+            let me2 = SKAction.scale(by: 1.1, duration: 0.2)
+
+            let me = SKAction.scale(by: 0.9, duration: 0.5)
+            let unhide = SKAction.fadeIn(withDuration: 0.7)
             let move = SKAction.move(to: playableCharacterNode.position, duration: 0.0)
-            let sequece = SKAction.sequence([hide, move, unhide])
+            let sequece = SKAction.sequence([ move, me2, me])
             characterSelector?.run(sequece)
         } else {
             characterSelector?.position = playableCharacterNode.position

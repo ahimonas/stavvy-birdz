@@ -173,7 +173,6 @@ class BlockNode: SKSpriteNode {
                 
         //The phiscs Body is a map, when we change the order it does not colide with the bird and end the game
         physicsBody = SKPhysicsBody(rectangleOf: size)
-        
         physicsBody?.categoryBitMask = EdgeMapping.block.rawValue
         physicsBody?.contactTestBitMask =  EdgeMapping.characterX.rawValue
         physicsBody?.collisionBitMask = EdgeMapping.characterX.rawValue

@@ -28,30 +28,55 @@ class HomeScene: RoutingUtilityScene {
         
         let playableCharacter = UserDefaults.standard.playableCharacter(for: .character) ?? .bird
         
-        let assetName = playableCharacter.getAssetName()
-        let characterDimensions = CGSize(width: 200, height: 200)
+        let getBirdName = playableCharacter.getBirdCharacterName()
+        let characterDimensions = CGSize(width: 199, height: 199)
         
+        //This resizes the players to a reasonable size
         switch playableCharacter {
             
         case .bird:
-            let stavvyBirdNode = PhysicsBirdNode(timeIntervalForDrawingFrames: 0.1, withTextureAtlas: assetName, size: characterDimensions)
+            let stavvyBirdNode = PhysicsBirdNode(timeIntervalForDrawingFrames: 0.1, withTextureAtlas: getBirdName, size: characterDimensions)
             stavvyBirdNode.isHeavy = false
             stavvyBirdNode.position = pendingNode.position
             stavvyBirdNode.zPosition = pendingNode.zPosition
             scene?.addChild(stavvyBirdNode)
             
-        case .stavvyGold, .stavvyRat, .stavvyPig, .eldyBird, .stavvyRaven:
-            let myCurrPlayerNode = TheOriginalAnimatedNodes(animatedGif: assetName, correctAspectRatioFor: characterDimensions.width)
-            myCurrPlayerNode.xScale = 1.0
-            myCurrPlayerNode.yScale = 1.0
-            
+        case .stavvyGold, .stavvyRat, .stavvyPig, .stavvyRaven:
+            let myCurrPlayerNode = TheOriginalAnimatedNodes(animatedGif: getBirdName, correctAspectRatioFor: characterDimensions.width)
+            myCurrPlayerNode.xScale = 1.0; myCurrPlayerNode.yScale = 1.0
             myCurrPlayerNode.isHeavy = false
-            myCurrPlayerNode.position = pendingNode.position
-            myCurrPlayerNode.zPosition = pendingNode.zPosition
+            myCurrPlayerNode.position = pendingNode.position; myCurrPlayerNode.zPosition = pendingNode.zPosition
             scene?.addChild(myCurrPlayerNode)
+            
+        case .eldyBird:
+            let myCurrPlayerNode = EldyBirdPhysics(animatedGif: getBirdName, correctAspectRatioFor: characterDimensions.width)
+            myCurrPlayerNode.xScale = 1.0; myCurrPlayerNode.yScale = 1.0
+            myCurrPlayerNode.isHeavy = false
+            myCurrPlayerNode.position = pendingNode.position; myCurrPlayerNode.zPosition = pendingNode.zPosition
+            scene?.addChild(myCurrPlayerNode)
+            
         }
         
+        
+
+    
+    
+        
         pendingNode.removeFromParent()
+    }
+    
+    private func processEldyPlayerScale(myCurrPlayerNode: EldyBirdPhysics){
+        guard let pendingNode = childNode(withName: "Animated Bird1") else {
+            return
+        }
+        
+        myCurrPlayerNode.xScale = 1.0
+        myCurrPlayerNode.yScale = 1.0
+        
+        myCurrPlayerNode.isHeavy = false
+        myCurrPlayerNode.position = pendingNode.position
+        myCurrPlayerNode.zPosition = pendingNode.zPosition
+        scene?.addChild(myCurrPlayerNode)
     }
 }
 

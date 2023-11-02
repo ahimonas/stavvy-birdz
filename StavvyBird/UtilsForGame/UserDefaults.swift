@@ -71,6 +71,6 @@ enum Difficulty: Double { case easy = 4.1; case medium = 3.4; case hard = 3.1 }
 
 enum PlayableCharacter: String { case stavvyRat = "stavvyRat"; case eldyBird = "eldyBird"; case stavvyRaven = "stavvyRaven"; case stavvyGold = "stavvyGold"; case stavvyPig = "stavvyPig"; case bird = "bird"; }
 
-extension PlayableCharacter { func getAssetName() -> String { switch self {
+extension PlayableCharacter { func getBirdCharacterName() -> String { switch self {
         case .stavvyGold: return "stavvy-gold"; case .stavvyRat: return "stavvy-rat"; case .stavvyPig: return "stavvy-pig"; case .eldyBird: return "eldy-bird"; case .stavvyRaven: return "stavvy-raven"; case .bird: return "Birddy Bird"; } }
 }
