@@ -28,7 +28,6 @@
 		CAA9D4222AF0B7E200DEA75E /* ConfigForScenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9D4212AF0B7E200DEA75E /* ConfigForScenes.swift */; };
 		CAA9D4242AF0B80000DEA75E /* MainUiGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9D4232AF0B80000DEA75E /* MainUiGameView.swift */; };
 		CAA9D4282AF0B98200DEA75E /* StatesForGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9D4272AF0B98200DEA75E /* StatesForGame.swift */; };
-		CAA9D42D2AF0C15100DEA75E /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CAA9D42C2AF0C15100DEA75E /* info.plist */; };
 		CAABA6322AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAABA6312AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift */; };
 		CAABA6882AEB25CF00B9810E /* HomeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67E2AEB25CF00B9810E /* HomeScene.sks */; };
 		CAABA68B2AEB25CF00B9810E /* ItemShopScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6812AEB25CF00B9810E /* ItemShopScene.sks */; };
@@ -67,6 +66,7 @@
 		A9D0897820B97CA800BE2896 /* ItemShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemShopScene.swift; sourceTree = "<group>"; };
 		A9EC756720A6E479007C42EC /* RoutingUtilityScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingUtilityScene.swift; sourceTree = "<group>"; };
 		CA0135622AEF659100EDB576 /* ButtonNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonNodes.swift; sourceTree = "<group>"; };
+		CA091DB72AF457BD00B093D8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA1440BF2AEF53260035B063 /* GamProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamProtocols.swift; sourceTree = "<group>"; };
 		CA29A1912ACF755B00470B9F /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		CA47A3BF2ACB5DE400E8ED52 /* StavvyBird.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StavvyBird.entitlements; sourceTree = "<group>"; };
@@ -76,7 +76,6 @@
 		CAA9D4212AF0B7E200DEA75E /* ConfigForScenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigForScenes.swift; sourceTree = "<group>"; };
 		CAA9D4232AF0B80000DEA75E /* MainUiGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUiGameView.swift; sourceTree = "<group>"; };
 		CAA9D4272AF0B98200DEA75E /* StatesForGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatesForGame.swift; sourceTree = "<group>"; };
-		CAA9D42C2AF0C15100DEA75E /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = info.plist; path = StavvyBird/info.plist; sourceTree = SOURCE_ROOT; };
 		CAABA6312AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheOriginalAnimatedNodes.swift; sourceTree = "<group>"; };
 		CAABA67E2AEB25CF00B9810E /* HomeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HomeScene.sks; sourceTree = "<group>"; };
 		CAABA6812AEB25CF00B9810E /* ItemShopScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ItemShopScene.sks; sourceTree = "<group>"; };
@@ -154,8 +153,8 @@
 		A9ACB91B2099A1F200966991 /* StavvyBird */ = {
 			isa = PBXGroup;
 			children = (
+				CA091DB72AF457BD00B093D8 /* Info.plist */,
 				A9ACB91C2099A1F200966991 /* AppDelegate.swift */,
-				CAA9D42C2AF0C15100DEA75E /* info.plist */,
 				CADBD96E2AF0B1450093477F /* MainUIDeviceStoryboards */,
 				CA94BB7D2AD8D7AE005AAF83 /* Stavvy Birds.storekit */,
 				CA47A3BF2ACB5DE400E8ED52 /* StavvyBird.entitlements */,
@@ -343,7 +342,6 @@
 				A9ACB96B2099B42300966991 /* Actions.sks in Resources */,
 				A9ACB9972099F19E00966991 /* .gitignore in Resources */,
 				CAABA6CF2AEB2C7100B9810E /* Assets.xcassets in Resources */,
-				CAA9D42D2AF0C15100DEA75E /* info.plist in Resources */,
 				A950486520BAE29C0020ECD9 /* stavvy-raven.gif in Resources */,
 				A950486420BAE29C0020ECD9 /* eldy-bird.gif in Resources */,
 				CAABA6982AEB25EC00B9810E /* ResumeScene.sks in Resources */,
