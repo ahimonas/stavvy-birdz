@@ -35,7 +35,7 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
      func initPhysicsBoundary() {
          
          //skPhysicsBody was writting by Apple
-        physicsBody = SKPhysicsBody(circleOfRadius: size.width / 22) //CHANGE THE SIZE OF THE BODY
+        physicsBody = SKPhysicsBody(circleOfRadius: size.width / 8) //CHANGE THE SIZE OF THE BODY
         physicsBody?.categoryBitMask = EdgeMapping.characterX.rawValue
         physicsBody?.contactTestBitMask = EdgeMapping.block.rawValue | EdgeMapping.breaker.rawValue | EdgeMapping.edges.rawValue
         physicsBody?.collisionBitMask = EdgeMapping.block.rawValue | EdgeMapping.edges.rawValue

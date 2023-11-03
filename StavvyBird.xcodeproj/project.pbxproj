@@ -28,7 +28,7 @@
 		CAAE1FC22AF4780900B1757C /* HomeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FBC2AF4780900B1757C /* HomeScene.sks */; };
 		CAAE1FC72AF4789B00B1757C /* GameScenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1FC42AF4789B00B1757C /* GameScenes.swift */; };
 		CAAE1FC82AF4789B00B1757C /* ItemShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1FC52AF4789B00B1757C /* ItemShopScene.swift */; };
-		CAAE1FC92AF4789B00B1757C /* RoutingUtilityScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1FC62AF4789B00B1757C /* RoutingUtilityScene.swift */; };
+		CAAE1FC92AF4789B00B1757C /* SkSceneGameUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1FC62AF4789B00B1757C /* SkSceneGameUtils.swift */; };
 		CAAE1FCD2AF47A5500B1757C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FCC2AF47A5500B1757C /* .gitignore */; };
 		CAAE1FDE2AF47C4300B1757C /* stavvy-rat.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FD92AF47C4300B1757C /* stavvy-rat.gif */; };
 		CAAE1FDF2AF47C4300B1757C /* stavvy-raven.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FDA2AF47C4300B1757C /* stavvy-raven.gif */; };
@@ -75,7 +75,7 @@
 		CAAE1FBC2AF4780900B1757C /* HomeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HomeScene.sks; sourceTree = "<group>"; };
 		CAAE1FC42AF4789B00B1757C /* GameScenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScenes.swift; sourceTree = "<group>"; };
 		CAAE1FC52AF4789B00B1757C /* ItemShopScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemShopScene.swift; sourceTree = "<group>"; };
-		CAAE1FC62AF4789B00B1757C /* RoutingUtilityScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingUtilityScene.swift; sourceTree = "<group>"; };
+		CAAE1FC62AF4789B00B1757C /* SkSceneGameUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkSceneGameUtils.swift; sourceTree = "<group>"; };
 		CAAE1FCC2AF47A5500B1757C /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		CAAE1FD92AF47C4300B1757C /* stavvy-rat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "stavvy-rat.gif"; sourceTree = "<group>"; };
 		CAAE1FDA2AF47C4300B1757C /* stavvy-raven.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "stavvy-raven.gif"; sourceTree = "<group>"; };
@@ -214,7 +214,7 @@
 			children = (
 				CAAE1FC42AF4789B00B1757C /* GameScenes.swift */,
 				CAAE1FC52AF4789B00B1757C /* ItemShopScene.swift */,
-				CAAE1FC62AF4789B00B1757C /* RoutingUtilityScene.swift */,
+				CAAE1FC62AF4789B00B1757C /* SkSceneGameUtils.swift */,
 			);
 			path = GameSceneFunctionality;
 			sourceTree = "<group>";
@@ -411,7 +411,7 @@
 				CAAE1FC72AF4789B00B1757C /* GameScenes.swift in Sources */,
 				CAA9D4242AF0B80000DEA75E /* MainUiGameView.swift in Sources */,
 				CAAEAD542AF0C5C6000D9594 /* ContinuousBackground.swift in Sources */,
-				CAAE1FC92AF4789B00B1757C /* RoutingUtilityScene.swift in Sources */,
+				CAAE1FC92AF4789B00B1757C /* SkSceneGameUtils.swift in Sources */,
 				CAF65C072AF0D0510057F824 /* PhysicsBirdNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

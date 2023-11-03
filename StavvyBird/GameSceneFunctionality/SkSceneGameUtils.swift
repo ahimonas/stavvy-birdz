@@ -236,11 +236,11 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         
         UserDefaults.standard.set(true, forKey: "removeAdsKey")
         /*
-        var currentScore = 100 //change that to the players current score.
+        var scoreForCurrentSession = 100 //change that to the players Session Score.
         let highScore  = UserDefaults.standard.integer(forKey: "highScore") //Get the users high score from last time.
 
-        if(currentScore > highScore){// check and see if currentScore is greater than highScore.
-            UserDefaults.standard.set(currentScore, forKey: "highScore")//if currentScore is greater than highScore, set it in UserDefualts.
+        if(scoreForCurrentSession > highScore){// check and see if scoreForCurrentSession is greater than highScore.
+            UserDefaults.standard.set(scoreForCurrentSession, forKey: "highScore")//if scoreForCurrentSession is greater than highScore, set it in UserDefualts.
         }
          */
 
@@ -416,7 +416,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             transition = SKTransition.push(with: .up, duration: 1.0)
             */
         case .sound:
-            unowned var levelScene: ConfigForScenes
+            unowned var myConfigForScene: ConfigForScenes
             
             debugPrint("AHHHH")
             
@@ -453,7 +453,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                 SKAction.play()
                  
                 gameAudio.run(SKAction.star)
-                 */ 
+                 */
                 var sound = SKAction.playSoundFileNamed("home-audio.wav", waitForCompletion: false)
                 SKAction.play()
 
@@ -534,7 +534,6 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         case .ItemShopCharacters:
             //authenticateLocalPlayer()
            initInAppPurchases()
-  
             let slectedView = Scenes.ItemShopCharacters.getName()
             presentationView = ItemShopScene(fileNamed: slectedView)
             debugPrint("created ItemShopScene instance")

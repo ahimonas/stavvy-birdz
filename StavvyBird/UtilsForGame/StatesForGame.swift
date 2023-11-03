@@ -152,48 +152,48 @@ class GameOverState: GKState {
         return Scenes.failed.getName()
     }
     
-    unowned var levelScene: ConfigForScenes
+    unowned var myConfigForScene: ConfigForScenes
     var overlay: GameOverlay!
     
     
-    private(set) var currentScoreLabel: SKLabelNode?
+    private(set) var scoreForCurrentSessionLabel: SKLabelNode?
         
     init(scene: ConfigForScenes) {
-        self.levelScene = scene
+        self.myConfigForScene = scene
         super.init()
      
-        overlay = GameOverlay(overlaySceneFileName: overlaySceneFileName, zPosition: 100)
-        currentScoreLabel = overlay.myCurrSpritNod.childNode(withName: "Current Score") as? SKLabelNode
+        overlay = GameOverlay(overlaySceneFileName: overlaySceneFileName, zPosition: 99)
+        scoreForCurrentSessionLabel = overlay.myCurrSpritNod.childNode(withName: "Session Score") as? SKLabelNode
     }
        
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
         
         if previousState is InGameState {
-            levelScene.destroyColumns()
+            myConfigForScene.destroyColumns()
         }
         
-        levelScene.currBirdCharForGame?.isInteractable = false
+        myConfigForScene.currBirdCharForGame?.isInteractable = false
         
         updateScores()
         
         updasteOverlayPresentation()
         
-        levelScene.overlay = overlay
-        levelScene.isHUDHidden = true
+        myConfigForScene.overlay = overlay
+        myConfigForScene.isHUDHidden = true
         
-        levelScene.currBirdCharForGame?.willRelive = false
+        myConfigForScene.currBirdCharForGame?.willRelive = false
         
-        levelScene.scene?.removeAllActions()
+        myConfigForScene.scene?.removeAllActions()
         
-        levelScene.score = 0
+        myConfigForScene.score = 0
         
-        if levelScene.isSoundOn {
-            if let playingAudioNodeName = levelScene.playingAudio.name {
-                levelScene.scene?.childNode(withName: playingAudioNodeName)?.removeFromParent()
+        if myConfigForScene.isSoundOn {
+            if let playingAudioNodeName = myConfigForScene.playingAudio.name {
+                myConfigForScene.scene?.childNode(withName: playingAudioNodeName)?.removeFromParent()
             }
-            if levelScene.scene?.childNode(withName: levelScene.menuAudio.name!) == nil {
-                levelScene.scene?.addChild(levelScene.menuAudio)
+            if myConfigForScene.scene?.childNode(withName: myConfigForScene.menuAudio.name!) == nil {
+                myConfigForScene.scene?.addChild(myConfigForScene.menuAudio)
                 SKAction.play()
             }
         }
@@ -203,9 +203,9 @@ class GameOverState: GKState {
         super.willExit(to: nextState)
         
         if nextState is InGameState {
-            levelScene.overlay = nil
-            levelScene.isHUDHidden = false
-            levelScene.currBirdCharForGame?.isInteractable = true
+            myConfigForScene.overlay = nil
+            myConfigForScene.isHUDHidden = false
+            myConfigForScene.currBirdCharForGame?.isInteractable = true
         }
     }
         
@@ -216,27 +216,27 @@ class GameOverState: GKState {
 
 extension GameOverState {
     fileprivate func updateScores() {
-        let bestScore = UserDefaults.standard.integer(for: .bestScore)
-        let currentScore = levelScene.score
+        let highestScoreAchieved = UserDefaults.standard.integer(for: .highestScoreAchieved)
+        let scoreForCurrentSession = myConfigForScene.score
         
-        if currentScore > bestScore {
-            UserDefaults.standard.set(currentScore, for: .bestScore)
+        if scoreForCurrentSession > highestScoreAchieved {
+            UserDefaults.standard.set(scoreForCurrentSession, for: .highestScoreAchieved)
             let utilityScene = RoutingUtilityScene()
-            utilityScene.saveScore(score: currentScore)
+            utilityScene.saveScore(score: scoreForCurrentSession)
         }
-        UserDefaults.standard.set(currentScore, for: .lastScore)
+        UserDefaults.standard.set(scoreForCurrentSession, for: .lastScore)
     }
     
     fileprivate func updasteOverlayPresentation() {
         let myCurrSpritNod = overlay.myCurrSpritNod
         
-        if let bestScoreLabel = myCurrSpritNod.childNode(withName: "Best Score") as? SKLabelNode {
-            let bestScore = UserDefaults.standard.integer(for: .bestScore)
-            bestScoreLabel.text = "Best Score: \(bestScore)"
+        if let highestScoreAchievedLabel = myCurrSpritNod.childNode(withName: "Highest Score") as? SKLabelNode {
+            let highestScoreAchieved = UserDefaults.standard.integer(for: .highestScoreAchieved)
+            highestScoreAchievedLabel.text = "Highest Score: \(highestScoreAchieved)"
         }
         
-        if let currentScore = myCurrSpritNod.childNode(withName: "Current Score") as? SKLabelNode {
-            currentScore.text = "Current Score: \(levelScene.score)"
+        if let scoreForCurrentSession = myCurrSpritNod.childNode(withName: "Session Score") as? SKLabelNode {
+            scoreForCurrentSession.text = "Current Score: \(myConfigForScene.score)"
         }
     }
 }
@@ -247,12 +247,12 @@ class PausedState: GKState {
         return Scenes.pause.getName()
     }
     
-    unowned var levelScene: SKScene
+    unowned var myConfigForScene: SKScene
     unowned var inGameConf: ConfigForScenes
     var overlay: GameOverlay!
         
     init(scene: SKScene, inGameConf: ConfigForScenes) {
-        self.levelScene = scene
+        self.myConfigForScene = scene
         self.inGameConf = inGameConf
         super.init()
         overlay = GameOverlay(overlaySceneFileName: overlaySceneFileName, zPosition: 999)
@@ -261,7 +261,7 @@ class PausedState: GKState {
     override func didEnter(from previousState: GKState?) {
         super.didEnter(from: previousState)
         
-        levelScene.isPaused = true
+        myConfigForScene.isPaused = true
         inGameConf.overlay = overlay
         inGameConf.isHUDHidden = true
     }
@@ -269,7 +269,7 @@ class PausedState: GKState {
     override func willExit(to nextState: GKState) {
         super.willExit(to: nextState)
         
-        levelScene.isPaused = false
+        myConfigForScene.isPaused = false
         inGameConf.overlay = nil
         inGameConf.isHUDHidden = false
     }
