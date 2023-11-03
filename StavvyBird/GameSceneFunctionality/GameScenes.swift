@@ -3,7 +3,7 @@
 
 import SpriteKit
 
-class HomeScene: RoutingUtilityScene {
+class HomeScene: RoutingUtilityScene, ToggleButtonNodeResponderType {
         
     override func didMove(to view: SKView) {
         super.didMove(to: view)
@@ -12,13 +12,31 @@ class HomeScene: RoutingUtilityScene {
         
         let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
         
+        //this turns it off 
+        /*
         if !isSoundOn {
             let currAudio = childNode(withName: "Audio Node") as? SKAudioNode
             currAudio?.isPaused = true
             currAudio?.removeAllActions()
             currAudio?.removeFromParent()
         }
+         */
+         
+        let buttonNodeMusic =
+            scene?.childNode(withName: "Sound") as? ToggleButtonNode
+        buttonNodeMusic?.isOn =
+            UserDefaults.standard.bool(for: .isSoundOn)
+        
+        //let buttonForDifficulty = scene?.childNode(withName: "Difficulty") as? TriggleButtonNode
+        //let difficultyLevel = 4
+        //let difficultyState = TriggleButtonNode.TriggleState.convert(from: difficultyLevel)
+       // buttonForDifficulty?.triggle = .init(state: difficultyState)
     }
+        
+    func toggleButtonTriggered(toggle: ToggleButtonNode) {
+        UserDefaults.standard.set(toggle.isOn, for: .isSoundOn)
+    }
+        
     
     
     private func loadSelectedPlayer() {
@@ -78,35 +96,6 @@ class HomeScene: RoutingUtilityScene {
         myCurrPlayerNode.zPosition = pendingNode.zPosition
         scene?.addChild(myCurrPlayerNode)
     }
-}
-
-
-class AtmosphereScene: RoutingUtilityScene, ToggleButtonNodeResponderType, TriggleButtonNodeResponderType {
-    
-    override func didMove(to view: SKView) {
-        super.didMove(to: view)
-        
-        let buttonNodeMusic =
-            scene?.childNode(withName: "Sound") as? ToggleButtonNode
-        buttonNodeMusic?.isOn =
-            UserDefaults.standard.bool(for: .isSoundOn)
-        
-        let buttonForDifficulty = scene?.childNode(withName: "Difficulty") as? TriggleButtonNode
-        let difficultyLevel = UserDefaults.standard.rateOfBlocksInSky()
-        let difficultyState = TriggleButtonNode.TriggleState.convert(from: difficultyLevel)
-        buttonForDifficulty?.triggle = .init(state: difficultyState)
-    }
-        
-    func toggleButtonTriggered(toggle: ToggleButtonNode) {
-        UserDefaults.standard.set(toggle.isOn, for: .isSoundOn)
-    }
-        
-    func triggleButtonTriggered(triggle: TriggleButtonNode) {
-        debugPrint("trigger button node")
-        let currDifficulty = triggle.triggle.toDifficultyLevel()
-        UserDefaults.standard.set(difficultyLevel: currDifficulty)
-    }
-    
 }
 
 //  SounioTechnologies LLC

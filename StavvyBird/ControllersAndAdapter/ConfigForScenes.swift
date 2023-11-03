@@ -1,15 +1,12 @@
 //  SounioTechnologies LLC
 //  StavvyBird
-// revisit
 
-
-//Not done!!!!!
 import SpriteKit
 import GameplayKit
 
 extension SKScene {
     
-    func getAllButtons() -> [ButtonNode] {
+    func allOfTheGameButtons() -> [ButtonNode] {
         return myButtonIdentifier.allOfTheGameButtonss.compactMap { buttonIdentifier in
             childNode(withName: "//\(buttonIdentifier.rawValue)") as? ButtonNode
         }
@@ -18,6 +15,7 @@ extension SKScene {
 
 class ConfigForScenes: NSObject,
                        PlaySceneProtocol {
+    
     var score: Int = 0
 var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, seperationFromBottom: CGFloat = 0, characterDimensions = CGSize(width: 101, height: 101), forceOfGravity: CGFloat = -5.1
     
@@ -34,8 +32,12 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
         return gameAudio
     }()
     
-
-    
+    private(set) lazy var playingAudio: SKAudioNode = {
+        let gameAudio = SKAudioNode(fileNamed: "in-game-audio.wav")
+        gameAudio.autoplayLooped = true
+        gameAudio.name = "playing audio"
+        return gameAudio
+    }()
     
     var myGkStateMach: GKStateMachine?
     weak var scene: SKScene?
@@ -59,23 +61,15 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
                 myCurrLayer.myCurrBackground.alpha = backAlph
                 myCurrLayer.myCurrBackground.run(SKAction.fadeIn(withDuration: actionFadeTime))
                 
-                listOfNodes = scene.getAllButtons()
+                listOfNodes = scene.allOfTheGameButtons()
             }
         }
     }
     
-    private(set) lazy var playingAudio: SKAudioNode = {
-        let gameAudio = SKAudioNode(fileNamed: "in-game-audio.wav")
-        gameAudio.autoplayLooped = true
-        gameAudio.name = "playing audio"
-        return gameAudio
-    }()
-    
-    
+
     private var _isHUDHidden: Bool = false
         var isHUDHidden: Bool { get {return _isHUDHidden}
         set(newValue) {_isHUDHidden = newValue
-            
             if let myCurrGame = self.scene?.childNode(withName: "world") {
                 myCurrGame.childNode(withName: "Score Node")?.isHidden = newValue
                 myCurrGame.childNode(withName: "Pause")?.isHidden = newValue
@@ -83,12 +77,9 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
         }
     }
 
-    
-    
     private(set) var continuousBackgroundInstance: ContinuousBackground?
     private let notification = UINotificationFeedbackGenerator()
     private let impact = UIImpactFeedbackGenerator(style: .heavy)
-    
     
     required init?(with scene: SKScene) {
         
@@ -112,7 +103,6 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
         self.init(with: scene)
         self.myGkStateMach = instanceGKSM
     }
-    
     
     func resetScores() {
         scoreLabel?.text = "0"
@@ -174,7 +164,6 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
         debugPrint("---------Impact of Block--------------");
         if isSoundOn { scene?.run(crashNoise) }
     }
-    
     
     func didBegin(_ contact: SKPhysicsContact) {
         let pointOfImpact:UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
