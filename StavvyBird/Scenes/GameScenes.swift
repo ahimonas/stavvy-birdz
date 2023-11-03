@@ -1,14 +1,19 @@
 //  SounioTechnologies LLC
 //  StavvyBird
-
 import SpriteKit
-
-class HomeScene: RoutingUtilityScene {
+import GameplayKit
+import GameKit
+class HomeScene: RoutingUtilityScene, ToggleButtonNodeResponderType {
         
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
         loadSelectedPlayer()
+        
+        let buttonNodeMusic =
+        view.scene?.childNode(withName: "Sound") as? ToggleButtonNode
+        buttonNodeMusic?.isOn =
+            UserDefaults.standard.bool(for: .isSoundOn)
         
         let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
         
@@ -56,12 +61,6 @@ class HomeScene: RoutingUtilityScene {
             scene?.addChild(myCurrPlayerNode)
             
         }
-        
-        
-
-    
-    
-        
         pendingNode.removeFromParent()
     }
     
@@ -78,44 +77,12 @@ class HomeScene: RoutingUtilityScene {
         myCurrPlayerNode.zPosition = pendingNode.zPosition
         scene?.addChild(myCurrPlayerNode)
     }
-}
-
-
-class AtmosphereScene: RoutingUtilityScene, ToggleButtonNodeResponderType, TriggleButtonNodeResponderType {
     
-    override func didMove(to view: SKView) {
-        super.didMove(to: view)
-        
-        let buttonNodeMusic =
-            scene?.childNode(withName: "Sound") as? ToggleButtonNode
-        buttonNodeMusic?.isOn =
-            UserDefaults.standard.bool(for: .isSoundOn)
-        
-        let buttonForDifficulty = scene?.childNode(withName: "Difficulty") as? TriggleButtonNode
-        let difficultyLevel = UserDefaults.standard.rateOfBlocksInSky()
-        let difficultyState = TriggleButtonNode.TriggleState.convert(from: difficultyLevel)
-        buttonForDifficulty?.triggle = .init(state: difficultyState)
-    }
-        
     func toggleButtonTriggered(toggle: ToggleButtonNode) {
         UserDefaults.standard.set(toggle.isOn, for: .isSoundOn)
     }
-        
-    func triggleButtonTriggered(triggle: TriggleButtonNode) {
-        debugPrint("trigger button node")
-        let currDifficulty = triggle.triggle.toDifficultyLevel()
-        UserDefaults.standard.set(difficultyLevel: currDifficulty)
-    }
     
 }
-
-//  SounioTechnologies LLC
-//  StavvyBird
-//revisit
-
-import SpriteKit
-import GameplayKit
-import GameKit
 
 
 //Game

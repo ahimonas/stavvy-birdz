@@ -32,7 +32,6 @@
 		CAABA6882AEB25CF00B9810E /* HomeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA67E2AEB25CF00B9810E /* HomeScene.sks */; };
 		CAABA68B2AEB25CF00B9810E /* ItemShopScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6812AEB25CF00B9810E /* ItemShopScene.sks */; };
 		CAABA68C2AEB25CF00B9810E /* PlayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6822AEB25CF00B9810E /* PlayScene.sks */; };
-		CAABA68D2AEB25CF00B9810E /* AtmosphereScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6832AEB25CF00B9810E /* AtmosphereScene.sks */; };
 		CAABA6972AEB25EC00B9810E /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6932AEB25EC00B9810E /* GameOverScene.sks */; };
 		CAABA6982AEB25EC00B9810E /* ResumeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6942AEB25EC00B9810E /* ResumeScene.sks */; };
 		CAABA6CF2AEB2C7100B9810E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAABA6CE2AEB2C7100B9810E /* Assets.xcassets */; };
@@ -80,7 +79,6 @@
 		CAABA67E2AEB25CF00B9810E /* HomeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HomeScene.sks; sourceTree = "<group>"; };
 		CAABA6812AEB25CF00B9810E /* ItemShopScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ItemShopScene.sks; sourceTree = "<group>"; };
 		CAABA6822AEB25CF00B9810E /* PlayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayScene.sks; sourceTree = "<group>"; };
-		CAABA6832AEB25CF00B9810E /* AtmosphereScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AtmosphereScene.sks; sourceTree = "<group>"; };
 		CAABA6932AEB25EC00B9810E /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
 		CAABA6942AEB25EC00B9810E /* ResumeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ResumeScene.sks; sourceTree = "<group>"; };
 		CAABA6CE2AEB2C7100B9810E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -246,7 +244,6 @@
 			children = (
 				CAABA67E2AEB25CF00B9810E /* HomeScene.sks */,
 				CAABA6822AEB25CF00B9810E /* PlayScene.sks */,
-				CAABA6832AEB25CF00B9810E /* AtmosphereScene.sks */,
 				CAABA6942AEB25EC00B9810E /* ResumeScene.sks */,
 				CAABA6812AEB25CF00B9810E /* ItemShopScene.sks */,
 				CAABA6932AEB25EC00B9810E /* GameOverScene.sks */,
@@ -349,7 +346,6 @@
 				CA7047542AE9C33B0020A04A /* home-audio.wav in Resources */,
 				CAABA6882AEB25CF00B9810E /* HomeScene.sks in Resources */,
 				CAB3CDD52AEF59E000F7908F /* game-over-noise.wav in Resources */,
-				CAABA68D2AEB25CF00B9810E /* AtmosphereScene.sks in Resources */,
 				A950486120BAE29C0020ECD9 /* stavvy-rat.gif in Resources */,
 				A950486320BAE29C0020ECD9 /* stavvy-gold.gif in Resources */,
 				CADBD9672AF0AE9D0093477F /* SplashBoard.storyboard in Resources */,

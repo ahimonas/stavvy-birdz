@@ -31,39 +31,23 @@ enum myButtonIdentifier: String {
 class ButtonNode: SKSpriteNode {
     
     var myCurrButId: myButtonIdentifier!
-    
 
-    var responder: ButtonNodeResponderType {
-        guard let responder = scene as? ButtonNodeResponderType else {
-            fatalError("Current Button isn't in scene")
-        }
-        return responder
-    }
-    
-    var isHighlighted = false {
+    var currGameHighlyt = false {
         didSet {
-            guard oldValue != isHighlighted else { return }
-            
+            guard oldValue != currGameHighlyt else { return }
             removeAllActions()
-            
-            
-            let butCgHighlight: CGFloat = isHighlighted ? 0.98 : 1.02
-            let scaleAction = SKAction.scale(by: butCgHighlight, duration: 0.14)
-            
-            let mixTheHighlights: CGFloat = isHighlighted ? 1.0 : 0.0
-            let colorBlendAction = SKAction.colorize(withColorBlendFactor: mixTheHighlights, duration: 0.14)
-            run(SKAction.group([scaleAction, colorBlendAction]))
+            let butCgHighlight: CGFloat = currGameHighlyt ? 0.98 : 1.02
+            let skActionresize = SKAction.scale(by: butCgHighlight, duration: 0.14)
+            let mixTheHighlights: CGFloat = currGameHighlyt ? 1.0 : 0.0
+            let mixTheHigh = SKAction.colorize(withColorBlendFactor: mixTheHighlights, duration: 0.14)
+            run(SKAction.group([skActionresize, mixTheHigh]))
         }
     }
     
-    var isSelected = false {
-        didSet {
-            texture = isSelected ? selectedTexture : defaultTexture
-        }
-    }
+    var currChosenText = false { didSet { texture = currChosenText ? theSkTWeAssigned : atRestSkTx }}
     
-    var defaultTexture: SKTexture?
-    var selectedTexture: SKTexture?
+    var atRestSkTx: SKTexture?
+    var theSkTWeAssigned: SKTexture?
     var focusableNeighbors = [ControlInputDirection: ButtonNode]()
     
 
@@ -98,13 +82,13 @@ class ButtonNode: SKSpriteNode {
         }
         self.myCurrButId = myCurrButId
         
-        defaultTexture = texture
+        atRestSkTx = texture
         
         if let textureName = myCurrButId.selectedTextureName {
-            selectedTexture = SKTexture(imageNamed: textureName)
+            theSkTWeAssigned = SKTexture(imageNamed: textureName)
         }
         else {
-            selectedTexture = texture
+            theSkTWeAssigned = texture
         }
         
         focusRing.isHidden = true
@@ -115,8 +99,8 @@ class ButtonNode: SKSpriteNode {
         let newButton = super.copy(with: zone) as! ButtonNode
         
         newButton.myCurrButId = myCurrButId
-        newButton.defaultTexture = defaultTexture?.copy() as? SKTexture
-        newButton.selectedTexture = selectedTexture?.copy() as? SKTexture
+        newButton.atRestSkTx = atRestSkTx?.copy() as? SKTexture
+        newButton.theSkTWeAssigned = theSkTWeAssigned?.copy() as? SKTexture
         return newButton
     }
     
@@ -142,212 +126,37 @@ class ButtonNode: SKSpriteNode {
         run(theAction, withKey: animationKey)
     }
     
-    
-    #if os(iOS)
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        
-        isHighlighted = true
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        
-        isHighlighted = false
-        if containsTouches(touches: touches) {
-            buttonTriggered()
-        }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {
-        super.touchesCancelled(touches!, with: event)
-        
-        isHighlighted = false
-    }
-    
-    private func containsTouches(touches: Set<UITouch>) -> Bool {
-        guard let scene = scene else { return false }
-        
-        return touches.contains { touch in
-            let touchPoint = touch.location(in: scene)
-            let touchedNode = scene.atPoint(touchPoint)
-            return touchedNode === self || touchedNode.inParentHierarchy(self)
-        }
-    }
-    
-    //HUH???
-    #elseif os(OSX)
-    override func mouseDown(with event: NSEvent) {
-        super.mouseDown(with: event)
-        
-        isHighlighted = true
-    }
-    
-    override func mouseUp(with event: NSEvent) {
-        super.mouseUp(with: event)
-        isHighlighted = false
-        if containsLocationForEvent(event) {
-            buttonTriggered()
-        }
-    }
-    
-    private func containsLocationForEvent(_ event: NSEvent) -> Bool {
-        guard let scene = scene else { return false }
-        
-        let location = event.location(in: scene)
-        let clickedNode = scene.atPoint(location)
-        return clickedNode === self || clickedNode.inParentHierarchy(self)
-    }
-    #endif
-}
-
-
-//
-//  TriggleButtonNode.swift
-//  StavvyBird
-//
-//
-
-import SpriteKit
-
-protocol TriggleButtonNodeResponderType: AnyObject {
-    func triggleButtonTriggered(triggle: TriggleButtonNode)
-}
-
-class TriggleButtonNode: ButtonNode {
-        
-    enum TriggleState {
-        case off
-        case switched
-        case on
-        
-        static func convert(from difficultyLevel: Difficulty) -> TriggleState {
-            switch difficultyLevel {
-            case .easy:
-                return .off
-            case .medium:
-                return .switched
-            case .hard:
-                return .on
-            }
-        }
-    }
-    
-    struct Triggle {
-                
-        private(set) var off: Bool
-        private(set) var switched: Bool
-        private(set) var on: Bool
-        private var lastTriggleState: TriggleState
-        
-        // MARK: - Initializers
-        
-        init(state: TriggleState) {
-            switch state {
-            case .off:
-                off = true
-                switched = false
-                on = false
-                lastTriggleState = .off
-            case .switched:
-                off = false
-                switched = true
-                on = false
-                lastTriggleState = .switched
-            case .on:
-                off = false
-                switched = false
-                on = true
-                lastTriggleState = .on
-            }
-        }
-                
-        mutating func switchState() {
-            if off {
-                off = !off
-                switched = !switched
-                lastTriggleState = .switched
-            } else if switched {
-                switched = !switched
-                on = !on
-                lastTriggleState = .on
-            } else if on {
-                on = !on
-                off = !off
-                lastTriggleState = .off
-            }
-        }
-        
-        func state() -> TriggleState {
-           return lastTriggleState
-        }
-        
-        func toDifficultyLevel() -> Difficulty {
-            switch lastTriggleState {
-            case .off:
-                return Difficulty.easy
-            case .switched:
-                return Difficulty.medium
-            case .on:
-                return Difficulty.hard
-            }
-        }
-        
-    }
-    
-    // MARK: - Properties
-    
-    var triggle: Triggle {
-        didSet {
-            guard let off = state.off, let switched = state.switched, let on = state.on else {
-                return
-            }
-            on.isHidden = !triggle.on
-            off.isHidden = !triggle.off
-            switched.isHidden = !triggle.switched
-            
-            if isUserInteractionEnabled {
-                triggleResponder.triggleButtonTriggered(triggle: self)
-            }
-        }
-    }
-    
-    private var state: (off: SKLabelNode?, switched: SKLabelNode?, on: SKLabelNode?) = (off: nil, switched: nil, on: nil)
-    
-    var triggleResponder: TriggleButtonNodeResponderType {
-        guard let responder = scene as? TriggleButtonNodeResponderType else {
-            fatalError("Button needs a responder.")
+    var responder: ButtonNodeResponderType {
+        guard let responder = scene as? ButtonNodeResponderType else {
+            fatalError("Current Button isn't in scene")
         }
         return responder
     }
     
-        
-    required init?(coder aDecoder: NSCoder) {
-        let difficultyLevel = UserDefaults.standard.rateOfBlocksInSky()
-        triggle = .init(state: TriggleState.convert(from: difficultyLevel))
-        
-        super.init(coder: aDecoder)
-        
-        guard let offState = childNode(withName: "Easy") as? SKLabelNode else {
-            fatalError("Unavailable:  SKLabel node")
-        }
-        state.off = offState
-        
-        guard let switchedState = childNode(withName: "Medium") as? SKLabelNode else {
-            fatalError("Unavailable:  SKLabel node")
-        }
-        state.switched = switchedState
-        
-        guard let onState = childNode(withName: "Hard") as? SKLabelNode else {
-            fatalError("Unavailable:  SKLabel node")
-        }
-        state.on = onState
-        
-    }
-        
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        triggle.switchState()
+        currGameHighlyt = true
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        currGameHighlyt = false
+        if containsTouches(touches: touches) { buttonTriggered() }
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>?, with event: UIEvent?) {
+        super.touchesCancelled(touches!, with: event)
+        /*we can set the highlight */ currGameHighlyt = false
+    }
+    
+    private func containsTouches(touches: Set<UITouch>) -> Bool {
+        guard let scene = scene else { return false }
+        return touches.contains { touch in
+            let whereWasPinged = touch.location(in: scene)
+            let whatGotTouched = scene.atPoint(whereWasPinged)
+            return whatGotTouched === self || whatGotTouched.inParentHierarchy(self)
+        }
     }
 }
 
@@ -364,22 +173,20 @@ protocol ToggleButtonNodeResponderType: AnyObject {
 }
 
 class ToggleButtonNode: ButtonNode {
-        
     var isOn: Bool {
         didSet {
-            guard let on = state.on, let off = state.off else {
+            guard let Mute = state.Mute, let Unmute = state.Unmute else {
                 return
             }
-            on.isHidden = !isOn
-            off.isHidden = isOn
+            Mute.isHidden = !isOn
+            Unmute.isHidden = isOn
             if isUserInteractionEnabled {
                 toggleResponder.toggleButtonTriggered(toggle: self)
             }
         }
     }
     
-    private var state: (on: SKLabelNode?, off: SKLabelNode?) = (on: nil, off: nil)
-    
+    private var state: (Mute: SKLabelNode?, Unmute: SKLabelNode?) = (Mute: nil, Unmute: nil)
     var toggleResponder: ToggleButtonNodeResponderType {
         guard let responder = scene as? ToggleButtonNodeResponderType else {
             fatalError("The button didn't change state")
@@ -392,14 +199,14 @@ class ToggleButtonNode: ButtonNode {
         let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
         isOn = isSoundOn
         super.init(coder: aDecoder)
-        guard let onState = self.childNode(withName: "On") as? SKLabelNode else  {
+        guard let onState = self.childNode(withName: "Mute") as? SKLabelNode else  {
             fatalError("Unavailable:  SKLabel node")
         }
-        state.on = onState
-        guard let offState = self.childNode(withName: "Off") as? SKLabelNode else {
+        state.Mute = onState
+        guard let offState = self.childNode(withName: "Unmute") as? SKLabelNode else {
             fatalError("Unavailable:  SKLabel node")
         }
-        state.off = offState
+        state.Unmute = offState
     }
         
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -8,7 +8,6 @@ import SpriteKit
 import GameplayKit
 
 extension SKScene {
-    
     func getAllButtons() -> [ButtonNode] {
         return myButtonIdentifier.allOfTheGameButtonss.compactMap { buttonIdentifier in
             childNode(withName: "//\(buttonIdentifier.rawValue)") as? ButtonNode

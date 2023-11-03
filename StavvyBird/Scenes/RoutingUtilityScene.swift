@@ -403,9 +403,6 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             presentationView = PlayScene(fileNamed: startView)
             
             transition = SKTransition.fade(withDuration: 1.0)
-        case .settings:
-            let slectedView = Scenes.setting.getName()
-            presentationView = AtmosphereScene(fileNamed: slectedView)
             
             RoutingUtilityScene.lastPushTransitionDirection = .down
             transition = SKTransition.push(with: .down, duration: 1.0)
@@ -439,6 +436,61 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
               //  noAdsBtn.name = "noAdsBtn"
             }
              */
+        case .sound:
+            /*
+            let inGameConf: ConfigForScenes;
+            
+            if inGameConf.isSoundOn {
+                inGameConf.scene?.addChild(inGameConf.playingAudio)
+                SKAction.play()
+            }
+            */ 
+            /*
+            let buttonNodeMusic =
+            presentationView?.scene?.childNode(withName: "Sound") as? ToggleButtonNode
+            buttonNodeMusic?.isOn =
+                UserDefaults.standard.bool(for: .isSoundOn)
+            
+            let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
+            
+       
+            */
+            var isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
+            isSoundOn = true;
+            debugPrint("AHHHH", isSoundOn)
+            
+            if !isSoundOn {
+                debugPrint("----HITTT--", isSoundOn)
+
+                let currAudio = childNode(withName: "Audio Node") as? SKAudioNode
+                currAudio?.isPaused = true
+                currAudio?.isPaused = true;
+                //currAudio?.removeAllActions()
+                //currAudio?.removeFromParent()
+            }
+            
+            if isSoundOn {
+                debugPrint("----TRUEEE--", isSoundOn)
+
+                let gameAudio = SKAudioNode(fileNamed: "home-audio.wav")
+                gameAudio.autoplayLooped = true
+                gameAudio.name = "manu audio"
+                
+               var menuAudio: SKAudioNode = {
+                    let gameAudio = SKAudioNode(fileNamed: "home-audio.wav")
+                    gameAudio.autoplayLooped = true
+                    gameAudio.name = "manu audio"
+                    return gameAudio
+                }()
+                
+                //let soundButton = scene?.childNode(withName: "Sound") as? ToggleButtonNode
+                //soundButton?.isOn = UserDefaults.standard.bool(for: .isSoundOn)
+                
+                
+            }
+            
+            
+            
             
   
 
@@ -523,6 +575,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         debugPrint("presented ItemShopScene instance")
     }
     
+
 
 
 }

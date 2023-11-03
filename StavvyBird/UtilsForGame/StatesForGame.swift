@@ -9,6 +9,7 @@ import SpriteKit
 class InGameState: GKState {
         
     unowned var inGameConf: ConfigForScenes
+    
     let sizeOfCharacter = CGPoint(x: 0.4, y: 0.4)
     let greekRainParticleEmtterTiming: TimeInterval = 15
     let timeIntervalForDrawingFrames: TimeInterval = 0.1
