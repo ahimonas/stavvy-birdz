@@ -10,7 +10,7 @@ import GameplayKit
 extension SKScene {
     
     func getAllButtons() -> [ButtonNode] {
-        return ButtonIdentifier.allButtonIdentifiers.compactMap { buttonIdentifier in
+        return myButtonIdentifier.allOfTheGameButtonss.compactMap { buttonIdentifier in
             childNode(withName: "//\(buttonIdentifier.rawValue)") as? ButtonNode
         }
     }
@@ -34,12 +34,7 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
         return gameAudio
     }()
     
-    private(set) lazy var playingAudio: SKAudioNode = {
-        let gameAudio = SKAudioNode(fileNamed: "in-game-audio.wav")
-        gameAudio.autoplayLooped = true
-        gameAudio.name = "playing audio"
-        return gameAudio
-    }()
+
     
     
     var myGkStateMach: GKStateMachine?
@@ -69,6 +64,14 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
         }
     }
     
+    private(set) lazy var playingAudio: SKAudioNode = {
+        let gameAudio = SKAudioNode(fileNamed: "in-game-audio.wav")
+        gameAudio.autoplayLooped = true
+        gameAudio.name = "playing audio"
+        return gameAudio
+    }()
+    
+    
     private var _isHUDHidden: Bool = false
         var isHUDHidden: Bool { get {return _isHUDHidden}
         set(newValue) {_isHUDHidden = newValue
@@ -82,7 +85,7 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
 
     
     
-    private(set) var infiniteBackgroundNode: ContinuousBackground?
+    private(set) var continuousBackgroundInstance: ContinuousBackground?
     private let notification = UINotificationFeedbackGenerator()
     private let impact = UIImpactFeedbackGenerator(style: .heavy)
     
@@ -101,8 +104,7 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
         }
         
         super.init()
-        
-        prepareWorld(for: scene)
+        setUpGame(for: scene)
         prepareInfiniteBackgroundScroller(for: scene)
     }
     
@@ -119,7 +121,7 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
     func destroyColumns() {
         var skArray = [SKNode]()
         
-        infiniteBackgroundNode?.children.forEach({ node in
+        continuousBackgroundInstance?.children.forEach({ node in
             let nameOfAsset = node.name
             if let doesContainNodeName = nameOfAsset?.contains("column"), doesContainNodeName { skArray += [node] }
         })
@@ -131,7 +133,7 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
         skArray.removeAll()
     }
     
-     func prepareWorld(for scene: SKScene) {
+     func setUpGame(for scene: SKScene) {
         scene.physicsWorld.gravity = CGVector(dx: 0.0, dy: forceOfGravity)
         let currCgRec = CGRect(x: 0, y: seperationFromBottom, width: scene.size.width, height: scene.size.height - seperationFromBottom)
         scene.physicsBody = SKPhysicsBody(edgeLoopFrom: currCgRec)
@@ -144,11 +146,10 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
     
      func prepareInfiniteBackgroundScroller(for scene: SKScene) {
         let nodeFactorSize = NodeScale.nodeScaleOfContinuousBackground.getValue()
-        
-        infiniteBackgroundNode = ContinuousBackground(fileName: namedPngFile, scaleFactor: CGPoint(x: nodeFactorSize, y: nodeFactorSize))
-        infiniteBackgroundNode!.zPosition = 0
-        scene.addChild(infiniteBackgroundNode!)
-        modernizers.append(infiniteBackgroundNode!)
+        continuousBackgroundInstance = ContinuousBackground(fileName: namedPngFile, scaleFactor: CGPoint(x: nodeFactorSize, y: nodeFactorSize))
+        continuousBackgroundInstance!.zPosition = 0
+        scene.addChild(continuousBackgroundInstance!)
+        modernizers.append(continuousBackgroundInstance!)
     }
     
     func greekShapeRaining
