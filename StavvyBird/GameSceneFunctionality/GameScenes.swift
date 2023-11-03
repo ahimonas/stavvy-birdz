@@ -5,14 +5,32 @@ import SpriteKit
 
 class HomeScene: RoutingUtilityScene, ToggleButtonNodeResponderType {
         
+    override func sceneDidLoad() {
+        super.sceneDidLoad()
+        
+
+        
+    }
+    /*
+    private(set) lazy var menuAudio: SKAudioNode = {
+        let gameAudio = SKAudioNode(fileNamed: "home-audio.wav")
+        gameAudio.autoplayLooped = true
+        gameAudio.name = "manu audio"
+        return gameAudio
+    }()
+     */
+    
+    
+    
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
         loadSelectedPlayer()
         
-        let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
+        //let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
         
-        //this turns it off 
+        //debugPrint("THE GAME SOUNDS", isSoundOn)
+        //this turns it off
         /*
         if !isSoundOn {
             let currAudio = childNode(withName: "Audio Node") as? SKAudioNode
@@ -21,12 +39,12 @@ class HomeScene: RoutingUtilityScene, ToggleButtonNodeResponderType {
             currAudio?.removeFromParent()
         }
          */
-         
+         /*
         let buttonNodeMusic =
             scene?.childNode(withName: "Sound") as? ToggleButtonNode
         buttonNodeMusic?.isOn =
             UserDefaults.standard.bool(for: .isSoundOn)
-        
+        */
         //let buttonForDifficulty = scene?.childNode(withName: "Difficulty") as? TriggleButtonNode
         //let difficultyLevel = 4
         //let difficultyState = TriggleButtonNode.TriggleState.convert(from: difficultyLevel)
@@ -34,7 +52,35 @@ class HomeScene: RoutingUtilityScene, ToggleButtonNodeResponderType {
     }
         
     func toggleButtonTriggered(toggle: ToggleButtonNode) {
+        debugPrint("EEEE", toggle.isOn);
+        /*
+        if(!toggle.isOn){
+            debugPrint("turn off", toggle.isOn);
+
+            let currAudio = childNode(withName: "Audio Node") as? SKAudioNode
+            currAudio?.isPaused = true
+            currAudio?.isPaused = true;
+            //currAudio?.removeAllActions()
+            //currAudio?.removeFromParent()
+            
+            let gameAudio = SKAudioNode(fileNamed: "home-audio.wav")
+                gameAudio.removeAllActions()
+                gameAudio.removeFromParent()
+        }
+
+        var sound = SKAction.playSoundFileNamed("home-audio.wav", waitForCompletion: false)
+        if toggle.isOn {
+            let gameAudio = SKAudioNode(fileNamed: "home-audio.wav")
+            gameAudio.autoplayLooped = true
+            gameAudio.name = "manu audio"
+            SKAction.play()
+        }
+         */
+        
+        
         UserDefaults.standard.set(toggle.isOn, for: .isSoundOn)
+        
+        
     }
         
     

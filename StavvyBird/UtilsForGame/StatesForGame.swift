@@ -49,6 +49,7 @@ class InGameState: GKState {
         
         
         if inGameConf.isSoundOn {
+            debugPrint("WHAT SCENE ", scene.name, inGameConf.menuAudio.name)
             if let menuAudio = scene.childNode(withName: inGameConf.menuAudio.name!) {
                 menuAudio.removeFromParent()
             }

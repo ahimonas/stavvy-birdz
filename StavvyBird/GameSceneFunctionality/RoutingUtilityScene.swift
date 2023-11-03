@@ -416,6 +416,70 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             transition = SKTransition.push(with: .up, duration: 1.0)
             */
         case .sound:
+            unowned var levelScene: ConfigForScenes
+            
+            debugPrint("AHHHH")
+            
+            let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
+
+            if !isSoundOn {
+                debugPrint("----HITTT--", isSoundOn)
+
+                let currAudio = childNode(withName: "Audio Node") as? SKAudioNode
+                currAudio?.isPaused = true
+                currAudio?.isPaused = true;
+                currAudio?.removeAllActions()
+                currAudio?.removeFromParent()
+            }
+            
+            if isSoundOn {
+                debugPrint("----HITTT TURN ON--", isSoundOn)
+                    /*
+                let currAudio = childNode(withName: "Audio Node") as? SKAudioNode
+                currAudio?.autoplayLooped = true
+                currAudio?.name = "manu audio"
+                SKAction.play()
+                     */
+                /*
+                let gameAudio = childNode(withName: "Audio Node") as? SKAudioNode
+                gameAudio!.autoplayLooped = true
+                gameAudio!.name = "manu audio"
+                SKAction.play()
+                 */
+                /*
+                let gameAudio = SKAudioNode(fileNamed: "home-audio.wav")
+                gameAudio.autoplayLooped = true
+                gameAudio.name = "manu audio"
+                SKAction.play()
+                 
+                gameAudio.run(SKAction.star)
+                 */ 
+                var sound = SKAction.playSoundFileNamed("home-audio.wav", waitForCompletion: false)
+                SKAction.play()
+
+                /*
+                    let gameAudio2 = SKAudioNode(fileNamed: "home-audio.wav")
+                    gameAudio2.autoplayLooped = true
+                    gameAudio2.name = "manu audio"
+                 */
+                
+            }
+            
+
+            
+            
+            /*
+            let gameAudio = SKAudioNode(fileNamed: "home-audio.wav")
+            gameAudio.autoplayLooped = true
+            gameAudio.name = "manu audio"
+            //return gameAudio
+            
+            scene?.addChild(inGameConf.playingAudio)
+            SKAction.play()
+            */
+
+
+            
                    /*
                    let inGameConf: ConfigForScenes;
                    
@@ -433,8 +497,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                    let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
                    
               
-                   */
-                   var isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
+                   
                    isSoundOn = true;
                    debugPrint("AHHHH", isSoundOn)
 
@@ -466,7 +529,7 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                        //soundButton?.isOn = UserDefaults.standard.bool(for: .isSoundOn)
                        
 
-                   }
+                   }*/
 
         case .ItemShopCharacters:
             //authenticateLocalPlayer()
@@ -572,6 +635,8 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         
         debugPrint("presented ItemShopScene instance")
     }
+    
+
     
 
 

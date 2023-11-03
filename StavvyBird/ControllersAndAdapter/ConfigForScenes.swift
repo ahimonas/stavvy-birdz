@@ -66,6 +66,7 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
         }
     }
     
+    
 
     private var _isHUDHidden: Bool = false
         var isHUDHidden: Bool { get {return _isHUDHidden}
