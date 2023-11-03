@@ -111,8 +111,8 @@ struct ColumnFactory {
         
         let randomBlockWidth = CGFloat.range(min: 105, max: 350)
 
-        let randomBlockHeight = CGFloat.range(min: 120, max: 470) //height
-        let midUpPipe = BlockNode(textures: (block: "column-parts", cap: "sparky22"), of: CGSize(width: randomBlockWidth, height: randomBlockHeight))
+        let randomBlockHeight = CGFloat.range(min: 105, max: 470) //height
+        let midUpPipe = BlockNode(textures: (block: "column-parts", cap: "sparkGold"), of: CGSize(width: randomBlockHeight, height: randomBlockHeight))
         
         //halfofblock needs to be over the bottom axis, we can place the blocks anywhere between heree
         let bottomBoundary = (randomBlockHeight/2)+2
@@ -139,9 +139,14 @@ class BlockNode: SKSpriteNode {
     
     init?(textures: (block: String, cap: String), of size: CGSize) {
         
-        guard let skyBlockIMGGG = UIImage(named: "sparky22" )?.cgImage else {
+        let randomDouble2 = Double.random(in: 1...2)
+        guard var skyBlockIMGGG = UIImage(named: "sparkGold" )?.cgImage else {
                  return nil
              }
+        
+        if(size.height > 300){
+            skyBlockIMGGG = (UIImage(named: "sparkBlack" )?.cgImage)!
+        }
         
         //The rectangle we draw the block in, think outer container, if we touch this we die and we draw the image inside
         let textureRect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
