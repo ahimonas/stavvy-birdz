@@ -139,13 +139,17 @@ class BlockNode: SKSpriteNode {
     
     init?(textures: (block: String, cap: String), of size: CGSize) {
         
-        let randomDouble2 = Double.random(in: 1...2)
         guard var skyBlockIMGGG = UIImage(named: "sparkGold" )?.cgImage else {
                  return nil
              }
         
-        if(size.height > 300){
+        if(size.height < 150){
             skyBlockIMGGG = (UIImage(named: "sparkBlack" )?.cgImage)!
+        }
+        
+        
+        if(size.height > 350){
+            skyBlockIMGGG = (UIImage(named: "sparkWhite" )?.cgImage)!
         }
         
         //The rectangle we draw the block in, think outer container, if we touch this we die and we draw the image inside
