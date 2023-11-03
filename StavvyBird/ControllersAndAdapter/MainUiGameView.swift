@@ -74,16 +74,6 @@ class MainUiGameView: UIViewController, GADBannerViewDelegate {
             if let view = self.view as! SKView? {
                 view.presentScene(scene)
                 view.ignoresSiblingOrder = true
-                if(!UserDefaults.standard.bool(forKey: "removeRavensLock")){
-                    bannerView = GADBannerView(adSize: GADAdSizeBanner)
-                    addBannerViewToView(bannerView)
-                    bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-                    bannerView.rootViewController = self
-                    bannerView.delegate = self
-                    bannerView.load(GADRequest())
-                    bannerView.frame = CGRect(x: 0, y: 0, width: 320, height: 50)
-                    admobBanner = bannerView
-                }
 //              view.showsFPS = true
 //              view.showsNodeCount = true
 //              view.showsPhysics = true
