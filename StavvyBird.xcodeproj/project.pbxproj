@@ -155,8 +155,6 @@
 			children = (
 				CAAE1FC32AF4786000B1757C /* GameSceneFunctionality */,
 				CAAE1FAA2AF477C300B1757C /* GameSceneViews */,
-				CAAE1FA72AF4771100B1757C /* GameAssets */,
-				CA091DC12AF45A7B00B093D8 /* gameAnimations */,
 				CA091DBD2AF45A0C00B093D8 /* AppDelegate.swift */,
 				CA091DB72AF457BD00B093D8 /* Info.plist */,
 				CADBD96E2AF0B1450093477F /* MainUIDeviceStoryboards */,
@@ -165,6 +163,8 @@
 				CAAEAD522AF0C596000D9594 /* ColsBackgroundPlayers */,
 				CAA9D4252AF0B84300DEA75E /* ControllersAndAdapter */,
 				CAA9D4262AF0B93F00DEA75E /* UtilsForGame */,
+				CAAE1FA72AF4771100B1757C /* GameAssets */,
+				CA091DC12AF45A7B00B093D8 /* gameAnimations */,
 			);
 			path = StavvyBird;
 			sourceTree = "<group>";
