@@ -24,7 +24,6 @@
 		CAAE1FBD2AF4780900B1757C /* PlayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FB72AF4780900B1757C /* PlayScene.sks */; };
 		CAAE1FBE2AF4780900B1757C /* ResumeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FB82AF4780900B1757C /* ResumeScene.sks */; };
 		CAAE1FBF2AF4780900B1757C /* ItemShopScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FB92AF4780900B1757C /* ItemShopScene.sks */; };
-		CAAE1FC02AF4780900B1757C /* AtmosphereScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FBA2AF4780900B1757C /* AtmosphereScene.sks */; };
 		CAAE1FC12AF4780900B1757C /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FBB2AF4780900B1757C /* GameOverScene.sks */; };
 		CAAE1FC22AF4780900B1757C /* HomeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FBC2AF4780900B1757C /* HomeScene.sks */; };
 		CAAE1FC72AF4789B00B1757C /* GameScenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1FC42AF4789B00B1757C /* GameScenes.swift */; };
@@ -72,7 +71,6 @@
 		CAAE1FB72AF4780900B1757C /* PlayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayScene.sks; sourceTree = "<group>"; };
 		CAAE1FB82AF4780900B1757C /* ResumeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ResumeScene.sks; sourceTree = "<group>"; };
 		CAAE1FB92AF4780900B1757C /* ItemShopScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ItemShopScene.sks; sourceTree = "<group>"; };
-		CAAE1FBA2AF4780900B1757C /* AtmosphereScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AtmosphereScene.sks; sourceTree = "<group>"; };
 		CAAE1FBB2AF4780900B1757C /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
 		CAAE1FBC2AF4780900B1757C /* HomeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HomeScene.sks; sourceTree = "<group>"; };
 		CAAE1FC42AF4789B00B1757C /* GameScenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScenes.swift; sourceTree = "<group>"; };
@@ -153,28 +151,19 @@
 		A9ACB91B2099A1F200966991 /* StavvyBird */ = {
 			isa = PBXGroup;
 			children = (
-				CAAE1FC32AF4786000B1757C /* GameSceneFunctionality */,
-				CAAE1FAA2AF477C300B1757C /* GameSceneViews */,
 				CA091DBD2AF45A0C00B093D8 /* AppDelegate.swift */,
 				CA091DB72AF457BD00B093D8 /* Info.plist */,
 				CADBD96E2AF0B1450093477F /* MainUIDeviceStoryboards */,
 				CA94BB7D2AD8D7AE005AAF83 /* Stavvy Birds.storekit */,
 				CA47A3BF2ACB5DE400E8ED52 /* StavvyBird.entitlements */,
-				CAAEAD522AF0C596000D9594 /* ColsBackgroundPlayers */,
 				CAA9D4252AF0B84300DEA75E /* ControllersAndAdapter */,
+				CAAEAD522AF0C596000D9594 /* ColsBackgroundPlayers */,
 				CAA9D4262AF0B93F00DEA75E /* UtilsForGame */,
+				CAAE1FC32AF4786000B1757C /* GameSceneFunctionality */,
+				CAAE1FAA2AF477C300B1757C /* GameSceneViews */,
 				CAAE1FA72AF4771100B1757C /* GameAssets */,
-				CA091DC12AF45A7B00B093D8 /* gameAnimations */,
 			);
 			path = StavvyBird;
-			sourceTree = "<group>";
-		};
-		CA091DC12AF45A7B00B093D8 /* gameAnimations */ = {
-			isa = PBXGroup;
-			children = (
-				CA091DC22AF45AD900B093D8 /* Actions.sks */,
-			);
-			path = gameAnimations;
 			sourceTree = "<group>";
 		};
 		CAA9D4252AF0B84300DEA75E /* ControllersAndAdapter */ = {
@@ -210,7 +199,7 @@
 		CAAE1FAA2AF477C300B1757C /* GameSceneViews */ = {
 			isa = PBXGroup;
 			children = (
-				CAAE1FBA2AF4780900B1757C /* AtmosphereScene.sks */,
+				CA091DC22AF45AD900B093D8 /* Actions.sks */,
 				CAAE1FBB2AF4780900B1757C /* GameOverScene.sks */,
 				CAAE1FBC2AF4780900B1757C /* HomeScene.sks */,
 				CAAE1FB92AF4780900B1757C /* ItemShopScene.sks */,
@@ -343,7 +332,6 @@
 				CAC5FBA32AE9B586006913FE /* points-noise.wav in Resources */,
 				CAAE1FDE2AF47C4300B1757C /* stavvy-rat.gif in Resources */,
 				CAC5FBA52AE9B65B006913FE /* in-game-audio.wav in Resources */,
-				CAAE1FC02AF4780900B1757C /* AtmosphereScene.sks in Resources */,
 				CA7047542AE9C33B0020A04A /* home-audio.wav in Resources */,
 				CAAE1FE02AF47C4300B1757C /* eldy-bird.gif in Resources */,
 				CAB3CDD52AEF59E000F7908F /* game-over-noise.wav in Resources */,

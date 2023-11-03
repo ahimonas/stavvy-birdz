@@ -49,6 +49,7 @@ class InGameState: GKState {
         
         
         if inGameConf.isSoundOn {
+            debugPrint("WHAT SCENE ", scene.name, inGameConf.menuAudio.name)
             if let menuAudio = scene.childNode(withName: inGameConf.menuAudio.name!) {
                 menuAudio.removeFromParent()
             }
@@ -254,7 +255,7 @@ class PausedState: GKState {
         self.levelScene = scene
         self.inGameConf = inGameConf
         super.init()
-        overlay = GameOverlay(overlaySceneFileName: overlaySceneFileName, zPosition: 1000)
+        overlay = GameOverlay(overlaySceneFileName: overlaySceneFileName, zPosition: 999)
     }
         
     override func didEnter(from previousState: GKState?) {
