@@ -416,10 +416,21 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             transition = SKTransition.push(with: .up, duration: 1.0)
             */
         case .sound:
-            unowned var myConfigForScene: ConfigForScenes
+            //unowned var myConfigForScene: ConfigForScenes
             
             debugPrint("AHHHH")
+            let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
+
+            if !isSoundOn {
+                
+                let currAudio = childNode(withName: "Audio Node") as? SKAudioNode
+                currAudio?.isPaused = true
+                currAudio?.isPaused = true;
+                currAudio?.removeAllActions()
+                currAudio?.removeFromParent()
+            }
             
+            /*
             let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
 
             if !isSoundOn {
@@ -434,7 +445,11 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             
             if isSoundOn {
                 debugPrint("----HITTT TURN ON--", isSoundOn)
-                    /*
+                // var sound = SKAction.playSoundFileNamed("home-audio.wav", waitForCompletion: false)
+                // SKAction.play()
+                
+                
+
                 let currAudio = childNode(withName: "Audio Node") as? SKAudioNode
                 currAudio?.autoplayLooped = true
                 currAudio?.name = "manu audio"
@@ -453,19 +468,12 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                 SKAction.play()
                  
                 gameAudio.run(SKAction.star)
-                 */
-                var sound = SKAction.playSoundFileNamed("home-audio.wav", waitForCompletion: false)
-                SKAction.play()
-
-                /*
-                    let gameAudio2 = SKAudioNode(fileNamed: "home-audio.wav")
-                    gameAudio2.autoplayLooped = true
-                    gameAudio2.name = "manu audio"
-                 */
+             
+                 
                 
             }
             
-
+                 */
             
             
             /*

@@ -84,8 +84,16 @@ class InGameState: GKState {
         let getBirdName = character.getBirdCharacterName()
         
         switch character {
-        case .stavvyGold, .stavvyRat, .stavvyPig, .stavvyRaven:
+        case .stavvyRat, .stavvyPig, .stavvyRaven:
             let characterX = TheOriginalAnimatedNodes(
+                animatedGif: getBirdName,
+                correctAspectRatioFor: inGameConf.characterDimensions.width)
+            characterX.xScale = sizeOfCharacter.x
+            characterX.yScale = sizeOfCharacter.y
+            inGameConf.currBirdCharForGame = characterX
+         
+        case .stavvyGold:
+            let characterX = GoldBirdPhysics(
                 animatedGif: getBirdName,
                 correctAspectRatioFor: inGameConf.characterDimensions.width)
             characterX.xScale = sizeOfCharacter.x

@@ -100,7 +100,7 @@ struct ColumnFactory {
         let myCurrThreshWidth: CGFloat = 3
 
         //it makes sense the threshhold of the screen is the height of the entier screen
-        let myCurrThresh = SKSpriteNode(color: .green, size: CGSize(width: myCurrThreshWidth, height: blockY*2))
+        let myCurrThresh = SKSpriteNode(color: .clear, size: CGSize(width: myCurrThreshWidth, height: blockY*2))
         myCurrThresh.position = CGPoint(x: blockX, y: 0)
         myCurrThresh.physicsBody = SKPhysicsBody(rectangleOf: myCurrThresh.size)
         myCurrThresh.physicsBody?.categoryBitMask = EdgeMapping.breaker.rawValue

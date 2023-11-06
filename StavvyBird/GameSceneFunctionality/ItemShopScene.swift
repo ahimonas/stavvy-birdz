@@ -45,7 +45,7 @@ class ItemShopScene: RoutingUtilityScene {
             stavvyRat?.xScale = currGkPoint.x; stavvyRat?.yScale = currGkPoint.y; playableCharacters[.stavvyRat] = stavvyRat
             
             let stavvyGold =
-            childNode(withName: PlayableCharacter.stavvyGold.rawValue) as? TheOriginalAnimatedNodes
+            childNode(withName: PlayableCharacter.stavvyGold.rawValue) as? GoldBirdPhysics
             stavvyGold?.xScale = currGkPoint.x; stavvyGold?.yScale = currGkPoint.y; playableCharacters[.stavvyGold] = stavvyGold
             
             let stavvyPig =
