@@ -191,9 +191,9 @@
 		CAAE1FA72AF4771100B1757C /* GameAssets */ = {
 			isa = PBXGroup;
 			children = (
-				CAAE1FD82AF47C2E00B1757C /* birdies */,
 				CAB3CDD32AEF595000F7908F /* GameAudio */,
 				CAAE1FA82AF4775600B1757C /* Assets.xcassets */,
+				CAAE1FD82AF47C2E00B1757C /* birdies */,
 			);
 			path = GameAssets;
 			sourceTree = "<group>";

@@ -103,12 +103,12 @@ class GoldBirdPhysics: SKNode, Updatable, Playable, PhysicsContactable {
         let dodo = d2 + 0.0002
 
         let randomRotate1 = CGFloat.range(min: -0.4, max: -0.1)
-        let randomRotate2 = CGFloat.range(min: -0.8, max: 2.2)
+        let randomRotate2 = CGFloat.range(min: -0.22, max: 2.2)
 
         
         let velocityValue = dyVeloc * (dyVeloc < 0 ? fofo : dodo)
         //debugPrint(velocityValue)
-        zRotation = velocityValue.clamp(min: -50.0, max: 50.1)
+        zRotation = velocityValue.clamp(min: -20, max: 0.99)
     }
 
     func update(_ timeInterval: CFTimeInterval) {
@@ -124,7 +124,10 @@ extension GoldBirdPhysics: Touchable {
         { return false }
         return true }
 
-    func createImpact() { faceSlap.impactOccurred() }
+    func createImpact() { 
+        faceSlap.impactOccurred();
+        debugPrint("hhhhhhh");
+    }
     
     //apply imlpulse from SK
     func applyImpulse() {
@@ -137,23 +140,116 @@ extension GoldBirdPhysics: Touchable {
         
        // let randomRotate1 =
        // CGFloat.range(min: 0, max: physicsBody?.node?.position.x.sign.rawValue + 1)
-        guard var myVal = physicsBody?.node?.position.x.sign.rawValue else {return}
-        if(myVal <= 20  && myVal >= 10 || myVal == 0)
+        guard var myVal22 = physicsBody?.node?.position.x.sign.rawValue else {return}
+
+        guard var myVal = physicsBody?.velocity.dx else {return}
+
+        
+       debugPrint("myyyyyyy", myVal)
+        
+        
+       debugPrint("myyyyyyy", myVal)
+        
+        if(myVal <= 10 && myVal >= 5 || myVal == 0)
         {
-            myVal = myVal - 4
+            myVal = myVal + 2
         }
+        
+        if(myVal > 10 )
+        {
+            myVal = myVal - 1
+        }
+        
         
         if(myVal < 0)
         {
-            myVal = 0
+            myVal = 10
 
         }
+        
         debugPrint("weee",physicsBody?.node?.position.x.sign.rawValue )
-        physicsBody?.applyImpulse(CGVector(dx: myVal, dy: noty))
+        
+       // let shifter: Int? = Int(myVal)
+        var myIntValue = Int(myVal)
+        var ader = Int(1)
+        var neut = Int(0)
+
+        if(myIntValue > 10 )
+        {
+            myIntValue = myIntValue - 1
+        }
+        
+        else if(myVal < 2 )
+        {
+            myIntValue = myIntValue + 1
+        }
+        
+        else {
+            myIntValue = 0
+        }
+        physicsBody?.applyImpulse(CGVector(dx: 0, dy: noty))
+    }
+    
+    
+    
+    func applyForward(myF: Int) {
+        isHeavy = true
+        let noty = 25 * 20 * 30 * 20 * 50 * 100// 150
+        let weee = physicsBody?.node?.position.x.sign.rawValue;
+        
+
+        physicsBody?.applyImpulse(CGVector(dx: myF, dy: noty))
+    }
+    
+    func applyBackwards(myF: Int) {
+        isHeavy = true
+        let noty = 25 * 20 * 30 * 20 * 50 * 100// 150
+        let weee = physicsBody?.node?.position.x.sign.rawValue;
+        
+
+        physicsBody?.applyImpulse(CGVector(dx: myF, dy: noty))
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !checkInteractable() { return }
-        createImpact(); applyImpulse()
+        if let touch = touches.first {
+            let currentPoint = touch.location(in: self)
+            debugPrint("fppppp", currentPoint.x);
+            
+            createImpact(); applyImpulse();
+            /*
+
+            
+            if(currentPoint.x > 400){
+                debugPrint("x > 4000", currentPoint.x);
+
+                createImpact(); applyForward(myF: 10)
+            }
+            
+            if(currentPoint.x > 0 && currentPoint.x < 100){
+                createImpact(); applyBackwards(myF: -10)
+            }
+            
+            else{
+                createImpact(); applyBackwards(myF: 0)
+                debugPrint("x > 4000", currentPoint.x);
+
+
+            }
+            // do something with your currentPoint
+             */
+        }
+        
+        
+        func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+            if let touch = touches.first {
+                let currentPoint = touch.location(in: self)
+                debugPrint("cpppp", currentPoint);
+
+                // do something with your currentPoint
+            }
+        }
+        
+        debugPrint(event);
     }
 }

@@ -177,6 +177,7 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
         
         //bird hit block
         if pointOfImpact == (currBird | EdgeMapping.block.rawValue) {
+            debugPrint("zeeee")
             handleDeadState()
         }
         //bird hit edges

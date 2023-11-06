@@ -597,7 +597,8 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             let slectedView = Scenes.title.getName()
             presentationView = HomeScene(fileNamed: slectedView)
             var pushDirection: SKTransitionDirection?
-            
+            let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
+
             if let lastPushTransitionDirection = RoutingUtilityScene.lastPushTransitionDirection {
                 switch lastPushTransitionDirection {
                 case .up:

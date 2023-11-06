@@ -52,9 +52,9 @@ class EldyBirdPhysics: SKNode, Updatable, Playable, PhysicsContactable {
         physicsBody?.categoryBitMask = EdgeMapping.characterX.rawValue
         physicsBody?.contactTestBitMask = EdgeMapping.block.rawValue | EdgeMapping.breaker.rawValue | EdgeMapping.edges.rawValue
         physicsBody?.collisionBitMask = collisionBitMask
-        let sv:CGFloat = 5 + 3 - 1
+        let sv:CGFloat = 5 + 3 + 3 - 1
         physicsBody?.mass /= sv
-        physicsBody?.allowsRotation = false
+        physicsBody?.allowsRotation = true
         physicsBody?.restitution = 0.1 * 0.0
     }
 

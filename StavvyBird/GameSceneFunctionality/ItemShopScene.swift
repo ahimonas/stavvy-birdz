@@ -67,7 +67,7 @@ class ItemShopScene: RoutingUtilityScene {
         func loadSelectedChacter() {
             let playableCharacter = UserDefaults.standard.playableCharacter(for: .character) ?? .bird
             print(playableCharacter)
-            select(playableCharacter: playableCharacter, animated: false)
+            select(playableCharacter: playableCharacter, animated: true)
         }
         loadSelectedChacter()
     }
@@ -89,6 +89,8 @@ class ItemShopScene: RoutingUtilityScene {
         guard let name = firstTouchedNode.name, let selectedPlayableCharacter = PlayableCharacter(rawValue: name) else {
             return
         }
+        
+        
         
         //print(event ?? <#default value#>)
         lazy var beam = self.childNode(withName: "EldyBird") as! SKSpriteNode
@@ -147,30 +149,145 @@ class ItemShopScene: RoutingUtilityScene {
             debugPrint("eldy birf not available ")
         }
         else{
+            
+            let character = UserDefaults.standard.playableCharacter(for: .character) ?? .bird
+
+            
+            debugPrint("character" , character)
+            debugPrint("selectedPlayableCharacter" , selectedPlayableCharacter)
+
             select(playableCharacter: selectedPlayableCharacter, animated: true)
+            unselect(playableCharacter: character)
             UserDefaults.standard.set(selectedPlayableCharacter, for: .character)
         }
     }
     
-    // MARK: - Selection Utils
+    
+    private var previousCharacter: [PlayableCharacter : SKNode] = [:]
+
     
     private func select(playableCharacter: PlayableCharacter, animated: Bool) {
+        
+        debugPrint("selected",playableCharacter)
         guard let playableCharacterNode = playableCharacters[playableCharacter] else {
             return
         }
         
-        if animated {
+        //let hide = SKAction.fadeOut(withDuration: 0.12)
+        let me2 = SKAction.scale(by: 2, duration: 0.1)
+        let moveUp = SKAction.moveBy(x: 0, y: 20, duration: 0.2)
+
+        let sequence2 = SKAction.sequence([moveUp, moveUp.reversed(), moveUp, moveUp.reversed(), moveUp, moveUp.reversed()])
+        
+        
+        //let me = SKAction.scale(by: 0.9, duration: 0.5)
+        //let unhide = SKAction.fadeIn(withDuration: 0.7)
+        //let move = SKAction.move(to: playableCharacterNode.position, duration: 0.0)
+        let sequece = SKAction.sequence([ me2, sequence2])
+        
+       // playableCharacterNode.run(sequece)
+        
+        playableCharacterNode.run(sequece)
+
+        debugPrint("selected after previous", previousCharacter)
+        debugPrint("selected after previous", playableCharacter)
+        
+        /*
+        if !animated {
             let hide = SKAction.fadeOut(withDuration: 0.12)
-            let me2 = SKAction.scale(by: 1.1, duration: 0.2)
+            let me2 = SKAction.scale(by: 1.8, duration: 0.2)
 
             let me = SKAction.scale(by: 0.9, duration: 0.5)
             let unhide = SKAction.fadeIn(withDuration: 0.7)
             let move = SKAction.move(to: playableCharacterNode.position, duration: 0.0)
             let sequece = SKAction.sequence([ move, me2, me])
-            characterSelector?.run(sequece)
-        } else {
-            characterSelector?.position = playableCharacterNode.position
+            
+            playableCharacterNode.run(sequece)
+            }
+        
+        else {
+            guard let previousCharacter = playableCharacters[playableCharacter] else {
+                return
+            }
+            
+            //let hide = SKAction.fadeOut(withDuration: 0.12)
+            let me2 = SKAction.scale(by: 1.2, duration: 0.2)
+
+            //let me = SKAction.scale(by: 0.9, duration: 0.5)
+            //let unhide = SKAction.fadeIn(withDuration: 0.7)
+            //let move = SKAction.move(to: playableCharacterNode.position, duration: 0.0)
+            let sequece = SKAction.sequence([ me2])
+            
+           // playableCharacterNode.run(sequece)
+            
+            playableCharacterNode.run(sequece)
+
+            debugPrint("selected after previous", previousCharacter)
+            debugPrint("selected after previous", playableCharacter)
+
         }
+         */
+     
+        /*
+        else {
+            guard let previousCharacter = playableCharacters[playableCharacter] else {
+            return
+        }
+        
+            let me2 = SKAction.scale(by: 1.1, duration: 0.2)
+
+            let me = SKAction.scale(by: 0.9, duration: 0.5)
+            let unhide = SKAction.fadeIn(withDuration: 0.7)
+            let move = SKAction.move(to: playableCharacterNode.position, duration: 0.0)
+            let sequece = SKAction.sequence([ move, me2])
+            
+            playableCharacterNode.run(sequece)
+            
+                characterSelector?.position = playableCharacterNode.position
+            }
+
+        
+*/
     }
+    
+    private func unselect(playableCharacter: PlayableCharacter) {
+        
+        debugPrint("selected",playableCharacter)
+        guard let playableCharacterNode = playableCharacters[playableCharacter] else {
+            return
+        }
+        
+        
+            //let hide = SKAction.fadeOut(withDuration: 0.12)
+            //let me2 = SKAction.scale(by: 1.8, duration: 0.2)
+
+            let me = SKAction.scale(by: 0.5, duration: 0.2)
+            //let unhide = SKAction.fadeIn(withDuration: 0.7)
+            //let move = SKAction.move(to: playableCharacterNode.position, duration: 0.0)
+            let sequece = SKAction.sequence([me])
+            
+            playableCharacterNode.run(sequece)
+        }
+        
+        /*
+        else {
+            guard let previousCharacter = playableCharacters[playableCharacter] else {
+            return
+        }
+        
+            let me2 = SKAction.scale(by: 1.1, duration: 0.2)
+
+            let me = SKAction.scale(by: 0.9, duration: 0.5)
+            let unhide = SKAction.fadeIn(withDuration: 0.7)
+            let move = SKAction.move(to: playableCharacterNode.position, duration: 0.0)
+            let sequece = SKAction.sequence([ move, me2])
+            
+            playableCharacterNode.run(sequece)
+            
+                characterSelector?.position = playableCharacterNode.position
+            }
+
+        
+*/
     
 }
