@@ -192,13 +192,13 @@ class BlockNode: SKSpriteNode {
         
         if(!goldBlock){
             physicsBody = SKPhysicsBody(rectangleOf: size)
-           // physicsBody?.categoryBitMask = EdgeMapping.block.rawValue
-           // physicsBody?.contactTestBitMask =  EdgeMapping.characterX.rawValue
-           // physicsBody?.collisionBitMask = EdgeMapping.characterX.rawValue
-            physicsBody?.restitution = 3
+            physicsBody?.categoryBitMask = EdgeMapping.bouncer.rawValue
+            physicsBody?.contactTestBitMask =  EdgeMapping.characterX.rawValue
+           physicsBody?.collisionBitMask = EdgeMapping.characterX.rawValue
+            physicsBody?.restitution = 0.99
             physicsBody?.isDynamic = false
-             physicsBody?.collisionBitMask = EdgeMapping.characterX.rawValue
-            zPosition = 21
+             //physicsBody?.collisionBitMask = EdgeMapping.characterX.rawValue
+            zPosition = 22
         }
     }
     

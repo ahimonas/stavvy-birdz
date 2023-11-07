@@ -238,8 +238,10 @@ extension PlayScene: ButtonNodeResponderType {
         }
         selection.selectionChanged()
         switch identifier {
+            /*
         case .pause:
             currConfigForGame?.myGkStateMach?.enter(PausedState.self) //showLeaderBoard();
+             */
         case .resume:
             currConfigForGame?.myGkStateMach?.enter(InGameState.self)
         case .home:

@@ -169,11 +169,16 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let pointOfImpact:UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
         let currBird = EdgeMapping.characterX.rawValue
-        if pointOfImpact == (currBird | EdgeMapping.breaker.rawValue) {
+        if pointOfImpact == (currBird | EdgeMapping.bouncer.rawValue) {
             score += 1; scoreLabel?.text = "\(score)"
             if isSoundOn { scene?.run(pointAddedNoise) }
             notification.notificationOccurred(.success)
         }
+        if pointOfImpact == (currBird | EdgeMapping.bouncer.rawValue) {
+            debugPrint("bounce")
+            //handleDeadState()
+        }
+        
         
         //bird hit block
         if pointOfImpact == (currBird | EdgeMapping.block.rawValue) {
@@ -182,7 +187,8 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
         }
         //bird hit edges
         if pointOfImpact == (currBird | EdgeMapping.edges.rawValue) {
-            handleDeadState()
+            debugPrint("top")
+          //  handleDeadState()
         }
     }
     
