@@ -181,14 +181,12 @@ class PlayScene: SKScene {
         
         self.precedingMoment = 0
         currConfigForGame = ConfigForScenes(with: self)
+        currConfigForGame?.playScene = self  // Set the playScene property
         currConfigForGame?.myGkStateMach = instanceGKSM
         currConfigForGame?.myGkStateMach?.enter(InGameState.self)
     }
     
-    override func didMove(to view: SKView) {
-        super.didMove(to: view)
-        PlayScene.sizeOfScreen = view.bounds.size
-    }
+    
         
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         currConfigForGame?.tangibles.forEach({ touchable in
@@ -227,6 +225,123 @@ class PlayScene: SKScene {
             activeUpdatable.update(currentTime)
         })
     }
+
+    //  Camera properties
+    var cameraNode: SKCameraNode!
+    var originalCameraPosition: CGPoint = .zero
+
+    // override func didMove(to view: SKView) {
+    //     // Initialize the camera
+    //     cameraNode = SKCameraNode()
+    //     self.camera = cameraNode
+    //     self.addChild(cameraNode)
+    // }
+
+    override func didMove(to view: SKView) {
+        super.didMove(to: view)
+        PlayScene.sizeOfScreen = view.bounds.size
+        //added
+        // self.scaleMode = .aspectFit
+
+        anchorPoint = CGPoint(x: 0.5, y: 0.5)
+         // Initialize the camera
+        cameraNode = SKCameraNode()
+        // cameraNode.position = CGPoint(x: PlayScene.sizeOfScreen.width, y: PlayScene.sizeOfScreen.height / 1.15)
+        cameraNode.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+        // cameraNode.position = CGPoint(x: size.width * anchorPoint.x, y: size.height * anchorPoint.y)
+        originalCameraPosition = cameraNode.position
+        self.addChild(cameraNode)
+        self.camera = cameraNode
+    }
+
+    func addColorFilterToCamera() {
+        // remove any existing filter nodes
+        cameraNode.removeAllChildren()
+        let filterNode = SKSpriteNode(color: .clear, size: self.size)
+        filterNode.position = CGPoint.zero
+        filterNode.zPosition = 100 // Ensure it's above everything else
+        filterNode.colorBlendFactor = 0.5 // Set the color blend factor to 0.5 to make it semi-transparent
+        filterNode.alpha = 0.1 // Set the alpha to 0.0 to make it invisible
+        
+        // Add the filter node to the camera
+        cameraNode.addChild(filterNode)
+        
+        // Create a color action sequence
+        let colorAction = SKAction.sequence([
+            SKAction.colorize(with: .red, colorBlendFactor: 0.1, duration: 0.05),
+            SKAction.colorize(with: .green, colorBlendFactor: 0.1, duration: 0.05),
+            SKAction.colorize(with: .blue, colorBlendFactor: 0.1, duration: 0.1),
+            SKAction.colorize(withColorBlendFactor: 0, duration: 0.1),// Fade to clear
+            // Remove the filter node from the camera
+            SKAction.run { filterNode.removeFromParent() }
+        ])
+        
+        // Run the color animation on the filter node
+        filterNode.run(colorAction)
+    }
+
+     // Create a method for the shake and zoom effects
+    func shakeAndZoomCamera(intensity: String = "low") {
+    debugPrint("Shake and Zoom Camera")
+
+    // Define the shake and zoom actions
+    var shakeAction: SKAction
+    let zoomInAction = SKAction.scale(to: 0.8, duration: 0.1)  // Zoom in
+    let zoomOutAction = SKAction.scale(to: 1.0, duration: 0.2) // Zoom out
+
+    // Define the shake action based on intensity
+    if intensity == "low" {
+        shakeAction = SKAction.sequence([
+            SKAction.moveBy(x: -5, y: -5, duration: 0.1),
+            SKAction.moveBy(x: 10, y: 10, duration: 0.1),
+            SKAction.moveBy(x: -10, y: -10, duration: 0.1),
+            SKAction.moveBy(x: 5, y: 5, duration: 0.1)
+        ])
+    } else {
+        shakeAction = SKAction.sequence([
+            SKAction.moveBy(x: -10, y: -10, duration: 0.1),
+            SKAction.moveBy(x: 20, y: 20, duration: 0.1),
+            SKAction.moveBy(x: -20, y: -20, duration: 0.1),
+            SKAction.moveBy(x: 10, y: 10, duration: 0.1)
+        ])
+    }
+
+    // Check if the main character node exists and proceed with the camera effect
+    if let mainCharacter = currConfigForGame?.currBirdCharForGame as? SKNode {
+        // debugPrint("Main Character Node Exists")
+        // Move the camera to the bird's position gradually
+          // Calculate the constrained position
+        let originalPosition = originalCameraPosition
+        var newPosition = mainCharacter.position
+        let maxDistance: CGFloat = 75
+
+        // Calculate the distance vector
+        let distanceVector = CGVector(dx: newPosition.x - originalPosition.x, dy: newPosition.y - originalPosition.y)
+        let distanceMagnitude = sqrt(distanceVector.dx * distanceVector.dx + distanceVector.dy * distanceVector.dy)
+
+        // If the distance is greater than the maxDistance, scale the distance vector down to the maxDistance
+        if distanceMagnitude > maxDistance {
+            let scalingFactor = maxDistance / distanceMagnitude
+            newPosition.x = originalPosition.x + distanceVector.dx * scalingFactor
+            newPosition.y = originalPosition.y + distanceVector.dy * scalingFactor
+        }
+        addColorFilterToCamera()
+        // Create the move action with the constrained position
+        let moveAction = SKAction.move(to: newPosition, duration: 0.25)
+        let moveBackAction = SKAction.move(to: originalPosition, duration: 0.1)
+        
+        // Run the move action with the zoom in action simultaneously
+        let groupInAction = SKAction.group([moveAction, zoomInAction, shakeAction])
+        let groupOutAction = SKAction.group([moveBackAction, zoomOutAction])
+        
+        // After zooming in, zoom out to the original scale
+        let sequenceAction = SKAction.sequence([groupInAction, groupOutAction])
+
+        cameraNode.run(sequenceAction)
+
+        
+    }
+}
     
 }
 

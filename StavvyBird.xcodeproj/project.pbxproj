@@ -45,6 +45,7 @@
 		CADBD96D2AF0B1190093477F /* GamePlay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CADBD96B2AF0B1190093477F /* GamePlay.storyboard */; };
 		CAF65C072AF0D0510057F824 /* PhysicsBirdNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF65C062AF0D0510057F824 /* PhysicsBirdNode.swift */; };
 		CAF65C092AF0D0660057F824 /* TheColumnFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF65C082AF0D0660057F824 /* TheColumnFactory.swift */; };
+		E3A768232AFA12E800166805 /* Blast(Edited).wav in Resources */ = {isa = PBXBuildFile; fileRef = E3A768222AFA12E800166805 /* Blast(Edited).wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,7 @@
 		CADBD96C2AF0B1190093477F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/GamePlay.storyboard; sourceTree = "<group>"; };
 		CAF65C062AF0D0510057F824 /* PhysicsBirdNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsBirdNode.swift; sourceTree = "<group>"; };
 		CAF65C082AF0D0660057F824 /* TheColumnFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheColumnFactory.swift; sourceTree = "<group>"; };
+		E3A768222AFA12E800166805 /* Blast(Edited).wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Blast(Edited).wav"; sourceTree = "<group>"; };
 		E96DC9F22650A686DDD7743B /* Pods-StavvyBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StavvyBird.release.xcconfig"; path = "Target Support Files/Pods-StavvyBird/Pods-StavvyBird.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -249,6 +251,7 @@
 		CAB3CDD32AEF595000F7908F /* GameAudio */ = {
 			isa = PBXGroup;
 			children = (
+				E3A768222AFA12E800166805 /* Blast(Edited).wav */,
 				CAB3CDD42AEF59E000F7908F /* game-over-noise.wav */,
 				CA7047532AE9C33B0020A04A /* home-audio.wav */,
 				CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */,
@@ -334,6 +337,7 @@
 				CAAE1FBD2AF4780900B1757C /* PlayScene.sks in Resources */,
 				CAC5FBA32AE9B586006913FE /* points-noise.wav in Resources */,
 				CAAE1FDE2AF47C4300B1757C /* stavvy-rat.gif in Resources */,
+				E3A768232AFA12E800166805 /* Blast(Edited).wav in Resources */,
 				CAC5FBA52AE9B65B006913FE /* in-game-audio.wav in Resources */,
 				CA7047542AE9C33B0020A04A /* home-audio.wav in Resources */,
 				CAAE1FE02AF47C4300B1757C /* eldy-bird.gif in Resources */,

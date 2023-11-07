@@ -48,15 +48,25 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
         let bumpMove = SKAction.animate(with: walkTextures, timePerFrame: timing, resize: false, restore: true)
          let threadAction = SKAction.repeatForever(bumpMove); self.run(threadAction)
     }
-    
+    var resetX: CGFloat = 0
     func update(_ timeInterval: CFTimeInterval) {
+        if resetX == 0 {
+            resetX = self.position.x
+        }
         let defaultZero = 0.0
         delta = previousTime == defaultZero ? defaultZero : timeInterval - previousTime; previousTime = timeInterval
         guard let currPhysElem = physicsBody else { return }
+        
         let dxVeloc = currPhysElem.velocity.dx;  let dyVeloc = currPhysElem.velocity.dy;  let myCurrThresh: CGFloat = 370
         if dyVeloc > myCurrThresh { self.physicsBody?.velocity = CGVector(dx: dxVeloc, dy: myCurrThresh) }
         let threshA = 0.006; let threshB = 0.0037; let velocityValue = dyVeloc * (dyVeloc < 0 ? threshA : threshB);
         let backRotation = -0.33; let forwardRotation = 0.99; zRotation = velocityValue.clamp(min: backRotation, max: forwardRotation)
+
+        //move bird to reset x position
+        if self.position.x != resetX {
+            self.position.x = resetX
+        }
+
     }
 }
 extension PhysicsBirdNode: Touchable {
