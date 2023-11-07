@@ -236,11 +236,11 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         
         UserDefaults.standard.set(true, forKey: "removeAdsKey")
         /*
-        var currentScore = 100 //change that to the players current score.
+        var scoreForCurrentSession = 100 //change that to the players Session Score.
         let highScore  = UserDefaults.standard.integer(forKey: "highScore") //Get the users high score from last time.
 
-        if(currentScore > highScore){// check and see if currentScore is greater than highScore.
-            UserDefaults.standard.set(currentScore, forKey: "highScore")//if currentScore is greater than highScore, set it in UserDefualts.
+        if(scoreForCurrentSession > highScore){// check and see if scoreForCurrentSession is greater than highScore.
+            UserDefaults.standard.set(scoreForCurrentSession, forKey: "highScore")//if scoreForCurrentSession is greater than highScore, set it in UserDefualts.
         }
          */
 
@@ -403,6 +403,11 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             presentationView = PlayScene(fileNamed: startView)
             
             transition = SKTransition.fade(withDuration: 1.0)
+        case .titley22:
+            let startView = Scenes.game.getName()
+            presentationView = PlayScene(fileNamed: startView)
+            
+            transition = SKTransition.fade(withDuration: 1.0)
         case .settings:
             let slectedView = Scenes.setting.getName()
 
@@ -416,10 +421,21 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             transition = SKTransition.push(with: .up, duration: 1.0)
             */
         case .sound:
-            unowned var levelScene: ConfigForScenes
+            //unowned var myConfigForScene: ConfigForScenes
             
             debugPrint("AHHHH")
+            let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
+
+            if !isSoundOn {
+                
+                let currAudio = childNode(withName: "Audio Node") as? SKAudioNode
+                currAudio?.isPaused = true
+                currAudio?.isPaused = true;
+                currAudio?.removeAllActions()
+                currAudio?.removeFromParent()
+            }
             
+            /*
             let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
 
             if !isSoundOn {
@@ -434,7 +450,11 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             
             if isSoundOn {
                 debugPrint("----HITTT TURN ON--", isSoundOn)
-                    /*
+                // var sound = SKAction.playSoundFileNamed("home-audio.wav", waitForCompletion: false)
+                // SKAction.play()
+                
+                
+
                 let currAudio = childNode(withName: "Audio Node") as? SKAudioNode
                 currAudio?.autoplayLooped = true
                 currAudio?.name = "manu audio"
@@ -453,19 +473,12 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
                 SKAction.play()
                  
                 gameAudio.run(SKAction.star)
-                 */ 
-                var sound = SKAction.playSoundFileNamed("home-audio.wav", waitForCompletion: false)
-                SKAction.play()
-
-                /*
-                    let gameAudio2 = SKAudioNode(fileNamed: "home-audio.wav")
-                    gameAudio2.autoplayLooped = true
-                    gameAudio2.name = "manu audio"
-                 */
+             
+                 
                 
             }
             
-
+                 */
             
             
             /*
@@ -534,7 +547,6 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
         case .ItemShopCharacters:
             //authenticateLocalPlayer()
            initInAppPurchases()
-  
             let slectedView = Scenes.ItemShopCharacters.getName()
             presentationView = ItemShopScene(fileNamed: slectedView)
             debugPrint("created ItemShopScene instance")
@@ -590,7 +602,8 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             let slectedView = Scenes.title.getName()
             presentationView = HomeScene(fileNamed: slectedView)
             var pushDirection: SKTransitionDirection?
-            
+            let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
+
             if let lastPushTransitionDirection = RoutingUtilityScene.lastPushTransitionDirection {
                 switch lastPushTransitionDirection {
                 case .up:

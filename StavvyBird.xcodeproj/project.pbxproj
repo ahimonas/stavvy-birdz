@@ -28,18 +28,19 @@
 		CAAE1FC22AF4780900B1757C /* HomeScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FBC2AF4780900B1757C /* HomeScene.sks */; };
 		CAAE1FC72AF4789B00B1757C /* GameScenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1FC42AF4789B00B1757C /* GameScenes.swift */; };
 		CAAE1FC82AF4789B00B1757C /* ItemShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1FC52AF4789B00B1757C /* ItemShopScene.swift */; };
-		CAAE1FC92AF4789B00B1757C /* RoutingUtilityScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1FC62AF4789B00B1757C /* RoutingUtilityScene.swift */; };
+		CAAE1FC92AF4789B00B1757C /* SkSceneGameUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1FC62AF4789B00B1757C /* SkSceneGameUtils.swift */; };
 		CAAE1FCD2AF47A5500B1757C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FCC2AF47A5500B1757C /* .gitignore */; };
 		CAAE1FDE2AF47C4300B1757C /* stavvy-rat.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FD92AF47C4300B1757C /* stavvy-rat.gif */; };
 		CAAE1FDF2AF47C4300B1757C /* stavvy-raven.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FDA2AF47C4300B1757C /* stavvy-raven.gif */; };
 		CAAE1FE02AF47C4300B1757C /* eldy-bird.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FDB2AF47C4300B1757C /* eldy-bird.gif */; };
 		CAAE1FE12AF47C4300B1757C /* stavvy-pig.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FDC2AF47C4300B1757C /* stavvy-pig.gif */; };
 		CAAE1FE22AF47C4300B1757C /* stavvy-gold.gif in Resources */ = {isa = PBXBuildFile; fileRef = CAAE1FDD2AF47C4300B1757C /* stavvy-gold.gif */; };
+		CAAE1FE42AF9470B00B1757C /* GoldBirdPhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1FE32AF9470B00B1757C /* GoldBirdPhysics.swift */; };
+		CAAE1FE62AF9477C00B1757C /* EldyBirdPhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAE1FE52AF9477C00B1757C /* EldyBirdPhysics.swift */; };
 		CAAEAD542AF0C5C6000D9594 /* ContinuousBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAEAD532AF0C5C6000D9594 /* ContinuousBackground.swift */; };
 		CAB3CDD52AEF59E000F7908F /* game-over-noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAB3CDD42AEF59E000F7908F /* game-over-noise.wav */; };
 		CAC5FBA32AE9B586006913FE /* points-noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA22AE9B586006913FE /* points-noise.wav */; };
 		CAC5FBA52AE9B65B006913FE /* in-game-audio.wav in Resources */ = {isa = PBXBuildFile; fileRef = CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */; };
-		CADA7FBD2AF31CB4003625E6 /* EldyBirdPhysics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADA7FBC2AF31CB3003625E6 /* EldyBirdPhysics.swift */; };
 		CADBD9672AF0AE9D0093477F /* SplashBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CADBD9652AF0AE9D0093477F /* SplashBoard.storyboard */; };
 		CADBD96D2AF0B1190093477F /* GamePlay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CADBD96B2AF0B1190093477F /* GamePlay.storyboard */; };
 		CAF65C072AF0D0510057F824 /* PhysicsBirdNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF65C062AF0D0510057F824 /* PhysicsBirdNode.swift */; };
@@ -75,18 +76,19 @@
 		CAAE1FBC2AF4780900B1757C /* HomeScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = HomeScene.sks; sourceTree = "<group>"; };
 		CAAE1FC42AF4789B00B1757C /* GameScenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScenes.swift; sourceTree = "<group>"; };
 		CAAE1FC52AF4789B00B1757C /* ItemShopScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemShopScene.swift; sourceTree = "<group>"; };
-		CAAE1FC62AF4789B00B1757C /* RoutingUtilityScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingUtilityScene.swift; sourceTree = "<group>"; };
+		CAAE1FC62AF4789B00B1757C /* SkSceneGameUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkSceneGameUtils.swift; sourceTree = "<group>"; };
 		CAAE1FCC2AF47A5500B1757C /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		CAAE1FD92AF47C4300B1757C /* stavvy-rat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "stavvy-rat.gif"; sourceTree = "<group>"; };
 		CAAE1FDA2AF47C4300B1757C /* stavvy-raven.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "stavvy-raven.gif"; sourceTree = "<group>"; };
 		CAAE1FDB2AF47C4300B1757C /* eldy-bird.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "eldy-bird.gif"; sourceTree = "<group>"; };
 		CAAE1FDC2AF47C4300B1757C /* stavvy-pig.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "stavvy-pig.gif"; sourceTree = "<group>"; };
 		CAAE1FDD2AF47C4300B1757C /* stavvy-gold.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "stavvy-gold.gif"; sourceTree = "<group>"; };
+		CAAE1FE32AF9470B00B1757C /* GoldBirdPhysics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoldBirdPhysics.swift; sourceTree = "<group>"; };
+		CAAE1FE52AF9477C00B1757C /* EldyBirdPhysics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EldyBirdPhysics.swift; sourceTree = "<group>"; };
 		CAAEAD532AF0C5C6000D9594 /* ContinuousBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContinuousBackground.swift; sourceTree = "<group>"; };
 		CAB3CDD42AEF59E000F7908F /* game-over-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "game-over-noise.wav"; sourceTree = "<group>"; };
 		CAC5FBA22AE9B586006913FE /* points-noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "points-noise.wav"; sourceTree = "<group>"; };
 		CAC5FBA42AE9B65B006913FE /* in-game-audio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "in-game-audio.wav"; sourceTree = "<group>"; };
-		CADA7FBC2AF31CB3003625E6 /* EldyBirdPhysics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EldyBirdPhysics.swift; sourceTree = "<group>"; };
 		CADBD9662AF0AE9D0093477F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SplashBoard.storyboard; sourceTree = "<group>"; };
 		CADBD96C2AF0B1190093477F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/GamePlay.storyboard; sourceTree = "<group>"; };
 		CAF65C062AF0D0510057F824 /* PhysicsBirdNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsBirdNode.swift; sourceTree = "<group>"; };
@@ -189,9 +191,9 @@
 		CAAE1FA72AF4771100B1757C /* GameAssets */ = {
 			isa = PBXGroup;
 			children = (
-				CAAE1FD82AF47C2E00B1757C /* birdies */,
 				CAB3CDD32AEF595000F7908F /* GameAudio */,
 				CAAE1FA82AF4775600B1757C /* Assets.xcassets */,
+				CAAE1FD82AF47C2E00B1757C /* birdies */,
 			);
 			path = GameAssets;
 			sourceTree = "<group>";
@@ -214,7 +216,7 @@
 			children = (
 				CAAE1FC42AF4789B00B1757C /* GameScenes.swift */,
 				CAAE1FC52AF4789B00B1757C /* ItemShopScene.swift */,
-				CAAE1FC62AF4789B00B1757C /* RoutingUtilityScene.swift */,
+				CAAE1FC62AF4789B00B1757C /* SkSceneGameUtils.swift */,
 			);
 			path = GameSceneFunctionality;
 			sourceTree = "<group>";
@@ -234,7 +236,8 @@
 		CAAEAD522AF0C596000D9594 /* ColsBackgroundPlayers */ = {
 			isa = PBXGroup;
 			children = (
-				CADA7FBC2AF31CB3003625E6 /* EldyBirdPhysics.swift */,
+				CAAE1FE52AF9477C00B1757C /* EldyBirdPhysics.swift */,
+				CAAE1FE32AF9470B00B1757C /* GoldBirdPhysics.swift */,
 				CAF65C082AF0D0660057F824 /* TheColumnFactory.swift */,
 				CAF65C062AF0D0510057F824 /* PhysicsBirdNode.swift */,
 				CAABA6312AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift */,
@@ -400,18 +403,19 @@
 			files = (
 				CAABA6322AEB1E8C00B9810E /* TheOriginalAnimatedNodes.swift in Sources */,
 				CAA9D4222AF0B7E200DEA75E /* ConfigForScenes.swift in Sources */,
+				CAAE1FE42AF9470B00B1757C /* GoldBirdPhysics.swift in Sources */,
 				CA091DBE2AF45A0C00B093D8 /* AppDelegate.swift in Sources */,
 				CAAE1FC82AF4789B00B1757C /* ItemShopScene.swift in Sources */,
-				CADA7FBD2AF31CB4003625E6 /* EldyBirdPhysics.swift in Sources */,
 				A903943420AD94F000376CC3 /* UserDefaults.swift in Sources */,
 				CAA9D4282AF0B98200DEA75E /* StatesForGame.swift in Sources */,
 				CA0135632AEF659100EDB576 /* ButtonNodes.swift in Sources */,
 				CAF65C092AF0D0660057F824 /* TheColumnFactory.swift in Sources */,
 				CA1440C02AEF53260035B063 /* GamProtocols.swift in Sources */,
+				CAAE1FE62AF9477C00B1757C /* EldyBirdPhysics.swift in Sources */,
 				CAAE1FC72AF4789B00B1757C /* GameScenes.swift in Sources */,
 				CAA9D4242AF0B80000DEA75E /* MainUiGameView.swift in Sources */,
 				CAAEAD542AF0C5C6000D9594 /* ContinuousBackground.swift in Sources */,
-				CAAE1FC92AF4789B00B1757C /* RoutingUtilityScene.swift in Sources */,
+				CAAE1FC92AF4789B00B1757C /* SkSceneGameUtils.swift in Sources */,
 				CAF65C072AF0D0510057F824 /* PhysicsBirdNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

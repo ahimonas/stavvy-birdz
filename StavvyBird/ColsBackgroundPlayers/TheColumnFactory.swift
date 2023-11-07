@@ -100,7 +100,7 @@ struct ColumnFactory {
         let myCurrThreshWidth: CGFloat = 3
 
         //it makes sense the threshhold of the screen is the height of the entier screen
-        let myCurrThresh = SKSpriteNode(color: .green, size: CGSize(width: myCurrThreshWidth, height: blockY*2))
+        let myCurrThresh = SKSpriteNode(color: .clear, size: CGSize(width: myCurrThreshWidth, height: blockY*2))
         myCurrThresh.position = CGPoint(x: blockX, y: 0)
         myCurrThresh.physicsBody = SKPhysicsBody(rectangleOf: myCurrThresh.size)
         myCurrThresh.physicsBody?.categoryBitMask = EdgeMapping.breaker.rawValue
@@ -139,6 +139,7 @@ class BlockNode: SKSpriteNode {
     
     init?(textures: (block: String, cap: String), of size: CGSize) {
         
+        var goldBlock = true
         let randomDouble2 = Double.random(in: 1...2)
         guard var skyBlockIMGGG = UIImage(named: "sparkGold" )?.cgImage else {
                  return nil
@@ -146,6 +147,7 @@ class BlockNode: SKSpriteNode {
         
         if(size.height < 200){
             skyBlockIMGGG = (UIImage(named: "sparkBlack" )?.cgImage)!
+            goldBlock = false
         }
         
         //The rectangle we draw the block in, think outer container, if we touch this we die and we draw the image inside
@@ -175,14 +177,29 @@ class BlockNode: SKSpriteNode {
         
         //create an instance of itself with the above rectangle and image inside
         super.init(texture: textureWrapperForGraphic, color: .clear, size: textureWrapperForGraphic.size())
-                
-        //The phiscs Body is a map, when we change the order it does not colide with the bird and end the game
-        physicsBody = SKPhysicsBody(rectangleOf: size)
-        physicsBody?.categoryBitMask = EdgeMapping.block.rawValue
-        physicsBody?.contactTestBitMask =  EdgeMapping.characterX.rawValue
-        physicsBody?.collisionBitMask = EdgeMapping.characterX.rawValue
-        physicsBody?.isDynamic = false
-        zPosition = 21
+         
+        
+
+        if(goldBlock){
+            //The phiscs Body is a map, when we change the order it does not colide with the bird and end the game
+            physicsBody = SKPhysicsBody(rectangleOf: size)
+            physicsBody?.categoryBitMask = EdgeMapping.block.rawValue
+            physicsBody?.contactTestBitMask =  EdgeMapping.characterX.rawValue
+            physicsBody?.collisionBitMask = EdgeMapping.characterX.rawValue
+            physicsBody?.isDynamic = false
+            zPosition = 21
+        }
+        
+        if(!goldBlock){
+            physicsBody = SKPhysicsBody(rectangleOf: size)
+           // physicsBody?.categoryBitMask = EdgeMapping.block.rawValue
+           // physicsBody?.contactTestBitMask =  EdgeMapping.characterX.rawValue
+           // physicsBody?.collisionBitMask = EdgeMapping.characterX.rawValue
+            physicsBody?.restitution = 3
+            physicsBody?.isDynamic = false
+             physicsBody?.collisionBitMask = EdgeMapping.characterX.rawValue
+            zPosition = 21
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

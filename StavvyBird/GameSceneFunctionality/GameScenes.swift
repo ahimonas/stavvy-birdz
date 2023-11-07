@@ -9,7 +9,27 @@ class HomeScene: RoutingUtilityScene, ToggleButtonNodeResponderType {
         super.sceneDidLoad()
         
 
+        let buttonNodeMusic =
+            scene?.childNode(withName: "Sound") as? ToggleButtonNode
         
+        let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
+
+        if  !isSoundOn {
+            /*
+            let currAudio = childNode(withName: "Audio Node") as? SKAudioNode
+            currAudio?.isPaused = true
+            currAudio?.isPaused = true;
+            currAudio?.removeAllActions()
+            currAudio?.removeFromParent()
+            */
+            
+            buttonNodeMusic?.isOn =
+                UserDefaults.standard.bool(for: .isSoundOn)
+             
+            
+        }
+        
+
     }
     /*
     private(set) lazy var menuAudio: SKAudioNode = {
@@ -25,64 +45,33 @@ class HomeScene: RoutingUtilityScene, ToggleButtonNodeResponderType {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
-        loadSelectedPlayer()
-        
-        //let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
-        
-        //debugPrint("THE GAME SOUNDS", isSoundOn)
-        //this turns it off
-        /*
-        if !isSoundOn {
-            let currAudio = childNode(withName: "Audio Node") as? SKAudioNode
-            currAudio?.isPaused = true
-            currAudio?.removeAllActions()
-            currAudio?.removeFromParent()
-        }
-         */
-         /*
-        let buttonNodeMusic =
-            scene?.childNode(withName: "Sound") as? ToggleButtonNode
-        buttonNodeMusic?.isOn =
-            UserDefaults.standard.bool(for: .isSoundOn)
-        */
-        //let buttonForDifficulty = scene?.childNode(withName: "Difficulty") as? TriggleButtonNode
-        //let difficultyLevel = 4
-        //let difficultyState = TriggleButtonNode.TriggleState.convert(from: difficultyLevel)
-       // buttonForDifficulty?.triggle = .init(state: difficultyState)
-    }
-        
-    func toggleButtonTriggered(toggle: ToggleButtonNode) {
-        debugPrint("EEEE", toggle.isOn);
-        /*
-        if(!toggle.isOn){
-            debugPrint("turn off", toggle.isOn);
+        let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
 
-            let currAudio = childNode(withName: "Audio Node") as? SKAudioNode
-            currAudio?.isPaused = true
-            currAudio?.isPaused = true;
-            //currAudio?.removeAllActions()
-            //currAudio?.removeFromParent()
+        
+        if  isSoundOn {
+
+            /*
             
-            let gameAudio = SKAudioNode(fileNamed: "home-audio.wav")
-                gameAudio.removeAllActions()
-                gameAudio.removeFromParent()
+            buttonNodeMusic?.isOn =
+                UserDefaults.standard.bool(for: .isSoundOn)
+             */
+            
+            
         }
+        
+        loadSelectedPlayer()
 
-        var sound = SKAction.playSoundFileNamed("home-audio.wav", waitForCompletion: false)
-        if toggle.isOn {
-            let gameAudio = SKAudioNode(fileNamed: "home-audio.wav")
-            gameAudio.autoplayLooped = true
-            gameAudio.name = "manu audio"
-            SKAction.play()
-        }
-         */
-        
-        
-        UserDefaults.standard.set(toggle.isOn, for: .isSoundOn)
-        
-        
+
+
+       // let buttonForDifficulty = scene?.childNode(withName: "Difficulty") as? TriggleButtonNode
+     //   let difficultyLevel = UserDefaults.standard.rateOfBlocksInSky()
+ //       let difficultyState = TriggleButtonNode.TriggleState.convert(from: difficultyLevel)
+  //      buttonForDifficulty?.triggle = .init(state: difficultyState)
     }
-        
+
+    func toggleButtonTriggered(toggle: ToggleButtonNode) {
+        UserDefaults.standard.set(toggle.isOn, for: .isSoundOn)
+    }
     
     
     private func loadSelectedPlayer() {
@@ -104,13 +93,32 @@ class HomeScene: RoutingUtilityScene, ToggleButtonNodeResponderType {
             stavvyBirdNode.position = pendingNode.position
             stavvyBirdNode.zPosition = pendingNode.zPosition
             scene?.addChild(stavvyBirdNode)
+            let me2 = SKAction.scale(by: 2, duration: 0.1)
+            let moveUp = SKAction.moveBy(x: 0, y: 20, duration: 0.2)
+            let sequence2 = SKAction.sequence([moveUp, moveUp.reversed(), moveUp, moveUp.reversed(), moveUp, moveUp.reversed()])
+            let boxRepeat = SKAction.repeatForever(sequence2)
+            stavvyBirdNode.run(boxRepeat)
             
-        case .stavvyGold, .stavvyRat, .stavvyPig, .stavvyRaven:
+        case .stavvyRat, .stavvyPig, .stavvyRaven:
             let myCurrPlayerNode = TheOriginalAnimatedNodes(animatedGif: getBirdName, correctAspectRatioFor: characterDimensions.width)
             myCurrPlayerNode.xScale = 1.0; myCurrPlayerNode.yScale = 1.0
             myCurrPlayerNode.isHeavy = false
             myCurrPlayerNode.position = pendingNode.position; myCurrPlayerNode.zPosition = pendingNode.zPosition
             scene?.addChild(myCurrPlayerNode)
+            
+        case .stavvyGold:
+            let myCurrPlayerNode = GoldBirdPhysics(animatedGif: getBirdName, correctAspectRatioFor: characterDimensions.width)
+            myCurrPlayerNode.xScale = 1.0; myCurrPlayerNode.yScale = 1.0
+            myCurrPlayerNode.isHeavy = false
+            myCurrPlayerNode.position = pendingNode.position; myCurrPlayerNode.zPosition = pendingNode.zPosition
+            scene?.addChild(myCurrPlayerNode)
+            
+            let me2 = SKAction.scale(by: 2, duration: 0.1)
+            let moveUp = SKAction.moveBy(x: 0, y: 20, duration: 0.2)
+            let sequence2 = SKAction.sequence([moveUp, moveUp.reversed(), moveUp, moveUp.reversed(), moveUp, moveUp.reversed()])
+            let boxRepeat = SKAction.repeatForever(sequence2)
+            myCurrPlayerNode.run(boxRepeat)
+            
             
         case .eldyBird:
             let myCurrPlayerNode = EldyBirdPhysics(animatedGif: getBirdName, correctAspectRatioFor: characterDimensions.width)
@@ -235,6 +243,16 @@ extension PlayScene: ButtonNodeResponderType {
         case .resume:
             currConfigForGame?.myGkStateMach?.enter(InGameState.self)
         case .home:
+            let slectedView = Scenes.title.getName()
+            guard let gameScene = PlayScene(fileNamed: slectedView) else {
+                return
+            }
+            gameScene.scaleMode = RoutingUtilityScene.aspectRatioTypeMode
+            let transition = SKTransition.fade(withDuration: 1.0)
+            transition.pausesIncomingScene = false
+            transition.pausesOutgoingScene = false
+            self.view?.presentScene(gameScene, transition: transition)
+        case .home22:
             let slectedView = Scenes.title.getName()
             guard let gameScene = PlayScene(fileNamed: slectedView) else {
                 return

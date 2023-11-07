@@ -50,7 +50,7 @@ extension UserDefaults {
 
 enum Setting: String {
 
-    case bestScore
+    case highestScoreAchieved
     case lastScore
     case isSoundOn
     case character
@@ -58,7 +58,7 @@ enum Setting: String {
         
     static func regusterDefaults() {
         UserDefaults.standard.register(defaults: [
-            Setting.bestScore.rawValue: 0,
+            Setting.highestScoreAchieved.rawValue: 0,
             Setting.lastScore.rawValue: 0,
             Setting.isSoundOn.rawValue: true,
             Setting.character.rawValue: PlayableCharacter.bird.rawValue,

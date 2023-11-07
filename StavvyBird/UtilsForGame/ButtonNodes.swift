@@ -11,13 +11,13 @@ protocol ButtonNodeResponderType: AnyObject {
 }
 
 enum myButtonIdentifier: String {
-    case start = "Start";case menu = "Menu"; case cancel = "Cancel"; case venu = "Venu";     case scores = "Scores"; case retry = "Retry"; case penu = "Penu";  case home = "Home"; case sound = "Sound"; case zenu = "Zenu"; case pause = "Pause"; case eldy = "EldyBird"; case settings = "Settings"; case raven = "RavensBird";case resume = "Resume"; case titley = "Titley";
+    case start = "Start";case menu = "Menu"; case cancel = "Cancel"; case venu = "Venu";     case scores = "Scores"; case retry = "Retry"; case penu = "Penu";  case home = "Home"; case sound = "Sound"; case zenu = "Zenu"; case pause = "Pause"; case eldy = "EldyBird"; case settings = "Settings"; case raven = "RavensBird";case resume = "Resume"; case titley = "Titley"; case titley22 = "Titley22";  case home22 = "Home22";case retry22 = "Retry22";
 
     case ItemShopCharacters = "ItemShopCharacters"
     //case difficulty = "Difficulty" .difficulty
     
     static let allOfTheGameButtonss: [myButtonIdentifier] = [
-        .start, .pause, .resume, .menu, .venu, .penu, .zenu,.titley, .settings, .home, .retry, .cancel, .scores, sound, .ItemShopCharacters, .eldy, .raven
+        .start, .pause, .resume, .menu, .venu, .penu, .zenu,.titley, .settings, .home, .retry,.retry22, .cancel, .scores, sound, .ItemShopCharacters, .eldy, .raven, .titley22, .home22
     ]
     
     var selectedTextureName: String? {
@@ -175,18 +175,18 @@ protocol ToggleButtonNodeResponderType: AnyObject {
 class ToggleButtonNode: ButtonNode {
     var isOn: Bool {
         didSet {
-            guard let Mute = state.Mute, let Unmute = state.Unmute else {
+            guard let On = state.On, let Off = state.Off else {
                 return
             }
-            Mute.isHidden = !isOn
-            Unmute.isHidden = isOn
+            On.isHidden = !isOn
+            Off.isHidden = isOn
             if isUserInteractionEnabled {
                 toggleResponder.toggleButtonTriggered(toggle: self)
             }
         }
     }
     
-    private var state: (Mute: SKLabelNode?, Unmute: SKLabelNode?) = (Mute: nil, Unmute: nil)
+    private var state: (On: SKLabelNode?, Off: SKLabelNode?) = (On: nil, Off: nil)
     var toggleResponder: ToggleButtonNodeResponderType {
         guard let responder = scene as? ToggleButtonNodeResponderType else {
             fatalError("The button didn't change state")
@@ -199,14 +199,14 @@ class ToggleButtonNode: ButtonNode {
         let isSoundOn = UserDefaults.standard.bool(for: .isSoundOn)
         isOn = isSoundOn
         super.init(coder: aDecoder)
-        guard let onState = self.childNode(withName: "Mute") as? SKLabelNode else  {
+        guard let onState = self.childNode(withName: "On") as? SKLabelNode else  {
             fatalError("Unavailable:  SKLabel node")
         }
-        state.Mute = onState
-        guard let offState = self.childNode(withName: "Unmute") as? SKLabelNode else {
+        state.On = onState
+        guard let offState = self.childNode(withName: "Off") as? SKLabelNode else {
             fatalError("Unavailable:  SKLabel node")
         }
-        state.Unmute = offState
+        state.Off = offState
     }
         
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
