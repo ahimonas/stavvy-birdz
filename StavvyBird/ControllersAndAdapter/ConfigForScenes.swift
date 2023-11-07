@@ -181,7 +181,8 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
         }
         if pointOfImpact == (currBird | EdgeMapping.bouncer.rawValue) {
             debugPrint("bounce")
-            playScene?.shakeAndZoomCamera(intensity: "high")  // Cast the scene to PlayScene and call the method
+            playScene?.shakeAndZoomCamera(intensity: "low")
+            //playScene?.shakeAndZoomCamera(intensity: "high")  // Cast the scene to PlayScene and call the method
             //handleDeadState()
         }
 
