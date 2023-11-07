@@ -17,7 +17,7 @@ class ConfigForScenes: NSObject,
                        PlaySceneProtocol {
     
     var score: Int = 0
-var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, seperationFromBottom: CGFloat = 0, characterDimensions = CGSize(width: 101, height: 101), forceOfGravity: CGFloat = -5.1
+    var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, seperationFromBottom: CGFloat = 0, characterDimensions = CGSize(width: 101, height: 101), forceOfGravity: CGFloat = -5.4
     
     var isSoundOn: Bool = {return UserDefaults.standard.bool(for: .isSoundOn)}(), scoreLabel: SKLabelNode?, pointAddedNoise = SKAction.playSoundFileNamed("points-noise.wav", waitForCompletion: false), crashNoise = SKAction.playSoundFileNamed("game-over-noise.wav", waitForCompletion: false)
     
@@ -170,7 +170,7 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
         let pointOfImpact:UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
         let currBird = EdgeMapping.characterX.rawValue
         if pointOfImpact == (currBird | EdgeMapping.bouncer.rawValue) {
-            score += 1; scoreLabel?.text = "\(score)"
+            score += 1; scoreLabel?.text = "Bounces: \(score)"
             if isSoundOn { scene?.run(pointAddedNoise) }
             notification.notificationOccurred(.success)
         }
