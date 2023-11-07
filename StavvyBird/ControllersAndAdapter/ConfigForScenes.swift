@@ -195,12 +195,9 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
         //bird hit edges
         if pointOfImpact == (currBird | EdgeMapping.edges.rawValue) {
             debugPrint("top")
-<<<<<<< HEAD
           handleDeadState()
             //playScene?.shakeAndZoomCamera(intensity: "low")
-=======
-            playScene?.shakeAndZoomCamera(intensity: "low")
->>>>>>> remotes/origin/main
+            // playScene?.shakeAndZoomCamera(intensity: "low")
           //  handleDeadState()
         }
     }
