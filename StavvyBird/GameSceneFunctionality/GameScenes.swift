@@ -239,10 +239,14 @@ class PlayScene: SKScene {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         PlayScene.sizeOfScreen = view.bounds.size
+        //added
+        self.scaleMode = .aspectFit
          // Initialize the camera
         cameraNode = SKCameraNode()
         self.camera = cameraNode
-        cameraNode.position = CGPoint(x: PlayScene.sizeOfScreen.width, y: PlayScene.sizeOfScreen.height / 1.15)
+        // cameraNode.position = CGPoint(x: PlayScene.sizeOfScreen.width, y: PlayScene.sizeOfScreen.height / 1.15)
+        cameraNode.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+
         self.addChild(cameraNode)
     }
      // Create a method for the shake and zoom effects

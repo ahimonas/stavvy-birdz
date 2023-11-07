@@ -36,7 +36,7 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
     
     private(set) lazy var playingAudio: SKAudioNode = {
         // let gameAudio = SKAudioNode(fileNamed: "in-game-audio.wav")
-        let gameAudio = SKAudioNode(fileNamed: "blast.mp3")
+        let gameAudio = SKAudioNode(fileNamed: "Blast(Edited).wav")
 
         gameAudio.autoplayLooped = true
         gameAudio.name = "playing audio"
