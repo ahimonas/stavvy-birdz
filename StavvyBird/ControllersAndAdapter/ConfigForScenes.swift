@@ -183,6 +183,7 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
             debugPrint("bounce")
             playScene?.shakeAndZoomCamera(intensity: "low")
             //playScene?.shakeAndZoomCamera(intensity: "high")  // Cast the scene to PlayScene and call the method
+            // playScene?.shakeAndZoomCamera(intensity: "high")  // Cast the scene to PlayScene and call the method
             //handleDeadState()
         }
 
@@ -194,8 +195,12 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
         //bird hit edges
         if pointOfImpact == (currBird | EdgeMapping.edges.rawValue) {
             debugPrint("top")
+<<<<<<< HEAD
           handleDeadState()
             //playScene?.shakeAndZoomCamera(intensity: "low")
+=======
+            playScene?.shakeAndZoomCamera(intensity: "low")
+>>>>>>> remotes/origin/main
           //  handleDeadState()
         }
     }
