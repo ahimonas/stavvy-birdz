@@ -264,6 +264,8 @@ extension PlayScene: ButtonNodeResponderType {
             self.view?.presentScene(gameScene, transition: transition)
         case .retry:
             currConfigForGame?.myGkStateMach?.enter(InGameState.self)
+        case .retry22:
+            currConfigForGame?.myGkStateMach?.enter(InGameState.self)
         default:
             debugPrint("Unable to invoke")
             
