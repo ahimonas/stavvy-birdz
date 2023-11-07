@@ -35,12 +35,12 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
      func initPhysicsBoundary() {
          
          //skPhysicsBody was writting by Apple
-        physicsBody = SKPhysicsBody(circleOfRadius: size.width / 4) //CHANGE THE SIZE OF THE BODY
+         physicsBody = SKPhysicsBody(circleOfRadius: size.width / 3.5) //CHANGE THE SIZE OF THE BODY
         physicsBody?.categoryBitMask = EdgeMapping.characterX.rawValue
         physicsBody?.contactTestBitMask = EdgeMapping.block.rawValue | EdgeMapping.breaker.rawValue | EdgeMapping.edges.rawValue | EdgeMapping.bouncer.rawValue
         physicsBody?.collisionBitMask = EdgeMapping.block.rawValue | EdgeMapping.edges.rawValue | EdgeMapping.bouncer.rawValue
         physicsBody?.allowsRotation = false
-         physicsBody?.restitution = 0.99
+         physicsBody?.restitution = 0.98
     }
     
      func animate(with timing: TimeInterval) {
