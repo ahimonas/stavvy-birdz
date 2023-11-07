@@ -16,6 +16,8 @@ extension SKScene {
 class ConfigForScenes: NSObject,
                        PlaySceneProtocol {
     
+    weak var playScene: PlayScene?
+
     var score: Int = 0
 var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, seperationFromBottom: CGFloat = 0, characterDimensions = CGSize(width: 101, height: 101), forceOfGravity: CGFloat = -5.1
     
@@ -33,7 +35,10 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
     }()
     
     private(set) lazy var playingAudio: SKAudioNode = {
-        let gameAudio = SKAudioNode(fileNamed: "in-game-audio.wav")
+        // let gameAudio = SKAudioNode(fileNamed: "in-game-audio.wav")
+        let gameAudio = SKAudioNode(fileNamed: "Blast(Edited).wav")
+        // lower volume in 4 seconds
+        gameAudio.run(SKAction.changeVolume(to: 0.5, duration: 0.1))
         gameAudio.autoplayLooped = true
         gameAudio.name = "playing audio"
         return gameAudio
@@ -169,12 +174,17 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let pointOfImpact:UInt32 = (contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask)
         let currBird = EdgeMapping.characterX.rawValue
-        if pointOfImpact == (currBird | EdgeMapping.breaker.rawValue) {
+        if pointOfImpact == (currBird | EdgeMapping.bouncer.rawValue) {
             score += 1; scoreLabel?.text = "\(score)"
             if isSoundOn { scene?.run(pointAddedNoise) }
             notification.notificationOccurred(.success)
         }
-        
+        if pointOfImpact == (currBird | EdgeMapping.bouncer.rawValue) {
+            debugPrint("bounce")
+            playScene?.shakeAndZoomCamera(intensity: "high")  // Cast the scene to PlayScene and call the method
+            //handleDeadState()
+        }
+
         //bird hit block
         if pointOfImpact == (currBird | EdgeMapping.block.rawValue) {
             debugPrint("zeeee")
@@ -182,7 +192,9 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
         }
         //bird hit edges
         if pointOfImpact == (currBird | EdgeMapping.edges.rawValue) {
-            handleDeadState()
+            debugPrint("top")
+            playScene?.shakeAndZoomCamera(intensity: "low")
+          //  handleDeadState()
         }
     }
     

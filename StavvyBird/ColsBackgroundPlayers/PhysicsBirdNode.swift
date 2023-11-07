@@ -16,7 +16,7 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
     var isHeavy: Bool = true {didSet {self.physicsBody?.affectedByGravity = isHeavy}}
     var isInteractable: Bool = true {didSet {self.isUserInteractionEnabled = isInteractable}}
     var shouldEnablePhysics: Bool = true {didSet {physicsBody?.collisionBitMask = shouldEnablePhysics ? collisionBitMask : 0}}
-    var collisionBitMask: UInt32 = EdgeMapping.block.rawValue | EdgeMapping.edges.rawValue
+    var collisionBitMask: UInt32 = EdgeMapping.block.rawValue | EdgeMapping.edges.rawValue  | EdgeMapping.bouncer.rawValue
     private(set) var timeIntervalForDrawingFrames: TimeInterval = 0
     let impact = UIImpactFeedbackGenerator(style: .medium)
     convenience init(timeIntervalForDrawingFrames: TimeInterval, withTextureAtlas named: String, size: CGSize) {
@@ -35,12 +35,12 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
      func initPhysicsBoundary() {
          
          //skPhysicsBody was writting by Apple
-        physicsBody = SKPhysicsBody(circleOfRadius: size.width / 8) //CHANGE THE SIZE OF THE BODY
+        physicsBody = SKPhysicsBody(circleOfRadius: size.width / 4) //CHANGE THE SIZE OF THE BODY
         physicsBody?.categoryBitMask = EdgeMapping.characterX.rawValue
-        physicsBody?.contactTestBitMask = EdgeMapping.block.rawValue | EdgeMapping.breaker.rawValue | EdgeMapping.edges.rawValue
-        physicsBody?.collisionBitMask = EdgeMapping.block.rawValue | EdgeMapping.edges.rawValue
+        physicsBody?.contactTestBitMask = EdgeMapping.block.rawValue | EdgeMapping.breaker.rawValue | EdgeMapping.edges.rawValue | EdgeMapping.bouncer.rawValue
+        physicsBody?.collisionBitMask = EdgeMapping.block.rawValue | EdgeMapping.edges.rawValue | EdgeMapping.bouncer.rawValue
         physicsBody?.allowsRotation = false
-        physicsBody?.restitution = 0.0 
+         physicsBody?.restitution = 0.99
     }
     
      func animate(with timing: TimeInterval) {
@@ -48,15 +48,25 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
         let bumpMove = SKAction.animate(with: walkTextures, timePerFrame: timing, resize: false, restore: true)
          let threadAction = SKAction.repeatForever(bumpMove); self.run(threadAction)
     }
-    
+    var resetX: CGFloat = 0
     func update(_ timeInterval: CFTimeInterval) {
+        if resetX == 0 {
+            resetX = self.position.x
+        }
         let defaultZero = 0.0
         delta = previousTime == defaultZero ? defaultZero : timeInterval - previousTime; previousTime = timeInterval
         guard let currPhysElem = physicsBody else { return }
+        
         let dxVeloc = currPhysElem.velocity.dx;  let dyVeloc = currPhysElem.velocity.dy;  let myCurrThresh: CGFloat = 370
         if dyVeloc > myCurrThresh { self.physicsBody?.velocity = CGVector(dx: dxVeloc, dy: myCurrThresh) }
         let threshA = 0.006; let threshB = 0.0037; let velocityValue = dyVeloc * (dyVeloc < 0 ? threshA : threshB);
         let backRotation = -0.33; let forwardRotation = 0.99; zRotation = velocityValue.clamp(min: backRotation, max: forwardRotation)
+
+        //move bird to reset x position
+        if self.position.x != resetX {
+            self.position.x = resetX
+        }
+
     }
 }
 extension PhysicsBirdNode: Touchable {

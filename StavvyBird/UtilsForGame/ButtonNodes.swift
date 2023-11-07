@@ -11,13 +11,13 @@ protocol ButtonNodeResponderType: AnyObject {
 }
 
 enum myButtonIdentifier: String {
-    case start = "Start";case menu = "Menu"; case cancel = "Cancel"; case venu = "Venu";     case scores = "Scores"; case retry = "Retry"; case penu = "Penu";  case home = "Home"; case sound = "Sound"; case zenu = "Zenu"; case pause = "Pause"; case eldy = "EldyBird"; case settings = "Settings"; case raven = "RavensBird";case resume = "Resume"; case titley = "Titley"; case titley22 = "Titley22";  case home22 = "Home22";case retry22 = "Retry22";
+    case start = "Start";case menu = "Menu"; case cancel = "Cancel"; case venu = "Venu";     case scores = "Scores"; case scores22 = "Scores22"; case retry = "Retry"; case penu = "Penu";  case home = "Home"; case sound = "Sound"; case zenu = "Zenu"; case pause = "Pause"; case eldy = "EldyBird"; case settings = "Settings"; case raven = "RavensBird";case resume = "Resume"; case titley = "Titley"; case titley22 = "Titley22";  case home22 = "Home22";case retry22 = "Retry22";
 
     case ItemShopCharacters = "ItemShopCharacters"
     //case difficulty = "Difficulty" .difficulty
     
     static let allOfTheGameButtonss: [myButtonIdentifier] = [
-        .start, .pause, .resume, .menu, .venu, .penu, .zenu,.titley, .settings, .home, .retry,.retry22, .cancel, .scores, sound, .ItemShopCharacters, .eldy, .raven, .titley22, .home22
+        .start, .pause, .resume, .menu, .venu, .penu, .zenu,.titley, .settings, .home, .retry,.retry22, .cancel, .scores,.scores22, sound, .ItemShopCharacters, .eldy, .raven, .titley22, .home22
     ]
     
     var selectedTextureName: String? {

@@ -420,6 +420,15 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             RoutingUtilityScene.lastPushTransitionDirection = .up
             transition = SKTransition.push(with: .up, duration: 1.0)
             */
+        case .scores22:
+            showLeaderboard()
+            /*
+            let slectedView = Scenes.score.getName()
+            presentationView = ScoresScene(fileNamed: slectedView)
+            
+            RoutingUtilityScene.lastPushTransitionDirection = .up
+            transition = SKTransition.push(with: .up, duration: 1.0)
+            */
         case .sound:
             //unowned var myConfigForScene: ConfigForScenes
             
