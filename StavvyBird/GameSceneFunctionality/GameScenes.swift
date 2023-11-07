@@ -181,14 +181,12 @@ class PlayScene: SKScene {
         
         self.precedingMoment = 0
         currConfigForGame = ConfigForScenes(with: self)
+        currConfigForGame?.playScene = self  // Set the playScene property
         currConfigForGame?.myGkStateMach = instanceGKSM
         currConfigForGame?.myGkStateMach?.enter(InGameState.self)
     }
     
-    override func didMove(to view: SKView) {
-        super.didMove(to: view)
-        PlayScene.sizeOfScreen = view.bounds.size
-    }
+    
         
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         currConfigForGame?.tangibles.forEach({ touchable in
@@ -226,6 +224,47 @@ class PlayScene: SKScene {
         currConfigForGame?.modernizers.filter({ return $0.willRelive }).forEach({ (activeUpdatable) in
             activeUpdatable.update(currentTime)
         })
+    }
+
+    //  Camera properties
+    var cameraNode: SKCameraNode!
+
+    // override func didMove(to view: SKView) {
+    //     // Initialize the camera
+    //     cameraNode = SKCameraNode()
+    //     self.camera = cameraNode
+    //     self.addChild(cameraNode)
+    // }
+
+    override func didMove(to view: SKView) {
+        super.didMove(to: view)
+        PlayScene.sizeOfScreen = view.bounds.size
+         // Initialize the camera
+        cameraNode = SKCameraNode()
+        self.camera = cameraNode
+        cameraNode.position = CGPoint(x: PlayScene.sizeOfScreen.width, y: PlayScene.sizeOfScreen.height / 1.15)
+        self.addChild(cameraNode)
+    }
+     // Create a method for the shake and zoom effects
+    func shakeAndZoomCamera() {
+
+        debugPrint("Shake and Zoom Camera")
+        // Shake animation
+        let shakeAction = SKAction.sequence([
+            SKAction.moveBy(x: -5, y: -5, duration: 0.1),
+            SKAction.moveBy(x: 10, y: 10, duration: 0.1),
+            SKAction.moveBy(x: -10, y: -10, duration: 0.1),
+            SKAction.moveBy(x: 5, y: 5, duration: 0.1)
+        ])
+
+        // Zoom animation
+        let zoomAction = SKAction.sequence([
+            SKAction.scale(to: 0.8, duration: 0.25),
+            SKAction.scale(to: 1.0, duration: 0.25)
+        ])
+
+        cameraNode.run(shakeAction)
+        cameraNode.run(zoomAction)
     }
     
 }

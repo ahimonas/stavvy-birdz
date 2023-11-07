@@ -17,6 +17,7 @@ class InGameState: GKState {
     let skyBoxInfiniteGenerateKey = "skybox action"
         
     init(inGameConf: ConfigForScenes) {
+        inGameConf.isSoundOn = true
         self.inGameConf = inGameConf
         super.init()
         
@@ -34,6 +35,7 @@ class InGameState: GKState {
         inGameConf.currBirdCharForGame?.isHeavy = false
         inGameConf.scene?.run(skyBoxInfiniteGenerate, withKey: skyBoxInfiniteGenerateKey)
         
+        debugPrint("inGameConf.isSoundOn", inGameConf.isSoundOn)
         if inGameConf.isSoundOn {
             inGameConf.scene?.addChild(inGameConf.playingAudio)
             SKAction.play()

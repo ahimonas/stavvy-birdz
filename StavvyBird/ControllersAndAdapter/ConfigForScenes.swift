@@ -16,6 +16,8 @@ extension SKScene {
 class ConfigForScenes: NSObject,
                        PlaySceneProtocol {
     
+    weak var playScene: PlayScene?
+
     var score: Int = 0
 var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, seperationFromBottom: CGFloat = 0, characterDimensions = CGSize(width: 101, height: 101), forceOfGravity: CGFloat = -5.1
     
@@ -33,7 +35,9 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
     }()
     
     private(set) lazy var playingAudio: SKAudioNode = {
-        let gameAudio = SKAudioNode(fileNamed: "in-game-audio.wav")
+        // let gameAudio = SKAudioNode(fileNamed: "in-game-audio.wav")
+        let gameAudio = SKAudioNode(fileNamed: "blast.mp3")
+
         gameAudio.autoplayLooped = true
         gameAudio.name = "playing audio"
         return gameAudio
@@ -176,6 +180,7 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
         }
         if pointOfImpact == (currBird | EdgeMapping.bouncer.rawValue) {
             debugPrint("bounce")
+            playScene?.shakeAndZoomCamera()  // Cast the scene to PlayScene and call the method
             //handleDeadState()
         }
         
