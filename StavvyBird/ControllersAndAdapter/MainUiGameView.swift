@@ -55,7 +55,7 @@ class MainUiGameView: UIViewController, GADBannerViewDelegate {
     var admobBanner = UIView()
     
     func removeAd(){
-        print("removed ad")
+        print("removed ads")
         bannerView?.removeFromSuperview()
     }
     

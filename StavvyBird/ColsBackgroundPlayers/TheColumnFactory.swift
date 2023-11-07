@@ -195,7 +195,7 @@ class BlockNode: SKSpriteNode {
             physicsBody?.categoryBitMask = EdgeMapping.bouncer.rawValue
             physicsBody?.contactTestBitMask =  EdgeMapping.characterX.rawValue
            physicsBody?.collisionBitMask = EdgeMapping.characterX.rawValue
-            physicsBody?.restitution = 0.99
+            physicsBody?.restitution = 0.93
             physicsBody?.isDynamic = false
              //physicsBody?.collisionBitMask = EdgeMapping.characterX.rawValue
             zPosition = 22
