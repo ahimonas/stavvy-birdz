@@ -313,7 +313,7 @@ class PlayScene: SKScene {
           // Calculate the constrained position
         let originalPosition = originalCameraPosition
         var newPosition = mainCharacter.position
-        let maxDistance: CGFloat = 100.0
+        let maxDistance: CGFloat = 75
 
         // Calculate the distance vector
         let distanceVector = CGVector(dx: newPosition.x - originalPosition.x, dy: newPosition.y - originalPosition.y)
