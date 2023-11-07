@@ -403,6 +403,11 @@ class RoutingUtilityScene: SKScene, ButtonNodeResponderType, GKGameCenterControl
             presentationView = PlayScene(fileNamed: startView)
             
             transition = SKTransition.fade(withDuration: 1.0)
+        case .titley22:
+            let startView = Scenes.game.getName()
+            presentationView = PlayScene(fileNamed: startView)
+            
+            transition = SKTransition.fade(withDuration: 1.0)
         case .settings:
             let slectedView = Scenes.setting.getName()
 

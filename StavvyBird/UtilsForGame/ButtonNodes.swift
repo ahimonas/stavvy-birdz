@@ -11,13 +11,13 @@ protocol ButtonNodeResponderType: AnyObject {
 }
 
 enum myButtonIdentifier: String {
-    case start = "Start";case menu = "Menu"; case cancel = "Cancel"; case venu = "Venu";     case scores = "Scores"; case retry = "Retry"; case penu = "Penu";  case home = "Home"; case sound = "Sound"; case zenu = "Zenu"; case pause = "Pause"; case eldy = "EldyBird"; case settings = "Settings"; case raven = "RavensBird";case resume = "Resume"; case titley = "Titley";
+    case start = "Start";case menu = "Menu"; case cancel = "Cancel"; case venu = "Venu";     case scores = "Scores"; case retry = "Retry"; case penu = "Penu";  case home = "Home"; case sound = "Sound"; case zenu = "Zenu"; case pause = "Pause"; case eldy = "EldyBird"; case settings = "Settings"; case raven = "RavensBird";case resume = "Resume"; case titley = "Titley"; case titley22 = "Titley22";
 
     case ItemShopCharacters = "ItemShopCharacters"
     //case difficulty = "Difficulty" .difficulty
     
     static let allOfTheGameButtonss: [myButtonIdentifier] = [
-        .start, .pause, .resume, .menu, .venu, .penu, .zenu,.titley, .settings, .home, .retry, .cancel, .scores, sound, .ItemShopCharacters, .eldy, .raven
+        .start, .pause, .resume, .menu, .venu, .penu, .zenu,.titley, .settings, .home, .retry, .cancel, .scores, sound, .ItemShopCharacters, .eldy, .raven, .titley22
     ]
     
     var selectedTextureName: String? {

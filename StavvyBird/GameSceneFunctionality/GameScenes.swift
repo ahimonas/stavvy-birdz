@@ -93,6 +93,11 @@ class HomeScene: RoutingUtilityScene, ToggleButtonNodeResponderType {
             stavvyBirdNode.position = pendingNode.position
             stavvyBirdNode.zPosition = pendingNode.zPosition
             scene?.addChild(stavvyBirdNode)
+            let me2 = SKAction.scale(by: 2, duration: 0.1)
+            let moveUp = SKAction.moveBy(x: 0, y: 20, duration: 0.2)
+            let sequence2 = SKAction.sequence([moveUp, moveUp.reversed(), moveUp, moveUp.reversed(), moveUp, moveUp.reversed()])
+            let boxRepeat = SKAction.repeatForever(sequence2)
+            stavvyBirdNode.run(boxRepeat)
             
         case .stavvyRat, .stavvyPig, .stavvyRaven:
             let myCurrPlayerNode = TheOriginalAnimatedNodes(animatedGif: getBirdName, correctAspectRatioFor: characterDimensions.width)
@@ -107,6 +112,12 @@ class HomeScene: RoutingUtilityScene, ToggleButtonNodeResponderType {
             myCurrPlayerNode.isHeavy = false
             myCurrPlayerNode.position = pendingNode.position; myCurrPlayerNode.zPosition = pendingNode.zPosition
             scene?.addChild(myCurrPlayerNode)
+            
+            let me2 = SKAction.scale(by: 2, duration: 0.1)
+            let moveUp = SKAction.moveBy(x: 0, y: 20, duration: 0.2)
+            let sequence2 = SKAction.sequence([moveUp, moveUp.reversed(), moveUp, moveUp.reversed(), moveUp, moveUp.reversed()])
+            let boxRepeat = SKAction.repeatForever(sequence2)
+            myCurrPlayerNode.run(boxRepeat)
             
             
         case .eldyBird:
