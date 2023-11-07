@@ -240,11 +240,11 @@ extension GameOverState {
         
         if let highestScoreAchievedLabel = myCurrSpritNod.childNode(withName: "Highest Score") as? SKLabelNode {
             let highestScoreAchieved = UserDefaults.standard.integer(for: .highestScoreAchieved)
-            highestScoreAchievedLabel.text = "Highest Score: \(highestScoreAchieved)"
+            highestScoreAchievedLabel.text = "Most Bounces: \(highestScoreAchieved)"
         }
         
         if let scoreForCurrentSession = myCurrSpritNod.childNode(withName: "Session Score") as? SKLabelNode {
-            scoreForCurrentSession.text = "Current Score: \(myConfigForScene.score)"
+            scoreForCurrentSession.text = "Bounces: \(myConfigForScene.score)"
         }
     }
 }

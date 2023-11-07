@@ -252,6 +252,16 @@ extension PlayScene: ButtonNodeResponderType {
             transition.pausesIncomingScene = false
             transition.pausesOutgoingScene = false
             self.view?.presentScene(gameScene, transition: transition)
+        case .home22:
+            let slectedView = Scenes.title.getName()
+            guard let gameScene = PlayScene(fileNamed: slectedView) else {
+                return
+            }
+            gameScene.scaleMode = RoutingUtilityScene.aspectRatioTypeMode
+            let transition = SKTransition.fade(withDuration: 1.0)
+            transition.pausesIncomingScene = false
+            transition.pausesOutgoingScene = false
+            self.view?.presentScene(gameScene, transition: transition)
         case .retry:
             currConfigForGame?.myGkStateMach?.enter(InGameState.self)
         default:
