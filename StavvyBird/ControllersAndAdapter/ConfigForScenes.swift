@@ -37,7 +37,8 @@ var namedPngFile = "game-play-screen", actionFadeTime: TimeInterval = 0.24, sepe
     private(set) lazy var playingAudio: SKAudioNode = {
         // let gameAudio = SKAudioNode(fileNamed: "in-game-audio.wav")
         let gameAudio = SKAudioNode(fileNamed: "Blast(Edited).wav")
-
+        // lower volume in 4 seconds
+        gameAudio.run(SKAction.changeVolume(to: 0.5, duration: 0.1))
         gameAudio.autoplayLooped = true
         gameAudio.name = "playing audio"
         return gameAudio
@@ -180,11 +181,10 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
         }
         if pointOfImpact == (currBird | EdgeMapping.bouncer.rawValue) {
             debugPrint("bounce")
-            playScene?.shakeAndZoomCamera()  // Cast the scene to PlayScene and call the method
+            playScene?.shakeAndZoomCamera(intensity: "high")  // Cast the scene to PlayScene and call the method
             //handleDeadState()
         }
-        
-        
+
         //bird hit block
         if pointOfImpact == (currBird | EdgeMapping.block.rawValue) {
             debugPrint("zeeee")
@@ -193,6 +193,7 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
         //bird hit edges
         if pointOfImpact == (currBird | EdgeMapping.edges.rawValue) {
             debugPrint("top")
+            playScene?.shakeAndZoomCamera(intensity: "low")
           //  handleDeadState()
         }
     }
