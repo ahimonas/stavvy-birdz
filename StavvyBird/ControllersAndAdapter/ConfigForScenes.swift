@@ -188,7 +188,7 @@ extension ConfigForScenes: SKPhysicsContactDelegate {
         //bird hit edges
         if pointOfImpact == (currBird | EdgeMapping.edges.rawValue) {
             debugPrint("top")
-          //  handleDeadState()
+          handleDeadState()
         }
     }
     
