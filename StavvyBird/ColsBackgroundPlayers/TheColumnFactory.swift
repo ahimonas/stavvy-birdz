@@ -129,7 +129,7 @@ struct ColumnFactory {
         
         let randomBlockWidth = CGFloat.range(min: 105, max: 350)
 
-        let randomBlockHeight = CGFloat.range(min: 80, max: 333) //height
+        let randomBlockHeight = CGFloat.range(min: 80, max: 370) //height
         
         if( randomBlockHeight  > 200){
             
@@ -140,31 +140,31 @@ struct ColumnFactory {
         var midUpPipe = BlockNode(textures: (block: "column-parts", cap: "sparkGold"), of: CGSize(width: randomBlockHeight, height: randomBlockHeight/1.8))
         
         //halfofblock needs to be over the bottom axis, we can place the blocks anywhere between heree
-        var bottomBoundary = (randomBlockHeight/1.8)+2
-        var topBoundary = blockY-(randomBlockHeight/1.8)-20
+        var bottomBoundary = (randomBlockHeight/1.8)+10
+        var topBoundary = blockY-(randomBlockHeight/1.8)-10
         
         
-        var myRandoHeightplacment = CGFloat.range(min: bottomBoundary+10, max: topBoundary-20)
+        var myRandoHeightplacment = CGFloat.range(min: bottomBoundary, max: topBoundary)
         //we can put the poistion anywhere within that breaker
         midUpPipe?.position = CGPoint(x: blockX, y: myRandoHeightplacment)
       
         
-        if( randomBlockHeight  < 200){
+        if( randomBlockHeight  < 250){
             
             midUpPipe = BlockNode(textures: (block: "column-parts", cap: "sparkGold"), of: CGSize(width: randomBlockHeight, height: randomBlockHeight))
             
             //halfofblock needs to be over the bottom axis, we can place the blocks anywhere between heree
-            bottomBoundary = (randomBlockHeight)+2
+            bottomBoundary = (randomBlockHeight)+10
             topBoundary = blockY-(randomBlockHeight)-10
             
             
-            myRandoHeightplacment = CGFloat.range(min: bottomBoundary+4, max: topBoundary-20)
+            myRandoHeightplacment = CGFloat.range(min: bottomBoundary, max: topBoundary)
             //we can put the poistion anywhere within that breaker
             midUpPipe?.position = CGPoint(x: blockX, y: myRandoHeightplacment)
             
         }
         
-        if( randomBlockHeight  > 318){
+        if( randomBlockHeight  > 350){
             
             midUpPipe = BlockNode(textures: (block: "column-parts", cap: "sparkGold"), of: CGSize(width: randomBlockHeight, height: randomBlockHeight))
             
@@ -219,7 +219,7 @@ class BlockNode: SKSpriteNode {
                  return nil
              }
         
-        if(size.width < 200 || size.width > 318){
+        if(size.width < 250 || size.width > 350){
             skyBlockIMGGG = (UIImage(named: "sparkGold" )?.cgImage)!
             goldBlock = true
         }
@@ -269,9 +269,9 @@ class BlockNode: SKSpriteNode {
             physicsBody?.categoryBitMask = EdgeMapping.bouncer.rawValue
             physicsBody?.contactTestBitMask =  EdgeMapping.characterX.rawValue
            physicsBody?.collisionBitMask = EdgeMapping.characterX.rawValue
-            physicsBody?.restitution = 0.99
+            physicsBody?.restitution = 0.97
             physicsBody?.isDynamic = false
-            physicsBody?.density = 3
+            //physicsBody?.density = 3
 
             physicsBody?.friction = 0
 
