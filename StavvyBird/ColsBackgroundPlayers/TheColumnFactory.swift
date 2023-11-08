@@ -127,21 +127,16 @@ struct ColumnFactory {
         myCurrThresh.physicsBody?.isDynamic = false
         myCurrThresh.zPosition = 21
         
-        let randomBlockWidth = CGFloat.range(min: 105, max: 350)
+        let randomBlockWidth = CGFloat.range(min: 105, max: 340)
 
-        let randomBlockHeight = CGFloat.range(min: 80, max: 370) //height
-        
-        if( randomBlockHeight  > 200){
-            
-            
-            
-        }
+        let randomBlockHeight = CGFloat.range(min: 60, max: 320) //height
+
         let randomDouble2 = Double.random(in: 1...2)
         var midUpPipe = BlockNode(textures: (block: "column-parts", cap: "sparkGold"), of: CGSize(width: randomBlockHeight, height: randomBlockHeight/1.8))
         
         //halfofblock needs to be over the bottom axis, we can place the blocks anywhere between heree
-        var bottomBoundary = (randomBlockHeight/1.8)+10
-        var topBoundary = blockY-(randomBlockHeight/1.8)-10
+        var bottomBoundary = (randomBlockHeight/1.8)+32
+        var topBoundary = blockY-(randomBlockHeight/1.8)-32
         
         
         var myRandoHeightplacment = CGFloat.range(min: bottomBoundary, max: topBoundary)
@@ -149,13 +144,13 @@ struct ColumnFactory {
         midUpPipe?.position = CGPoint(x: blockX, y: myRandoHeightplacment)
       
         
-        if( randomBlockHeight  < 250){
+        if( randomBlockHeight  < 190){
             
             midUpPipe = BlockNode(textures: (block: "column-parts", cap: "sparkGold"), of: CGSize(width: randomBlockHeight, height: randomBlockHeight))
             
             //halfofblock needs to be over the bottom axis, we can place the blocks anywhere between heree
-            bottomBoundary = (randomBlockHeight)+10
-            topBoundary = blockY-(randomBlockHeight)-10
+            bottomBoundary = (randomBlockHeight)+2
+            topBoundary = blockY-(randomBlockHeight)-2
             
             
             myRandoHeightplacment = CGFloat.range(min: bottomBoundary, max: topBoundary)
@@ -164,7 +159,7 @@ struct ColumnFactory {
             
         }
         
-        if( randomBlockHeight  > 350){
+        if( randomBlockHeight  > 300){
             
             midUpPipe = BlockNode(textures: (block: "column-parts", cap: "sparkGold"), of: CGSize(width: randomBlockHeight, height: randomBlockHeight))
             
@@ -219,7 +214,7 @@ class BlockNode: SKSpriteNode {
                  return nil
              }
         
-        if(size.width < 250 || size.width > 350){
+        if(size.width < 190 || size.width > 300){
             skyBlockIMGGG = (UIImage(named: "sparkGold" )?.cgImage)!
             goldBlock = true
         }

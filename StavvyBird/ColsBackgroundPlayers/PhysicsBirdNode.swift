@@ -40,8 +40,8 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
         physicsBody?.contactTestBitMask = EdgeMapping.block.rawValue | EdgeMapping.breaker.rawValue | EdgeMapping.edges.rawValue | EdgeMapping.bouncer.rawValue
         physicsBody?.collisionBitMask = EdgeMapping.block.rawValue | EdgeMapping.edges.rawValue | EdgeMapping.bouncer.rawValue
         physicsBody?.allowsRotation = false
-         physicsBody?.mass = 1.7
-         physicsBody?.restitution = 1.09
+         physicsBody?.mass = 1.8
+         physicsBody?.restitution = 0.97
          physicsBody?.friction = 0
 
     }
