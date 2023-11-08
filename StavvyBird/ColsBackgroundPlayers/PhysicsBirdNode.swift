@@ -35,12 +35,15 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
      func initPhysicsBoundary() {
          
          //skPhysicsBody was writting by Apple
-         physicsBody = SKPhysicsBody(circleOfRadius: size.width / 3.5) //CHANGE THE SIZE OF THE BODY
+         physicsBody = SKPhysicsBody(circleOfRadius: size.width / 3.3) //CHANGE THE SIZE OF THE BODY
         physicsBody?.categoryBitMask = EdgeMapping.characterX.rawValue
         physicsBody?.contactTestBitMask = EdgeMapping.block.rawValue | EdgeMapping.breaker.rawValue | EdgeMapping.edges.rawValue | EdgeMapping.bouncer.rawValue
         physicsBody?.collisionBitMask = EdgeMapping.block.rawValue | EdgeMapping.edges.rawValue | EdgeMapping.bouncer.rawValue
         physicsBody?.allowsRotation = false
-         physicsBody?.restitution = 0.98
+         physicsBody?.mass = 1.8
+         physicsBody?.restitution = 0.97
+         physicsBody?.friction = 0
+
     }
     
      func animate(with timing: TimeInterval) {
@@ -73,6 +76,6 @@ extension PhysicsBirdNode: Touchable {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !isInteractable { return }
         //bounce force for applied impulse
-        let bumpForward = 0; let bumpVerticle = 133; impact.impactOccurred(); isHeavy = true; physicsBody?.applyImpulse(CGVector(dx: bumpForward, dy: bumpVerticle))
+        let bumpForward = 0; let bumpVerticle = 733; impact.impactOccurred(); isHeavy = true; physicsBody?.applyImpulse(CGVector(dx: bumpForward, dy: bumpVerticle))
     }
 }

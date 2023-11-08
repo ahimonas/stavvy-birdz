@@ -90,7 +90,7 @@ struct EdgeMapping : OptionSet {
     
     static let edges = EdgeMapping(rawValue: 1 << 0); static let characterX = EdgeMapping(rawValue: 1 << 1);
     static let block = EdgeMapping(rawValue: 1 << 2); static let column = EdgeMapping(rawValue: 1 << 2)
-    static let breaker = EdgeMapping(rawValue: 1 << 3);  static let bouncer = EdgeMapping(rawValue: 1 << 4);
+    static let breaker = EdgeMapping(rawValue: 1 << 3);  static let bouncer = EdgeMapping(rawValue: 1 << 4);  static let topEdge = EdgeMapping(rawValue: 1 << 5);
 }
 
 extension CGFloat {
