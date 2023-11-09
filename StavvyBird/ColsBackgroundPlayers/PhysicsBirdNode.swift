@@ -35,12 +35,15 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
      func initPhysicsBoundary() {
          
          //skPhysicsBody was writting by Apple
-         physicsBody = SKPhysicsBody(circleOfRadius: size.width / 3.5) //CHANGE THE SIZE OF THE BODY
+         physicsBody = SKPhysicsBody(circleOfRadius: size.width / 3) //CHANGE THE SIZE OF THE BODY
         physicsBody?.categoryBitMask = EdgeMapping.characterX.rawValue
         physicsBody?.contactTestBitMask = EdgeMapping.block.rawValue | EdgeMapping.breaker.rawValue | EdgeMapping.edges.rawValue | EdgeMapping.bouncer.rawValue
         physicsBody?.collisionBitMask = EdgeMapping.block.rawValue | EdgeMapping.edges.rawValue | EdgeMapping.bouncer.rawValue
         physicsBody?.allowsRotation = false
-         physicsBody?.restitution = 0.98
+         physicsBody?.mass = 1.8
+         physicsBody?.restitution = 0.97
+         physicsBody?.friction = 0
+
     }
     
      func animate(with timing: TimeInterval) {
@@ -57,7 +60,7 @@ class PhysicsBirdNode: SKSpriteNode, Updatable, Playable, PhysicsContactable {
         delta = previousTime == defaultZero ? defaultZero : timeInterval - previousTime; previousTime = timeInterval
         guard let currPhysElem = physicsBody else { return }
         
-        let dxVeloc = currPhysElem.velocity.dx;  let dyVeloc = currPhysElem.velocity.dy;  let myCurrThresh: CGFloat = 370
+        let dxVeloc = currPhysElem.velocity.dx;  let dyVeloc = currPhysElem.velocity.dy;  let myCurrThresh: CGFloat = 443
         if dyVeloc > myCurrThresh { self.physicsBody?.velocity = CGVector(dx: dxVeloc, dy: myCurrThresh) }
         let threshA = 0.006; let threshB = 0.0037; let velocityValue = dyVeloc * (dyVeloc < 0 ? threshA : threshB);
         let backRotation = -0.33; let forwardRotation = 0.99; zRotation = velocityValue.clamp(min: backRotation, max: forwardRotation)
@@ -73,6 +76,6 @@ extension PhysicsBirdNode: Touchable {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !isInteractable { return }
         //bounce force for applied impulse
-        let bumpForward = 0; let bumpVerticle = 133; impact.impactOccurred(); isHeavy = true; physicsBody?.applyImpulse(CGVector(dx: bumpForward, dy: bumpVerticle))
+        let bumpForward = 0; let bumpVerticle = 557; impact.impactOccurred(); isHeavy = true; physicsBody?.applyImpulse(CGVector(dx: bumpForward, dy: bumpVerticle))
     }
 }

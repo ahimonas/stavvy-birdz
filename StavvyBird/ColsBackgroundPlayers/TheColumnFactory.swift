@@ -72,9 +72,27 @@ struct ColumnFactory {
             column3.run(sequence3)
         }
         
+        let blockMoveDuration4: TimeInterval = 10
+
+        let cleanUpAction4 = SKAction.run {
+            targetNode.childNode(withName: blockName3)?.removeFromParent()
+        }
+        
+        let renderFactoryPipeAction4 = SKAction.run {
+            guard let column4 = ColumnFactory.generateBlocks(sceneSize: scene.size) else {
+                return
+            }
+            column4.name = blockName3
+            targetNode.addChild(column4)
+            
+            let blockRelocation4 = SKAction.move(to: CGPoint(x: -(column4.size.width + scene.size.width), y: column4.position.y), duration: blockMoveDuration4)
+            let sequence4 = SKAction.sequence([blockRelocation4, cleanUpAction4])
+            column4.run(sequence4)
+        }
         
         
-        let actionsSequential = SKAction.sequence([waitAction, renderFactoryPipeAction, renderFactoryPipeAction2, renderFactoryPipeAction3])//
+        
+        let actionsSequential = SKAction.sequence([waitAction, renderFactoryPipeAction, renderFactoryPipeAction2, renderFactoryPipeAction3, renderFactoryPipeAction4])//
         return SKAction.repeatForever(actionsSequential)
     }
     
@@ -109,19 +127,70 @@ struct ColumnFactory {
         myCurrThresh.physicsBody?.isDynamic = false
         myCurrThresh.zPosition = 21
         
-        let randomBlockWidth = CGFloat.range(min: 105, max: 350)
+        let randomBlockWidth = CGFloat.range(min: 105, max: 340)
 
-        let randomBlockHeight = CGFloat.range(min: 105, max: 350) //height
-        let midUpPipe = BlockNode(textures: (block: "column-parts", cap: "sparkGold"), of: CGSize(width: randomBlockHeight, height: randomBlockHeight))
+        let randomBlockHeight = CGFloat.range(min: 60, max: 320) //height
+
+        let randomDouble2 = Double.random(in: 1...2)
+        var midUpPipe = BlockNode(textures: (block: "column-parts", cap: "sparkGold"), of: CGSize(width: randomBlockHeight, height: randomBlockHeight/1.8))
         
         //halfofblock needs to be over the bottom axis, we can place the blocks anywhere between heree
-        let bottomBoundary = (randomBlockHeight/2)+2
-        let topBoundary = blockY-(randomBlockHeight/2)-20
+        var bottomBoundary = (randomBlockHeight/1.8)+32
+        var topBoundary = blockY-(randomBlockHeight/1.8)-32
         
         
-        let myRandoHeightplacment = CGFloat.range(min: bottomBoundary+10, max: topBoundary-100)
+        var myRandoHeightplacment = CGFloat.range(min: bottomBoundary, max: topBoundary)
         //we can put the poistion anywhere within that breaker
         midUpPipe?.position = CGPoint(x: blockX, y: myRandoHeightplacment)
+      
+        
+        if( randomBlockHeight  < 190){
+            
+            midUpPipe = BlockNode(textures: (block: "column-parts", cap: "sparkGold"), of: CGSize(width: randomBlockHeight, height: randomBlockHeight))
+            
+            //halfofblock needs to be over the bottom axis, we can place the blocks anywhere between heree
+            bottomBoundary = (randomBlockHeight)+2
+            topBoundary = blockY-(randomBlockHeight)-2
+            
+            
+            myRandoHeightplacment = CGFloat.range(min: bottomBoundary, max: topBoundary)
+            //we can put the poistion anywhere within that breaker
+            midUpPipe?.position = CGPoint(x: blockX, y: myRandoHeightplacment)
+            
+        }
+        
+        if( randomBlockHeight  > 300){
+            
+            midUpPipe = BlockNode(textures: (block: "column-parts", cap: "sparkGold"), of: CGSize(width: randomBlockHeight, height: randomBlockHeight))
+            
+            //halfofblock needs to be over the bottom axis, we can place the blocks anywhere between heree
+            bottomBoundary = (randomBlockHeight)+2
+            topBoundary = blockY-(randomBlockHeight)-10
+            
+            
+            myRandoHeightplacment = CGFloat.range(min: bottomBoundary+4, max: topBoundary-5)
+            //we can put the poistion anywhere within that breaker
+            midUpPipe?.position = CGPoint(x: blockX, y: myRandoHeightplacment)
+            
+        }
+        /*
+        if(randomDouble2 < 1.5){
+            
+            midUpPipe = BlockNode(textures: (block: "column-parts", cap: "sparkGold"), of: CGSize(width: randomBlockHeight, height: randomBlockHeight))
+            
+            //halfofblock needs to be over the bottom axis, we can place the blocks anywhere between heree
+            bottomBoundary = (randomBlockHeight)+2
+            topBoundary = blockY-(randomBlockHeight)-20
+            
+            
+            myRandoHeightplacment = CGFloat.range(min: bottomBoundary+4, max: topBoundary-20)
+            //we can put the poistion anywhere within that breaker
+            midUpPipe?.position = CGPoint(x: blockX, y: myRandoHeightplacment)
+            
+        }
+         */
+        
+
         
         //wrap the block to make sure its not null
         guard let blockInstanceEncapsulator = midUpPipe else {
@@ -139,15 +208,15 @@ class BlockNode: SKSpriteNode {
     
     init?(textures: (block: String, cap: String), of size: CGSize) {
         
-        var goldBlock = true
+        var goldBlock = false
         let randomDouble2 = Double.random(in: 1...2)
-        guard var skyBlockIMGGG = UIImage(named: "sparkGold" )?.cgImage else {
+        guard var skyBlockIMGGG = UIImage(named: "sparkBlack" )?.cgImage else {
                  return nil
              }
         
-        if(size.height < 200){
-            skyBlockIMGGG = (UIImage(named: "sparkBlack" )?.cgImage)!
-            goldBlock = false
+        if(size.width < 190 || size.width > 300){
+            skyBlockIMGGG = (UIImage(named: "sparkGold" )?.cgImage)!
+            goldBlock = true
         }
         
         //The rectangle we draw the block in, think outer container, if we touch this we die and we draw the image inside
@@ -195,8 +264,12 @@ class BlockNode: SKSpriteNode {
             physicsBody?.categoryBitMask = EdgeMapping.bouncer.rawValue
             physicsBody?.contactTestBitMask =  EdgeMapping.characterX.rawValue
            physicsBody?.collisionBitMask = EdgeMapping.characterX.rawValue
-            physicsBody?.restitution = 0.93
+            physicsBody?.restitution = 0.97
             physicsBody?.isDynamic = false
+            //physicsBody?.density = 3
+
+            physicsBody?.friction = 0
+
              //physicsBody?.collisionBitMask = EdgeMapping.characterX.rawValue
             zPosition = 22
         }
